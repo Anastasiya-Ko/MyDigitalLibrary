@@ -26,10 +26,6 @@ public class BookDTO {
     String name;
 
 
-    @NotEmpty(message = "У книги должен быть автор!")
-    @Size(min = 1, max = 100, message = "Поле Автор должно быть длиной от 1 до 100 букв")
-    String author;
-
     @NotEmpty(message = "У книги должен быть год издания")
     @Pattern(message = "Год выпуска книги должен содержать 4 цифры",
             regexp = "^\\d{4}$")

@@ -9,33 +9,23 @@ import lombok.experimental.FieldDefaults;
 
 import java.util.List;
 
-
 @Getter
 @Setter
 @FieldDefaults(level = AccessLevel.PRIVATE)
-@Entity (name = "book")
-public class Book {
+@Entity(name = "author")
+public class Author {
 
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "person_id")
-    //@JsonBackReference
-    Person person_owner;
-
-    @ManyToOne
-    @JoinColumn(name = "author_id")
-    //@JsonBackReference
-    Author author_owner;
-
     @Column(name = "name")
     String name;
 
-
-    @Column(name = "year_of_publication")
-    int yearOfPublication;
+    @JsonIgnore
+    //@JsonManagedReference
+    @OneToMany(mappedBy = "author_owner")
+    List<Book> books;
 
 }

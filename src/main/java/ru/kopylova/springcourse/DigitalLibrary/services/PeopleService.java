@@ -1,5 +1,7 @@
 package ru.kopylova.springcourse.DigitalLibrary.services;
 
+import lombok.AccessLevel;
+import lombok.experimental.FieldDefaults;
 import org.springframework.stereotype.Service;
 import ru.kopylova.springcourse.DigitalLibrary.models.entity.Person;
 import ru.kopylova.springcourse.DigitalLibrary.repositories.PeopleRepository;
@@ -7,7 +9,7 @@ import ru.kopylova.springcourse.DigitalLibrary.repositories.PeopleRepository;
 import java.util.List;
 
 @Service
-
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class PeopleService {
 
     private final PeopleRepository peopleRepository;
