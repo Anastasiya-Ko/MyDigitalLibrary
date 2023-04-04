@@ -7,8 +7,6 @@ import ru.kopylova.springcourse.DigitalLibrary.models.entity.Person;
 
 import java.util.List;
 
-public interface BooksRepository extends JpaRepository<Book, Long> {
-
+public interface AuthorsRepository extends JpaRepository<Author, Long> {
     List<Book> findByPersonOwner(Person personOwner);
-    List<Author> findByAuthorOwner(Author authorOwner);
 }

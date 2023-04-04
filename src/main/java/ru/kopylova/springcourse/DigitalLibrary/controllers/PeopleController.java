@@ -1,10 +1,8 @@
 package ru.kopylova.springcourse.DigitalLibrary.controllers;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import ru.kopylova.springcourse.DigitalLibrary.models.entity.Person;
+import ru.kopylova.springcourse.DigitalLibrary.models.view.PersonDTO;
 import ru.kopylova.springcourse.DigitalLibrary.services.PeopleService;
 
 import java.util.List;
@@ -29,13 +27,29 @@ public class PeopleController {
 
     @GetMapping("/one/{id}")
     public Person getOne(@PathVariable Long id) {
-        return peopleService.findOne(id);
+        return peopleService.findOneById(id);
     }
 
-//    @PostMapping
-//    public PersonDTO create(@RequestBody PersonDTO view)
-//    {
-//        PersonDTO dto = peopleService.create(view);
-//        return dto;
-//    }
+    @GetMapping("/by-name")
+    public Person getByLastName(@RequestParam String lastName) {
+        return peopleService.findByLastName(lastName);
+    }
+    @PostMapping
+    public PersonDTO createPerson(@RequestBody PersonDTO view)
+    {
+        PersonDTO dto = peopleService.createPerson(view);
+        return dto;
+    }
+
+    @PutMapping
+    public PersonDTO updatePersonByLastName(@RequestBody PersonDTO view, @PathVariable String lastName) {
+        PersonDTO dto = peopleService.updatePersonByLastName(view, lastName);
+        return dto;
+    }
+
+    @DeleteMapping
+    public void deletePersonBy(@PathVariable Long id) {
+        peopleService.deletePersonById(id);
+    }
+
 }

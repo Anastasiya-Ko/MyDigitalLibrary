@@ -39,7 +39,7 @@ public class Person {
 
     @JsonIgnore
     //@JsonManagedReference
-    @OneToMany(mappedBy = "person_owner")
+    @OneToMany(mappedBy = "personOwner")
     List<Book> books;
 
 

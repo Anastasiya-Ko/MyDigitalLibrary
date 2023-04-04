@@ -7,6 +7,7 @@ import lombok.*;
 import lombok.experimental.FieldDefaults;
 import ru.kopylova.springcourse.DigitalLibrary.models.entity.Gender;
 
+import java.time.LocalDate;
 import java.time.LocalTime;
 
 @Getter
@@ -15,9 +16,6 @@ import java.time.LocalTime;
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class PersonDTO {
-
-    @Schema(description = "Идентификатор человека", accessMode = Schema.AccessMode.READ_ONLY)
-    Long id;
 
     @NotEmpty(message = "У человека должно быть имя!")
     @Size(min = 1, max = 100, message = "Имя должно быть длиной от 1 до 100 букв")
@@ -34,7 +32,7 @@ public class PersonDTO {
     @Pattern(message = "Год рождения должен содержать 4 цифры",
             regexp = "^[12][09][0-9][0-9]$")
     @JsonFormat(pattern="yyyy-MM-dd")
-    LocalTime birthday;
+    LocalDate birthday;
 
     @Email
     String email;

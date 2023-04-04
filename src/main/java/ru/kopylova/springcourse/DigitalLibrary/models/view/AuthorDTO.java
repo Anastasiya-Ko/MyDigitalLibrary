@@ -10,9 +10,6 @@ import java.util.List;
 
 public class AuthorDTO {
 
-    @Schema(description = "Идентификатор автора", accessMode = Schema.AccessMode.READ_ONLY)
-    Long id;
-
     @NotEmpty(message = "У книги должен быть автор!")
     String name;
 

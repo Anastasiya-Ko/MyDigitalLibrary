@@ -25,7 +25,7 @@ public class Author {
 
     @JsonIgnore
     //@JsonManagedReference
-    @OneToMany(mappedBy = "author_owner")
+    @OneToMany(mappedBy = "authorOwner")
     List<Book> books;
 
 }

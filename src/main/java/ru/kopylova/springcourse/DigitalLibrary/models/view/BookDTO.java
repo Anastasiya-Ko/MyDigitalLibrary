@@ -1,11 +1,11 @@
 package ru.kopylova.springcourse.DigitalLibrary.models.view;
 
-import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+import ru.kopylova.springcourse.DigitalLibrary.models.entity.Author;
 import ru.kopylova.springcourse.DigitalLibrary.models.entity.Person;
 
 
@@ -16,10 +16,9 @@ import ru.kopylova.springcourse.DigitalLibrary.models.entity.Person;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class BookDTO {
 
-    @Schema(description = "Идентификатор человека", accessMode = Schema.AccessMode.READ_ONLY)
-    Long id;
+    Person person_owner;
 
-    Person owner;
+    Author author_owner;
 
     @NotEmpty(message = "У книги должно быть название!")
     @Size(min = 1, max = 100, message = "Книга должна иметь название от 1 до 100 букв")

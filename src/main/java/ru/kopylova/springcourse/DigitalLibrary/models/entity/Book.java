@@ -1,13 +1,10 @@
 package ru.kopylova.springcourse.DigitalLibrary.models.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.FieldDefaults;
-
-import java.util.List;
 
 
 @Getter
@@ -24,12 +21,12 @@ public class Book {
     @ManyToOne
     @JoinColumn(name = "person_id")
     //@JsonBackReference
-    Person person_owner;
+    Person personOwner;
 
     @ManyToOne
     @JoinColumn(name = "author_id")
     //@JsonBackReference
-    Author author_owner;
+    Author authorOwner;
 
     @Column(name = "name")
     String name;

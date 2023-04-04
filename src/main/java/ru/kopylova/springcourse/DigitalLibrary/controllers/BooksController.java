@@ -5,10 +5,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.data.web.SortDefault;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import ru.kopylova.springcourse.DigitalLibrary.models.entity.Book;
+import ru.kopylova.springcourse.DigitalLibrary.models.view.BookDTO;
 import ru.kopylova.springcourse.DigitalLibrary.services.BooksService;
 
 import java.util.List;
@@ -27,4 +26,8 @@ public class BooksController {
     public List<Book> getAll(@PageableDefault Pageable pageable, @SortDefault Sort sort) {
         return booksService.findAll(pageable, sort);
     }
+//    @PostMapping
+//    public BookDTO create (@RequestBody BookDTO view){
+//        return booksService.create(view);
+//    }
 }
