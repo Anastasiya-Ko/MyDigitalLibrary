@@ -9,5 +9,6 @@ import java.util.List;
 //Благодаря параметризации JpaRepository автоматически сгенерирует все нужные методы для сущности
 
 public interface PeopleRepository extends JpaRepository<Person, Long> {
-    Person findByName(String name);
+    List<Person> findByLastNameOrderByAge(String lastName);
 }
+

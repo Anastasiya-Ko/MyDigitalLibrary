@@ -1,6 +1,12 @@
 package ru.kopylova.springcourse.DigitalLibrary.controllers;
 
+import jakarta.validation.Valid;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.webjars.NotFoundException;
 import ru.kopylova.springcourse.DigitalLibrary.models.entity.Person;
 import ru.kopylova.springcourse.DigitalLibrary.models.view.PersonDTO;
 import ru.kopylova.springcourse.DigitalLibrary.services.PeopleService;
@@ -11,6 +17,7 @@ import java.util.List;
 @RequestMapping("/person")
 public class PeopleController {
 
+    //TODO: переделать возврат в методах на респонсЭнтити
     private final PeopleService peopleService;
 
 
@@ -20,8 +27,8 @@ public class PeopleController {
     }
 
     @GetMapping("/all")
-    public List<Person> getAll() {
-        return peopleService.findAll();
+    public List<?> getAll(Pageable pageable, Sort sort) {
+        return ResponseEntity.ok().body(peopleService.findAll(pageable, sort)).getBody();
     }
 
 
@@ -30,21 +37,23 @@ public class PeopleController {
         return peopleService.findOneById(id);
     }
 
+    //    @GetMapping("/by-name")
+//    public ResponseEntity<?> getByLastName(@RequestParam("lastName") String lastName) {
+//        return ResponseEntity.ok(peopleService.findByLastName(lastName));
+//    }
     @GetMapping("/by-name")
-    public Person getByLastName(@RequestParam String lastName) {
+    public List<Person> getByLastName(@RequestParam("lastName") String lastName) {
         return peopleService.findByLastName(lastName);
     }
+
     @PostMapping
-    public PersonDTO createPerson(@RequestBody PersonDTO view)
-    {
-        PersonDTO dto = peopleService.createPerson(view);
-        return dto;
+    public PersonDTO createPerson(@Valid @RequestBody PersonDTO view) {
+        return peopleService.createPerson(view);
     }
 
     @PutMapping
-    public PersonDTO updatePersonByLastName(@RequestBody PersonDTO view, @PathVariable String lastName) {
-        PersonDTO dto = peopleService.updatePersonByLastName(view, lastName);
-        return dto;
+    public PersonDTO updatePersonByLastName(@Valid @RequestBody PersonDTO view, @PathVariable Long id) {
+        return peopleService.updatePersonByLastName(view, id);
     }
 
     @DeleteMapping
