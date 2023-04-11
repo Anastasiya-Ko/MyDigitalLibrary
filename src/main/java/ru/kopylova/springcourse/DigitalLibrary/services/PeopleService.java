@@ -2,19 +2,16 @@ package ru.kopylova.springcourse.DigitalLibrary.services;
 
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-
 import org.springframework.web.server.ResponseStatusException;
 import ru.kopylova.springcourse.DigitalLibrary.models.entity.Person;
 import ru.kopylova.springcourse.DigitalLibrary.models.view.PersonDTO;
 import ru.kopylova.springcourse.DigitalLibrary.repositories.PeopleRepository;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @FieldDefaults(level = AccessLevel.PRIVATE)
@@ -27,89 +24,90 @@ public class PeopleService {
         this.peopleRepository = peopleRepository;
     }
 
-
-    public List<Person> findAll(Pageable pageable, Sort sort) {
-        return peopleRepository.findAll(PageRequest.of(pageable.getPageNumber(), 5, Sort.by("lastName"))).getContent();
-    }
-
-    public Person findOneById(Long id) {
-
-        String ex = String.format(("Пользователь с ID = %d не найден"), id);
-
-       return peopleRepository.findById(id).orElseThrow(() -> new ResponseStatusException(
-               HttpStatus.NOT_FOUND, ex));
-    }
-
-//    public ResponseEntity<List<?>> findByLastName(String lastName) {
-//        String ex = String.format(("Пользователь с фамилией = %s не найден"), lastName);
-//
-//        List<Person> result = peopleRepository.findByLastName(lastName);
-//
-//        if (result == null) {
-//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//        }
-//
-//        return ResponseEntity.ok(result);
-//                //orElseThrow(() -> new ResponseStatusException(
-//                //HttpStatus.NOT_FOUND, ex));
-//    }
-
-//    public List<Person> findByLastName(String lastName) {
-//        String ex = String.format(("Пользователь с фамилией = %s не найден"), lastName);
-//
-//        List<Person> result = peopleRepository.findByLastName(lastName);
-//
-//        if (result.isEmpty()) {
-//            return new ResponseStatusException(HttpStatus.NOT_FOUND, ex);
-//        }
-//
-//        return result;
-//        //orElseThrow(() -> new ResponseStatusException(
-//        //HttpStatus.NOT_FOUND, ex));
-//    }
-
-    public ResponseEntity<List<Person>> findByLastName(String lastName) {
-        String ex = String.format(("Пользователь с фамилией = %s не найден"), lastName);
-
-        return peopleRepository.findByLastNameOrderByAge(lastName).stream().findAny().orElse(new ResponseStatusException(HttpStatus.NOT_FOUND, ex));
-
-    }
-
+    // да
     public PersonDTO createPerson(PersonDTO view) {
 
         Person entity = mapperToEntity(view);
+        peopleRepository.save(entity);
+
+        return mapperToDTO(entity);
+
+    }
+
+    // можешь убрать маппер за ненадобностью
+    public PersonDTO updatePersonById(PersonDTO personRequest) {
+
+        Person entity = getOne(personRequest.getId());
+
+        entity.setId(personRequest.getId());
+        entity.setFirstName(personRequest.getFirstName());
+        entity.setLastName(personRequest.getLastName());
+        entity.setGender(personRequest.getGender());
+        entity.setBirthday(personRequest.getBirthday());
+        entity.setEmail(personRequest.getEmail());
+
 
         peopleRepository.save(entity);
 
-        return view;
+        return mapperToDTO(entity);
 
     }
 
-    public PersonDTO updatePersonByLastName(PersonDTO personRequest, Long id) {
+    // да
+    public String deletePersonById(Long id) {
 
-        Person entity = findOneById(id);
+        findOneById(id);
 
-        Person newPerson = mapperToEntity(personRequest);
-
-        peopleRepository.save(newPerson);
-
-        PersonDTO view = mapperToDTO(entity);
-
-        return view;
-    }
-
-    public void deletePersonById(Long id) {
         peopleRepository.deleteById(id);
+
+        return String.format("Пользователь с ID = %d удалён", id);
+    }
+
+    /**
+     * Поиск
+     */
+
+    private Person getOne(Long id) {
+        String ex = String.format(("Пользователь с ID = %d не найден"), id);
+
+        return peopleRepository.findById(id).orElseThrow(() ->
+                new ResponseStatusException(HttpStatus.NOT_FOUND, ex));
+    }
+    public PersonDTO findOneById(Long id) {
+
+        return mapperToDTO(getOne(id));
+    }
+    //TODO: настроить пагинацию
+    public List<PersonDTO> readAllPeople(Pageable pageable) {
+
+        // круто сделала! мне такое стало достпно гораздо позже-естественно, что я скопипастила
+        return peopleRepository.findAll().stream()
+                .map(this::mapperToDTO)
+                .collect(Collectors.toList());
+    }
+
+    public List<PersonDTO> findByLastName(String lastName) {
+
+        String ex = String.format(("Пользователь с фамилией = %s не найден"), lastName);
+
+        List<Person> personList = peopleRepository.findByLastNameOrderByBirthday(lastName);
+
+        if (personList.size() == 0) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, ex);
+        }
+
+        return personList.stream().map(this::mapperToDTO).collect(Collectors.toList());
+
     }
 
 
+    /**
+     * Маппинг
+     */
 
-/**
-* Маппинг
-*/
-    private Person mapperToEntity(PersonDTO view){
-
+    private Person mapperToEntity(PersonDTO view) {
         Person entity = new Person();
+
 
         entity.setFirstName(view.getFirstName());
         entity.setLastName(view.getLastName());
@@ -117,14 +115,16 @@ public class PeopleService {
         entity.setBirthday(view.getBirthday());
         entity.setEmail(view.getEmail());
 
+
         return entity;
 
     }
 
-    private PersonDTO mapperToDTO (Person entity){
+    private PersonDTO mapperToDTO(Person entity) {
 
         PersonDTO view = new PersonDTO();
 
+        view.setId(entity.getId());
         view.setFirstName(entity.getFirstName());
         view.setLastName(entity.getLastName());
         view.setGender(entity.getGender());
@@ -133,4 +133,6 @@ public class PeopleService {
 
         return view;
     }
+
+
 }

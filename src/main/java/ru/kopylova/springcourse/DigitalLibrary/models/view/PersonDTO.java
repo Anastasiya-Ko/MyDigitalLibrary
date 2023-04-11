@@ -1,14 +1,12 @@
 package ru.kopylova.springcourse.DigitalLibrary.models.view;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import io.swagger.v3.oas.annotations.media.Schema;
+
 import jakarta.validation.constraints.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import ru.kopylova.springcourse.DigitalLibrary.models.entity.Gender;
 
 import java.time.LocalDate;
-import java.time.LocalTime;
 
 @Getter
 @Setter
@@ -17,27 +15,26 @@ import java.time.LocalTime;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class PersonDTO {
 
+    Long id;
+
     @NotEmpty(message = "У человека должно быть имя!")
-    @Size(min = 1, max = 100, message = "Имя должно быть длиной от 1 до 100 букв")
+    @Pattern(regexp = "[а-яёА-ЯЁ]+", message = "Имя должно содержать только буквы русского алфавита")
     String firstName;
 
 
     @NotEmpty(message = "У человека должна быть фамилия!")
-    @Size(min = 1, max = 100, message = "Имя должно быть длиной от 1 до 100 букв")
+    @Pattern(regexp = "[а-яёА-ЯЁ]+", message = "Фамилия должна содержать только буквы русского алфавита")
     String lastName;
 
 
-    @NotEmpty(message = "У человека должен быть год рождения!")
-    @PastOrPresent(message = "Год рождения должен содержать прошедшую дату или сегодняшнее число")
-    @Pattern(message = "Год рождения должен содержать 4 цифры",
-            regexp = "^[12][09][0-9][0-9]$")
-    @JsonFormat(pattern="yyyy-MM-dd")
+    @NotNull(message = "У человека должна быть дата рождения!")
+    @PastOrPresent(message = "Дата рождения должна содержать прошедшую дату или сегодняшнее число")
     LocalDate birthday;
 
     @Email
     String email;
 
-    @NotEmpty(message = "Поле должно быть заполнено! MAN - для мужчины, WOMAN - для женщины")
+    @NotNull(message = "Поле должно быть заполнено! Муж - для мужчины, Жен - для женщины")
     Gender gender;
 
 }

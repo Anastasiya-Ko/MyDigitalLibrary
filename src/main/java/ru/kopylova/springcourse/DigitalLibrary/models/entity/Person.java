@@ -28,7 +28,7 @@ public class Person {
     String lastName;
 
     @Column(name = "birthday")
-    @JsonFormat(pattern="dd-MM-yyyy")
+    //@JsonFormat(pattern="dd-MM-yyyy")
     LocalDate birthday;
 
     @Column(name = "email")
