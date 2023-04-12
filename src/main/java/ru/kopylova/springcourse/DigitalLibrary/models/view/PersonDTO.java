@@ -34,7 +34,7 @@ public class PersonDTO {
     @Email
     String email;
 
-    @NotNull(message = "Поле должно быть заполнено! Муж - для мужчины, Жен - для женщины")
+    @NotNull(message = "Поле gender должно быть заполнено! Муж - для мужчины, Жен - для женщины")
     Gender gender;
 
 }

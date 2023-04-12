@@ -1,7 +1,8 @@
 package ru.kopylova.springcourse.DigitalLibrary.services;
 
-import lombok.AccessLevel;
-import lombok.experimental.FieldDefaults;
+
+import jakarta.persistence.criteria.CriteriaBuilder;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -13,8 +14,8 @@ import ru.kopylova.springcourse.DigitalLibrary.repositories.PeopleRepository;
 import java.util.List;
 import java.util.stream.Collectors;
 
+
 @Service
-@FieldDefaults(level = AccessLevel.PRIVATE)
 public class PeopleService {
 
     final PeopleRepository peopleRepository;
@@ -24,7 +25,7 @@ public class PeopleService {
         this.peopleRepository = peopleRepository;
     }
 
-    // да
+
     public PersonDTO createPerson(PersonDTO view) {
 
         Person entity = mapperToEntity(view);
@@ -34,70 +35,61 @@ public class PeopleService {
 
     }
 
-    // можешь убрать маппер за ненадобностью
-    public PersonDTO updatePersonById(PersonDTO personRequest) {
 
-        Person entity = getOne(personRequest.getId());
+    public PersonDTO updatePerson(PersonDTO personRequest, Long id) {
 
-        entity.setId(personRequest.getId());
-        entity.setFirstName(personRequest.getFirstName());
-        entity.setLastName(personRequest.getLastName());
-        entity.setGender(personRequest.getGender());
-        entity.setBirthday(personRequest.getBirthday());
-        entity.setEmail(personRequest.getEmail());
+        Person person = getById(id);
 
+        Person newPerson = mapperToEntity(personRequest);
 
-        peopleRepository.save(entity);
+        peopleRepository.save(newPerson);
 
-        return mapperToDTO(entity);
+        return mapperToDTO(newPerson);
 
     }
 
-    // да
     public String deletePersonById(Long id) {
 
-        findOneById(id);
+        getById(id);
 
         peopleRepository.deleteById(id);
 
         return String.format("Пользователь с ID = %d удалён", id);
     }
 
-    /**
-     * Поиск
-     */
+    public Page<PersonDTO> readAllPeople(Pageable pageable) {
 
-    private Person getOne(Long id) {
-        String ex = String.format(("Пользователь с ID = %d не найден"), id);
+        Page<Person> entityPage = peopleRepository.findAll(pageable);
+        return entityPage.map(this::mapperToDTO);
 
-        return peopleRepository.findById(id).orElseThrow(() ->
-                new ResponseStatusException(HttpStatus.NOT_FOUND, ex));
-    }
-    public PersonDTO findOneById(Long id) {
-
-        return mapperToDTO(getOne(id));
-    }
-    //TODO: настроить пагинацию
-    public List<PersonDTO> readAllPeople(Pageable pageable) {
-
-        // круто сделала! мне такое стало достпно гораздо позже-естественно, что я скопипастила
-        return peopleRepository.findAll().stream()
-                .map(this::mapperToDTO)
-                .collect(Collectors.toList());
     }
 
-    public List<PersonDTO> findByLastName(String lastName) {
+    public PersonDTO readOneById(Long id) {
+        return mapperToDTO(getById(id));
+    }
+
+
+    public Page<PersonDTO> readByLastName(String lastName, Pageable pageable) {
 
         String ex = String.format(("Пользователь с фамилией = %s не найден"), lastName);
 
-        List<Person> personList = peopleRepository.findByLastNameOrderByBirthday(lastName);
+        Page<Person> entityList = peopleRepository.findByLastNameLikeIgnoreCaseOrderByBirthdayDesc(lastName, pageable);
 
-        if (personList.size() == 0) {
+        if (entityList.isEmpty()) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, ex);
         }
 
-        return personList.stream().map(this::mapperToDTO).collect(Collectors.toList());
+        return entityList.map(this::mapperToDTO);
 
+    }
+
+    /**
+     * Получить по идентификатору
+     */
+    private Person getById(Long id) {
+        String ex = String.format(("Пользователь с ID = %d не найден"), id);
+        return peopleRepository.findById(id).orElseThrow(() ->
+                new ResponseStatusException(HttpStatus.NOT_FOUND, ex));
     }
 
 
@@ -108,13 +100,11 @@ public class PeopleService {
     private Person mapperToEntity(PersonDTO view) {
         Person entity = new Person();
 
-
         entity.setFirstName(view.getFirstName());
         entity.setLastName(view.getLastName());
         entity.setGender(view.getGender());
         entity.setBirthday(view.getBirthday());
         entity.setEmail(view.getEmail());
-
 
         return entity;
 

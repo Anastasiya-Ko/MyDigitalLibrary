@@ -1,4 +1,4 @@
-package ru.kopylova.springcourse.DigitalLibrary.valid;
+package ru.kopylova.springcourse.DigitalLibrary.util.valid;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
