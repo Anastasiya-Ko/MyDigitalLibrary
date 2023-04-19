@@ -1,7 +1,6 @@
 package ru.kopylova.springcourse.DigitalLibrary.services;
 
 
-import jakarta.persistence.criteria.CriteriaBuilder;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
@@ -11,8 +10,6 @@ import ru.kopylova.springcourse.DigitalLibrary.models.entity.Person;
 import ru.kopylova.springcourse.DigitalLibrary.models.view.PersonDTO;
 import ru.kopylova.springcourse.DigitalLibrary.repositories.PeopleRepository;
 
-import java.util.List;
-import java.util.stream.Collectors;
 
 
 @Service
@@ -38,9 +35,11 @@ public class PeopleService {
 
     public PersonDTO updatePerson(PersonDTO personRequest, Long id) {
 
+        //Patient patient = patientRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Пациент с ID "+id+" не изменён"));
         Person person = getById(id);
 
         Person newPerson = mapperToEntity(personRequest);
+        newPerson.setId(person.getId());
 
         peopleRepository.save(newPerson);
 
@@ -105,6 +104,7 @@ public class PeopleService {
         entity.setGender(view.getGender());
         entity.setBirthday(view.getBirthday());
         entity.setEmail(view.getEmail());
+        entity.setAge(view.getAge());
 
         return entity;
 
@@ -114,12 +114,13 @@ public class PeopleService {
 
         PersonDTO view = new PersonDTO();
 
-        view.setId(entity.getId());
+        //view.setId(entity.getId());
         view.setFirstName(entity.getFirstName());
         view.setLastName(entity.getLastName());
         view.setGender(entity.getGender());
         view.setBirthday(entity.getBirthday());
         view.setEmail(entity.getEmail());
+        view.setAge(entity.getAge());
 
         return view;
     }

@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+import org.hibernate.annotations.Formula;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -42,5 +43,13 @@ public class Person {
     @OneToMany(mappedBy = "personOwner")
     List<Book> books;
 
+    @Formula("""
+            (
+            SELECT date_part('year',age(birthday ::date))
+            FROM person
+            WHERE person.id = id
+            )
+            """)
+    Integer age;
 
 }
