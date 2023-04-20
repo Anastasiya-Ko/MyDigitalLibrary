@@ -15,8 +15,6 @@ import java.time.LocalDate;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class PersonDTO {
 
-   // Long id;
-
     @NotEmpty(message = "У человека должно быть имя!")
     @Pattern(regexp = "[а-яёА-ЯЁ]+", message = "Имя должно содержать только буквы русского алфавита")
     String firstName;
@@ -36,7 +34,6 @@ public class PersonDTO {
 
     @NotNull(message = "Поле gender должно быть заполнено! Муж - для мужчины, Жен - для женщины")
     Gender gender;
-
 
     Integer age;
 }

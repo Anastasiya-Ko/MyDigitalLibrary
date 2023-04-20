@@ -1,42 +1,87 @@
 package ru.kopylova.springcourse.DigitalLibrary.services;
 
-import lombok.AccessLevel;
-import lombok.experimental.FieldDefaults;
-import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 import ru.kopylova.springcourse.DigitalLibrary.models.entity.Book;
+import ru.kopylova.springcourse.DigitalLibrary.models.entity.Person;
+import ru.kopylova.springcourse.DigitalLibrary.models.view.BookDTO;
 import ru.kopylova.springcourse.DigitalLibrary.repositories.BooksRepository;
 
-import java.util.List;
-
 @Service
-@FieldDefaults(level = AccessLevel.PRIVATE)
 public class BooksService {
 
-    final BooksRepository booksRepository;
+    private final BooksRepository booksRepository;
 
     public BooksService(BooksRepository booksRepository) {
         this.booksRepository = booksRepository;
     }
 
-    public List<Book> findAll(Pageable pageable, Sort sort) {
-        return booksRepository.findAll(PageRequest.of(pageable.getPageNumber(), 5, Sort.by("yearOfPublication"))).getContent();
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////Методы поиска//////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    public Page<BookDTO> readAllBooks(Pageable pageable) {
+        Page<Book> entityPage = booksRepository.findAll(pageable);
+        return entityPage.map(this::mapperToDTO);
     }
-//    public BookDTO create (BookDTO view) {
-//
-//        // Создаем представление таблицы
-//        Book entity = new Book();
-//
-//        // Перекладываем из view в entity
-//        entity.setName(view.getName());
-//
-//
-//        // Сохраняем
-//        booksRepository.save(entity);
-//
-//        // ВОзвращаем клиенту
-//        return view;
-//    }
+
+    public BookDTO readOneById(Long id) {
+        return mapperToDTO(getById(id));
+    }
+
+    public Page<BookDTO> readBooksByNameStartingWith(String name, Pageable pageable) {
+
+        String ex = String.format(("Книга с названием = %s не найдена"), name);
+
+        Page<Book> entityList = booksRepository.findBooksByNameStartingWithOrderByAuthorOwner(name, pageable);
+
+        if (entityList.isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, ex);
+        }
+
+        return entityList.map(this::mapperToDTO);
+
+    }
+
+    public Page<BookDTO> readByPersonOwner(Person personOwner, Pageable pageable) {
+        String ex = String.format(("У читателя = %s нет книг"), personOwner);
+    }
+
+    /**
+     * Метод внутреннего пользования для получения книги по её идентификатору
+     */
+    private Book getById(Long id) {
+        String ex = String.format(("Книга с ID = %d не найдена"), id);
+        return booksRepository.findById(id).orElseThrow(() ->
+                new ResponseStatusException(HttpStatus.NOT_FOUND, ex));
+    }
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////Маппинг///////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    private Book mapperToEntity(BookDTO view) {
+        Book entity = new Book();
+
+        entity.setName(view.getName());
+        entity.setYearOfPublication(view.getYearOfPublication());
+        entity.setAuthorOwner(view.getAuthorOwner());
+        entity.setPersonOwner(view.getPersonOwner());
+
+        return entity;
+
+    }
+
+    private BookDTO mapperToDTO(Book entity) {
+
+        BookDTO view = new BookDTO();
+
+        view.setName(entity.getName());
+        view.setYearOfPublication(entity.getYearOfPublication());
+        view.setAuthorOwner(entity.getAuthorOwner());
+        view.setPersonOwner(entity.getPersonOwner());
+
+        return view;
+    }
 }

@@ -15,8 +15,7 @@ import ru.kopylova.springcourse.DigitalLibrary.repositories.PeopleRepository;
 @Service
 public class PeopleService {
 
-    final PeopleRepository peopleRepository;
-
+    private final PeopleRepository peopleRepository;
 
     public PeopleService(PeopleRepository peopleRepository) {
         this.peopleRepository = peopleRepository;
@@ -55,17 +54,17 @@ public class PeopleService {
         return String.format("Пользователь с ID = %d удалён", id);
     }
 
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////Методы поиска//////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public Page<PersonDTO> readAllPeople(Pageable pageable) {
-
         Page<Person> entityPage = peopleRepository.findAll(pageable);
         return entityPage.map(this::mapperToDTO);
-
     }
 
     public PersonDTO readOneById(Long id) {
         return mapperToDTO(getById(id));
     }
-
 
     public Page<PersonDTO> readByLastName(String lastName, Pageable pageable) {
 
@@ -82,7 +81,7 @@ public class PeopleService {
     }
 
     /**
-     * Получить по идентификатору
+     * Метод внутреннего пользования для получения человека по его идентификатору
      */
     private Person getById(Long id) {
         String ex = String.format(("Пользователь с ID = %d не найден"), id);
@@ -90,10 +89,9 @@ public class PeopleService {
                 new ResponseStatusException(HttpStatus.NOT_FOUND, ex));
     }
 
-
-    /**
-     * Маппинг
-     */
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////Маппинг///////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     private Person mapperToEntity(PersonDTO view) {
         Person entity = new Person();
@@ -113,7 +111,6 @@ public class PeopleService {
 
         PersonDTO view = new PersonDTO();
 
-        //view.setId(entity.getId());
         view.setFirstName(entity.getFirstName());
         view.setLastName(entity.getLastName());
         view.setGender(entity.getGender());
