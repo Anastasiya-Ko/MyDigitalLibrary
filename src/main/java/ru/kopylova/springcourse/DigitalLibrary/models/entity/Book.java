@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 
+import java.time.LocalDate;
+
 
 @Getter
 @Setter
@@ -25,7 +27,6 @@ public class Book {
 
     @ManyToOne
     @JoinColumn(name = "author_id")
-    //@JsonBackReference
     Author authorOwner;
 
     @Column(name = "name")
@@ -33,6 +34,6 @@ public class Book {
 
 
     @Column(name = "year_of_publication")
-    int yearOfPublication;
+    LocalDate yearOfPublication;
 
 }

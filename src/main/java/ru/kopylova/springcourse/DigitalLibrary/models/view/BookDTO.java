@@ -1,12 +1,13 @@
 package ru.kopylova.springcourse.DigitalLibrary.models.view;
 
 import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import ru.kopylova.springcourse.DigitalLibrary.models.entity.Author;
 import ru.kopylova.springcourse.DigitalLibrary.models.entity.Person;
+
+import java.time.LocalDate;
 
 
 @Getter
@@ -26,8 +27,6 @@ public class BookDTO {
 
 
     @NotEmpty(message = "У книги должен быть год издания")
-    @Pattern(message = "Год выпуска книги должен содержать 4 цифры",
-            regexp = "^\\d{4}$")
-    int yearOfPublication;
+    LocalDate yearOfPublication;
 
 }
