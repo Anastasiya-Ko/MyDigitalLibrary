@@ -35,7 +35,6 @@ public class PeopleService {
 
     public PersonDTO updatePerson(PersonDTO personRequest, Long id) {
 
-        //Patient patient = patientRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Пациент с ID "+id+" не изменён"));
         Person person = getById(id);
 
         Person newPerson = mapperToEntity(personRequest);
