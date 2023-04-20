@@ -29,7 +29,6 @@ public class Person {
     String lastName;
 
     @Column(name = "birthday")
-    //@JsonFormat(pattern="dd-MM-yyyy")
     LocalDate birthday;
 
     @Column(name = "email")
@@ -39,7 +38,6 @@ public class Person {
     Gender gender;
 
     @JsonIgnore
-    //@JsonManagedReference
     @OneToMany(mappedBy = "personOwner")
     List<Book> books;
 
