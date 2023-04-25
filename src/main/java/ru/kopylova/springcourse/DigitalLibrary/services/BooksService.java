@@ -47,6 +47,7 @@ public class BooksService {
 
     public Page<BookDTO> readByPersonOwner(Person personOwner, Pageable pageable) {
         String ex = String.format(("У читателя = %s нет книг"), personOwner);
+        return null;
     }
 
     /**

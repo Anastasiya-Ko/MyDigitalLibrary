@@ -6,24 +6,18 @@ import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.Pattern;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
-import org.springframework.data.web.PageableDefault;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import ru.kopylova.springcourse.DigitalLibrary.models.entity.Person;
 import ru.kopylova.springcourse.DigitalLibrary.models.view.PersonDTO;
 import ru.kopylova.springcourse.DigitalLibrary.services.PeopleService;
 import ru.kopylova.springcourse.DigitalLibrary.util.page.sort.PersonSort;
-
-import java.util.List;
 
 @Validated
 @RestController
 @RequestMapping("/person")
 public class PeopleController {
 
-    private final PeopleService peopleService;
+    PeopleService peopleService;
 
 
     public PeopleController(PeopleService peopleService) {

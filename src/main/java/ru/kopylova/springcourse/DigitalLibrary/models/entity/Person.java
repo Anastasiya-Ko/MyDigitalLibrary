@@ -1,13 +1,15 @@
 package ru.kopylova.springcourse.DigitalLibrary.models.entity;
 
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 import org.hibernate.annotations.Formula;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -15,7 +17,7 @@ import java.util.List;
 @Getter
 @Setter
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Person {
+public class Person implements Serializable {
 
     @Id
     @Column(name = "id")
