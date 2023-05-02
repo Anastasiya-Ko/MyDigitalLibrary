@@ -45,37 +45,6 @@
 			<version>42.5.4</version>
 		</dependency>
 
-<!--		<dependency>-->
-<!--			<groupId>com.querydsl</groupId>-->
-<!--			<artifactId>querydsl-core</artifactId>-->
-<!--			<version>${querydsl.version}</version>-->
-<!--		</dependency>-->
-
-<!--		<dependency>-->
-<!--			<groupId>com.querydsl</groupId>-->
-<!--			<artifactId>querydsl-apt</artifactId>-->
-<!--			<version>${querydsl.version}</version>-->
-<!--		</dependency>-->
-
-<!--		<dependency>-->
-<!--			<groupId>com.querydsl</groupId>-->
-<!--			<artifactId>querydsl-jpa</artifactId>-->
-<!--			<version>${querydsl.version}</version>-->
-<!--		</dependency>-->
-
-<!--		<dependency>-->
-<!--			<groupId>jakarta.persistence</groupId>-->
-<!--			<artifactId>jakarta.persistence-api</artifactId>-->
-<!--			<scope>provided</scope>-->
-<!--			<version>2.2.3</version>-->
-<!--		</dependency>-->
-
-<!--		<dependency>-->
-<!--			<groupId>javax.persistence</groupId>-->
-<!--			<artifactId>javax.persistence-api</artifactId>-->
-<!--			<version>2.2</version>-->
-<!--		</dependency>-->
-
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
@@ -103,27 +72,12 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.10.1</version>
 				<configuration>
-
-					<!-- обработчики аннотаций, порядок важен-->
 					<annotationProcessorPaths>
 						<path>
 							<groupId>org.projectlombok</groupId>
 							<artifactId>lombok</artifactId>
 							<version>${lombok.version}</version>
 						</path>
-<!--						<path>-->
-<!--							<artifactId>querydsl-apt</artifactId>-->
-<!--							<classifier>jpa</classifier>-->
-<!--							<groupId>com.querydsl</groupId>-->
-<!--							<version>${querydsl.version}</version>-->
-<!--						</path>-->
-<!--						&lt;!&ndash; для querydsl, без этого будет ошибка&ndash;&gt;-->
-<!--						&lt;!&ndash; https://stackoverflow.com/questions/69072506/lombok-querydsl-mapstruct-error-compiling-java-lang-noclassdeffounderror&ndash;&gt;-->
-<!--						<path>-->
-<!--							<groupId>jakarta.persistence</groupId>-->
-<!--							<artifactId>jakarta.persistence-api</artifactId>-->
-<!--							<version>${jakarta-persistence.version}</version>-->
-<!--						</path>-->
 					</annotationProcessorPaths>
 				</configuration>
 			</plugin>

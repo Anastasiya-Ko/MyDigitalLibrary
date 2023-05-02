@@ -4,9 +4,11 @@ package ru.kopylova.springcourse.DigitalLibrary.models.view;
 import jakarta.validation.constraints.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+import ru.kopylova.springcourse.DigitalLibrary.models.entity.Book;
 import ru.kopylova.springcourse.DigitalLibrary.models.entity.Gender;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Getter
 @Setter
@@ -36,4 +38,6 @@ public class PersonDTO {
     Gender gender;
 
     Integer age;
+
+    List<Book> books;
 }

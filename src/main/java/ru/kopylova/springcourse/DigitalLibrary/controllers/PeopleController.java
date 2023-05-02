@@ -24,11 +24,15 @@ public class PeopleController {
         this.peopleService = peopleService;
 
     }
-
-
     @PostMapping
     public PersonDTO createPerson(@Valid @RequestBody PersonDTO view) {
         return peopleService.createPerson(view);
+    }
+
+    @PutMapping("/{id}")
+    public PersonDTO updatePerson(@Valid @RequestBody PersonDTO view,
+                                  @PathVariable Long id) {
+        return peopleService.updatePerson(view, id);
     }
 
     @GetMapping("/one/{id}")
@@ -56,12 +60,6 @@ public class PeopleController {
 
         return peopleService.readByLastName(lastName,
                 PageRequest.of(offset, limit));
-    }
-
-    @PutMapping("/{id}")
-    public PersonDTO updatePerson(@Valid @RequestBody PersonDTO view,
-                                  @PathVariable Long id) {
-        return peopleService.updatePerson(view, id);
     }
 
     @DeleteMapping("/{id}")

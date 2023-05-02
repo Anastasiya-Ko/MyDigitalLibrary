@@ -51,12 +51,9 @@ public class PeopleService {
 
         peopleRepository.deleteById(id);
 
-        return String.format("Пользователь с ID = %d удалён", id);
+        return String.format("Пользователь с ID = %d успешно удалён", id);
     }
 
-    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    ////////////////////////////////Методы поиска//////////////////////////////////////////////////////////////////////
-    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public Page<PersonDTO> readAllPeople(Pageable pageable) {
         Page<Person> entityPage = peopleRepository.findAll(pageable);
         return entityPage.map(this::mapperToDTO);
@@ -70,13 +67,13 @@ public class PeopleService {
 
         String ex = String.format(("Пользователь с фамилией = %s не найден"), lastName);
 
-        Page<Person> entityList = peopleRepository.findByLastNameLikeIgnoreCaseOrderByBirthdayDesc(lastName, pageable);
+        Page<Person> entityPage = peopleRepository.findByLastNameLikeIgnoreCaseOrderByBirthdayDesc(lastName, pageable);
 
-        if (entityList.isEmpty()) {
+        if (entityPage.isEmpty()) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, ex);
         }
 
-        return entityList.map(this::mapperToDTO);
+        return entityPage.map(this::mapperToDTO);
 
     }
 
@@ -89,10 +86,6 @@ public class PeopleService {
                 new ResponseStatusException(HttpStatus.NOT_FOUND, ex));
     }
 
-    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    /////////////////////////////////////////////Маппинг///////////////////////////////////////////////////////////////
-    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
     private Person mapperToEntity(PersonDTO view) {
         Person entity = new Person();
 
@@ -102,6 +95,7 @@ public class PeopleService {
         entity.setBirthday(view.getBirthday());
         entity.setEmail(view.getEmail());
         entity.setAge(view.getAge());
+        entity.setBooks(view.getBooks());
 
         return entity;
 
@@ -117,6 +111,7 @@ public class PeopleService {
         view.setBirthday(entity.getBirthday());
         view.setEmail(entity.getEmail());
         view.setAge(entity.getAge());
+        view.setBooks(entity.getBooks());
 
         return view;
     }
