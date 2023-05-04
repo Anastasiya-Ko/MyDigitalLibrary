@@ -17,6 +17,8 @@ import java.util.List;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class PersonDTO {
 
+    Long id;
+
     @NotEmpty(message = "У человека должно быть имя!")
     @Pattern(regexp = "[а-яёА-ЯЁ]+", message = "Имя должно содержать только буквы русского алфавита")
     String firstName;

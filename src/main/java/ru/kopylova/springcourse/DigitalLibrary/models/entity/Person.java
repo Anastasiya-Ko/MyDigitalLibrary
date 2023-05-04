@@ -9,7 +9,6 @@ import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 import org.hibernate.annotations.Formula;
 
-import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -17,7 +16,7 @@ import java.util.List;
 @Getter
 @Setter
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Person implements Serializable {
+public class Person {
 
     @Id
     @Column(name = "id")
@@ -40,7 +39,7 @@ public class Person implements Serializable {
     Gender gender;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "personOwner")
+    @OneToMany(mappedBy = "personOwner"/*, cascade = CascadeType.ALL*/)
     List<Book> books;
 
     @Formula("""

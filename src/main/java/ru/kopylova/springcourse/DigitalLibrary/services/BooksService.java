@@ -16,8 +16,14 @@ public class BooksService {
 
     private final BooksRepository booksRepository;
 
-    public BooksService(BooksRepository booksRepository) {
+    private final PeopleService peopleService;
+
+    private final AuthorService authorService;
+
+    public BooksService(BooksRepository booksRepository, PeopleService peopleService, AuthorService authorService) {
         this.booksRepository = booksRepository;
+        this.peopleService = peopleService;
+        this.authorService = authorService;
     }
 
 
@@ -61,10 +67,13 @@ public class BooksService {
 
     }
 
-    public Page<BookDTO> readBooksByPersonOwner(Person personOwner, Pageable pageable) {
-        String ex = String.format(("У читателя = %s нет книг"), personOwner);
+    public Page<BookDTO> readBooksByPersonOwnerId(Long personOwnerId, Pageable pageable) {
+        String ex = String.format(("У читателя с id = %s нет книг"), personOwnerId);
+
+        Person personOwner = peopleService.mapperToEntity(peopleService.readOneById(personOwnerId), false);
 
         Page<Book> entityPage = booksRepository.findBooksByPersonOwner(personOwner, pageable);
+
 
         if (entityPage.isEmpty()) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, ex);
@@ -103,26 +112,26 @@ public class BooksService {
                 new ResponseStatusException(HttpStatus.NOT_FOUND, ex));
     }
 
-    private Book mapperToEntity(BookDTO view) {
+    public Book mapperToEntity(BookDTO view) {
         Book entity = new Book();
 
         entity.setName(view.getName());
         entity.setYearOfPublication(view.getYearOfPublication());
-        entity.setAuthorOwner(view.getAuthorOwner());
-        entity.setPersonOwner(view.getPersonOwner());
+        entity.setAuthorOwner(authorService.mapperToEntity(view.getAuthorOwner()));
+        entity.setPersonOwner(peopleService.mapperToEntity(view.getPersonOwner(), false));
 
         return entity;
 
     }
 
-    private BookDTO mapperToDTO(Book entity) {
+    public BookDTO mapperToDTO(Book entity) {
 
         BookDTO view = new BookDTO();
 
         view.setName(entity.getName());
         view.setYearOfPublication(entity.getYearOfPublication());
-        view.setAuthorOwner(entity.getAuthorOwner());
-        view.setPersonOwner(entity.getPersonOwner());
+        view.setAuthorOwner(authorService.mapperToDTO(entity.getAuthorOwner()));
+        view.setPersonOwner(peopleService.mapperToDTO(entity.getPersonOwner(), false));
 
         return view;
     }

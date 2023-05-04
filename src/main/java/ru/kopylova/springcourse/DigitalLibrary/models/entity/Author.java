@@ -25,7 +25,7 @@ public class Author {
 
     @JsonIgnore
     //@JsonManagedReference
-    @OneToMany(mappedBy = "authorOwner")
+    @OneToMany(mappedBy = "authorOwner"/*, cascade = CascadeType.ALL*/)
     List<Book> books;
 
 }

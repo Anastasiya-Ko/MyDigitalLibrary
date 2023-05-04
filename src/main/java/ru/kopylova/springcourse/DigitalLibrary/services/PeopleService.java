@@ -11,7 +11,6 @@ import ru.kopylova.springcourse.DigitalLibrary.models.view.PersonDTO;
 import ru.kopylova.springcourse.DigitalLibrary.repositories.PeopleRepository;
 
 
-
 @Service
 public class PeopleService {
 
@@ -24,10 +23,10 @@ public class PeopleService {
 
     public PersonDTO createPerson(PersonDTO view) {
 
-        Person entity = mapperToEntity(view);
+        Person entity = mapperToEntity(view, false);
         peopleRepository.save(entity);
 
-        return mapperToDTO(entity);
+        return mapperToDTO(entity, false);
 
     }
 
@@ -36,12 +35,11 @@ public class PeopleService {
 
         Person person = getById(id);
 
-        Person newPerson = mapperToEntity(personRequest);
-        newPerson.setId(person.getId());
+        Person newPerson = mapperToEntity(personRequest, false);
 
         peopleRepository.save(newPerson);
 
-        return mapperToDTO(newPerson);
+        return mapperToDTO(newPerson, false);
 
     }
 
@@ -56,11 +54,12 @@ public class PeopleService {
 
     public Page<PersonDTO> readAllPeople(Pageable pageable) {
         Page<Person> entityPage = peopleRepository.findAll(pageable);
-        return entityPage.map(this::mapperToDTO);
+
+        return entityPage.map(entity -> mapperToDTO(entity, false));
     }
 
     public PersonDTO readOneById(Long id) {
-        return mapperToDTO(getById(id));
+        return mapperToDTO(getById(id), false);
     }
 
     public Page<PersonDTO> readByLastName(String lastName, Pageable pageable) {
@@ -73,8 +72,7 @@ public class PeopleService {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, ex);
         }
 
-        return entityPage.map(this::mapperToDTO);
-
+        return entityPage.map(entity -> mapperToDTO(entity, false));
     }
 
     /**
@@ -86,9 +84,12 @@ public class PeopleService {
                 new ResponseStatusException(HttpStatus.NOT_FOUND, ex));
     }
 
-    private Person mapperToEntity(PersonDTO view) {
+    public Person mapperToEntity(PersonDTO view, boolean isWrite) {
         Person entity = new Person();
 
+        if (isWrite) {
+            entity.setId(view.getId());
+        }
         entity.setFirstName(view.getFirstName());
         entity.setLastName(view.getLastName());
         entity.setGender(view.getGender());
@@ -101,10 +102,13 @@ public class PeopleService {
 
     }
 
-    private PersonDTO mapperToDTO(Person entity) {
+    public PersonDTO mapperToDTO(Person entity, boolean isWrite) {
 
         PersonDTO view = new PersonDTO();
 
+        if (isWrite) {
+            view.setId(entity.getId());
+        }
         view.setFirstName(entity.getFirstName());
         view.setLastName(entity.getLastName());
         view.setGender(entity.getGender());

@@ -9,7 +9,8 @@ import ru.kopylova.springcourse.DigitalLibrary.models.entity.Person;
 
 public interface BooksRepository extends JpaRepository<Book, Long>{
 
-    Page<Book> findBooksByPersonOwner(Person personOwnerLastName, Pageable pageable);
+
+    Page<Book> findBooksByPersonOwner(Person personOwnerId, Pageable pageable);
     Page<Book> findBooksByAuthorOwner(Author authorOwner, Pageable pageable);
     Page<Book> findBooksByNameIgnoreCaseStartingWithOrderByAuthorOwner(String name, Pageable pageable);
 

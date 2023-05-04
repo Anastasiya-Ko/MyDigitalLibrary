@@ -42,14 +42,13 @@ public class BooksController {
             @RequestParam(value = "offset", defaultValue = "0") @Min(0) Integer offset,
             @RequestParam(value = "limit", defaultValue = "5") @Min(1) @Max(100) Integer limit,
             @RequestParam("sort") BookSort sort
-    )
-    {
+    ) {
         return booksService.readAllBooks(
                 PageRequest.of(offset, limit, sort.getSortValue()));
     }
 
     @GetMapping("/one/{id}")
-    public BookDTO readOneBookById(@PathVariable  Long id) {
+    public BookDTO readOneBookById(@PathVariable Long id) {
         return booksService.readOneById(id);
     }
 
@@ -59,9 +58,18 @@ public class BooksController {
     }
 
     @GetMapping("/by-person-owner")
-    public Page<BookDTO> readBooksByPersonOwner(@RequestParam("person-owner-last-name") Long id, Pageable pageable) {
-       // return booksService.readBooksByPersonOwner(personOwner, pageable);
-        return booksService.readBooksByPersonOwner(peopleService.readOneById(id), pageable);
+    public Page<BookDTO> readBooksByPersonOwner(@RequestParam("person-owner-id") Long id, Pageable pageable) {
+
+        try {
+
+            var testPage = booksService.readBooksByPersonOwnerId(id, pageable);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+        return booksService.readBooksByPersonOwnerId(id, pageable);
+
     }
 
     @GetMapping("/by-author-owner")

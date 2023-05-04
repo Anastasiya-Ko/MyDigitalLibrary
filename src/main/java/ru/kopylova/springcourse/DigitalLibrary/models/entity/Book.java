@@ -21,6 +21,10 @@ public class Book {
     Long id;
 
     @ManyToOne
+            /*(cascade = {
+            CascadeType.PERSIST,
+            CascadeType.MERGE
+    })*/
     @JoinColumn(name = "person_id")
     Person personOwner;
 
