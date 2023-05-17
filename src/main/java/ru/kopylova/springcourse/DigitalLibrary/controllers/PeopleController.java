@@ -6,9 +6,10 @@ import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.Pattern;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import ru.kopylova.springcourse.DigitalLibrary.models.view.PersonDTO;
+import ru.kopylova.springcourse.DigitalLibrary.models.view.PersonDTORich;
 import ru.kopylova.springcourse.DigitalLibrary.services.PeopleService;
 import ru.kopylova.springcourse.DigitalLibrary.util.page.sort.PersonSort;
 
@@ -25,41 +26,39 @@ public class PeopleController {
 
     }
     @PostMapping
-    public PersonDTO createPerson(@Valid @RequestBody PersonDTO view) {
+    public PersonDTORich createPerson(@Valid @RequestBody PersonDTORich view) {
         return peopleService.createPerson(view);
     }
 
     @PutMapping("/{id}")
-    public PersonDTO updatePerson(@Valid @RequestBody PersonDTO view,
-                                  @PathVariable Long id) {
+    public PersonDTORich updatePerson(@Valid @RequestBody PersonDTORich view,
+                                      @PathVariable Long id) {
         return peopleService.updatePerson(view, id);
     }
 
     @GetMapping("/one/{id}")
-    public PersonDTO readOnePersonById(@PathVariable Long id) {
+    public PersonDTORich readOnePersonById(@PathVariable Long id) {
         return peopleService.readOneById(id);
     }
 
 
     @GetMapping("/all")
-    public Page<PersonDTO> readAllPeople(
+    public Page<PersonDTORich> readAllPeople(
             @RequestParam(value = "offset", defaultValue = "0") @Min(0) Integer offset,
             @RequestParam(value = "limit", defaultValue = "5") @Min(1) @Max(100) Integer limit,
-            @RequestParam("sort")PersonSort sort
+            @RequestParam(value = "sort", defaultValue = "LASTNAME_ASC")PersonSort sort
             ) {
         return peopleService.readAllPeople(
                 PageRequest.of(offset, limit, sort.getSortValue()));
     }
 
     @GetMapping("/by-name")
-    public Page<PersonDTO> readOnePersonByLastName
+    public Page<PersonDTORich> readOnePersonByLastName
             (@RequestParam("lastName") @Pattern(regexp = "[а-яёА-ЯЁ]+",
                     message = "Фамилия должна содержать только буквы русского алфавита") String lastName,
-             @RequestParam(value = "offset", defaultValue = "0") @Min(0) Integer offset,
-             @RequestParam(value = "limit", defaultValue = "5") @Min(1) @Max(100) Integer limit) {
+             Pageable pageable) {
 
-        return peopleService.readByLastName(lastName,
-                PageRequest.of(offset, limit));
+        return peopleService.readByLastName(lastName, pageable);
     }
 
     @DeleteMapping("/{id}")

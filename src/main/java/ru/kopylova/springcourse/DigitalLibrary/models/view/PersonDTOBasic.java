@@ -1,13 +1,11 @@
 package ru.kopylova.springcourse.DigitalLibrary.models.view;
 
-
-import jakarta.validation.constraints.*;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Pattern;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import ru.kopylova.springcourse.DigitalLibrary.models.entity.Book;
-import ru.kopylova.springcourse.DigitalLibrary.models.entity.Gender;
 
-import java.time.LocalDate;
 import java.util.List;
 
 @Getter
@@ -15,8 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class PersonDTO {
-
+public class PersonDTOBasic {
     Long id;
 
     @NotEmpty(message = "У человека должно быть имя!")
@@ -27,19 +24,6 @@ public class PersonDTO {
     @NotEmpty(message = "У человека должна быть фамилия!")
     @Pattern(regexp = "[а-яёА-ЯЁ]+", message = "Фамилия должна содержать только буквы русского алфавита")
     String lastName;
-
-
-    @NotNull(message = "У человека должна быть дата рождения!")
-    @PastOrPresent(message = "Дата рождения должна содержать прошедшую дату или сегодняшнее число")
-    LocalDate birthday;
-
-    @Email
-    String email;
-
-    @NotNull(message = "Поле gender должно быть заполнено! Муж - для мужчины, Жен - для женщины")
-    Gender gender;
-
-    Integer age;
 
     List<Book> books;
 }
