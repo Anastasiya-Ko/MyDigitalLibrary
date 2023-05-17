@@ -7,7 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 import ru.kopylova.springcourse.DigitalLibrary.models.entity.Person;
-import ru.kopylova.springcourse.DigitalLibrary.models.view.PersonDTORich;
+import ru.kopylova.springcourse.DigitalLibrary.models.view.PersonDTO;
 import ru.kopylova.springcourse.DigitalLibrary.repositories.PeopleRepository;
 
 
@@ -21,19 +21,18 @@ public class PeopleService {
     }
 
 
-    public PersonDTORich createPerson(PersonDTORich view) {
+    public PersonDTO createPerson(PersonDTO view) {
 
         Person entity = mapperToEntity(view, false);
         peopleRepository.save(entity);
 
-        return mapperToDTO(entity, true);
+        return mapperToDTO(entity, false);
 
     }
 
 
-    public PersonDTORich updatePerson(PersonDTORich personRequest, Long id) {
+    public PersonDTO updatePerson(PersonDTO personRequest) {
 
-        Person person = getById(id);
 
         Person newPerson = mapperToEntity(personRequest, false);
 
@@ -52,17 +51,18 @@ public class PeopleService {
         return String.format("Пользователь с ID = %d успешно удалён", id);
     }
 
-    public Page<PersonDTORich> readAllPeople(Pageable pageable) {
+    public Page<PersonDTO> readAllPeople(Pageable pageable) {
         Page<Person> entityPage = peopleRepository.findAll(pageable);
 
         return entityPage.map(entity -> mapperToDTO(entity, true));
     }
 
-    public PersonDTORich readOneById(Long id) {
+    public PersonDTO readOneById(Long id) {
         return mapperToDTO(getById(id), true);
     }
 
-    public Page<PersonDTORich> readByLastName(String lastName, Pageable pageable) {
+
+    public Page<PersonDTO> readByLastName(String lastName, Pageable pageable) {
 
         String ex = String.format(("Пользователь с фамилией = %s не найден"), lastName);
 
@@ -84,7 +84,7 @@ public class PeopleService {
                 new ResponseStatusException(HttpStatus.NOT_FOUND, ex));
     }
 
-    public Person mapperToEntity(PersonDTORich view, boolean isWrite) {
+    public Person mapperToEntity(PersonDTO view, boolean isWrite) {
         Person entity = new Person();
 
         if (isWrite) {
@@ -96,15 +96,14 @@ public class PeopleService {
         entity.setBirthday(view.getBirthday());
         entity.setEmail(view.getEmail());
         entity.setAge(view.getAge());
-       // entity.setBooks(view.getBooks());
 
         return entity;
 
     }
 
-    public PersonDTORich mapperToDTO(Person entity, boolean isWrite) {
+    public PersonDTO mapperToDTO(Person entity, boolean isWrite) {
 
-        PersonDTORich view = new PersonDTORich();
+        PersonDTO view = new PersonDTO();
 
         if (isWrite) {
             view.setId(entity.getId());
@@ -115,7 +114,6 @@ public class PeopleService {
         view.setBirthday(entity.getBirthday());
         view.setEmail(entity.getEmail());
         view.setAge(entity.getAge());
-      //  view.setBooks(entity.getBooks());
 
         return view;
     }

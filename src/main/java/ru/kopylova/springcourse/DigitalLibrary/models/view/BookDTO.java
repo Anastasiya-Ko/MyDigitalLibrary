@@ -17,9 +17,10 @@ import java.time.LocalDate;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class BookDTO {
 
-    PersonDTORich personOwner;
+//    PersonDTOBasic personOwner;
+//
 
-    AuthorDTO authorOwner;
+    Long id;
 
     @NotEmpty(message = "У книги должно быть название!")
     @Size(min = 1, max = 100, message = "Книга должна иметь название от 1 до 50 букв")
@@ -29,5 +30,5 @@ public class BookDTO {
     @PastOrPresent(message = "Дата издания книги должна содержать прошедшую дату или сегодняшнее число")
     LocalDate yearOfPublication;
 
-
+    AuthorDTO authorOwner;
 }

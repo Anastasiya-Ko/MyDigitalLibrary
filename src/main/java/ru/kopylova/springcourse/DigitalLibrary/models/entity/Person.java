@@ -39,7 +39,7 @@ public class Person {
     Gender gender;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "personOwner"/*, cascade = CascadeType.ALL*/)
+    @OneToMany(mappedBy = "personOwner")
     List<Book> books;
 
     @Formula("""

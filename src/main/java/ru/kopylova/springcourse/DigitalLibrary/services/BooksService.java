@@ -16,41 +16,38 @@ public class BooksService {
 
     private final BooksRepository booksRepository;
 
-    private final PeopleService peopleService;
-
     private final AuthorService authorService;
 
-    public BooksService(BooksRepository booksRepository, PeopleService peopleService, AuthorService authorService) {
+    public BooksService(BooksRepository booksRepository, AuthorService authorService) {
         this.booksRepository = booksRepository;
-        this.peopleService = peopleService;
         this.authorService = authorService;
     }
 
 
     public BookDTO createBook(BookDTO view) {
-        Book entity = mapperToEntity(view);
+        Book entity = mapperToEntity(view, false);
         booksRepository.save(entity);
-        return mapperToDTO(entity);
+        return mapperToDTO(entity, false);
     }
 
     public BookDTO updateBook(BookDTO bookRequest, Long id) {
         Book entity = getById(id);
 
-        Book newEntity = mapperToEntity(bookRequest);
+        Book newEntity = mapperToEntity(bookRequest, false);
         newEntity.setId(entity.getId());
 
         booksRepository.save(newEntity);
 
-        return mapperToDTO(newEntity);
+        return mapperToDTO(newEntity, false);
     }
 
     public Page<BookDTO> readAllBooks(Pageable pageable) {
         Page<Book> entityPage = booksRepository.findAll(pageable);
-        return entityPage.map(this::mapperToDTO);
+        return entityPage.map(entity -> mapperToDTO(entity, true));
     }
 
     public BookDTO readOneById(Long id) {
-        return mapperToDTO(getById(id));
+        return mapperToDTO(getById(id), true);
     }
 
     public Page<BookDTO> readBooksByNameStartingWith(String name, Pageable pageable) {
@@ -63,23 +60,22 @@ public class BooksService {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, ex);
         }
 
-        return entityPage.map(this::mapperToDTO);
+        return entityPage.map(entity -> mapperToDTO(entity, true));
 
     }
 
-    public Page<BookDTO> readBooksByPersonOwnerId(Long personOwnerId, Pageable pageable) {
-        String ex = String.format(("У читателя с id = %s нет книг"), personOwnerId);
 
-        Person personOwner = peopleService.mapperToEntity(peopleService.readOneById(personOwnerId), false);
+    public Page<BookDTO> readBooksByPersonOwnerId(Person personOwner, Pageable pageable) {
+
+        String ex = String.format(("У читателя с id = %s нет книг"), personOwner.getId());
 
         Page<Book> entityPage = booksRepository.findBooksByPersonOwner(personOwner, pageable);
-
 
         if (entityPage.isEmpty()) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, ex);
         }
 
-        return entityPage.map(this::mapperToDTO);
+        return entityPage.map(entity -> mapperToDTO(entity, true));
     }
 
     public Page<BookDTO> readBooksByAuthorOwner(Author authorOwner, Pageable pageable) {
@@ -91,7 +87,7 @@ public class BooksService {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, ex);
         }
 
-        return entityPage.map(this::mapperToDTO);
+        return entityPage.map(entity -> mapperToDTO(entity, true));
     }
 
     public String deleteBookById(Long id) {
@@ -112,26 +108,30 @@ public class BooksService {
                 new ResponseStatusException(HttpStatus.NOT_FOUND, ex));
     }
 
-    public Book mapperToEntity(BookDTO view) {
+    public Book mapperToEntity(BookDTO view, boolean isWrite) {
         Book entity = new Book();
 
+        if(isWrite) {
+            entity.setId(view.getId());
+        }
         entity.setName(view.getName());
         entity.setYearOfPublication(view.getYearOfPublication());
         entity.setAuthorOwner(authorService.mapperToEntity(view.getAuthorOwner()));
-        entity.setPersonOwner(peopleService.mapperToEntity(view.getPersonOwner(), false));
 
         return entity;
 
     }
 
-    public BookDTO mapperToDTO(Book entity) {
+    public BookDTO mapperToDTO(Book entity, boolean isWrite) {
 
         BookDTO view = new BookDTO();
 
+        if(isWrite) {
+            view.setId(entity.getId());
+        }
         view.setName(entity.getName());
         view.setYearOfPublication(entity.getYearOfPublication());
         view.setAuthorOwner(authorService.mapperToDTO(entity.getAuthorOwner()));
-        view.setPersonOwner(peopleService.mapperToDTO(entity.getPersonOwner(), false));
 
         return view;
     }

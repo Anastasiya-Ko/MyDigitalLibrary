@@ -8,9 +8,9 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 import ru.kopylova.springcourse.DigitalLibrary.models.entity.Author;
+import ru.kopylova.springcourse.DigitalLibrary.models.entity.Person;
 import ru.kopylova.springcourse.DigitalLibrary.models.view.BookDTO;
 import ru.kopylova.springcourse.DigitalLibrary.services.BooksService;
-import ru.kopylova.springcourse.DigitalLibrary.services.PeopleService;
 import ru.kopylova.springcourse.DigitalLibrary.util.page.sort.BookSort;
 
 @RestController
@@ -19,13 +19,9 @@ public class BooksController {
 
     private final BooksService booksService;
 
-    private final PeopleService peopleService;
-
-    public BooksController(BooksService booksService, PeopleService peopleService) {
+    public BooksController(BooksService booksService) {
         this.booksService = booksService;
-        this.peopleService = peopleService;
     }
-
 
     @PostMapping
     public BookDTO createBook(@Valid @RequestBody BookDTO view) {
@@ -41,7 +37,7 @@ public class BooksController {
     public Page<BookDTO> readAllBooks(
             @RequestParam(value = "offset", defaultValue = "0") @Min(0) Integer offset,
             @RequestParam(value = "limit", defaultValue = "5") @Min(1) @Max(100) Integer limit,
-            @RequestParam("sort") BookSort sort
+            @RequestParam(value = "sort", defaultValue = "NAME_ASC") BookSort sort
     ) {
         return booksService.readAllBooks(
                 PageRequest.of(offset, limit, sort.getSortValue()));
@@ -57,19 +53,9 @@ public class BooksController {
         return booksService.readBooksByNameStartingWith(name, pageable);
     }
 
-    @GetMapping("/by-person-owner")
-    public Page<BookDTO> readBooksByPersonOwner(@RequestParam("person-owner-id") Long id, Pageable pageable) {
-
-        try {
-
-            var testPage = booksService.readBooksByPersonOwnerId(id, pageable);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-
-        return booksService.readBooksByPersonOwnerId(id, pageable);
-
+    @GetMapping("/by-person-owner-id")
+    public Page<BookDTO> readBooksByPersonOwner(@RequestParam("person-owner-id")Person personOwner, Pageable pageable) {
+        return booksService.readBooksByPersonOwnerId(personOwner, pageable);
     }
 
     @GetMapping("/by-author-owner")

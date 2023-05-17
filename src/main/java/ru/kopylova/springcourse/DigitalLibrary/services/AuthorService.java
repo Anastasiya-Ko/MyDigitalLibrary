@@ -10,7 +10,7 @@ public class AuthorService {
         Author entity = new Author();
 
         entity.setName(view.getName());
-        entity.setBooks(view.getBooks());
+     //   entity.setBooks(view.getBooks());
 
         return entity;
 
@@ -21,7 +21,7 @@ public class AuthorService {
         AuthorDTO view = new AuthorDTO();
 
         view.setName(entity.getName());
-        view.setBooks(entity.getBooks());
+    //    view.setBooks(entity.getBooks());
 
         return view;
     }
