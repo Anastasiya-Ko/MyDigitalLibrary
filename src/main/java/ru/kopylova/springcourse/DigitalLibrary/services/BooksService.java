@@ -23,22 +23,19 @@ public class BooksService {
         this.authorService = authorService;
     }
 
-
     public BookDTO createBook(BookDTO view) {
         Book entity = mapperToEntity(view, false);
         booksRepository.save(entity);
-        return mapperToDTO(entity, false);
+        return mapperToDTO(entity, true);
     }
 
-    public BookDTO updateBook(BookDTO bookRequest, Long id) {
-        Book entity = getById(id);
+    public BookDTO updateBook(BookDTO bookRequest) {
 
         Book newEntity = mapperToEntity(bookRequest, false);
-        newEntity.setId(entity.getId());
 
         booksRepository.save(newEntity);
 
-        return mapperToDTO(newEntity, false);
+        return mapperToDTO(newEntity, true);
     }
 
     public Page<BookDTO> readAllBooks(Pageable pageable) {
@@ -100,7 +97,7 @@ public class BooksService {
 
 
     /**
-     * Метод внутреннего пользования для получения книги по её идентификатору
+     * Метод внутреннего пользования для получения книги(сущности) по её идентификатору
      */
     private Book getById(Long id) {
         String ex = String.format(("Книга с ID = %d не найдена"), id);
@@ -114,9 +111,12 @@ public class BooksService {
         if(isWrite) {
             entity.setId(view.getId());
         }
+        if (view.getAuthorOwner() != null) {
+            authorService.readOneById(view.getAuthorOwner().getId());
+            entity.setAuthorOwner(authorService.mapperToEntity(view.getAuthorOwner(), true));
+        }
         entity.setName(view.getName());
         entity.setYearOfPublication(view.getYearOfPublication());
-        entity.setAuthorOwner(authorService.mapperToEntity(view.getAuthorOwner()));
 
         return entity;
 
@@ -125,13 +125,16 @@ public class BooksService {
     public BookDTO mapperToDTO(Book entity, boolean isWrite) {
 
         BookDTO view = new BookDTO();
-
         if(isWrite) {
             view.setId(entity.getId());
         }
+        if(entity.getAuthorOwner() != null){
+            authorService.readOneById(entity.getAuthorOwner().getId());
+            view.setAuthorOwner(authorService.mapperToDTO(entity.getAuthorOwner(), true));
+        }
+
         view.setName(entity.getName());
         view.setYearOfPublication(entity.getYearOfPublication());
-        view.setAuthorOwner(authorService.mapperToDTO(entity.getAuthorOwner()));
 
         return view;
     }

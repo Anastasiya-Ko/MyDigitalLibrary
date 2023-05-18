@@ -26,7 +26,7 @@ public class PeopleService {
         Person entity = mapperToEntity(view, false);
         peopleRepository.save(entity);
 
-        return mapperToDTO(entity, false);
+        return mapperToDTO(entity, true);
 
     }
 
@@ -38,7 +38,7 @@ public class PeopleService {
 
         peopleRepository.save(newPerson);
 
-        return mapperToDTO(newPerson, false);
+        return mapperToDTO(newPerson, true);
 
     }
 

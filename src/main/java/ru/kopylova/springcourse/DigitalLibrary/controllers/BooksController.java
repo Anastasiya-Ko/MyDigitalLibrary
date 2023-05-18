@@ -28,9 +28,9 @@ public class BooksController {
         return booksService.createBook(view);
     }
 
-    @PutMapping("/{id}")
-    public BookDTO updateBook(@Valid @RequestBody BookDTO view, @PathVariable Long id) {
-        return booksService.updateBook(view, id);
+    @PutMapping()
+    public BookDTO updateBook(@Valid @RequestBody BookDTO view) {
+        return booksService.updateBook(view);
     }
 
     @GetMapping("/all")

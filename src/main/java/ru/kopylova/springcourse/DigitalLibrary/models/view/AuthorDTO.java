@@ -10,6 +10,8 @@ import lombok.experimental.FieldDefaults;
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class AuthorDTO {
+
+    Long id;
     
     @NotEmpty(message = "У книги должен быть автор!")
     String name;
