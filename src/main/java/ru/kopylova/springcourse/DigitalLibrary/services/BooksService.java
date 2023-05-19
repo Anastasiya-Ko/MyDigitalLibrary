@@ -14,6 +14,9 @@ import ru.kopylova.springcourse.DigitalLibrary.models.entity.Person;
 import ru.kopylova.springcourse.DigitalLibrary.models.view.BookDTO;
 import ru.kopylova.springcourse.DigitalLibrary.repositories.BooksRepository;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 @RequiredArgsConstructor  //создает конструктор ТОЛЬКО с опред аргументами - private final
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
@@ -95,14 +98,21 @@ public class BooksService {
         return entityPage.map(entity -> mapperToDTO(entity, true));
     }
 
-//    public List<Book> readBooksIsFree() {
-//
-//
-//
-//
-//        return entityList;
-//
-//    }
+    public List<BookDTO> readBooksIsFree() {
+
+        List<Book> entityList = booksRepository.findBooksIsFree();
+
+        return entityList.stream().map(entity -> mapperToDTO(entity, true)).collect(Collectors.toList());
+
+    }
+
+    public List<BookDTO> readBooksIsNotFree() {
+
+        List<Book> entityList = booksRepository.findBooksIsNotFree();
+
+        return entityList.stream().map(entity -> mapperToDTO(entity, true)).collect(Collectors.toList());
+
+    }
 
     public String deleteBookById(Long id) {
         getById(id);

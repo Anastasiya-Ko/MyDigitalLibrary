@@ -13,6 +13,8 @@ import ru.kopylova.springcourse.DigitalLibrary.models.view.BookDTO;
 import ru.kopylova.springcourse.DigitalLibrary.services.BooksService;
 import ru.kopylova.springcourse.DigitalLibrary.util.page.sort.BookSort;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/book")
 public class BooksController {
@@ -63,10 +65,15 @@ public class BooksController {
         return booksService.readBooksByAuthorOwner(authorOwner, pageable);
     }
 
-//    @GetMapping("/books-is-free")
-//    public List<Book> readBooksIsFree() {
-//        return booksService.readBooksIsFree();
-//    }
+    @GetMapping("/books-is-free")
+    public List<BookDTO> readBooksIsFree() {
+        return booksService.readBooksIsFree();
+    }
+
+    @GetMapping("/books-is-not-free")
+    public List<BookDTO> readBooksIsNotFree() {
+        return booksService.readBooksIsNotFree();
+    }
 
     @DeleteMapping("/{id}")
     public String deleteBookById(@PathVariable Long id) {
