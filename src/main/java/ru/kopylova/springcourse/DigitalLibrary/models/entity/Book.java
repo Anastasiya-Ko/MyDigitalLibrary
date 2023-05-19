@@ -35,4 +35,10 @@ public class Book {
     @Column(name = "year_of_publication")
     LocalDate yearOfPublication;
 
+    @Column(name = "is_free")
+    boolean bookIsFree;
+
+    // где ты меняешь статус этого поля?
+    //буксервис-мапперы-в конце
+    
 }

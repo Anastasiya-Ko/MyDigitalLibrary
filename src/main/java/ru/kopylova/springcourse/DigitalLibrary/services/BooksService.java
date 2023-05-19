@@ -1,5 +1,8 @@
 package ru.kopylova.springcourse.DigitalLibrary.services;
 
+import lombok.AccessLevel;
+import lombok.RequiredArgsConstructor;
+import lombok.experimental.FieldDefaults;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
@@ -12,26 +15,31 @@ import ru.kopylova.springcourse.DigitalLibrary.models.view.BookDTO;
 import ru.kopylova.springcourse.DigitalLibrary.repositories.BooksRepository;
 
 @Service
+@RequiredArgsConstructor  //создает конструктор ТОЛЬКО с опред аргументами - private final
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class BooksService {
 
-    private final BooksRepository booksRepository;
 
-    private final AuthorService authorService;
+    BooksRepository booksRepository;
 
-    public BooksService(BooksRepository booksRepository, AuthorService authorService) {
-        this.booksRepository = booksRepository;
-        this.authorService = authorService;
-    }
+    AuthorService authorService;
+
+    PeopleService peopleService;
+
 
     public BookDTO createBook(BookDTO view) {
         Book entity = mapperToEntity(view, false);
+        entity.setBookIsFree(true);
         booksRepository.save(entity);
         return mapperToDTO(entity, true);
     }
 
-    public BookDTO updateBook(BookDTO bookRequest) {
+    public BookDTO updateBook(BookDTO bookRequest, Long id) {
+
+        Book entitySearch = getById(id);
 
         Book newEntity = mapperToEntity(bookRequest, false);
+        newEntity.setId(entitySearch.getId());
 
         booksRepository.save(newEntity);
 
@@ -87,6 +95,15 @@ public class BooksService {
         return entityPage.map(entity -> mapperToDTO(entity, true));
     }
 
+//    public List<Book> readBooksIsFree() {
+//
+//
+//
+//
+//        return entityList;
+//
+//    }
+
     public String deleteBookById(Long id) {
         getById(id);
 
@@ -115,8 +132,19 @@ public class BooksService {
             authorService.readOneById(view.getAuthorOwner().getId());
             entity.setAuthorOwner(authorService.mapperToEntity(view.getAuthorOwner(), true));
         }
+
+        if (view.getPersonOwnerEasy() != null) {
+            peopleService.readOneById(view.getPersonOwnerEasy().getId());
+            entity.setPersonOwner(peopleService.mapperToEntityEasy(view.getPersonOwnerEasy(), true));
+
+        }
+        if (view.getPersonOwnerEasy() == null) {
+            entity.setBookIsFree(true);
+        } else entity.setBookIsFree(false);
+
         entity.setName(view.getName());
         entity.setYearOfPublication(view.getYearOfPublication());
+
 
         return entity;
 
@@ -131,6 +159,18 @@ public class BooksService {
         if(entity.getAuthorOwner() != null){
             authorService.readOneById(entity.getAuthorOwner().getId());
             view.setAuthorOwner(authorService.mapperToDTO(entity.getAuthorOwner(), true));
+        }
+
+        if (entity.getPersonOwner() != null) {
+            peopleService.readOneById(entity.getPersonOwner().getId());
+            view.setPersonOwnerEasy(peopleService.mapperToDTOEasy(entity.getPersonOwner(), true));
+
+        }
+
+        if (entity.getPersonOwner() == null) {
+            view.setBookIsFree(true);
+        }else{
+            view.setBookIsFree(false);
         }
 
         view.setName(entity.getName());

@@ -28,9 +28,9 @@ public class BooksController {
         return booksService.createBook(view);
     }
 
-    @PutMapping()
-    public BookDTO updateBook(@Valid @RequestBody BookDTO view) {
-        return booksService.updateBook(view);
+    @PutMapping("/{id}")
+    public BookDTO updateBook(@Valid @RequestBody BookDTO view, @PathVariable Long id) {
+        return booksService.updateBook(view, id);
     }
 
     @GetMapping("/all")
@@ -62,6 +62,11 @@ public class BooksController {
     public Page<BookDTO> readBooksByAuthorOwner(@RequestParam("author-owner") Author authorOwner, Pageable pageable) {
         return booksService.readBooksByAuthorOwner(authorOwner, pageable);
     }
+
+//    @GetMapping("/books-is-free")
+//    public List<Book> readBooksIsFree() {
+//        return booksService.readBooksIsFree();
+//    }
 
     @DeleteMapping("/{id}")
     public String deleteBookById(@PathVariable Long id) {

@@ -1,5 +1,8 @@
 package ru.kopylova.springcourse.DigitalLibrary.services;
 
+import lombok.AccessLevel;
+import lombok.RequiredArgsConstructor;
+import lombok.experimental.FieldDefaults;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
@@ -10,13 +13,11 @@ import ru.kopylova.springcourse.DigitalLibrary.models.view.AuthorDTO;
 import ru.kopylova.springcourse.DigitalLibrary.repositories.AuthorsRepository;
 
 @Service
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
+@RequiredArgsConstructor
 public class AuthorService {
 
-    private final AuthorsRepository authorsRepository;
-
-    public AuthorService(AuthorsRepository authorsRepository) {
-        this.authorsRepository = authorsRepository;
-    }
+    AuthorsRepository authorsRepository;
 
     public AuthorDTO readOneById(Long id) {
         return mapperToDTO(getById(id), true);

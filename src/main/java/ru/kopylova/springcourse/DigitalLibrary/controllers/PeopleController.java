@@ -30,9 +30,9 @@ public class PeopleController {
         return peopleService.createPerson(view);
     }
 
-    @PutMapping(/*"/{id}"*/)
-    public PersonDTO updatePerson(@Valid @RequestBody PersonDTO view) {
-        return peopleService.updatePerson(view/*, id*/);
+    @PutMapping("/{id}")
+    public PersonDTO updatePerson(@Valid @RequestBody PersonDTO view, @PathVariable Long id) {
+        return peopleService.updatePerson(view, id);
     }
 
     @GetMapping("/one/{id}")

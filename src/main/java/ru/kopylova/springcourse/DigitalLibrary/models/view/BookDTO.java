@@ -30,4 +30,9 @@ public class BookDTO {
 
     @NotNull(message = "У книги должен быть автор, выберите из таблицы Автор")
     AuthorDTO authorOwner;
+
+    PersonDTOEasy personOwnerEasy;
+
+    boolean bookIsFree;
+
 }

@@ -1,6 +1,9 @@
 package ru.kopylova.springcourse.DigitalLibrary.services;
 
 
+import lombok.AccessLevel;
+import lombok.RequiredArgsConstructor;
+import lombok.experimental.FieldDefaults;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
@@ -8,18 +11,16 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 import ru.kopylova.springcourse.DigitalLibrary.models.entity.Person;
 import ru.kopylova.springcourse.DigitalLibrary.models.view.PersonDTO;
+import ru.kopylova.springcourse.DigitalLibrary.models.view.PersonDTOEasy;
 import ru.kopylova.springcourse.DigitalLibrary.repositories.PeopleRepository;
 
 
 @Service
+@RequiredArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class PeopleService {
 
-    private final PeopleRepository peopleRepository;
-
-    public PeopleService(PeopleRepository peopleRepository) {
-        this.peopleRepository = peopleRepository;
-    }
-
+    PeopleRepository peopleRepository;
 
     public PersonDTO createPerson(PersonDTO view) {
 
@@ -31,10 +32,12 @@ public class PeopleService {
     }
 
 
-    public PersonDTO updatePerson(PersonDTO personRequest) {
+    public PersonDTO updatePerson(PersonDTO personRequest, Long id) {
 
+        Person entitySearch = getById(id);
 
         Person newPerson = mapperToEntity(personRequest, false);
+        newPerson.setId(entitySearch.getId());
 
         peopleRepository.save(newPerson);
 
@@ -114,6 +117,32 @@ public class PeopleService {
         view.setBirthday(entity.getBirthday());
         view.setEmail(entity.getEmail());
         view.setAge(entity.getAge());
+
+        return view;
+    }
+
+    public Person mapperToEntityEasy(PersonDTOEasy view, boolean isWrite) {
+        Person entity = new Person();
+
+        if (isWrite) {
+            entity.setId(view.getId());
+        }
+        entity.setFirstName(view.getFirstName());
+        entity.setLastName(view.getLastName());
+
+        return entity;
+
+    }
+
+    public PersonDTOEasy mapperToDTOEasy(Person entity, boolean isWrite) {
+
+        PersonDTOEasy view = new PersonDTOEasy();
+
+        if (isWrite) {
+            view.setId(entity.getId());
+        }
+        view.setFirstName(entity.getFirstName());
+        view.setLastName(entity.getLastName());
 
         return view;
     }
