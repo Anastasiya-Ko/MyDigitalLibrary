@@ -106,9 +106,17 @@ public class BooksService {
 
     }
 
+//    public List<BookDTO> readBooksIsNotFree() {
+//
+//        List<Book> entityList = booksRepository.findBooksIsNotFree();
+//
+//        return entityList.stream().map(entity -> mapperToDTO(entity, true)).collect(Collectors.toList());
+//
+//    }
+
     public List<BookDTO> readBooksIsNotFree() {
 
-        List<Book> entityList = booksRepository.findBooksIsNotFree();
+        List<Book> entityList = booksRepository.findAll().stream().filter(book -> !(book.isBookIsFree())).toList();
 
         return entityList.stream().map(entity -> mapperToDTO(entity, true)).collect(Collectors.toList());
 

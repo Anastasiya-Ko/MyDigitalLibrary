@@ -22,17 +22,8 @@ public interface BooksRepository extends JpaRepository<Book, Long>{
                 FROM book b
                 WHERE is_free = true
                             """,
-                nativeQuery = true
+            nativeQuery = true
         )
     List<Book> findBooksIsFree();
-
-    @Query(value = """
-                SELECT *
-                FROM book b
-                WHERE is_free = false
-                            """,
-            nativeQuery = true
-    )
-    List<Book> findBooksIsNotFree();
 
 }
