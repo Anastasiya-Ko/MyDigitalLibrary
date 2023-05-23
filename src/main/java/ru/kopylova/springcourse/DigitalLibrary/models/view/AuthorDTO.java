@@ -16,6 +16,4 @@ public class AuthorDTO {
     @NotEmpty(message = "У книги должен быть автор!")
     String name;
 
-    //List<Book> books;
-
 }

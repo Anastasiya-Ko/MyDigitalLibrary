@@ -38,7 +38,5 @@ public class Book {
     @Column(name = "is_free")
     boolean bookIsFree;
 
-    // где ты меняешь статус этого поля?
-    //буксервис-мапперы-в конце
     
 }

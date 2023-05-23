@@ -11,7 +11,8 @@ import org.springframework.web.server.ResponseStatusException;
 import ru.kopylova.springcourse.DigitalLibrary.models.entity.Author;
 import ru.kopylova.springcourse.DigitalLibrary.models.entity.Book;
 import ru.kopylova.springcourse.DigitalLibrary.models.entity.Person;
-import ru.kopylova.springcourse.DigitalLibrary.models.view.BookDTO;
+import ru.kopylova.springcourse.DigitalLibrary.models.view.BookDTOEasy;
+import ru.kopylova.springcourse.DigitalLibrary.models.view.BookDTORich;
 import ru.kopylova.springcourse.DigitalLibrary.repositories.BooksRepository;
 
 import java.util.List;
@@ -30,35 +31,35 @@ public class BooksService {
     PeopleService peopleService;
 
 
-    public BookDTO createBook(BookDTO view) {
-        Book entity = mapperToEntity(view, false);
+    public BookDTORich createBook(BookDTORich view) {
+        Book entity = mapperToEntityRich(view, false);
         entity.setBookIsFree(true);
         booksRepository.save(entity);
-        return mapperToDTO(entity, true);
+        return mapperToDTORich(entity, true);
     }
 
-    public BookDTO updateBook(BookDTO bookRequest, Long id) {
+    public BookDTORich updateBook(BookDTORich bookRequest, Long id) {
 
         Book entitySearch = getById(id);
 
-        Book newEntity = mapperToEntity(bookRequest, false);
+        Book newEntity = mapperToEntityRich(bookRequest, false);
         newEntity.setId(entitySearch.getId());
 
         booksRepository.save(newEntity);
 
-        return mapperToDTO(newEntity, true);
+        return mapperToDTORich(newEntity, true);
     }
 
-    public Page<BookDTO> readAllBooks(Pageable pageable) {
+    public Page<BookDTOEasy> readAllBooks(Pageable pageable) {
         Page<Book> entityPage = booksRepository.findAll(pageable);
-        return entityPage.map(entity -> mapperToDTO(entity, true));
+        return entityPage.map(entity -> mapperToDTOEasy(entity, true));
     }
 
-    public BookDTO readOneById(Long id) {
-        return mapperToDTO(getById(id), true);
+    public BookDTORich readOneById(Long id) {
+        return mapperToDTORich(getById(id), true);
     }
 
-    public Page<BookDTO> readBooksByNameStartingWith(String name, Pageable pageable) {
+    public Page<BookDTORich> readBooksByNameStartingWith(String name, Pageable pageable) {
 
         String ex = String.format(("Книга, начинающаяся на = %s не найдена"), name);
 
@@ -68,12 +69,11 @@ public class BooksService {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, ex);
         }
 
-        return entityPage.map(entity -> mapperToDTO(entity, true));
+        return entityPage.map(entity -> mapperToDTORich(entity, true));
 
     }
 
-
-    public Page<BookDTO> readBooksByPersonOwnerId(Person personOwner, Pageable pageable) {
+    public Page<BookDTORich> readBooksByPersonOwnerId(Person personOwner, Pageable pageable) {
 
         String ex = String.format(("У читателя с id = %s нет книг"), personOwner.getId());
 
@@ -83,42 +83,36 @@ public class BooksService {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, ex);
         }
 
-        return entityPage.map(entity -> mapperToDTO(entity, true));
+        return entityPage.map(entity -> mapperToDTORich(entity, true));
     }
 
-    public Page<BookDTO> readBooksByAuthorOwner(Author authorOwner, Pageable pageable) {
-        String ex = String.format(("У читателя = %s нет книг"), authorOwner);
+    public Page<BookDTORich> readBooksByAuthorOwner(Author authorOwner, Pageable pageable) {
+        //String ex = String.format(("У читателя = %s нет книг"), authorOwner);
 
+        authorService.readOneById(authorOwner.getId());
         Page<Book> entityPage = booksRepository.findBooksByAuthorOwner(authorOwner, pageable);
+//
+//        if (entityPage.isEmpty()) {
+//            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+//        }
 
-        if (entityPage.isEmpty()) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, ex);
-        }
-
-        return entityPage.map(entity -> mapperToDTO(entity, true));
+        return entityPage.map(entity -> mapperToDTORich(entity, true));
     }
 
-    public List<BookDTO> readBooksIsFree() {
+    public List<BookDTORich> readBooksIsFree() {
 
         List<Book> entityList = booksRepository.findBooksIsFree();
 
-        return entityList.stream().map(entity -> mapperToDTO(entity, true)).collect(Collectors.toList());
+        return entityList.stream().map(entity -> mapperToDTORich(entity, true)).collect(Collectors.toList());
 
     }
 
-//    public List<BookDTO> readBooksIsNotFree() {
-//
-//        List<Book> entityList = booksRepository.findBooksIsNotFree();
-//
-//        return entityList.stream().map(entity -> mapperToDTO(entity, true)).collect(Collectors.toList());
-//
-//    }
 
-    public List<BookDTO> readBooksIsNotFree() {
+    public List<BookDTORich> readBooksIsNotFree() {
 
         List<Book> entityList = booksRepository.findAll().stream().filter(book -> !(book.isBookIsFree())).toList();
 
-        return entityList.stream().map(entity -> mapperToDTO(entity, true)).collect(Collectors.toList());
+        return entityList.stream().map(entity -> mapperToDTORich(entity, true)).collect(Collectors.toList());
 
     }
 
@@ -140,7 +134,7 @@ public class BooksService {
                 new ResponseStatusException(HttpStatus.NOT_FOUND, ex));
     }
 
-    public Book mapperToEntity(BookDTO view, boolean isWrite) {
+    public Book mapperToEntityRich(BookDTORich view, boolean isWrite) {
         Book entity = new Book();
 
         if(isWrite) {
@@ -168,9 +162,9 @@ public class BooksService {
 
     }
 
-    public BookDTO mapperToDTO(Book entity, boolean isWrite) {
+    public BookDTORich mapperToDTORich(Book entity, boolean isWrite) {
 
-        BookDTO view = new BookDTO();
+        BookDTORich view = new BookDTORich();
         if(isWrite) {
             view.setId(entity.getId());
         }
@@ -189,6 +183,41 @@ public class BooksService {
             view.setBookIsFree(true);
         }else{
             view.setBookIsFree(false);
+        }
+
+        view.setName(entity.getName());
+        view.setYearOfPublication(entity.getYearOfPublication());
+
+        return view;
+    }
+
+    public Book mapperToEntityEasy(BookDTOEasy view, boolean isWrite) {
+        Book entity = new Book();
+
+        if(isWrite) {
+            entity.setId(view.getId());
+        }
+        if (view.getAuthorOwner() != null) {
+            authorService.readOneById(view.getAuthorOwner().getId());
+            entity.setAuthorOwner(authorService.mapperToEntity(view.getAuthorOwner(), true));
+        }
+        entity.setName(view.getName());
+        entity.setYearOfPublication(view.getYearOfPublication());
+
+        return entity;
+
+    }
+
+    public BookDTOEasy mapperToDTOEasy(Book entity, boolean isWrite) {
+
+        BookDTOEasy view = new BookDTOEasy();
+        if(isWrite) {
+            view.setId(entity.getId());
+        }
+
+        if(entity.getAuthorOwner() != null){
+            authorService.readOneById(entity.getAuthorOwner().getId());
+            view.setAuthorOwner(authorService.mapperToDTO(entity.getAuthorOwner(), true));
         }
 
         view.setName(entity.getName());

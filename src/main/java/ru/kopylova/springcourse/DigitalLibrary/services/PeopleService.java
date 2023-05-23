@@ -10,8 +10,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 import ru.kopylova.springcourse.DigitalLibrary.models.entity.Person;
-import ru.kopylova.springcourse.DigitalLibrary.models.view.PersonDTO;
 import ru.kopylova.springcourse.DigitalLibrary.models.view.PersonDTOEasy;
+import ru.kopylova.springcourse.DigitalLibrary.models.view.PersonDTORich;
 import ru.kopylova.springcourse.DigitalLibrary.repositories.PeopleRepository;
 
 
@@ -22,26 +22,26 @@ public class PeopleService {
 
     PeopleRepository peopleRepository;
 
-    public PersonDTO createPerson(PersonDTO view) {
+    public PersonDTORich createPerson(PersonDTORich view) {
 
-        Person entity = mapperToEntity(view, false);
+        Person entity = mapperToEntityRich(view, false);
         peopleRepository.save(entity);
 
-        return mapperToDTO(entity, true);
+        return mapperToDTORich(entity, true);
 
     }
 
 
-    public PersonDTO updatePerson(PersonDTO personRequest, Long id) {
+    public PersonDTORich updatePerson(PersonDTORich personRequest, Long id) {
 
         Person entitySearch = getById(id);
 
-        Person newPerson = mapperToEntity(personRequest, false);
+        Person newPerson = mapperToEntityRich(personRequest, false);
         newPerson.setId(entitySearch.getId());
 
         peopleRepository.save(newPerson);
 
-        return mapperToDTO(newPerson, true);
+        return mapperToDTORich(newPerson, true);
 
     }
 
@@ -54,18 +54,18 @@ public class PeopleService {
         return String.format("Пользователь с ID = %d успешно удалён", id);
     }
 
-    public Page<PersonDTO> readAllPeople(Pageable pageable) {
+    public Page<PersonDTORich> readAllPeople(Pageable pageable) {
         Page<Person> entityPage = peopleRepository.findAll(pageable);
 
-        return entityPage.map(entity -> mapperToDTO(entity, true));
+        return entityPage.map(entity -> mapperToDTORich(entity, true));
     }
 
-    public PersonDTO readOneById(Long id) {
-        return mapperToDTO(getById(id), true);
+    public PersonDTORich readOneById(Long id) {
+        return mapperToDTORich(getById(id), true);
     }
 
 
-    public Page<PersonDTO> readByLastName(String lastName, Pageable pageable) {
+    public Page<PersonDTORich> readByLastName(String lastName, Pageable pageable) {
 
         String ex = String.format(("Пользователь с фамилией = %s не найден"), lastName);
 
@@ -75,7 +75,7 @@ public class PeopleService {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, ex);
         }
 
-        return entityPage.map(entity -> mapperToDTO(entity, true));
+        return entityPage.map(entity -> mapperToDTORich(entity, true));
     }
 
     /**
@@ -87,7 +87,7 @@ public class PeopleService {
                 new ResponseStatusException(HttpStatus.NOT_FOUND, ex));
     }
 
-    public Person mapperToEntity(PersonDTO view, boolean isWrite) {
+    public Person mapperToEntityRich(PersonDTORich view, boolean isWrite) {
         Person entity = new Person();
 
         if (isWrite) {
@@ -104,9 +104,9 @@ public class PeopleService {
 
     }
 
-    public PersonDTO mapperToDTO(Person entity, boolean isWrite) {
+    public PersonDTORich mapperToDTORich(Person entity, boolean isWrite) {
 
-        PersonDTO view = new PersonDTO();
+        PersonDTORich view = new PersonDTORich();
 
         if (isWrite) {
             view.setId(entity.getId());

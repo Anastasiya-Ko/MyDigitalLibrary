@@ -23,10 +23,11 @@ public class AuthorService {
         return mapperToDTO(getById(id), true);
     }
 
-    public Page<AuthorDTO> readAllBooks(Pageable pageable) {
+    public Page<AuthorDTO> readAll(Pageable pageable) {
         Page<Author> entityPage = authorsRepository.findAll(pageable);
-        return entityPage.map(entity -> mapperToDTO(entity, false));
+        return entityPage.map(entity -> mapperToDTO(entity, true));
     }
+
 
     public Author mapperToEntity(AuthorDTO view, boolean isWrite) {
         Author entity = new Author();
@@ -36,7 +37,6 @@ public class AuthorService {
         }
 
         entity.setName(view.getName());
-     //   entity.setBooks(view.getBooks());
 
         return entity;
 
@@ -50,10 +50,10 @@ public class AuthorService {
             view.setId(entity.getId());
         }
         view.setName(entity.getName());
-    //    view.setBooks(entity.getBooks());
 
         return view;
     }
+
 
     /**
      * Метод внутреннего пользования, для получения автора(сущности) по идентификатору
