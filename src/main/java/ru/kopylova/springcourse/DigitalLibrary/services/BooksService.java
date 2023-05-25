@@ -43,6 +43,7 @@ public class BooksService {
         return bookMapper.mapperToDTORich(entity, true);
     }
 
+    //TODO нужно подумать о надобности входящего id
     public BookDTORich updateBook(BookDTORich bookRequest, Long id) {
 
         getById(id);

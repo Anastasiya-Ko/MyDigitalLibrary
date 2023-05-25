@@ -31,7 +31,7 @@ public class ReadersService {
 
     }
 
-
+    //TODO нужно подумать о надобности входящего id
     public ReaderDTORich updateReader(ReaderDTORich personRequest, Long id) {
 
         Reader entitySearch = getById(id);

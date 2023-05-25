@@ -37,4 +37,8 @@ public class AuthorsController {
         return authorService.readOneById(id);
     }
 
+    public String deleteAuthorById(@PathVariable Long id) {
+        return authorService.deleteAuthorById(id);
+    }
+
 }

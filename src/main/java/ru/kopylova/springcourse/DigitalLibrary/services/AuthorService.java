@@ -27,6 +27,7 @@ public class AuthorService {
         return authorMapper.mapperToDTO(entity, true);
     }
 
+    //TODO нужно подумать о надобности входящего id
     public AuthorDTO updateAuthor(AuthorDTO viewRequest, Long id) {
         getById(id);
         Author entity = authorMapper.mapperToEntity(viewRequest, false);
@@ -42,6 +43,12 @@ public class AuthorService {
     public Page<AuthorDTO> readAll(Pageable pageable) {
         Page<Author> entityPage = authorsRepository.findAll(pageable);
         return entityPage.map(entity -> authorMapper.mapperToDTO(entity, true));
+    }
+
+    public String deleteAuthorById(Long id) {
+        getById(id);
+        authorsRepository.deleteById(id);
+        return String.format("Автор с id=%d успешно удалён", id);
     }
 
 
