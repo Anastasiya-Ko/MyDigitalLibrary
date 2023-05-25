@@ -9,67 +9,67 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
-import ru.kopylova.springcourse.DigitalLibrary.models.entity.Person;
-import ru.kopylova.springcourse.DigitalLibrary.models.view.PersonDTOEasy;
-import ru.kopylova.springcourse.DigitalLibrary.models.view.PersonDTORich;
-import ru.kopylova.springcourse.DigitalLibrary.repositories.PeopleRepository;
+import ru.kopylova.springcourse.DigitalLibrary.models.entity.Reader;
+import ru.kopylova.springcourse.DigitalLibrary.models.view.ReaderDTOEasy;
+import ru.kopylova.springcourse.DigitalLibrary.models.view.ReaderDTORich;
+import ru.kopylova.springcourse.DigitalLibrary.repositories.ReadersRepository;
 
 
 @Service
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
-public class PeopleService {
+public class ReadersService {
 
-    PeopleRepository peopleRepository;
+    ReadersRepository readersRepository;
 
-    public PersonDTORich createPerson(PersonDTORich view) {
+    public ReaderDTORich createReader(ReaderDTORich view) {
 
-        Person entity = mapperToEntityRich(view, false);
-        peopleRepository.save(entity);
+        Reader entity = mapperToEntityRich(view, false);
+        readersRepository.save(entity);
 
         return mapperToDTORich(entity, true);
 
     }
 
 
-    public PersonDTORich updatePerson(PersonDTORich personRequest, Long id) {
+    public ReaderDTORich updateReader(ReaderDTORich personRequest, Long id) {
 
-        Person entitySearch = getById(id);
+        Reader entitySearch = getById(id);
 
-        Person newPerson = mapperToEntityRich(personRequest, false);
-        newPerson.setId(entitySearch.getId());
+        Reader newReader = mapperToEntityRich(personRequest, false);
+        newReader.setId(entitySearch.getId());
 
-        peopleRepository.save(newPerson);
+        readersRepository.save(newReader);
 
-        return mapperToDTORich(newPerson, true);
+        return mapperToDTORich(newReader, true);
 
     }
 
-    public String deletePersonById(Long id) {
+    public String deleteReaderById(Long id) {
 
         getById(id);
 
-        peopleRepository.deleteById(id);
+        readersRepository.deleteById(id);
 
         return String.format("Пользователь с ID = %d успешно удалён", id);
     }
 
-    public Page<PersonDTORich> readAllPeople(Pageable pageable) {
-        Page<Person> entityPage = peopleRepository.findAll(pageable);
+    public Page<ReaderDTORich> readAllReader(Pageable pageable) {
+        Page<Reader> entityPage = readersRepository.findAll(pageable);
 
         return entityPage.map(entity -> mapperToDTORich(entity, true));
     }
 
-    public PersonDTORich readOneById(Long id) {
+    public ReaderDTORich readOneById(Long id) {
         return mapperToDTORich(getById(id), true);
     }
 
 
-    public Page<PersonDTORich> readByLastName(String lastName, Pageable pageable) {
+    public Page<ReaderDTORich> readByLastName(String lastName, Pageable pageable) {
 
         String ex = String.format(("Пользователь с фамилией = %s не найден"), lastName);
 
-        Page<Person> entityPage = peopleRepository.findByLastNameLikeIgnoreCaseOrderByBirthdayDesc(lastName, pageable);
+        Page<Reader> entityPage = readersRepository.findByLastNameLikeIgnoreCaseOrderByBirthdayDesc(lastName, pageable);
 
         if (entityPage.isEmpty()) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, ex);
@@ -81,14 +81,14 @@ public class PeopleService {
     /**
      * Метод внутреннего пользования для получения человека по его идентификатору
      */
-    private Person getById(Long id) {
+    private Reader getById(Long id) {
         String ex = String.format(("Пользователь с ID = %d не найден"), id);
-        return peopleRepository.findById(id).orElseThrow(() ->
+        return readersRepository.findById(id).orElseThrow(() ->
                 new ResponseStatusException(HttpStatus.NOT_FOUND, ex));
     }
 
-    public Person mapperToEntityRich(PersonDTORich view, boolean isWrite) {
-        Person entity = new Person();
+    public Reader mapperToEntityRich(ReaderDTORich view, boolean isWrite) {
+        Reader entity = new Reader();
 
         if (isWrite) {
             entity.setId(view.getId());
@@ -104,9 +104,9 @@ public class PeopleService {
 
     }
 
-    public PersonDTORich mapperToDTORich(Person entity, boolean isWrite) {
+    public ReaderDTORich mapperToDTORich(Reader entity, boolean isWrite) {
 
-        PersonDTORich view = new PersonDTORich();
+        ReaderDTORich view = new ReaderDTORich();
 
         if (isWrite) {
             view.setId(entity.getId());
@@ -121,8 +121,8 @@ public class PeopleService {
         return view;
     }
 
-    public Person mapperToEntityEasy(PersonDTOEasy view, boolean isWrite) {
-        Person entity = new Person();
+    public Reader mapperToEntityEasy(ReaderDTOEasy view, boolean isWrite) {
+        Reader entity = new Reader();
 
         if (isWrite) {
             entity.setId(view.getId());
@@ -134,9 +134,9 @@ public class PeopleService {
 
     }
 
-    public PersonDTOEasy mapperToDTOEasy(Person entity, boolean isWrite) {
+    public ReaderDTOEasy mapperToDTOEasy(Reader entity, boolean isWrite) {
 
-        PersonDTOEasy view = new PersonDTOEasy();
+        ReaderDTOEasy view = new ReaderDTOEasy();
 
         if (isWrite) {
             view.setId(entity.getId());

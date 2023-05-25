@@ -21,20 +21,23 @@ public class Book {
     Long id;
 
     @ManyToOne
-    @JoinColumn(name = "person_id")
-    Person personOwner;
+    @JoinColumn(name = "reader_id")
+    Reader readerOwner;
 
     @ManyToOne
     @JoinColumn(name = "author_id")
     Author authorOwner;
 
-    @Column(name = "name")
-    String name;
+    @Column(name = "title")
+    String title;
 
 
     @Column(name = "year_of_publication")
     LocalDate yearOfPublication;
 
+    /**
+     * Хранит статус книги: свободна - true, "на руках" - false
+     */
     @Column(name = "is_free")
     boolean bookIsFree;
 

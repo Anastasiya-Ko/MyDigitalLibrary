@@ -12,57 +12,57 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import ru.kopylova.springcourse.DigitalLibrary.models.view.PersonDTORich;
-import ru.kopylova.springcourse.DigitalLibrary.services.PeopleService;
-import ru.kopylova.springcourse.DigitalLibrary.util.page.sort.PersonSort;
+import ru.kopylova.springcourse.DigitalLibrary.models.view.ReaderDTORich;
+import ru.kopylova.springcourse.DigitalLibrary.services.ReadersService;
+import ru.kopylova.springcourse.DigitalLibrary.util.page.sort.ReaderSort;
 
 @Validated
 @RestController
 @RequestMapping("/person")
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
-public class PeopleController {
+public class ReadersController {
 
-    PeopleService peopleService;
+    ReadersService readersService;
 
     @PostMapping
-    public PersonDTORich createPerson(@Valid @RequestBody PersonDTORich view) {
-        return peopleService.createPerson(view);
+    public ReaderDTORich createReader(@Valid @RequestBody ReaderDTORich view) {
+        return readersService.createReader(view);
     }
 
     @PutMapping("/{id}")
-    public PersonDTORich updatePerson(@Valid @RequestBody PersonDTORich view, @PathVariable Long id) {
-        return peopleService.updatePerson(view, id);
+    public ReaderDTORich updateReader(@Valid @RequestBody ReaderDTORich view, @PathVariable Long id) {
+        return readersService.updateReader(view, id);
     }
 
     @GetMapping("/one/{id}")
-    public PersonDTORich readOnePersonById(@PathVariable @Min(0) Long id) {
-        return peopleService.readOneById(id);
+    public ReaderDTORich readOneReaderById(@PathVariable @Min(0) Long id) {
+        return readersService.readOneById(id);
     }
 
 
     @GetMapping("/all")
-    public Page<PersonDTORich> readAllPeople(
+    public Page<ReaderDTORich> readAllReader(
             @RequestParam(value = "offset", defaultValue = "0") @Min(0) Integer offset,
             @RequestParam(value = "limit", defaultValue = "5") @Min(1) @Max(100) Integer limit,
-            @RequestParam(value = "sort", defaultValue = "LASTNAME_ASC")PersonSort sort
+            @RequestParam(value = "sort", defaultValue = "LASTNAME_ASC") ReaderSort sort
             ) {
-        return peopleService.readAllPeople(
+        return readersService.readAllReader(
                 PageRequest.of(offset, limit, sort.getSortValue()));
     }
 
     @GetMapping("/by-name")
-    public Page<PersonDTORich> readOnePersonByLastName
+    public Page<ReaderDTORich> readOneReaderByLastName
             (@RequestParam("lastName") @Pattern(regexp = "[а-яёА-ЯЁ]+",
                     message = "Фамилия должна содержать только буквы русского алфавита") String lastName,
              Pageable pageable) {
 
-        return peopleService.readByLastName(lastName, pageable);
+        return readersService.readByLastName(lastName, pageable);
     }
 
     @DeleteMapping("/{id}")
-    public String deletePersonById(@PathVariable Long id) {
-        return peopleService.deletePersonById(id);
+    public String deleteReaderById(@PathVariable Long id) {
+        return readersService.deleteReaderById(id);
     }
 
 }

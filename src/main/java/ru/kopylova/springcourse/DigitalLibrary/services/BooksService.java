@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 import ru.kopylova.springcourse.DigitalLibrary.models.entity.Author;
 import ru.kopylova.springcourse.DigitalLibrary.models.entity.Book;
-import ru.kopylova.springcourse.DigitalLibrary.models.entity.Person;
+import ru.kopylova.springcourse.DigitalLibrary.models.entity.Reader;
 import ru.kopylova.springcourse.DigitalLibrary.models.view.BookDTOEasy;
 import ru.kopylova.springcourse.DigitalLibrary.models.view.BookDTORich;
 import ru.kopylova.springcourse.DigitalLibrary.repositories.BooksRepository;
@@ -28,7 +28,7 @@ public class BooksService {
 
     AuthorService authorService;
 
-    PeopleService peopleService;
+    ReadersService readersService;
 
 
     public BookDTORich createBook(BookDTORich view) {
@@ -59,11 +59,11 @@ public class BooksService {
         return mapperToDTORich(getById(id), true);
     }
 
-    public Page<BookDTORich> readBooksByNameStartingWith(String name, Pageable pageable) {
+    public Page<BookDTORich> readBooksByTitleStartingWith(String title, Pageable pageable) {
 
-        String ex = String.format(("Книга, начинающаяся на = %s не найдена"), name);
+        String ex = String.format(("Книга, начинающаяся на = %s не найдена"), title);
 
-        Page<Book> entityPage = booksRepository.findBooksByNameIgnoreCaseStartingWithOrderByAuthorOwner(name, pageable);
+        Page<Book> entityPage = booksRepository.findBooksByTitleIgnoreCaseStartingWithOrderByAuthorOwner(title, pageable);
 
         if (entityPage.isEmpty()) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, ex);
@@ -73,11 +73,11 @@ public class BooksService {
 
     }
 
-    public Page<BookDTORich> readBooksByPersonOwnerId(Person personOwner, Pageable pageable) {
+    public Page<BookDTORich> readBooksByReaderOwnerId(Reader readerOwner, Pageable pageable) {
 
-        String ex = String.format(("У читателя с id = %s нет книг"), personOwner.getId());
+        String ex = String.format(("У читателя с id = %s нет книг"), readerOwner.getId());
 
-        Page<Book> entityPage = booksRepository.findBooksByPersonOwner(personOwner, pageable);
+        Page<Book> entityPage = booksRepository.findBooksByReaderOwner(readerOwner, pageable);
 
         if (entityPage.isEmpty()) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, ex);
@@ -145,16 +145,16 @@ public class BooksService {
             entity.setAuthorOwner(authorService.mapperToEntity(view.getAuthorOwner(), true));
         }
 
-        if (view.getPersonOwnerEasy() != null) {
-            peopleService.readOneById(view.getPersonOwnerEasy().getId());
-            entity.setPersonOwner(peopleService.mapperToEntityEasy(view.getPersonOwnerEasy(), true));
+        if (view.getReaderDTOEasy() != null) {
+            readersService.readOneById(view.getReaderDTOEasy().getId());
+            entity.setReaderOwner(readersService.mapperToEntityEasy(view.getReaderDTOEasy(), true));
 
         }
-        if (view.getPersonOwnerEasy() == null) {
+        if (view.getReaderDTOEasy() == null) {
             entity.setBookIsFree(true);
         } else entity.setBookIsFree(false);
 
-        entity.setName(view.getName());
+        entity.setTitle(view.getTitle());
         entity.setYearOfPublication(view.getYearOfPublication());
 
 
@@ -173,19 +173,19 @@ public class BooksService {
             view.setAuthorOwner(authorService.mapperToDTO(entity.getAuthorOwner(), true));
         }
 
-        if (entity.getPersonOwner() != null) {
-            peopleService.readOneById(entity.getPersonOwner().getId());
-            view.setPersonOwnerEasy(peopleService.mapperToDTOEasy(entity.getPersonOwner(), true));
+        if (entity.getReaderOwner() != null) {
+            readersService.readOneById(entity.getReaderOwner().getId());
+            view.setReaderDTOEasy(readersService.mapperToDTOEasy(entity.getReaderOwner(), true));
 
         }
 
-        if (entity.getPersonOwner() == null) {
+        if (entity.getReaderOwner() == null) {
             view.setBookIsFree(true);
         }else{
             view.setBookIsFree(false);
         }
 
-        view.setName(entity.getName());
+        view.setTitle(entity.getTitle());
         view.setYearOfPublication(entity.getYearOfPublication());
 
         return view;
@@ -201,7 +201,7 @@ public class BooksService {
             authorService.readOneById(view.getAuthorOwner().getId());
             entity.setAuthorOwner(authorService.mapperToEntity(view.getAuthorOwner(), true));
         }
-        entity.setName(view.getName());
+        entity.setTitle(view.getTitle());
         entity.setYearOfPublication(view.getYearOfPublication());
 
         return entity;
@@ -220,7 +220,7 @@ public class BooksService {
             view.setAuthorOwner(authorService.mapperToDTO(entity.getAuthorOwner(), true));
         }
 
-        view.setName(entity.getName());
+        view.setTitle(entity.getTitle());
         view.setYearOfPublication(entity.getYearOfPublication());
 
         return view;

@@ -12,7 +12,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import ru.kopylova.springcourse.DigitalLibrary.models.entity.Author;
-import ru.kopylova.springcourse.DigitalLibrary.models.entity.Person;
+import ru.kopylova.springcourse.DigitalLibrary.models.entity.Reader;
 import ru.kopylova.springcourse.DigitalLibrary.models.view.BookDTOEasy;
 import ru.kopylova.springcourse.DigitalLibrary.models.view.BookDTORich;
 import ru.kopylova.springcourse.DigitalLibrary.services.BooksService;
@@ -54,14 +54,14 @@ public class BooksController {
         return booksService.readOneById(id);
     }
 
-    @GetMapping("/starts-name")
-    public Page<BookDTORich> readBooksByNameStartingWith(@RequestParam("name-book") String name, Pageable pageable) {
-        return booksService.readBooksByNameStartingWith(name, pageable);
+    @GetMapping("/starts-title")
+    public Page<BookDTORich> readBooksByNameStartingWith(@RequestParam("title") String title, Pageable pageable) {
+        return booksService.readBooksByTitleStartingWith(title, pageable);
     }
 
     @GetMapping("/by-person-owner-id/{id}")
-    public Page<BookDTORich> readBooksByPersonOwner(@PathVariable Person id, Pageable pageable) {
-        return booksService.readBooksByPersonOwnerId(id, pageable);
+    public Page<BookDTORich> readBooksByReaderOwner(@PathVariable Reader id, Pageable pageable) {
+        return booksService.readBooksByReaderOwnerId(id, pageable);
     }
 
     @GetMapping("/by-author-owner-id")

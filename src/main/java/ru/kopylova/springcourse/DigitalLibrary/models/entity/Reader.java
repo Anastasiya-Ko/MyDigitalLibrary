@@ -12,11 +12,11 @@ import org.hibernate.annotations.Formula;
 import java.time.LocalDate;
 import java.util.List;
 
-@Entity(name = "person")
+@Entity(name = "reader")
 @Getter
 @Setter
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Person {
+public class Reader {
 
     @Id
     @Column(name = "id")
@@ -39,14 +39,14 @@ public class Person {
     Gender gender;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "personOwner")
+    @OneToMany(mappedBy = "readerOwner")
     List<Book> books;
 
     @Formula("""
             (
             SELECT date_part('year',age(birthday ::date))
-            FROM person
-            WHERE person.id = id
+            FROM reader
+            WHERE reader.id = id
             )
             """)
     Integer age;

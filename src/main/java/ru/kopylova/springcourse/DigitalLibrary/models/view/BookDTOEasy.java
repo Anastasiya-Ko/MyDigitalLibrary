@@ -20,7 +20,7 @@ public class BookDTOEasy {
 
     @NotEmpty(message = "У книги должно быть название!")
     @Size(min = 1, max = 100, message = "Книга должна иметь название от 1 до 50 букв")
-    String name;
+    String title;
 
     @NotNull(message = "У книги должен быть год издания")
     @PastOrPresent(message = "Дата издания книги должна содержать прошедшую дату или сегодняшнее число")

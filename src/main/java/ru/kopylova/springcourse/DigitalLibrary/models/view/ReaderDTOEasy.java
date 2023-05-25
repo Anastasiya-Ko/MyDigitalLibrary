@@ -1,19 +1,16 @@
 package ru.kopylova.springcourse.DigitalLibrary.models.view;
 
-
-import jakarta.validation.constraints.*;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Pattern;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
-import ru.kopylova.springcourse.DigitalLibrary.models.entity.Gender;
-
-import java.time.LocalDate;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class PersonDTORich {
+public class ReaderDTOEasy {
 
     Long id;
 
@@ -27,16 +24,5 @@ public class PersonDTORich {
     String lastName;
 
 
-    @NotNull(message = "У человека должна быть дата рождения!")
-    @PastOrPresent(message = "Дата рождения должна содержать прошедшую дату или сегодняшнее число")
-    LocalDate birthday;
-
-    @Email
-    String email;
-
-    @NotNull(message = "Поле gender должно быть заполнено! Муж - для мужчины, Жен - для женщины")
-    Gender gender;
-
-    Integer age;
-
 }
+

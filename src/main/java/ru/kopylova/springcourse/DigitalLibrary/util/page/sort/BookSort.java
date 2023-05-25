@@ -13,8 +13,8 @@ public enum BookSort {
         ID_DESC(Sort.by(Sort.Direction.DESC, "id")),
         AUTHOR_ASC(Sort.by(Sort.Direction.ASC, "author_id")),
         AUTHOR_DESC(Sort.by(Sort.Direction.DESC, "author_id")),
-        NAME_ASC(Sort.by(Sort.Direction.ASC, "name")),
-        NAME_DESC(Sort.by(Sort.Direction.DESC, "name"));
+        TITLE_ASC(Sort.by(Sort.Direction.ASC, "title")),
+        TITLE_DESC(Sort.by(Sort.Direction.DESC, "title"));
 
 
         private final Sort sortValue;
