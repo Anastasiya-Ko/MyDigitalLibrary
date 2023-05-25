@@ -28,6 +28,11 @@ public class BookMapper {
     @Lazy
     private ReadersService readersService;
 
+    @Autowired
+    @NonFinal
+    @Lazy
+    private ReaderMapper readerMapper;
+
 
     public Book mapperToEntity(BookDTORich view, boolean isWrite) {
         Book entity = new Book();
@@ -42,9 +47,10 @@ public class BookMapper {
 
         if (view.getReaderDTOEasy() != null) {
             readersService.readOneById(view.getReaderDTOEasy().getId());
-            entity.setReaderOwner(readersService.mapperToEntityEasy(view.getReaderDTOEasy(), true));
+            entity.setReaderOwner(readerMapper.mapperToEntityEasy(view.getReaderDTOEasy(), true));
 
         }
+        //TODO можно ли это упростить?
         if (view.getReaderDTOEasy() == null) {
             entity.setBookIsFree(true);
         } else entity.setBookIsFree(false);
@@ -70,10 +76,11 @@ public class BookMapper {
 
         if (entity.getReaderOwner() != null) {
             readersService.readOneById(entity.getReaderOwner().getId());
-            view.setReaderDTOEasy(readersService.mapperToDTOEasy(entity.getReaderOwner(), true));
+            view.setReaderDTOEasy(readerMapper.mapperToDTOEasy(entity.getReaderOwner(), true));
 
         }
 
+        //TODO можно ли это упростить?
         if (entity.getReaderOwner() == null) {
             view.setBookIsFree(true);
         }else{
@@ -86,6 +93,7 @@ public class BookMapper {
         return view;
     }
 
+    //TODO как избавиться от этого, если он нужен?
     public BookDTOEasy mapperToDTOEasy(Book entity, boolean isWrite) {
 
         BookDTOEasy view = new BookDTOEasy();
