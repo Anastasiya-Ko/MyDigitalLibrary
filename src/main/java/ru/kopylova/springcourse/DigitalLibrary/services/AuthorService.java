@@ -1,5 +1,8 @@
 package ru.kopylova.springcourse.DigitalLibrary.services;
 
+import lombok.Getter;
+import lombok.Setter;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
@@ -10,11 +13,14 @@ import ru.kopylova.springcourse.DigitalLibrary.models.entity.Author;
 import ru.kopylova.springcourse.DigitalLibrary.models.view.AuthorDTO;
 import ru.kopylova.springcourse.DigitalLibrary.repositories.AuthorsRepository;
 
+@Setter
+@Getter
 @Service
 public class AuthorService {
 
     private final AuthorsRepository authorsRepository;
 
+    @Autowired
     AuthorMapper authorMapper;
 
     public AuthorService(AuthorsRepository authorsRepository) {
@@ -22,7 +28,7 @@ public class AuthorService {
     }
 
     public AuthorDTO createAuthor(AuthorDTO view) {
-        Author entity = authorMapper.mapperToEntity(view, true);
+        Author entity = authorMapper.mapperToEntity(view, false);
         authorsRepository.save(entity);
         return authorMapper.mapperToDTO(entity, true);
     }

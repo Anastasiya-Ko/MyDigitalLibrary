@@ -55,7 +55,7 @@ public class BooksController {
     }
 
     @GetMapping("/starts-title")
-    public Page<BookDTORich> readBooksByNameStartingWith(@RequestParam("title") String title, Pageable pageable) {
+    public Page<BookDTOEasy> readBooksByNameStartingWith(@RequestParam("title") String title, Pageable pageable) {
         return booksService.readBooksByTitleStartingWith(title, pageable);
     }
 
@@ -69,14 +69,14 @@ public class BooksController {
         return booksService.readBooksByAuthorOwnerId(authorOwner, pageable);
     }
 
-    @GetMapping("/books-is-free")
-    public List<BookDTORich> readBooksIsFree() {
-        return booksService.readBooksIsFree();
+    @GetMapping("/books-are-free")
+    public List<BookDTORich> readBooksAreFree() {
+        return booksService.readBooksAreFree();
     }
 
-    @GetMapping("/books-is-not-free")
-    public List<BookDTORich> readBooksIsNotFree() {
-        return booksService.readBooksIsNotFree();
+    @GetMapping("/books-are-not-free")
+    public List<BookDTORich> readBooksAreNotFree() {
+        return booksService.readBooksAreNotFree();
     }
 
     @DeleteMapping("/{id}")

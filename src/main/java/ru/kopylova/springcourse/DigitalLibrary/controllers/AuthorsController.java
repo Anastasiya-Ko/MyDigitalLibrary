@@ -23,8 +23,8 @@ public class AuthorsController {
         return authorService.createAuthor(view);
     }
 
-    @PutMapping
-    public AuthorDTO updateAuthor(@Valid @RequestBody AuthorDTO view, Long id) {
+    @PutMapping("/{id}")
+    public AuthorDTO updateAuthor(@Valid @RequestBody AuthorDTO view, @PathVariable Long id) {
         return authorService.updateAuthor(view, id);
     }
     @GetMapping("/all")

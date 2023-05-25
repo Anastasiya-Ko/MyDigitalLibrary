@@ -33,7 +33,8 @@ public class ReadersService {
 
     }
 
-    //TODO нужно подумать о надобности входящего id
+    //TODO нужно подумать о надобности входящего id + как сделать валидацию гендера???или это невозможно. Т.е. Яна может быть только жен рода
+
     public ReaderDTORich updateReader(ReaderDTORich personRequest, Long id) {
 
         Reader entitySearch = getById(id);

@@ -51,9 +51,9 @@ public class ReadersController {
                 PageRequest.of(offset, limit, sort.getSortValue()));
     }
 
-    @GetMapping("/by-name")
+    @GetMapping("/by-last-name")
     public Page<ReaderDTORich> readOneReaderByLastName
-            (@RequestParam("lastName") @Pattern(regexp = "[а-яёА-ЯЁ]+",
+            (@RequestParam("last-Name") @Pattern(regexp = "[а-яёА-ЯЁ]+",
                     message = "Фамилия должна содержать только буквы русского алфавита") String lastName,
              Pageable pageable) {
 

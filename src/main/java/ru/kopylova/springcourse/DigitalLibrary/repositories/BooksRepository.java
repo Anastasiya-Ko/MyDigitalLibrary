@@ -24,6 +24,6 @@ public interface BooksRepository extends JpaRepository<Book, Long>{
                             """,
             nativeQuery = true
         )
-    List<Book> findBooksIsFree();
+    List<Book> findBooksAreFree();
 
 }

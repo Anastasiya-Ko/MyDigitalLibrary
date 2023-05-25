@@ -29,6 +29,7 @@ public class BooksService {
     @Lazy
     private AuthorService authorService;
 
+    @Autowired
     BookMapper bookMapper;
 
     public BooksService(BooksRepository booksRepository) {
@@ -44,6 +45,7 @@ public class BooksService {
     }
 
     //TODO нужно подумать о надобности входящего id
+    //TODO ввести ограничение на количество взятых книг
     public BookDTORich updateBook(BookDTORich bookRequest, Long id) {
 
         getById(id);
@@ -65,7 +67,7 @@ public class BooksService {
         return bookMapper.mapperToDTORich(getById(id), true);
     }
 
-    public Page<BookDTORich> readBooksByTitleStartingWith(String title, Pageable pageable) {
+    public Page<BookDTOEasy> readBooksByTitleStartingWith(String title, Pageable pageable) {
 
         String ex = String.format(("Книга, начинающаяся на = %s не найдена"), title);
 
@@ -75,7 +77,7 @@ public class BooksService {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, ex);
         }
 
-        return entityPage.map(entity -> bookMapper.mapperToDTORich(entity, true));
+        return entityPage.map(entity -> bookMapper.mapperToDTOEasy(entity, true));
 
     }
 
@@ -105,9 +107,9 @@ public class BooksService {
         return entityPage.map(entity -> bookMapper.mapperToDTORich(entity, true));
     }
 
-    public List<BookDTORich> readBooksIsFree() {
+    public List<BookDTORich> readBooksAreFree() {
 
-        List<Book> entityList = booksRepository.findBooksIsFree();
+        List<Book> entityList = booksRepository.findBooksAreFree();
 
         return entityList.stream()
                 .map(entity -> bookMapper.mapperToDTORich(entity, true))
@@ -116,7 +118,7 @@ public class BooksService {
     }
 
 
-    public List<BookDTORich> readBooksIsNotFree() {
+    public List<BookDTORich> readBooksAreNotFree() {
 
         List<Book> entityList = booksRepository.findAll().stream()
                 .filter(book -> !(book.isBookIsFree()))
