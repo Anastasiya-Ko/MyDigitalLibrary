@@ -34,9 +34,9 @@ public class BooksController {
         return booksService.createBook(view);
     }
 
-    @PutMapping("/{id}")
-    public BookDTORich updateBook(@Valid @RequestBody BookDTORich view, @PathVariable Long id) {
-        return booksService.updateBook(view, id);
+    @PutMapping()
+    public BookDTORich updateBook(@Valid @RequestBody BookDTORich view) {
+        return booksService.updateBook(view);
     }
 
     @GetMapping("/all")

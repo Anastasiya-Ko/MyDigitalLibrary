@@ -33,11 +33,9 @@ public class AuthorService {
         return authorMapper.mapperToDTO(entity, true);
     }
 
-    //TODO нужно подумать о надобности входящего id
-    public AuthorDTO updateAuthor(AuthorDTO viewRequest, Long id) {
-        getById(id);
-        Author entity = authorMapper.mapperToEntity(viewRequest, false);
-        entity.setId(id);
+    public AuthorDTO updateAuthor(AuthorDTO view) {
+        getById(view.getId());
+        Author entity = authorMapper.mapperToEntity(view, true);
         authorsRepository.save(entity);
         return authorMapper.mapperToDTO(entity, true);
     }

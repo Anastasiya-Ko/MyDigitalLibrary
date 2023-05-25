@@ -23,9 +23,9 @@ public class AuthorsController {
         return authorService.createAuthor(view);
     }
 
-    @PutMapping("/{id}")
-    public AuthorDTO updateAuthor(@Valid @RequestBody AuthorDTO view, @PathVariable Long id) {
-        return authorService.updateAuthor(view, id);
+    @PutMapping()
+    public AuthorDTO updateAuthor(@Valid @RequestBody AuthorDTO view) {
+        return authorService.updateAuthor(view);
     }
     @GetMapping("/all")
     public Page<AuthorDTO> readAllAuthors(Pageable pageable) {

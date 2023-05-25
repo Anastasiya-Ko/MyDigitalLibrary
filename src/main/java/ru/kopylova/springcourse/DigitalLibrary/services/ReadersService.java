@@ -33,18 +33,17 @@ public class ReadersService {
 
     }
 
-    //TODO нужно подумать о надобности входящего id + как сделать валидацию гендера???или это невозможно. Т.е. Яна может быть только жен рода
+    //TODO как сделать валидацию гендера???или это невозможно. Т.е. Яна может быть только жен рода
 
-    public ReaderDTORich updateReader(ReaderDTORich personRequest, Long id) {
+    public ReaderDTORich updateReader(ReaderDTORich view) {
 
-        Reader entitySearch = getById(id);
+        getById(view.getId());
 
-        Reader newReader = readerMapper.mapperToEntityRich(personRequest, false);
-        newReader.setId(entitySearch.getId());
+        Reader entity = readerMapper.mapperToEntityRich(view, true);
 
-        readersRepository.save(newReader);
+        readersRepository.save(entity);
 
-        return readerMapper.mapperToDTORich(newReader, true);
+        return readerMapper.mapperToDTORich(entity, true);
 
     }
 

@@ -30,9 +30,9 @@ public class ReadersController {
         return readersService.createReader(view);
     }
 
-    @PutMapping("/{id}")
-    public ReaderDTORich updateReader(@Valid @RequestBody ReaderDTORich view, @PathVariable Long id) {
-        return readersService.updateReader(view, id);
+    @PutMapping
+    public ReaderDTORich updateReader(@Valid @RequestBody ReaderDTORich view) {
+        return readersService.updateReader(view);
     }
 
     @GetMapping("/one/{id}")

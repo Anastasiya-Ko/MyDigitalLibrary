@@ -44,14 +44,13 @@ public class BooksService {
         return bookMapper.mapperToDTORich(entity, true);
     }
 
-    //TODO нужно подумать о надобности входящего id
+
     //TODO ввести ограничение на количество взятых книг
-    public BookDTORich updateBook(BookDTORich bookRequest, Long id) {
+    public BookDTORich updateBook(BookDTORich view) {
 
-        getById(id);
+        getById(view.getId());
 
-        Book entity = bookMapper.mapperToEntity(bookRequest, false);
-        entity.setId(id);
+        Book entity = bookMapper.mapperToEntity(view, true);
 
         booksRepository.save(entity);
 
@@ -116,7 +115,6 @@ public class BooksService {
                 .collect(Collectors.toList());
 
     }
-
 
     public List<BookDTORich> readBooksAreNotFree() {
 
