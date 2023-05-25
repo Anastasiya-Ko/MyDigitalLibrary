@@ -21,6 +21,11 @@ public class AuthorService {
         this.authorsRepository = authorsRepository;
     }
 
+    public AuthorDTO createAuthor(AuthorDTO view) {
+        Author entity = authorMapper.mapperToEntity(view, true);
+        authorsRepository.save(entity);
+        return authorMapper.mapperToDTO(entity, true);
+    }
 
     public AuthorDTO readOneById(Long id) {
         return authorMapper.mapperToDTO(getById(id), true);
@@ -30,6 +35,7 @@ public class AuthorService {
         Page<Author> entityPage = authorsRepository.findAll(pageable);
         return entityPage.map(entity -> authorMapper.mapperToDTO(entity, true));
     }
+
 
 
     /**
