@@ -66,7 +66,7 @@ public class BooksController {
 
     @GetMapping("/by-author-owner-id")
     public Page<BookDTORich> readBooksByAuthorOwner(@RequestParam("author-owner-id") Author authorOwner, Pageable pageable) {
-        return booksService.readBooksByAuthorOwner(authorOwner, pageable);
+        return booksService.readBooksByAuthorOwnerId(authorOwner, pageable);
     }
 
     @GetMapping("/books-is-free")
