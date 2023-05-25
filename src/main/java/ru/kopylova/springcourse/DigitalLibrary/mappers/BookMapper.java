@@ -1,5 +1,8 @@
 package ru.kopylova.springcourse.DigitalLibrary.mappers;
 
+import lombok.experimental.NonFinal;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 import ru.kopylova.springcourse.DigitalLibrary.models.entity.Book;
 import ru.kopylova.springcourse.DigitalLibrary.models.view.BookDTOEasy;
@@ -10,8 +13,20 @@ import ru.kopylova.springcourse.DigitalLibrary.services.ReadersService;
 @Service
 public class BookMapper {
 
-    AuthorService authorService;
-    ReadersService readersService;
+    @Autowired
+    @NonFinal
+    @Lazy
+    private AuthorMapper authorMapper;
+
+    @Autowired
+    @NonFinal
+    @Lazy
+    private AuthorService authorService;
+
+    @Autowired
+    @NonFinal
+    @Lazy
+    private ReadersService readersService;
 
 
     public Book mapperToEntity(BookDTORich view, boolean isWrite) {
@@ -22,7 +37,7 @@ public class BookMapper {
         }
         if (view.getAuthorOwner() != null) {
             authorService.readOneById(view.getAuthorOwner().getId());
-            entity.setAuthorOwner(authorService.mapperToEntity(view.getAuthorOwner(), true));
+            entity.setAuthorOwner(authorMapper.mapperToEntity(view.getAuthorOwner(), true));
         }
 
         if (view.getReaderDTOEasy() != null) {
@@ -50,7 +65,7 @@ public class BookMapper {
         }
         if(entity.getAuthorOwner() != null){
             authorService.readOneById(entity.getAuthorOwner().getId());
-            view.setAuthorOwner(authorService.mapperToDTO(entity.getAuthorOwner(), true));
+            view.setAuthorOwner(authorMapper.mapperToDTO(entity.getAuthorOwner(), true));
         }
 
         if (entity.getReaderOwner() != null) {
@@ -80,7 +95,7 @@ public class BookMapper {
 
         if(entity.getAuthorOwner() != null){
             authorService.readOneById(entity.getAuthorOwner().getId());
-            view.setAuthorOwner(authorService.mapperToDTO(entity.getAuthorOwner(), true));
+            view.setAuthorOwner(authorMapper.mapperToDTO(entity.getAuthorOwner(), true));
         }
 
         view.setTitle(entity.getTitle());

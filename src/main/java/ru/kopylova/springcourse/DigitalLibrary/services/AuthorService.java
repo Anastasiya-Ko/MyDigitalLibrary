@@ -1,57 +1,34 @@
 package ru.kopylova.springcourse.DigitalLibrary.services;
 
-import lombok.AccessLevel;
-import lombok.RequiredArgsConstructor;
-import lombok.experimental.FieldDefaults;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
+import ru.kopylova.springcourse.DigitalLibrary.mappers.AuthorMapper;
 import ru.kopylova.springcourse.DigitalLibrary.models.entity.Author;
 import ru.kopylova.springcourse.DigitalLibrary.models.view.AuthorDTO;
 import ru.kopylova.springcourse.DigitalLibrary.repositories.AuthorsRepository;
 
 @Service
-@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
-@RequiredArgsConstructor
 public class AuthorService {
 
-    AuthorsRepository authorsRepository;
+    private final AuthorsRepository authorsRepository;
+
+    AuthorMapper authorMapper;
+
+    public AuthorService(AuthorsRepository authorsRepository) {
+        this.authorsRepository = authorsRepository;
+    }
+
 
     public AuthorDTO readOneById(Long id) {
-        return mapperToDTO(getById(id), true);
+        return authorMapper.mapperToDTO(getById(id), true);
     }
 
     public Page<AuthorDTO> readAll(Pageable pageable) {
         Page<Author> entityPage = authorsRepository.findAll(pageable);
-        return entityPage.map(entity -> mapperToDTO(entity, true));
-    }
-
-
-    public Author mapperToEntity(AuthorDTO view, boolean isWrite) {
-        Author entity = new Author();
-
-        if(isWrite) {
-            entity.setId(view.getId());
-        }
-
-        entity.setName(view.getName());
-
-        return entity;
-
-    }
-
-    public AuthorDTO mapperToDTO(Author entity, boolean isWrite) {
-
-        AuthorDTO view = new AuthorDTO();
-
-        if(isWrite) {
-            view.setId(entity.getId());
-        }
-        view.setName(entity.getName());
-
-        return view;
+        return entityPage.map(entity -> authorMapper.mapperToDTO(entity, true));
     }
 
 

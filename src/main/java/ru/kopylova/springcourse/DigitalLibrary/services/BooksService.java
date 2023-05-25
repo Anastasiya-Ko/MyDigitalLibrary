@@ -29,12 +29,10 @@ public class BooksService {
     @Lazy
     private AuthorService authorService;
 
-    @Autowired
-    private BookMapper bookMapper;
+    BookMapper bookMapper;
 
-    public BooksService(BooksRepository booksRepository, BookMapper bookMapper) {
+    public BooksService(BooksRepository booksRepository) {
         this.booksRepository = booksRepository;
-        this.bookMapper = bookMapper;
     }
 
 
