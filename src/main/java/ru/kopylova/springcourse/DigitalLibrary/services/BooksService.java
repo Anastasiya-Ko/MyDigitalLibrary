@@ -45,14 +45,14 @@ public class BooksService {
 
     public BookDTORich updateBook(BookDTORich bookRequest, Long id) {
 
-        Book entitySearch = getById(id);
+        getById(id);
 
-        Book newEntity = bookMapper.mapperToEntity(bookRequest, false);
-        newEntity.setId(entitySearch.getId());
+        Book entity = bookMapper.mapperToEntity(bookRequest, false);
+        entity.setId(id);
 
-        booksRepository.save(newEntity);
+        booksRepository.save(entity);
 
-        return bookMapper.mapperToDTORich(newEntity, true);
+        return bookMapper.mapperToDTORich(entity, true);
     }
 
     public Page<BookDTOEasy> readAllBooks(Pageable pageable) {

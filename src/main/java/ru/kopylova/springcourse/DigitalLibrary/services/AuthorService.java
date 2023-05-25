@@ -27,6 +27,14 @@ public class AuthorService {
         return authorMapper.mapperToDTO(entity, true);
     }
 
+    public AuthorDTO updateAuthor(AuthorDTO viewRequest, Long id) {
+        getById(id);
+        Author entity = authorMapper.mapperToEntity(viewRequest, false);
+        entity.setId(id);
+        authorsRepository.save(entity);
+        return authorMapper.mapperToDTO(entity, true);
+    }
+
     public AuthorDTO readOneById(Long id) {
         return authorMapper.mapperToDTO(getById(id), true);
     }
