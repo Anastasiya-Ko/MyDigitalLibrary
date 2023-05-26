@@ -57,9 +57,7 @@ public class BookMapper {
 
         }
         //TODO можно ли это упростить?
-        if (view.getReaderDTOEasy() == null) {
-            entity.setBookIsFree(true);
-        } else entity.setBookIsFree(false);
+        entity.setBookIsFree(view.getReaderDTOEasy() == null);
 
         entity.setTitle(view.getTitle());
         entity.setYearOfPublication(view.getYearOfPublication());
@@ -87,11 +85,7 @@ public class BookMapper {
         }
 
         //TODO можно ли это упростить?
-        if (entity.getReaderOwner() == null) {
-            view.setBookIsFree(true);
-        }else{
-            view.setBookIsFree(false);
-        }
+        view.setBookIsFree(entity.getReaderOwner() == null);
 
         view.setTitle(entity.getTitle());
         view.setYearOfPublication(entity.getYearOfPublication());

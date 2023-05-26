@@ -13,6 +13,8 @@ import ru.kopylova.springcourse.DigitalLibrary.models.entity.Author;
 import ru.kopylova.springcourse.DigitalLibrary.models.view.AuthorDTO;
 import ru.kopylova.springcourse.DigitalLibrary.repositories.AuthorsRepository;
 
+
+//TODO Создать метод, показывающий авторов, не имеющих книг в библиотеке
 @Setter
 @Getter
 @Service
