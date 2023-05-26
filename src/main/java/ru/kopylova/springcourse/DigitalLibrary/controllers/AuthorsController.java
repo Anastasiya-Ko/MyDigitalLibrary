@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.*;
 import ru.kopylova.springcourse.DigitalLibrary.models.view.AuthorDTO;
 import ru.kopylova.springcourse.DigitalLibrary.services.AuthorService;
 
+import java.util.List;
+
+
 @RestController
 @RequestMapping("/author")
 @RequiredArgsConstructor
@@ -35,6 +38,11 @@ public class AuthorsController {
     @GetMapping("/one/{id}")
     public AuthorDTO readAuthorById(@PathVariable Long id) {
         return authorService.readOneById(id);
+    }
+
+    @GetMapping("/has-no-books")
+    public List<AuthorDTO> readAuthorHasNoBooks() {
+        return authorService.readAuthorHasNoBooks();
     }
 
     @DeleteMapping("/{id}")

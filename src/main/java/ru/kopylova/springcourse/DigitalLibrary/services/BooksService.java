@@ -1,8 +1,8 @@
 package ru.kopylova.springcourse.DigitalLibrary.services;
 
-import lombok.experimental.NonFinal;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Lazy;
+import lombok.AccessLevel;
+import lombok.RequiredArgsConstructor;
+import lombok.experimental.FieldDefaults;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
@@ -19,23 +19,17 @@ import ru.kopylova.springcourse.DigitalLibrary.repositories.BooksRepository;
 import java.util.List;
 import java.util.stream.Collectors;
 
+//TODO сделать логирование
 @Service
+@RequiredArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class BooksService {
 
     private final BooksRepository booksRepository;
 
-    @Autowired
-    @NonFinal
-    @Lazy
-    private AuthorService authorService;
+    private final AuthorService authorService;
 
-    @Autowired
     BookMapper bookMapper;
-
-    public BooksService(BooksRepository booksRepository) {
-        this.booksRepository = booksRepository;
-    }
-
 
     public BookDTORich createBook(BookDTORich view) {
         Book entity = bookMapper.mapperToEntity(view, false);

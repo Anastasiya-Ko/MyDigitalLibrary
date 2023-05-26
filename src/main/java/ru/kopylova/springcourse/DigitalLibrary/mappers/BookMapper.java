@@ -1,8 +1,8 @@
 package ru.kopylova.springcourse.DigitalLibrary.mappers;
 
-import lombok.experimental.NonFinal;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Lazy;
+import lombok.AccessLevel;
+import lombok.RequiredArgsConstructor;
+import lombok.experimental.FieldDefaults;
 import org.springframework.stereotype.Service;
 import ru.kopylova.springcourse.DigitalLibrary.models.entity.Book;
 import ru.kopylova.springcourse.DigitalLibrary.models.view.BookDTOEasy;
@@ -12,31 +12,21 @@ import ru.kopylova.springcourse.DigitalLibrary.services.ReadersService;
 
 /**
  * Побороться с зацикливанием программы помогла комбинация аннотаций -
- *     @Autowired
- *     @NonFinal
- *     @Lazy
+ *    // @Autowired
+ *    // @NonFinal
+ *    // @Lazy
  */
 @Service
+@RequiredArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class BookMapper {
 
-    @Autowired
-    @NonFinal
-    @Lazy
     private AuthorMapper authorMapper;
 
-    @Autowired
-    @NonFinal
-    @Lazy
     private AuthorService authorService;
 
-    @Autowired
-    @NonFinal
-    @Lazy
     private ReadersService readersService;
 
-    @Autowired
-    @NonFinal
-    @Lazy
     private ReaderMapper readerMapper;
 
 
@@ -56,7 +46,7 @@ public class BookMapper {
             entity.setReaderOwner(readerMapper.mapperToEntityEasy(view.getReaderDTOEasy(), true));
 
         }
-        //TODO можно ли это упростить?
+
         entity.setBookIsFree(view.getReaderDTOEasy() == null);
 
         entity.setTitle(view.getTitle());
@@ -84,7 +74,6 @@ public class BookMapper {
 
         }
 
-        //TODO можно ли это упростить?
         view.setBookIsFree(entity.getReaderOwner() == null);
 
         view.setTitle(entity.getTitle());
@@ -93,7 +82,6 @@ public class BookMapper {
         return view;
     }
 
-    //TODO как избавиться от этого, если он нужен?
     public BookDTOEasy mapperToDTOEasy(Book entity, boolean isWrite) {
 
         BookDTOEasy view = new BookDTOEasy();

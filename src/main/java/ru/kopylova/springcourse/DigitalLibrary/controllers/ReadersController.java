@@ -43,9 +43,9 @@ public class ReadersController {
 
     @GetMapping("/all")
     public Page<ReaderDTORich> readAllReader(
-            @RequestParam(value = "offset", defaultValue = "0") @Min(0) Integer offset,
-            @RequestParam(value = "limit", defaultValue = "5") @Min(1) @Max(100) Integer limit,
-            @RequestParam(value = "sort", defaultValue = "LASTNAME_ASC") ReaderSort sort
+            @RequestParam(value = "offset") @Min(0) Integer offset,
+            @RequestParam(value = "limit") @Min(1) @Max(100) Integer limit,
+            @RequestParam(value = "sort") ReaderSort sort
             ) {
         return readersService.readAllReader(
                 PageRequest.of(offset, limit, sort.getSortValue()));

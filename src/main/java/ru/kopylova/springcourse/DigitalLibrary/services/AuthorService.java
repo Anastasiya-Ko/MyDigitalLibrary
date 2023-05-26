@@ -1,8 +1,8 @@
 package ru.kopylova.springcourse.DigitalLibrary.services;
 
-import lombok.Getter;
-import lombok.Setter;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AccessLevel;
+import lombok.RequiredArgsConstructor;
+import lombok.experimental.FieldDefaults;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
@@ -13,21 +13,18 @@ import ru.kopylova.springcourse.DigitalLibrary.models.entity.Author;
 import ru.kopylova.springcourse.DigitalLibrary.models.view.AuthorDTO;
 import ru.kopylova.springcourse.DigitalLibrary.repositories.AuthorsRepository;
 
+import java.util.List;
+import java.util.stream.Collectors;
 
-//TODO Создать метод, показывающий авторов, не имеющих книг в библиотеке
-@Setter
-@Getter
+
 @Service
+@RequiredArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class AuthorService {
 
-    private final AuthorsRepository authorsRepository;
+    AuthorsRepository authorsRepository;
 
-    @Autowired
     AuthorMapper authorMapper;
-
-    public AuthorService(AuthorsRepository authorsRepository) {
-        this.authorsRepository = authorsRepository;
-    }
 
     public AuthorDTO createAuthor(AuthorDTO view) {
         Author entity = authorMapper.mapperToEntity(view, false);
@@ -49,6 +46,13 @@ public class AuthorService {
     public Page<AuthorDTO> readAll(Pageable pageable) {
         Page<Author> entityPage = authorsRepository.findAll(pageable);
         return entityPage.map(entity -> authorMapper.mapperToDTO(entity, true));
+    }
+
+    public List<AuthorDTO> readAuthorHasNoBooks() {
+        List<Author> entityList = authorsRepository.findAuthorHasNoBooks();
+        return entityList.stream()
+                .map(entity -> authorMapper.mapperToDTO(entity, true))
+                .collect(Collectors.toList());
     }
 
     public String deleteAuthorById(Long id) {

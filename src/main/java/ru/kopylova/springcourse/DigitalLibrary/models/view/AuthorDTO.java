@@ -3,6 +3,7 @@ package ru.kopylova.springcourse.DigitalLibrary.models.view;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+import ru.kopylova.springcourse.DigitalLibrary.util.valid.CapitalLetter;
 
 @Getter
 @Setter
@@ -14,6 +15,7 @@ public class AuthorDTO {
     Long id;
     
     @NotEmpty(message = "У книги должен быть автор!")
+    @CapitalLetter
     String name;
 
 }
