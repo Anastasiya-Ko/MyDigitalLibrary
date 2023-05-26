@@ -45,16 +45,12 @@ public class BooksService {
     }
 
 
-    //TODO ввести ограничение на количество взятых книг
     public BookDTORich updateBook(BookDTORich view) {
 
-        getById(view.getId());
-
-        Book entity = bookMapper.mapperToEntity(view, true);
-
-        booksRepository.save(entity);
-
-        return bookMapper.mapperToDTORich(entity, true);
+        var updateEntity = getById(view.getId());
+        updateEntity = bookMapper.mapperToEntity(view, true);
+        booksRepository.save(updateEntity);
+        return bookMapper.mapperToDTORich(updateEntity, true);
     }
 
     public Page<BookDTOEasy> readAllBooks(Pageable pageable) {

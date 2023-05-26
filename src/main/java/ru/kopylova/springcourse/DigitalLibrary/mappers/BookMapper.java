@@ -10,6 +10,12 @@ import ru.kopylova.springcourse.DigitalLibrary.models.view.BookDTORich;
 import ru.kopylova.springcourse.DigitalLibrary.services.AuthorService;
 import ru.kopylova.springcourse.DigitalLibrary.services.ReadersService;
 
+/**
+ * Побороться с зацикливанием программы помогла комбинация аннотаций -
+ *     @Autowired
+ *     @NonFinal
+ *     @Lazy
+ */
 @Service
 public class BookMapper {
 

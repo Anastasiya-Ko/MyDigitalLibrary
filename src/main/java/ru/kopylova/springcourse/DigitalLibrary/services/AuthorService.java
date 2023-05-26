@@ -34,10 +34,10 @@ public class AuthorService {
     }
 
     public AuthorDTO updateAuthor(AuthorDTO view) {
-        getById(view.getId());
-        Author entity = authorMapper.mapperToEntity(view, true);
-        authorsRepository.save(entity);
-        return authorMapper.mapperToDTO(entity, true);
+        var updateEntity = getById(view.getId());
+        updateEntity = authorMapper.mapperToEntity(view, true);
+        authorsRepository.save(updateEntity);
+        return authorMapper.mapperToDTO(updateEntity, true);
     }
 
     public AuthorDTO readOneById(Long id) {
@@ -54,7 +54,6 @@ public class AuthorService {
         authorsRepository.deleteById(id);
         return String.format("Автор с id=%d успешно удалён", id);
     }
-
 
 
     /**

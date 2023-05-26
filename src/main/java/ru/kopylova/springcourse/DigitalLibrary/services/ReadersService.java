@@ -33,17 +33,13 @@ public class ReadersService {
 
     }
 
-    //TODO как сделать валидацию гендера???или это невозможно. Т.е. Яна может быть только жен рода
 
     public ReaderDTORich updateReader(ReaderDTORich view) {
 
-        getById(view.getId());
-
-        Reader entity = readerMapper.mapperToEntityRich(view, true);
-
-        readersRepository.save(entity);
-
-        return readerMapper.mapperToDTORich(entity, true);
+        var updateEntity = getById(view.getId());
+        updateEntity = readerMapper.mapperToEntityRich(view, true);
+        readersRepository.save(updateEntity);
+        return readerMapper.mapperToDTORich(updateEntity, true);
 
     }
 

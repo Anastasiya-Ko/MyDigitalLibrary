@@ -18,7 +18,7 @@ import ru.kopylova.springcourse.DigitalLibrary.util.page.sort.ReaderSort;
 
 @Validated
 @RestController
-@RequestMapping("/person")
+@RequestMapping("/reader")
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class ReadersController {
@@ -53,7 +53,7 @@ public class ReadersController {
 
     @GetMapping("/by-last-name")
     public Page<ReaderDTORich> readOneReaderByLastName
-            (@RequestParam("last-Name") @Pattern(regexp = "[а-яёА-ЯЁ]+",
+            (@RequestParam("last-name") @Pattern(regexp = "[а-яёА-ЯЁ]+",
                     message = "Фамилия должна содержать только буквы русского алфавита") String lastName,
              Pageable pageable) {
 

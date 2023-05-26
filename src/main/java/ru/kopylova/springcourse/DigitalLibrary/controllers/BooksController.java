@@ -43,7 +43,7 @@ public class BooksController {
     public Page<BookDTOEasy> readAllBooks(
             @RequestParam(value = "offset", defaultValue = "0") @Min(0) Integer offset,
             @RequestParam(value = "limit", defaultValue = "5") @Min(1) @Max(100) Integer limit,
-            @RequestParam(value = "sort", defaultValue = "NAME_ASC") BookSort sort
+            @RequestParam(value = "sort", defaultValue = "TITLE_ASC", required = false) BookSort sort
     ) {
         return booksService.readAllBooks(
                 PageRequest.of(offset, limit, sort.getSortValue()));
