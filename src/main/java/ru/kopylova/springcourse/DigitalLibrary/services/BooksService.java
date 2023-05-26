@@ -20,6 +20,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 //TODO сделать логирование
+//TODO может нужен конкретный метод для назначения книги читателю
+
 @Service
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
