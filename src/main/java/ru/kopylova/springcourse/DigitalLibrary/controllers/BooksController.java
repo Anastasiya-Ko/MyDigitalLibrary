@@ -30,13 +30,23 @@ public class BooksController {
    BooksService booksService;
 
     @PostMapping
-    public BookDTORich createBook(@Valid @RequestBody BookDTORich view) {
+    public BookDTOEasy createBook(@Valid @RequestBody BookDTOEasy view) {
         return booksService.createBook(view);
     }
 
-    @PutMapping()
-    public BookDTORich updateBook(@Valid @RequestBody BookDTORich view) {
+    @PutMapping("/update")
+    public BookDTOEasy updateBook(@Valid @RequestBody BookDTOEasy view) {
         return booksService.updateBook(view);
+    }
+
+    @PutMapping("/release/{id}")
+    public String release(@PathVariable Long id) {
+        return booksService.release(id);
+    }
+
+    @PutMapping("/assign")
+    public String assign(@RequestParam("book-id") Long id, @RequestParam("reader-id") Reader reader) {
+        return booksService.assignBookByReader(id, reader);
     }
 
     @GetMapping("/all")
@@ -65,12 +75,12 @@ public class BooksController {
     }
 
     @GetMapping("/by-author-owner-id")
-    public Page<BookDTORich> readBooksByAuthorOwner(@RequestParam("author-owner-id") Author authorOwner, Pageable pageable) {
+    public Page<BookDTOEasy> readBooksByAuthorOwner(@RequestParam("author-owner-id") Author authorOwner, Pageable pageable) {
         return booksService.readBooksByAuthorOwnerId(authorOwner, pageable);
     }
 
     @GetMapping("/books-are-free")
-    public List<BookDTORich> readBooksAreFree() {
+    public List<BookDTOEasy> readBooksAreFree() {
         return booksService.readBooksAreFree();
     }
 

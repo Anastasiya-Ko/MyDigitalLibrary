@@ -30,7 +30,7 @@ public class BookMapper {
     private ReaderMapper readerMapper;
 
 
-    public Book mapperToEntity(BookDTORich view, boolean isWrite) {
+    public Book mapperToEntityRich(BookDTORich view, boolean isWrite) {
         Book entity = new Book();
 
         if(isWrite) {
@@ -48,6 +48,25 @@ public class BookMapper {
         }
 
         entity.setBookIsFree(view.getReaderDTOEasy() == null);
+
+        entity.setTitle(view.getTitle());
+        entity.setYearOfPublication(view.getYearOfPublication());
+
+
+        return entity;
+
+    }
+
+    public Book mapperToEntityEasy(BookDTOEasy view, boolean isWrite) {
+        Book entity = new Book();
+
+        if(isWrite) {
+            entity.setId(view.getId());
+        }
+        if (view.getAuthorOwner() != null) {
+            authorService.readOneById(view.getAuthorOwner().getId());
+            entity.setAuthorOwner(authorMapper.mapperToEntity(view.getAuthorOwner(), true));
+        }
 
         entity.setTitle(view.getTitle());
         entity.setYearOfPublication(view.getYearOfPublication());

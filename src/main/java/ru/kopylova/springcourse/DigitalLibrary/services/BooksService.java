@@ -6,6 +6,7 @@ import lombok.experimental.FieldDefaults;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 import ru.kopylova.springcourse.DigitalLibrary.mappers.BookMapper;
@@ -21,33 +22,79 @@ import java.util.stream.Collectors;
 
 //TODO сделать логирование
 //TODO может нужен конкретный метод для назначения книги читателю
+//TODO установить плагин для проверки кода
 
 @Service
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class BooksService {
 
-    private final BooksRepository booksRepository;
-
-    private final AuthorService authorService;
-
+    BooksRepository booksRepository;
+    AuthorService authorService;
     BookMapper bookMapper;
+    JdbcTemplate jdbcTemplate;
 
-    public BookDTORich createBook(BookDTORich view) {
-        Book entity = bookMapper.mapperToEntity(view, false);
-        entity.setBookIsFree(true);
+
+    public BookDTOEasy createBook(BookDTOEasy view) {
+        Book entity = bookMapper.mapperToEntityEasy(view, false);
         booksRepository.save(entity);
-        return bookMapper.mapperToDTORich(entity, true);
+        return bookMapper.mapperToDTOEasy(entity, true);
     }
 
+//    public String createBooksWithBathUpdate() {
+//        List<Book> books = new ArrayList<>();
+//        jdbcTemplate.batchUpdate("INSERT INTO book VALUES (?,?,?,?,?,?)",
+//                new BatchPreparedStatementSetter() {
+//
+//            @Override
+//            public void setValues(PreparedStatement ps, int i) throws SQLException {
+//                ps.setLong(1, books.get(i).getId());
+//                ps.setObject(2, books.get(i).getReaderOwner());
+//                ps.setString(3, books.get(i).getTitle());
+//                ps.setObject(4, books.get(i).getAuthorOwner());
+//                ps.setDate(5, Date.valueOf(books.get(i).getYearOfPublication()));
+//                ps.setBoolean(6, books.get(i).isBookIsFree());
+//            }
+//
+//            @Override
+//            public int getBatchSize() {
+//                return books.size();
+//            }
+//        });
+//        return "Книги успешно добавлены";
+//    }
 
-    public BookDTORich updateBook(BookDTORich view) {
+    public BookDTOEasy updateBook(BookDTOEasy view) {
 
         var updateEntity = getById(view.getId());
-        updateEntity = bookMapper.mapperToEntity(view, true);
+        updateEntity = bookMapper.mapperToEntityEasy(view, true);
         booksRepository.save(updateEntity);
-        return bookMapper.mapperToDTORich(updateEntity, true);
+        return bookMapper.mapperToDTOEasy(updateEntity, true);
     }
+
+    /**
+     * Метод для освобождения книги, когда читатель возвращает её в библиотеку
+     *
+     * @param id возвращаемой книги
+     */
+    public String release(Long id) {
+        jdbcTemplate.update("UPDATE book SET reader_id=NULL, is_free=true WHERE id=?", id);
+        return "Теперь книга свободна";
+    }
+
+    /**
+     * Метод для назначения книги читателю
+     * @param id назначаемая книга
+     * @param selectedReader читатель, берущий книгу
+     * @return информационное сообщение
+     */
+    public String assignBookByReader(Long id, Reader selectedReader) {
+        getById(id);
+        jdbcTemplate.update("UPDATE book SET reader_id=?, is_free=false WHERE id=?", selectedReader.getId(), id);
+        return String.format("Книга %d выдана читателю с фамилией %s", id, selectedReader.getLastName());
+
+    }
+
 
     public Page<BookDTOEasy> readAllBooks(Pageable pageable) {
         Page<Book> entityPage = booksRepository.findAll(pageable);
@@ -85,7 +132,7 @@ public class BooksService {
         return entityPage.map(entity -> bookMapper.mapperToDTORich(entity, true));
     }
 
-    public Page<BookDTORich> readBooksByAuthorOwnerId(Author authorOwner, Pageable pageable) {
+    public Page<BookDTOEasy> readBooksByAuthorOwnerId(Author authorOwner, Pageable pageable) {
         String ex = String.format(("У читателя = %s нет книг"), authorOwner);
 
         authorService.readOneById(authorOwner.getId());
@@ -95,28 +142,22 @@ public class BooksService {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, ex);
         }
 
-        return entityPage.map(entity -> bookMapper.mapperToDTORich(entity, true));
+        return entityPage.map(entity -> bookMapper.mapperToDTOEasy(entity, true));
     }
 
-    public List<BookDTORich> readBooksAreFree() {
+    public List<BookDTOEasy> readBooksAreFree() {
 
         List<Book> entityList = booksRepository.findBooksAreFree();
 
-        return entityList.stream()
-                .map(entity -> bookMapper.mapperToDTORich(entity, true))
-                .collect(Collectors.toList());
+        return entityList.stream().map(entity -> bookMapper.mapperToDTOEasy(entity, true)).collect(Collectors.toList());
 
     }
 
     public List<BookDTORich> readBooksAreNotFree() {
 
-        List<Book> entityList = booksRepository.findAll().stream()
-                .filter(book -> !(book.isBookIsFree()))
-                .toList();
+        List<Book> entityList = booksRepository.findAll().stream().filter(book -> !(book.isBookIsFree())).toList();
 
-        return entityList.stream()
-                .map(entity -> bookMapper.mapperToDTORich(entity, true))
-                .collect(Collectors.toList());
+        return entityList.stream().map(entity -> bookMapper.mapperToDTORich(entity, true)).collect(Collectors.toList());
 
     }
 
@@ -134,8 +175,7 @@ public class BooksService {
      */
     private Book getById(Long id) {
         String ex = String.format(("Книга с ID = %d не найдена"), id);
-        return booksRepository.findById(id).orElseThrow(() ->
-                new ResponseStatusException(HttpStatus.NOT_FOUND, ex));
+        return booksRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, ex));
     }
 
 }
