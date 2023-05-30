@@ -21,7 +21,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 //TODO сделать логирование
-//TODO может нужен конкретный метод для назначения книги читателю
+
 //TODO установить плагин для проверки кода
 
 @Service
@@ -33,10 +33,11 @@ public class BooksService {
     AuthorService authorService;
     BookMapper bookMapper;
     JdbcTemplate jdbcTemplate;
+    ReadersService readersService;
 
 
     public BookDTOEasy createBook(BookDTOEasy view) {
-        Book entity = bookMapper.mapperToEntityEasy(view, false);
+        Book entity = bookMapper.mapperToEntity(view, false);
         booksRepository.save(entity);
         return bookMapper.mapperToDTOEasy(entity, true);
     }
@@ -67,13 +68,13 @@ public class BooksService {
     public BookDTOEasy updateBook(BookDTOEasy view) {
 
         var updateEntity = getById(view.getId());
-        updateEntity = bookMapper.mapperToEntityEasy(view, true);
+        updateEntity = bookMapper.mapperToEntity(view, true);
         booksRepository.save(updateEntity);
         return bookMapper.mapperToDTOEasy(updateEntity, true);
     }
 
     /**
-     * Метод для освобождения книги, когда читатель возвращает её в библиотеку
+     * Метод для освобождения книги, при возвращении её в библиотеку
      *
      * @param id возвращаемой книги
      */
@@ -84,14 +85,16 @@ public class BooksService {
 
     /**
      * Метод для назначения книги читателю
-     * @param id назначаемая книга
-     * @param selectedReader читатель, берущий книгу
+     * @param bookId назначаемая книга
+     * @param readerId читатель, берущий книгу
      * @return информационное сообщение
      */
-    public String assignBookByReader(Long id, Reader selectedReader) {
-        getById(id);
-        jdbcTemplate.update("UPDATE book SET reader_id=?, is_free=false WHERE id=?", selectedReader.getId(), id);
-        return String.format("Книга %d выдана читателю с фамилией %s", id, selectedReader.getLastName());
+    public String assignBookByReader(Long bookId, Long readerId) {
+        getById(bookId);
+        readersService.readOneById(readerId);
+        jdbcTemplate.update("UPDATE book SET reader_id=?, is_free=false WHERE id=?", readerId, bookId);
+        return String.format("Книга с id=%d выдана читателю с фамилией %s", bookId,
+                readersService.readOneById(readerId).getLastName());
 
     }
 
@@ -109,7 +112,7 @@ public class BooksService {
 
         String ex = String.format(("Книга, начинающаяся на = %s не найдена"), title);
 
-        Page<Book> entityPage = booksRepository.findBooksByTitleIgnoreCaseStartingWithOrderByAuthorOwner(title, pageable);
+        Page<Book> entityPage = booksRepository.findBooksByTitleIgnoreCaseStartingWithOrderByYearOfPublicationAsc(title, pageable);
 
         if (entityPage.isEmpty()) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, ex);

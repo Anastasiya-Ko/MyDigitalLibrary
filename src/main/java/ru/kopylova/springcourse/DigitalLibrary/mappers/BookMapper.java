@@ -12,9 +12,9 @@ import ru.kopylova.springcourse.DigitalLibrary.services.ReadersService;
 
 /**
  * Побороться с зацикливанием программы помогла комбинация аннотаций -
- *    // @Autowired
- *    // @NonFinal
- *    // @Lazy
+ * // @Autowired
+ * // @NonFinal
+ * // @Lazy
  */
 @Service
 @RequiredArgsConstructor
@@ -29,38 +29,10 @@ public class BookMapper {
 
     private ReaderMapper readerMapper;
 
-
-    public Book mapperToEntityRich(BookDTORich view, boolean isWrite) {
+    public Book mapperToEntity(BookDTOEasy view, boolean isWrite) {
         Book entity = new Book();
 
-        if(isWrite) {
-            entity.setId(view.getId());
-        }
-        if (view.getAuthorOwner() != null) {
-            authorService.readOneById(view.getAuthorOwner().getId());
-            entity.setAuthorOwner(authorMapper.mapperToEntity(view.getAuthorOwner(), true));
-        }
-
-        if (view.getReaderDTOEasy() != null) {
-            readersService.readOneById(view.getReaderDTOEasy().getId());
-            entity.setReaderOwner(readerMapper.mapperToEntityEasy(view.getReaderDTOEasy(), true));
-
-        }
-
-        entity.setBookIsFree(view.getReaderDTOEasy() == null);
-
-        entity.setTitle(view.getTitle());
-        entity.setYearOfPublication(view.getYearOfPublication());
-
-
-        return entity;
-
-    }
-
-    public Book mapperToEntityEasy(BookDTOEasy view, boolean isWrite) {
-        Book entity = new Book();
-
-        if(isWrite) {
+        if (isWrite) {
             entity.setId(view.getId());
         }
         if (view.getAuthorOwner() != null) {
@@ -70,7 +42,6 @@ public class BookMapper {
 
         entity.setTitle(view.getTitle());
         entity.setYearOfPublication(view.getYearOfPublication());
-
 
         return entity;
 
@@ -79,10 +50,10 @@ public class BookMapper {
     public BookDTORich mapperToDTORich(Book entity, boolean isWrite) {
 
         BookDTORich view = new BookDTORich();
-        if(isWrite) {
+        if (isWrite) {
             view.setId(entity.getId());
         }
-        if(entity.getAuthorOwner() != null){
+        if (entity.getAuthorOwner() != null) {
             authorService.readOneById(entity.getAuthorOwner().getId());
             view.setAuthorOwner(authorMapper.mapperToDTO(entity.getAuthorOwner(), true));
         }
@@ -104,11 +75,11 @@ public class BookMapper {
     public BookDTOEasy mapperToDTOEasy(Book entity, boolean isWrite) {
 
         BookDTOEasy view = new BookDTOEasy();
-        if(isWrite) {
+        if (isWrite) {
             view.setId(entity.getId());
         }
 
-        if(entity.getAuthorOwner() != null){
+        if (entity.getAuthorOwner() != null) {
             authorService.readOneById(entity.getAuthorOwner().getId());
             view.setAuthorOwner(authorMapper.mapperToDTO(entity.getAuthorOwner(), true));
         }

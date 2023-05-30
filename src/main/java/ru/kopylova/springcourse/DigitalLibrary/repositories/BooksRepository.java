@@ -15,7 +15,7 @@ public interface BooksRepository extends JpaRepository<Book, Long>{
 
     Page<Book> findBooksByReaderOwner(Reader readerOwnerId, Pageable pageable);
     Page<Book> findBooksByAuthorOwner(Author authorOwner, Pageable pageable);
-    Page<Book> findBooksByTitleIgnoreCaseStartingWithOrderByAuthorOwner(String title, Pageable pageable);
+    Page<Book> findBooksByTitleIgnoreCaseStartingWithOrderByYearOfPublicationAsc(String title, Pageable pageable);
 
     @Query(value = """
                 SELECT *

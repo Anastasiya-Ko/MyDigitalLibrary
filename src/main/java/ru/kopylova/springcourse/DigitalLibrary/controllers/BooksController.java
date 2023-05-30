@@ -45,8 +45,8 @@ public class BooksController {
     }
 
     @PutMapping("/assign")
-    public String assign(@RequestParam("book-id") Long id, @RequestParam("reader-id") Reader reader) {
-        return booksService.assignBookByReader(id, reader);
+    public String assign(@RequestParam("book-id") Long bookId, @RequestParam("reader-id") Long readerId) {
+        return booksService.assignBookByReader(bookId, readerId);
     }
 
     @GetMapping("/all")
@@ -69,13 +69,13 @@ public class BooksController {
         return booksService.readBooksByTitleStartingWith(title, pageable);
     }
 
-    @GetMapping("/by-person-owner-id/{id}")
-    public Page<BookDTORich> readBooksByReaderOwner(@PathVariable Reader id, Pageable pageable) {
-        return booksService.readBooksByReaderOwnerId(id, pageable);
+    @GetMapping("/by-person-owner-id")
+    public Page<BookDTORich> readBooksByReaderOwner(@Valid @RequestBody Reader reader, Pageable pageable) {
+        return booksService.readBooksByReaderOwnerId(reader, pageable);
     }
 
     @GetMapping("/by-author-owner-id")
-    public Page<BookDTOEasy> readBooksByAuthorOwner(@RequestParam("author-owner-id") Author authorOwner, Pageable pageable) {
+    public Page<BookDTOEasy> readBooksByAuthorOwner(@Valid @RequestBody Author authorOwner, Pageable pageable) {
         return booksService.readBooksByAuthorOwnerId(authorOwner, pageable);
     }
 

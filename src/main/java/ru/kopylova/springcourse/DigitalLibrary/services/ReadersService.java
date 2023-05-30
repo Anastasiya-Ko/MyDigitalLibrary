@@ -33,7 +33,6 @@ public class ReadersService {
 
     }
 
-
     public ReaderDTORich updateReader(ReaderDTORich view) {
 
         var updateEntity = getById(view.getId());

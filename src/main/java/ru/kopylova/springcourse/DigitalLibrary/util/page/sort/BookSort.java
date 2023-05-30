@@ -13,7 +13,8 @@ public enum BookSort {
         AUTHOR_ASC(Sort.by(Sort.Direction.ASC, "author_id")),
         AUTHOR_DESC(Sort.by(Sort.Direction.DESC, "author_id")),
         TITLE_ASC(Sort.by(Sort.Direction.ASC, "title")),
-        TITLE_DESC(Sort.by(Sort.Direction.DESC, "title"));
+        TITLE_DESC(Sort.by(Sort.Direction.DESC, "title")),
+        YEAR_ASC(Sort.by(Sort.Direction.ASC, "year_of_publication"));
 
         private final Sort sortValue;
 
