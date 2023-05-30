@@ -112,7 +112,8 @@ public class BooksService {
 
         String ex = String.format(("Книга, начинающаяся на = %s не найдена"), title);
 
-        Page<Book> entityPage = booksRepository.findBooksByTitleIgnoreCaseStartingWithOrderByYearOfPublicationAsc(title, pageable);
+        Page<Book> entityPage = booksRepository.
+                findBooksByTitleIgnoreCaseStartingWithOrderByYearOfPublicationAsc(title, pageable);
 
         if (entityPage.isEmpty()) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, ex);
