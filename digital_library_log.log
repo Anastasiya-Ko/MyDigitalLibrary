@@ -1,0 +1,48 @@
+2023-05-30T15:24:06.366+03:00  INFO 12184 --- [main] r.k.s.D.DigitalLibraryApplication        : Starting DigitalLibraryApplication using Java 17.0.6 with PID 12184 (C:\Users\lanko\Desktop\Проекты гитХаб Настя\SpringMVCProject\SpringCourse\MyDigitalLibrary\target\classes started by lanko in C:\Users\lanko\Desktop\Проекты гитХаб Настя\SpringMVCProject\SpringCourse\MyDigitalLibrary)
+2023-05-30T15:24:06.369+03:00  INFO 12184 --- [main] r.k.s.D.DigitalLibraryApplication        : No active profile set, falling back to 1 default profile: "default"
+2023-05-30T15:24:07.138+03:00  INFO 12184 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-05-30T15:24:07.200+03:00  INFO 12184 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 54 ms. Found 3 JPA repository interfaces.
+2023-05-30T15:24:07.645+03:00  INFO 12184 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 7070 (http)
+2023-05-30T15:24:07.653+03:00  INFO 12184 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-05-30T15:24:07.653+03:00  INFO 12184 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.7]
+2023-05-30T15:24:07.728+03:00  INFO 12184 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-05-30T15:24:07.728+03:00  INFO 12184 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1304 ms
+2023-05-30T15:24:07.835+03:00  INFO 12184 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-05-30T15:24:07.977+03:00  INFO 12184 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@5ba90d8a
+2023-05-30T15:24:07.978+03:00  INFO 12184 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-05-30T15:24:08.015+03:00  INFO 12184 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-05-30T15:24:08.052+03:00  INFO 12184 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.1.7.Final
+2023-05-30T15:24:08.325+03:00  INFO 12184 --- [main] SQL dialect                              : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2023-05-30T15:24:09.020+03:00  INFO 12184 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-05-30T15:24:09.030+03:00  INFO 12184 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-05-30T15:24:09.470+03:00  WARN 12184 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-05-30T15:24:10.135+03:00  INFO 12184 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 7070 (http) with context path ''
+2023-05-30T15:24:10.145+03:00  INFO 12184 --- [main] r.k.s.D.DigitalLibraryApplication        : Started DigitalLibraryApplication in 4.219 seconds (process running for 4.793)
+2023-05-30T15:30:54.515+03:00  INFO 12184 --- [http-nio-7070-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-05-30T15:30:54.515+03:00  INFO 12184 --- [http-nio-7070-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-05-30T15:30:54.518+03:00  INFO 12184 --- [http-nio-7070-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2023-05-30T15:35:18.191+03:00  INFO 12184 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-05-30T15:35:18.193+03:00  INFO 12184 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-05-30T15:35:18.201+03:00  INFO 12184 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-05-30T15:35:24.834+03:00  WARN 18504 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-05-30T15:35:24.940+03:00 DEBUG 18504 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2023-05-30T15:35:25.034+03:00 DEBUG 18504 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : 30 mappings in 'requestMappingHandlerMapping'
+2023-05-30T15:35:25.374+03:00 DEBUG 18504 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/webjars/**, /**, /swagger-ui*/*swagger-initializer.js, /swagger-ui*/**] in 'resourceHandlerMapping'
+2023-05-30T15:35:25.381+03:00 DEBUG 18504 --- [main] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 2 @ExceptionHandler, 1 ResponseBodyAdvice
+2023-05-30T15:37:07.934+03:00  INFO 18504 --- [http-nio-7070-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-05-30T15:37:07.935+03:00 DEBUG 18504 --- [http-nio-7070-exec-2] o.s.web.servlet.DispatcherServlet        : Detected StandardServletMultipartResolver
+2023-05-30T15:37:07.935+03:00 DEBUG 18504 --- [http-nio-7070-exec-2] o.s.web.servlet.DispatcherServlet        : Detected AcceptHeaderLocaleResolver
+2023-05-30T15:37:07.935+03:00 DEBUG 18504 --- [http-nio-7070-exec-2] o.s.web.servlet.DispatcherServlet        : Detected FixedThemeResolver
+2023-05-30T15:37:07.936+03:00 DEBUG 18504 --- [http-nio-7070-exec-2] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@6a30f6b1
+2023-05-30T15:37:07.936+03:00 DEBUG 18504 --- [http-nio-7070-exec-2] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.support.SessionFlashMapManager@5c194652
+2023-05-30T15:37:07.937+03:00 DEBUG 18504 --- [http-nio-7070-exec-2] o.s.web.servlet.DispatcherServlet        : enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+2023-05-30T15:37:07.937+03:00  INFO 18504 --- [http-nio-7070-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2023-05-30T15:37:07.949+03:00 DEBUG 18504 --- [http-nio-7070-exec-2] o.s.web.servlet.DispatcherServlet        : GET "/reader/one/250", parameters={}
+2023-05-30T15:37:07.961+03:00 DEBUG 18504 --- [http-nio-7070-exec-2] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to ru.kopylova.springcourse.DigitalLibrary.controllers.ReadersController#readOneReaderById(Long)
+2023-05-30T15:37:08.072+03:00 DEBUG 18504 --- [http-nio-7070-exec-2] .w.s.m.a.ResponseStatusExceptionResolver : Resolved [org.springframework.web.server.ResponseStatusException: 404 NOT_FOUND "Читатель с id = 250 не найден"]
+2023-05-30T15:37:08.073+03:00 DEBUG 18504 --- [http-nio-7070-exec-2] o.s.web.servlet.DispatcherServlet        : Completed 404 NOT_FOUND
+2023-05-30T15:37:08.079+03:00 DEBUG 18504 --- [http-nio-7070-exec-2] o.s.web.servlet.DispatcherServlet        : "ERROR" dispatch for GET "/error", parameters={}
+2023-05-30T15:37:08.080+03:00 DEBUG 18504 --- [http-nio-7070-exec-2] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2023-05-30T15:37:08.097+03:00 DEBUG 18504 --- [http-nio-7070-exec-2] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2023-05-30T15:37:08.099+03:00 DEBUG 18504 --- [http-nio-7070-exec-2] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [{timestamp=Tue May 30 15:37:08 MSK 2023, status=404, error=Not Found, message=Читатель с id = 250 не (truncated)...]
+2023-05-30T15:37:08.132+03:00 DEBUG 18504 --- [http-nio-7070-exec-2] o.s.web.servlet.DispatcherServlet        : Exiting from "ERROR" dispatch, status 404
