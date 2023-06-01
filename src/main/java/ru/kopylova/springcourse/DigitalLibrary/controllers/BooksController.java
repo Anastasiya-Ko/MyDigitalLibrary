@@ -15,9 +15,11 @@ import ru.kopylova.springcourse.DigitalLibrary.models.entity.Author;
 import ru.kopylova.springcourse.DigitalLibrary.models.entity.Reader;
 import ru.kopylova.springcourse.DigitalLibrary.models.view.BookDTOEasy;
 import ru.kopylova.springcourse.DigitalLibrary.models.view.BookDTORich;
+import ru.kopylova.springcourse.DigitalLibrary.reports.BookServiceReport;
 import ru.kopylova.springcourse.DigitalLibrary.services.BooksService;
 import ru.kopylova.springcourse.DigitalLibrary.util.page.sort.BookSort;
 
+import java.io.IOException;
 import java.util.List;
 
 @Validated
@@ -28,6 +30,7 @@ import java.util.List;
 public class BooksController {
 
    BooksService booksService;
+   BookServiceReport bookServiceReport;
 
     @PostMapping
     public BookDTOEasy createBook(@Valid @RequestBody BookDTOEasy view) {
@@ -92,6 +95,11 @@ public class BooksController {
     @DeleteMapping("/{id}")
     public String deleteBookById(@PathVariable Long id) {
         return booksService.deleteBookById(id);
+    }
+
+    @GetMapping("/report-by-id/{id}")
+    public void readBookReportById(@PathVariable Long id) throws IOException {
+        bookServiceReport.getBookReportById(id);
     }
 
 }

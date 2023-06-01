@@ -20,10 +20,8 @@ import ru.kopylova.springcourse.DigitalLibrary.repositories.BooksRepository;
 import java.util.List;
 import java.util.stream.Collectors;
 
-//TODO сделать логирование
-
 //TODO установить плагин для проверки кода
-
+//TODO дореализовывать метод пакетного обновления
 @Service
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
