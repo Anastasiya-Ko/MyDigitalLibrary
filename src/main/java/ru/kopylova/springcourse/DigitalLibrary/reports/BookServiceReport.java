@@ -14,11 +14,11 @@ import java.io.IOException;
 
 //TODO Во-первых, отчёт должен иметь красивый вид,
 //TODO Во-вторых, ячейки должны автомаштабироваться,
-//TODO В-третьих, я плохо поняла, зачем я реализовала DataReport,потому что могу и так обратиться к бд
+
 //TODO В-четвёртых, надо сделать отчёт по всем книгам - это, наверное, как-то в цикле должно быть,
 //TODO В-пятых, мне надо сделать сохранение отчёта в приложении, а не рабочем столе,
 //TODO В-шестых, меня смущает, что если делаешь отчёт один, то больше этим же методом нельзя воспользоваться, потому что ошибка - книга с таким названием уже существует. Приходится её удалять и заново писать отчёт
-//TODO В-седьмых, не знаю как сделать сохранение объекта в отчёт
+
 
 @Service
 @RequiredArgsConstructor
@@ -39,9 +39,9 @@ public class BookServiceReport {
 
 
         //Создаём в строке ячейку
-        Cell id = row.createCell(0);
+        Cell idBook = row.createCell(0);
         //Задаём значение ячейке
-        id.setCellValue(bookDataReport.readBookReportById(bookId).getBookId());
+        idBook.setCellValue(bookDataReport.readBookReportById(bookId).getBookId());
 
 
         Cell title = row.createCell(1);
@@ -54,6 +54,22 @@ public class BookServiceReport {
         yearOfPublication.setCellStyle(dateStyle);
         // Нумерация лет начинается с 1900-го
         yearOfPublication.setCellValue(bookDataReport.readBookReportById(bookId).getYearOfPublication());
+
+
+        Cell idAuthor = row.createCell(3);
+        idAuthor.setCellValue(bookDataReport.readBookReportById(bookId).getAuthorId());
+
+        Cell authorName = row.createCell(4);
+        authorName.setCellValue(bookDataReport.readBookReportById(bookId).getAuthorName());
+
+        Cell idReader = row.createCell(5);
+        idReader.setCellValue(bookDataReport.readBookReportById(bookId).getReaderId());
+
+        Cell readerFirstName = row.createCell(6);
+        readerFirstName.setCellValue(bookDataReport.readBookReportById(bookId).getReaderFirstName());
+
+        Cell readerLastName = row.createCell(7);
+        readerLastName.setCellValue(bookDataReport.readBookReportById(bookId).getReaderLastName());
 
         // Меняем размер столбца
         sheet.autoSizeColumn(1);

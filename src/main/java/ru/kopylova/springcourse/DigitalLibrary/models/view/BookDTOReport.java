@@ -18,9 +18,15 @@ public class BookDTOReport {
 
     LocalDate yearOfPublication;
 
-//    Long authorId;
-//
-//    String authorName;
+    Long authorId;
+
+    String authorName;
+
+    String readerId;
+
+    String readerFirstName;
+
+    String readerLastName;
 
 
 }

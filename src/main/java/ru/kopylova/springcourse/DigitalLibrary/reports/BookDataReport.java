@@ -9,12 +9,14 @@ import org.springframework.web.server.ResponseStatusException;
 import ru.kopylova.springcourse.DigitalLibrary.models.entity.Book;
 import ru.kopylova.springcourse.DigitalLibrary.models.view.BookDTOReport;
 import ru.kopylova.springcourse.DigitalLibrary.repositories.BooksRepository;
+import ru.kopylova.springcourse.DigitalLibrary.services.ReadersService;
 
 @Service
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class BookDataReport {
     BooksRepository booksRepository;
+    ReadersService readersService;
 
     public BookDTOReport readBookReportById(Long id) {
 
@@ -24,6 +26,18 @@ public class BookDataReport {
         view.setBookId(entity.getId());
         view.setTitle(entity.getTitle());
         view.setYearOfPublication(entity.getYearOfPublication());
+        view.setAuthorId(entity.getAuthorOwner().getId());
+        view.setAuthorName(entity.getAuthorOwner().getName());
+
+        if (entity.getReaderOwner() == null) {
+            view.setReaderId("Книга свободна");
+            view.setReaderFirstName("Книга свободна");
+            view.setReaderLastName("Книга свободна");
+        } else {
+            view.setReaderId(String.valueOf(entity.getReaderOwner().getId()));
+            view.setReaderFirstName(entity.getReaderOwner().getFirstName());
+            view.setReaderLastName(entity.getReaderOwner().getLastName());
+        }
 
         return view;
 
