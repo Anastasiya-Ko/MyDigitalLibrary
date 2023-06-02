@@ -9,20 +9,25 @@ import org.springframework.web.server.ResponseStatusException;
 import ru.kopylova.springcourse.DigitalLibrary.models.entity.Book;
 import ru.kopylova.springcourse.DigitalLibrary.models.view.BookDTOReport;
 import ru.kopylova.springcourse.DigitalLibrary.repositories.BooksRepository;
-import ru.kopylova.springcourse.DigitalLibrary.services.ReadersService;
 
 @Service
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
-public class BookDataReport {
-    BooksRepository booksRepository;
-    ReadersService readersService;
+public class BookDataService {
 
-    public BookDTOReport readBookReportById(Long id) {
+    BooksRepository booksRepository;
+
+    public BookDTOReport createReportById(Long id) {
 
         Book entity = booksRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Книга с таким id отсутствует"));
 
+        return createDTO(entity);
+    }
+
+    private BookDTOReport createDTO(Book entity) {
+
         BookDTOReport view = new BookDTOReport();
+
         view.setBookId(entity.getId());
         view.setTitle(entity.getTitle());
         view.setYearOfPublication(entity.getYearOfPublication());
@@ -38,8 +43,6 @@ public class BookDataReport {
             view.setReaderFirstName(entity.getReaderOwner().getFirstName());
             view.setReaderLastName(entity.getReaderOwner().getLastName());
         }
-
         return view;
-
     }
 }

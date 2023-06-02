@@ -29,8 +29,8 @@ import java.util.List;
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class BooksController {
 
-   BooksService booksService;
-   BookServiceReport bookServiceReport;
+    BooksService booksService;
+    BookServiceReport bookServiceReport;
 
     @PostMapping
     public BookDTOEasy createBook(@Valid @RequestBody BookDTOEasy view) {
@@ -97,9 +97,17 @@ public class BooksController {
         return booksService.deleteBookById(id);
     }
 
-    @GetMapping("/report-by-id/{id}")
-    public void readBookReportById(@PathVariable Long id) throws IOException {
-        bookServiceReport.getBookReportById(id);
+    @GetMapping("/create-xlsx")
+    public void readBookReportById(@RequestParam("book-id") Long id) throws IOException {
+
+        bookServiceReport.createReport(id);
+
+//        response.setContentType("application/octet-stream");
+//        response.setHeader(HttpHeaders.CONTENT_DISPOSITION, "attachment;filename=PaymentsRegistry.xls");
+//        response.setHeader(HttpHeaders.ACCESS_CONTROL_EXPOSE_HEADERS, "*");
+//        response.setContentLength(bytes.length);
+//        response.getOutputStream().write(bytes);
+//        response.setCharacterEncoding("UTF-8");
     }
 
 }
