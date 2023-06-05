@@ -118,6 +118,33 @@ public class BookReportService {
                 initCell(rowAllBooks.createCell(7), bookDto.getReaderLastName(), styles.get("basic-center"));
             }
         }
+
+        /**
+         * Итоговое количество книг в библиотеке
+         */
+        Row totalAmountBooks = sheet.createRow(sheet.getLastRowNum()+1);
+        sheet.addMergedRegion(new CellRangeAddress(sheet.getLastRowNum(), sheet.getLastRowNum(), 0, 6));
+        initCell(totalAmountBooks.createCell(0), "Итоговое количество книг в библиотеке:", styles.get("total-project-right"));
+        initCell(totalAmountBooks.createCell(7), listBooks.size()+"", styles.get("total-project-right"));
+
+        /**
+         * Итоговое количество свободных книг в библиотеке
+         */
+        Row totalAmountFreeBooks = sheet.createRow(sheet.getLastRowNum()+1);
+        sheet.addMergedRegion(new CellRangeAddress(sheet.getLastRowNum(), sheet.getLastRowNum(), 0, 6));
+        initCell(totalAmountFreeBooks.createCell(0), "Итоговое количество свободных книг в библиотеке:", styles.get("total-project-right"));
+        initCell(totalAmountFreeBooks.createCell(7),
+                listBooks.stream().filter(book -> book.getReaderId()==null).toList().size()+"", styles.get("total-project-right"));
+
+        /**
+         * Итоговое количество книг, взятых читателями
+         */
+        Row totalAmountNotFreeBooks = sheet.createRow(sheet.getLastRowNum()+1);
+        sheet.addMergedRegion(new CellRangeAddress(sheet.getLastRowNum(), sheet.getLastRowNum(), 0, 6));
+        initCell(totalAmountNotFreeBooks.createCell(0), "Итоговое количество книг, взятых читателями:", styles.get("total-project-right"));
+        initCell(totalAmountNotFreeBooks.createCell(7),
+                listBooks.stream().filter(book -> book.getReaderId()!=null).toList().size()+"", styles.get("total-project-right"));
+
     }
 
     /**
@@ -175,6 +202,13 @@ public class BookReportService {
         // Базовый - CENTER
         CellStyle basicCenter = cellStyle(book, font(book, false, 12));
         styles.put("basic-center", basicCenter);
+
+        // Итоговый ряд по проекту RIGHT
+        CellStyle projectRight = cellStyle(book, font(book, false, 12));
+        projectRight.setAlignment(HorizontalAlignment.RIGHT);
+        projectRight.setFillForegroundColor(IndexedColors.LIGHT_CORNFLOWER_BLUE.getIndex());
+        projectRight.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+        styles.put("total-project-right", projectRight);
 
     }
 

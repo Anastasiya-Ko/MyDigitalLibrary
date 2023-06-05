@@ -18,7 +18,6 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 
 @Service
@@ -84,7 +83,6 @@ public class ReadersService {
 
         }
 
-        var test = entityPage.stream().filter(r -> (r.getAge() < 10 && r.getAge() < 5)).collect(Collectors.groupingBy(Reader::getAge));
 
     }
 
