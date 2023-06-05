@@ -15,36 +15,32 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-//TODO Во-вторых, ячейки должны автомаштабироваться,
-
-//TODO В-четвёртых, надо сделать отчёт по всем книгам - это, наверное, как-то в цикле должно быть,
-//TODO В-пятых, мне надо сделать сохранение отчёта в приложении, а не рабочем столе,
-//TODO В-шестых, меня смущает, что если делаешь отчёт один, то больше этим же методом нельзя воспользоваться, потому что ошибка - книга с таким названием уже существует. Приходится её удалять и заново писать отчёт
-//TODO Зачем два отдельных метода - запись в ячейку с указанием ширины и без?
 
 @Service
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class BookReportService {
 
-    BookDataService dataService;
+    BookDataService bookDataService;
 
     /**
      * Стили ячеек, используемые в документа
      */
     Map<String, CellStyle> styles;
 
-
-    public BookReportService(BookDataService dataService) {
-        this.dataService = dataService;
+//TODO почему здесь мапа не приходит в параметрах?
+    public BookReportService(BookDataService bookDataService) {
+        this.bookDataService = bookDataService;
         styles = new HashMap<>();
     }
 
-    public byte[] createReportAllBooks(List<BookDTOReport> listBooks) throws IOException {
+    public byte[] createReportAllBooks() throws IOException {
+
+        List<BookDTOReport> books = bookDataService.createListDTO();
 
         //Создаём книгу
         Workbook book = new XSSFWorkbook();
         //Создаём новый лист
-        Sheet sheet = book.createSheet("Book");
+        Sheet sheet = book.createSheet("Books");
         // задаем отступ от края листа для печати
         sheet.setMargin(PageMargin.TOP, 1.4);
         sheet.setMargin(PageMargin.TOP, 1.4);
@@ -63,8 +59,7 @@ public class BookReportService {
 
         // Наполнение документа
         header(sheet);
-        rows(sheet, listBooks);
-
+        rows(sheet, books);
 
         // Отображение границ таблицы
         PropertyTemplate propertyTemplate = new PropertyTemplate();

@@ -17,7 +17,6 @@ import ru.kopylova.springcourse.DigitalLibrary.models.entity.Author;
 import ru.kopylova.springcourse.DigitalLibrary.models.entity.Reader;
 import ru.kopylova.springcourse.DigitalLibrary.models.view.BookDTOEasy;
 import ru.kopylova.springcourse.DigitalLibrary.models.view.BookDTORich;
-import ru.kopylova.springcourse.DigitalLibrary.reports.BookDataService;
 import ru.kopylova.springcourse.DigitalLibrary.reports.BookReportService;
 import ru.kopylova.springcourse.DigitalLibrary.services.BooksService;
 import ru.kopylova.springcourse.DigitalLibrary.util.page.sort.BookSort;
@@ -34,7 +33,6 @@ public class BooksController {
 
 
     BookReportService bookReportService;
-    BookDataService bookDataService;
     BooksService booksService;
 
 
@@ -106,9 +104,8 @@ public class BooksController {
     @GetMapping("/create-xlsx")
     public void createReportAllBooks(HttpServletResponse response) throws IOException {
 
-        var listDTO = bookDataService.createListDTO();
 
-        byte[] bytes = bookReportService.createReportAllBooks(listDTO);
+        byte[] bytes = bookReportService.createReportAllBooks();
 
         response.setContentType("application/octet-stream");
         response.setHeader(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename = allBooks.xlsx");

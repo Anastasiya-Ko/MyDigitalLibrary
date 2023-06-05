@@ -4261,3 +4261,35 @@ java.lang.IllegalStateException: Cannot add merged region F2:H5 to sheet because
 2023-06-05T10:09:42.524+03:00 DEBUG 4484 --- [http-nio-7070-exec-3] o.s.web.servlet.DispatcherServlet        : GET "/book/create-xlsx", parameters={}
 2023-06-05T10:09:42.536+03:00 DEBUG 4484 --- [http-nio-7070-exec-3] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to ru.kopylova.springcourse.DigitalLibrary.controllers.BooksController#readBookReportById(HttpServletResponse)
 2023-06-05T10:09:43.430+03:00 DEBUG 4484 --- [http-nio-7070-exec-3] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2023-06-05T10:10:53.843+03:00  WARN 22572 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-06-05T10:10:53.947+03:00 DEBUG 22572 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2023-06-05T10:10:54.027+03:00 DEBUG 22572 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : 31 mappings in 'requestMappingHandlerMapping'
+2023-06-05T10:10:54.483+03:00 DEBUG 22572 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/webjars/**, /**, /swagger-ui*/*swagger-initializer.js, /swagger-ui*/**] in 'resourceHandlerMapping'
+2023-06-05T10:10:54.490+03:00 DEBUG 22572 --- [main] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 2 @ExceptionHandler, 1 ResponseBodyAdvice
+2023-06-05T10:10:57.467+03:00  INFO 22572 --- [http-nio-7070-exec-3] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-06-05T10:10:57.467+03:00 DEBUG 22572 --- [http-nio-7070-exec-3] o.s.web.servlet.DispatcherServlet        : Detected StandardServletMultipartResolver
+2023-06-05T10:10:57.467+03:00 DEBUG 22572 --- [http-nio-7070-exec-3] o.s.web.servlet.DispatcherServlet        : Detected AcceptHeaderLocaleResolver
+2023-06-05T10:10:57.467+03:00 DEBUG 22572 --- [http-nio-7070-exec-3] o.s.web.servlet.DispatcherServlet        : Detected FixedThemeResolver
+2023-06-05T10:10:57.468+03:00 DEBUG 22572 --- [http-nio-7070-exec-3] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@6fe77a97
+2023-06-05T10:10:57.469+03:00 DEBUG 22572 --- [http-nio-7070-exec-3] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.support.SessionFlashMapManager@6ae6a77b
+2023-06-05T10:10:57.469+03:00 DEBUG 22572 --- [http-nio-7070-exec-3] o.s.web.servlet.DispatcherServlet        : enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+2023-06-05T10:10:57.469+03:00  INFO 22572 --- [http-nio-7070-exec-3] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2023-06-05T10:10:57.478+03:00 DEBUG 22572 --- [http-nio-7070-exec-3] o.s.web.servlet.DispatcherServlet        : GET "/book/create-xlsx", parameters={}
+2023-06-05T10:10:57.487+03:00 DEBUG 22572 --- [http-nio-7070-exec-3] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to ru.kopylova.springcourse.DigitalLibrary.controllers.BooksController#readBookReportById(HttpServletResponse)
+2023-06-05T10:10:58.363+03:00 DEBUG 22572 --- [http-nio-7070-exec-3] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2023-06-05T10:27:47.575+03:00  WARN 19888 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-06-05T10:27:47.692+03:00 DEBUG 19888 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2023-06-05T10:27:47.800+03:00 DEBUG 19888 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : 31 mappings in 'requestMappingHandlerMapping'
+2023-06-05T10:27:48.411+03:00 DEBUG 19888 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/webjars/**, /**, /swagger-ui*/*swagger-initializer.js, /swagger-ui*/**] in 'resourceHandlerMapping'
+2023-06-05T10:27:48.425+03:00 DEBUG 19888 --- [main] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 2 @ExceptionHandler, 1 ResponseBodyAdvice
+2023-06-05T10:27:57.778+03:00  INFO 19888 --- [http-nio-7070-exec-3] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-06-05T10:27:57.778+03:00 DEBUG 19888 --- [http-nio-7070-exec-3] o.s.web.servlet.DispatcherServlet        : Detected StandardServletMultipartResolver
+2023-06-05T10:27:57.779+03:00 DEBUG 19888 --- [http-nio-7070-exec-3] o.s.web.servlet.DispatcherServlet        : Detected AcceptHeaderLocaleResolver
+2023-06-05T10:27:57.779+03:00 DEBUG 19888 --- [http-nio-7070-exec-3] o.s.web.servlet.DispatcherServlet        : Detected FixedThemeResolver
+2023-06-05T10:27:57.780+03:00 DEBUG 19888 --- [http-nio-7070-exec-3] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@64c37088
+2023-06-05T10:27:57.781+03:00 DEBUG 19888 --- [http-nio-7070-exec-3] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.support.SessionFlashMapManager@10230657
+2023-06-05T10:27:57.782+03:00 DEBUG 19888 --- [http-nio-7070-exec-3] o.s.web.servlet.DispatcherServlet        : enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+2023-06-05T10:27:57.782+03:00  INFO 19888 --- [http-nio-7070-exec-3] o.s.web.servlet.DispatcherServlet        : Completed initialization in 4 ms
+2023-06-05T10:27:57.790+03:00 DEBUG 19888 --- [http-nio-7070-exec-3] o.s.web.servlet.DispatcherServlet        : GET "/book/create-xlsx", parameters={}
+2023-06-05T10:27:57.800+03:00 DEBUG 19888 --- [http-nio-7070-exec-3] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to ru.kopylova.springcourse.DigitalLibrary.controllers.BooksController#createReportAllBooks(HttpServletResponse)
+2023-06-05T10:27:58.677+03:00 DEBUG 19888 --- [http-nio-7070-exec-3] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
