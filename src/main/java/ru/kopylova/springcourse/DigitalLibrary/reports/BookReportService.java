@@ -131,7 +131,7 @@ public class BookReportService {
          */
         Row totalAmountFreeBooks = sheet.createRow(sheet.getLastRowNum()+1);
         sheet.addMergedRegion(new CellRangeAddress(sheet.getLastRowNum(), sheet.getLastRowNum(), 0, 6));
-        initCell(totalAmountFreeBooks.createCell(0), "Итоговое количество свободных книг в библиотеке:", styles.get("total-project-right"));
+        initCell(totalAmountFreeBooks.createCell(0), "Количество свободных книг:", styles.get("total-project-right"));
         initCell(totalAmountFreeBooks.createCell(7),
                 listBooks.stream().filter(book -> book.getReaderId()==null).toList().size()+"", styles.get("total-project-right"));
 
@@ -140,7 +140,7 @@ public class BookReportService {
          */
         Row totalAmountNotFreeBooks = sheet.createRow(sheet.getLastRowNum()+1);
         sheet.addMergedRegion(new CellRangeAddress(sheet.getLastRowNum(), sheet.getLastRowNum(), 0, 6));
-        initCell(totalAmountNotFreeBooks.createCell(0), "Итоговое количество книг, взятых читателями:", styles.get("total-project-right"));
+        initCell(totalAmountNotFreeBooks.createCell(0), "Количество книг, взятых читателями:", styles.get("total-project-right"));
         initCell(totalAmountNotFreeBooks.createCell(7),
                 listBooks.stream().filter(book -> book.getReaderId()!=null).toList().size()+"", styles.get("total-project-right"));
 

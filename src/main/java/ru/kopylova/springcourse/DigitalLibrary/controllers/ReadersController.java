@@ -48,8 +48,6 @@ public class ReadersController {
             @RequestParam(value = "sort") ReaderSort sort
             ) {
 
-        readersService.readAllReaderddd();
-
         return readersService.readAllReader(
                 PageRequest.of(offset, limit, sort.getSortValue()));
     }
