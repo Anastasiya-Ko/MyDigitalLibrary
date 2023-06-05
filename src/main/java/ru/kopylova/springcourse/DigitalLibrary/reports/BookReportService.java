@@ -27,7 +27,6 @@ public class BookReportService {
      */
     Map<String, CellStyle> styles;
 
-//TODO почему здесь мапа не приходит в параметрах?
     public BookReportService(BookDataService bookDataService) {
         this.bookDataService = bookDataService;
         styles = new HashMap<>();
