@@ -14,6 +14,12 @@ import ru.kopylova.springcourse.DigitalLibrary.models.entity.Reader;
 import ru.kopylova.springcourse.DigitalLibrary.models.view.ReaderDTORich;
 import ru.kopylova.springcourse.DigitalLibrary.repositories.ReadersRepository;
 
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+
 
 @Service
 @RequiredArgsConstructor
@@ -55,6 +61,31 @@ public class ReadersService {
         Page<Reader> entityPage = readersRepository.findAll(pageable);
 
         return entityPage.map(entity -> readerMapper.mapperToDTORich(entity, true));
+    }
+
+    public void readAllReaderddd() {
+
+        var entityPage = readersRepository.findAll();
+
+        Map<String, List<Reader>> result = new LinkedHashMap<>();
+        result.put("Дети", new ArrayList<>());
+        result.put("Подростки", new ArrayList<>());
+        result.put("Взрослые", new ArrayList<>());
+
+        for (Reader r : entityPage) {
+
+            if (r.getAge() <= 10) {
+                result.get("Дети").add(r);
+            } else if (r.getAge() <= 18) {
+                result.get("Подростки").add(r);
+            } else {
+                result.get("Взрослые").add(r);
+            }
+
+        }
+
+        var test = entityPage.stream().filter(r -> (r.getAge() < 10 && r.getAge() < 5)).collect(Collectors.groupingBy(Reader::getAge));
+
     }
 
     public ReaderDTORich readOneById(Long id) {

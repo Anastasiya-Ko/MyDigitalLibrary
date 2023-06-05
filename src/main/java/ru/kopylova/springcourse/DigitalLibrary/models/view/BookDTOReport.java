@@ -3,8 +3,6 @@ package ru.kopylova.springcourse.DigitalLibrary.models.view;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
-import java.time.LocalDate;
-
 @Getter
 @Setter
 @AllArgsConstructor
@@ -12,13 +10,13 @@ import java.time.LocalDate;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class BookDTOReport {
 
-    Long bookId;
+    String bookId;
 
     String title;
 
-    LocalDate yearOfPublication;
+    String yearOfPublication;
 
-    Long authorId;
+    String authorId;
 
     String authorName;
 

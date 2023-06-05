@@ -1,5 +1,6 @@
 package ru.kopylova.springcourse.DigitalLibrary.controllers;
 
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
@@ -9,13 +10,15 @@ import lombok.experimental.FieldDefaults;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpHeaders;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import ru.kopylova.springcourse.DigitalLibrary.models.entity.Author;
 import ru.kopylova.springcourse.DigitalLibrary.models.entity.Reader;
 import ru.kopylova.springcourse.DigitalLibrary.models.view.BookDTOEasy;
 import ru.kopylova.springcourse.DigitalLibrary.models.view.BookDTORich;
-import ru.kopylova.springcourse.DigitalLibrary.reports.BookServiceReport;
+import ru.kopylova.springcourse.DigitalLibrary.reports.BookDataService;
+import ru.kopylova.springcourse.DigitalLibrary.reports.BookReportService;
 import ru.kopylova.springcourse.DigitalLibrary.services.BooksService;
 import ru.kopylova.springcourse.DigitalLibrary.util.page.sort.BookSort;
 
@@ -29,8 +32,11 @@ import java.util.List;
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class BooksController {
 
+
+    BookReportService bookReportService;
+    BookDataService bookDataService;
     BooksService booksService;
-    BookServiceReport bookServiceReport;
+
 
     @PostMapping
     public BookDTOEasy createBook(@Valid @RequestBody BookDTOEasy view) {
@@ -98,16 +104,18 @@ public class BooksController {
     }
 
     @GetMapping("/create-xlsx")
-    public void readBookReportById(@RequestParam("book-id") Long id) throws IOException {
+    public void createReportAllBooks(HttpServletResponse response) throws IOException {
 
-        bookServiceReport.createReport(id);
+        var listDTO = bookDataService.createListDTO();
 
-//        response.setContentType("application/octet-stream");
-//        response.setHeader(HttpHeaders.CONTENT_DISPOSITION, "attachment;filename=PaymentsRegistry.xls");
-//        response.setHeader(HttpHeaders.ACCESS_CONTROL_EXPOSE_HEADERS, "*");
-//        response.setContentLength(bytes.length);
-//        response.getOutputStream().write(bytes);
-//        response.setCharacterEncoding("UTF-8");
+        byte[] bytes = bookReportService.createReportAllBooks(listDTO);
+
+        response.setContentType("application/octet-stream");
+        response.setHeader(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename = allBooks.xlsx");
+        response.setHeader(HttpHeaders.ACCESS_CONTROL_EXPOSE_HEADERS, "*");
+        response.setContentLength(bytes.length);
+        response.getOutputStream().write(bytes);
+        response.setCharacterEncoding("UTF-8");
     }
 
 }

@@ -8,6 +8,9 @@ import java.util.List;
 
 public interface AuthorsRepository extends JpaRepository<Author, Long> {
 
+
+
+
     @Query(value = """
                 SELECT DISTINCT a.id, a.name
                 FROM author a LEFT JOIN book b ON b.author_id = a.id

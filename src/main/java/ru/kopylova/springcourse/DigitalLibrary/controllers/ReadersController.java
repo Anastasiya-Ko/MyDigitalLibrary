@@ -47,6 +47,9 @@ public class ReadersController {
             @RequestParam(value = "limit") @Min(1) @Max(100) Integer limit,
             @RequestParam(value = "sort") ReaderSort sort
             ) {
+
+        readersService.readAllReaderddd();
+
         return readersService.readAllReader(
                 PageRequest.of(offset, limit, sort.getSortValue()));
     }
