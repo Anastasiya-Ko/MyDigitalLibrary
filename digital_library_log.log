@@ -12,7 +12,7 @@
 2023-06-08T09:56:16.232+03:00 DEBUG 21916 --- [http-nio-7070-exec-1] o.s.web.servlet.DispatcherServlet        : enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
 2023-06-08T09:56:16.232+03:00  INFO 21916 --- [http-nio-7070-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
 2023-06-08T09:56:16.240+03:00 DEBUG 21916 --- [http-nio-7070-exec-1] o.s.web.servlet.DispatcherServlet        : GET "/reader/create-xlsx", parameters={}
-2023-06-08T09:56:16.258+03:00 DEBUG 21916 --- [http-nio-7070-exec-1] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to ru.kopylova.springcourse.DigitalLibrary.controllers.ReadersController#createReportAllBooks(HttpServletResponse)
+2023-06-08T09:56:16.258+03:00 DEBUG 21916 --- [http-nio-7070-exec-1] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to ru.kopylova.springcourse.DigitalLibrary.readers.controllers.ReadersController#createReportAllBooks(HttpServletResponse)
 2023-06-08T09:56:17.232+03:00 DEBUG 21916 --- [http-nio-7070-exec-1] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
 2023-06-08T09:59:03.975+03:00  WARN 28568 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
 2023-06-08T09:59:04.079+03:00 DEBUG 28568 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
@@ -28,7 +28,7 @@
 2023-06-08T09:59:08.162+03:00 DEBUG 28568 --- [http-nio-7070-exec-3] o.s.web.servlet.DispatcherServlet        : enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
 2023-06-08T09:59:08.163+03:00  INFO 28568 --- [http-nio-7070-exec-3] o.s.web.servlet.DispatcherServlet        : Completed initialization in 4 ms
 2023-06-08T09:59:08.170+03:00 DEBUG 28568 --- [http-nio-7070-exec-3] o.s.web.servlet.DispatcherServlet        : GET "/reader/create-xlsx", parameters={}
-2023-06-08T09:59:08.182+03:00 DEBUG 28568 --- [http-nio-7070-exec-3] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to ru.kopylova.springcourse.DigitalLibrary.controllers.ReadersController#createReportAllBooks(HttpServletResponse)
+2023-06-08T09:59:08.182+03:00 DEBUG 28568 --- [http-nio-7070-exec-3] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to ru.kopylova.springcourse.DigitalLibrary.readers.controllers.ReadersController#createReportAllBooks(HttpServletResponse)
 2023-06-08T09:59:09.023+03:00 DEBUG 28568 --- [http-nio-7070-exec-3] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
 2023-06-08T10:00:15.159+03:00  WARN 16924 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
 2023-06-08T10:00:15.261+03:00 DEBUG 16924 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
@@ -44,7 +44,7 @@
 2023-06-08T10:00:19.425+03:00 DEBUG 16924 --- [http-nio-7070-exec-3] o.s.web.servlet.DispatcherServlet        : enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
 2023-06-08T10:00:19.425+03:00  INFO 16924 --- [http-nio-7070-exec-3] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
 2023-06-08T10:00:19.433+03:00 DEBUG 16924 --- [http-nio-7070-exec-3] o.s.web.servlet.DispatcherServlet        : GET "/reader/create-xlsx", parameters={}
-2023-06-08T10:00:19.445+03:00 DEBUG 16924 --- [http-nio-7070-exec-3] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to ru.kopylova.springcourse.DigitalLibrary.controllers.ReadersController#createReportAllBooks(HttpServletResponse)
+2023-06-08T10:00:19.445+03:00 DEBUG 16924 --- [http-nio-7070-exec-3] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to ru.kopylova.springcourse.DigitalLibrary.readers.controllers.ReadersController#createReportAllBooks(HttpServletResponse)
 2023-06-08T10:00:20.245+03:00 DEBUG 16924 --- [http-nio-7070-exec-3] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
 2023-06-08T10:15:45.772+03:00  WARN 8628 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
 2023-06-08T10:15:45.882+03:00 DEBUG 8628 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
@@ -60,7 +60,7 @@
 2023-06-08T10:15:50.476+03:00 DEBUG 8628 --- [http-nio-7070-exec-2] o.s.web.servlet.DispatcherServlet        : enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
 2023-06-08T10:15:50.476+03:00  INFO 8628 --- [http-nio-7070-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
 2023-06-08T10:15:50.483+03:00 DEBUG 8628 --- [http-nio-7070-exec-2] o.s.web.servlet.DispatcherServlet        : GET "/reader/create-xlsx", parameters={}
-2023-06-08T10:15:50.494+03:00 DEBUG 8628 --- [http-nio-7070-exec-2] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to ru.kopylova.springcourse.DigitalLibrary.controllers.ReadersController#createReportAllBooks(HttpServletResponse)
+2023-06-08T10:15:50.494+03:00 DEBUG 8628 --- [http-nio-7070-exec-2] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to ru.kopylova.springcourse.DigitalLibrary.readers.controllers.ReadersController#createReportAllBooks(HttpServletResponse)
 2023-06-08T10:15:51.278+03:00 DEBUG 8628 --- [http-nio-7070-exec-2] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
 2023-06-08T10:16:39.549+03:00  WARN 28760 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
 2023-06-08T10:16:39.650+03:00 DEBUG 28760 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
@@ -76,15 +76,15 @@
 2023-06-08T10:17:08.181+03:00 DEBUG 28760 --- [http-nio-7070-exec-5] o.s.web.servlet.DispatcherServlet        : enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
 2023-06-08T10:17:08.181+03:00  INFO 28760 --- [http-nio-7070-exec-5] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
 2023-06-08T10:17:08.189+03:00 DEBUG 28760 --- [http-nio-7070-exec-5] o.s.web.servlet.DispatcherServlet        : GET "/reader/create-xlsx", parameters={}
-2023-06-08T10:17:08.198+03:00 DEBUG 28760 --- [http-nio-7070-exec-5] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to ru.kopylova.springcourse.DigitalLibrary.controllers.ReadersController#createReportAllBooks(HttpServletResponse)
+2023-06-08T10:17:08.198+03:00 DEBUG 28760 --- [http-nio-7070-exec-5] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to ru.kopylova.springcourse.DigitalLibrary.readers.controllers.ReadersController#createReportAllBooks(HttpServletResponse)
 2023-06-08T10:17:08.807+03:00 DEBUG 28760 --- [http-nio-7070-exec-5] o.s.web.servlet.DispatcherServlet        : Failed to complete request: java.lang.IllegalArgumentException: Invalid cell range, having lastRow < firstRow || lastCol < firstCol, had rows 1 >= 2 or cells 3 >= 0
 2023-06-08T10:17:08.809+03:00 ERROR 28760 --- [http-nio-7070-exec-5] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: java.lang.IllegalArgumentException: Invalid cell range, having lastRow < firstRow || lastCol < firstCol, had rows 1 >= 2 or cells 3 >= 0] with root cause
 
 java.lang.IllegalArgumentException: Invalid cell range, having lastRow < firstRow || lastCol < firstCol, had rows 1 >= 2 or cells 3 >= 0
 	at org.apache.poi.ss.util.CellRangeAddress.<init>(CellRangeAddress.java:48) ~[poi-5.2.3.jar:5.2.3]
-	at ru.kopylova.springcourse.DigitalLibrary.reports.ReaderReportService.rows(ReaderReportService.java:106) ~[classes/:na]
-	at ru.kopylova.springcourse.DigitalLibrary.reports.ReaderReportService.createReportReaderGroupAge(ReaderReportService.java:59) ~[classes/:na]
-	at ru.kopylova.springcourse.DigitalLibrary.controllers.ReadersController.createReportAllBooks(ReadersController.java:79) ~[classes/:na]
+	at ru.kopylova.springcourse.DigitalLibrary.reports.reader.service.ReaderReportService.rows(ReaderReportService.java:106) ~[classes/:na]
+	at ru.kopylova.springcourse.DigitalLibrary.reports.reader.service.ReaderReportService.createReportReaderGroupAge(ReaderReportService.java:59) ~[classes/:na]
+	at ru.kopylova.springcourse.DigitalLibrary.readers.controllers.ReadersController.createReportAllBooks(ReadersController.java:79) ~[classes/:na]
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
@@ -97,7 +97,7 @@ java.lang.IllegalArgumentException: Invalid cell range, having lastRow < firstRo
 	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.0.7.jar:6.0.7]
 	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:750) ~[spring-aop-6.0.7.jar:6.0.7]
 	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:702) ~[spring-aop-6.0.7.jar:6.0.7]
-	at ru.kopylova.springcourse.DigitalLibrary.controllers.ReadersController$$SpringCGLIB$$0.createReportAllBooks(<generated>) ~[classes/:na]
+	at ru.kopylova.springcourse.DigitalLibrary.readers.controllers.ReadersController$$SpringCGLIB$$0.createReportAllBooks(<generated>) ~[classes/:na]
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
@@ -168,7 +168,7 @@ java.lang.IllegalArgumentException: Invalid cell range, having lastRow < firstRo
 2023-06-08T10:17:40.089+03:00 DEBUG 10596 --- [http-nio-7070-exec-3] o.s.web.servlet.DispatcherServlet        : enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
 2023-06-08T10:17:40.089+03:00  INFO 10596 --- [http-nio-7070-exec-3] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
 2023-06-08T10:17:40.096+03:00 DEBUG 10596 --- [http-nio-7070-exec-3] o.s.web.servlet.DispatcherServlet        : GET "/reader/create-xlsx", parameters={}
-2023-06-08T10:17:40.106+03:00 DEBUG 10596 --- [http-nio-7070-exec-3] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to ru.kopylova.springcourse.DigitalLibrary.controllers.ReadersController#createReportAllBooks(HttpServletResponse)
+2023-06-08T10:17:40.106+03:00 DEBUG 10596 --- [http-nio-7070-exec-3] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to ru.kopylova.springcourse.DigitalLibrary.readers.controllers.ReadersController#createReportAllBooks(HttpServletResponse)
 2023-06-08T10:17:40.731+03:00 DEBUG 10596 --- [http-nio-7070-exec-3] o.s.web.servlet.DispatcherServlet        : Failed to complete request: java.lang.IllegalStateException: Cannot add merged region A3:D4 to sheet because it overlaps with an existing merged region (A2:D3).
 2023-06-08T10:17:40.732+03:00 ERROR 10596 --- [http-nio-7070-exec-3] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: java.lang.IllegalStateException: Cannot add merged region A3:D4 to sheet because it overlaps with an existing merged region (A2:D3).] with root cause
 
@@ -176,9 +176,9 @@ java.lang.IllegalStateException: Cannot add merged region A3:D4 to sheet because
 	at org.apache.poi.xssf.usermodel.XSSFSheet.validateMergedRegions(XSSFSheet.java:429) ~[poi-ooxml-5.2.3.jar:5.2.3]
 	at org.apache.poi.xssf.usermodel.XSSFSheet.addMergedRegion(XSSFSheet.java:349) ~[poi-ooxml-5.2.3.jar:5.2.3]
 	at org.apache.poi.xssf.usermodel.XSSFSheet.addMergedRegion(XSSFSheet.java:303) ~[poi-ooxml-5.2.3.jar:5.2.3]
-	at ru.kopylova.springcourse.DigitalLibrary.reports.ReaderReportService.rows(ReaderReportService.java:106) ~[classes/:na]
-	at ru.kopylova.springcourse.DigitalLibrary.reports.ReaderReportService.createReportReaderGroupAge(ReaderReportService.java:59) ~[classes/:na]
-	at ru.kopylova.springcourse.DigitalLibrary.controllers.ReadersController.createReportAllBooks(ReadersController.java:79) ~[classes/:na]
+	at ru.kopylova.springcourse.DigitalLibrary.reports.reader.service.ReaderReportService.rows(ReaderReportService.java:106) ~[classes/:na]
+	at ru.kopylova.springcourse.DigitalLibrary.reports.reader.service.ReaderReportService.createReportReaderGroupAge(ReaderReportService.java:59) ~[classes/:na]
+	at ru.kopylova.springcourse.DigitalLibrary.readers.controllers.ReadersController.createReportAllBooks(ReadersController.java:79) ~[classes/:na]
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
@@ -191,7 +191,7 @@ java.lang.IllegalStateException: Cannot add merged region A3:D4 to sheet because
 	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.0.7.jar:6.0.7]
 	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:750) ~[spring-aop-6.0.7.jar:6.0.7]
 	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:702) ~[spring-aop-6.0.7.jar:6.0.7]
-	at ru.kopylova.springcourse.DigitalLibrary.controllers.ReadersController$$SpringCGLIB$$0.createReportAllBooks(<generated>) ~[classes/:na]
+	at ru.kopylova.springcourse.DigitalLibrary.readers.controllers.ReadersController$$SpringCGLIB$$0.createReportAllBooks(<generated>) ~[classes/:na]
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
@@ -262,7 +262,7 @@ java.lang.IllegalStateException: Cannot add merged region A3:D4 to sheet because
 2023-06-08T10:19:46.526+03:00 DEBUG 10032 --- [http-nio-7070-exec-3] o.s.web.servlet.DispatcherServlet        : enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
 2023-06-08T10:19:46.526+03:00  INFO 10032 --- [http-nio-7070-exec-3] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
 2023-06-08T10:19:46.535+03:00 DEBUG 10032 --- [http-nio-7070-exec-3] o.s.web.servlet.DispatcherServlet        : GET "/reader/create-xlsx", parameters={}
-2023-06-08T10:19:46.543+03:00 DEBUG 10032 --- [http-nio-7070-exec-3] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to ru.kopylova.springcourse.DigitalLibrary.controllers.ReadersController#createReportAllBooks(HttpServletResponse)
+2023-06-08T10:19:46.543+03:00 DEBUG 10032 --- [http-nio-7070-exec-3] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to ru.kopylova.springcourse.DigitalLibrary.readers.controllers.ReadersController#createReportAllBooks(HttpServletResponse)
 2023-06-08T10:19:47.344+03:00 DEBUG 10032 --- [http-nio-7070-exec-3] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
 2023-06-08T10:21:55.283+03:00  WARN 26724 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
 2023-06-08T10:21:55.398+03:00 DEBUG 26724 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
@@ -278,7 +278,7 @@ java.lang.IllegalStateException: Cannot add merged region A3:D4 to sheet because
 2023-06-08T10:21:57.973+03:00 DEBUG 26724 --- [http-nio-7070-exec-1] o.s.web.servlet.DispatcherServlet        : enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
 2023-06-08T10:21:57.973+03:00  INFO 26724 --- [http-nio-7070-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 4 ms
 2023-06-08T10:21:57.983+03:00 DEBUG 26724 --- [http-nio-7070-exec-1] o.s.web.servlet.DispatcherServlet        : GET "/reader/create-xlsx", parameters={}
-2023-06-08T10:21:57.993+03:00 DEBUG 26724 --- [http-nio-7070-exec-1] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to ru.kopylova.springcourse.DigitalLibrary.controllers.ReadersController#createReportAllBooks(HttpServletResponse)
+2023-06-08T10:21:57.993+03:00 DEBUG 26724 --- [http-nio-7070-exec-1] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to ru.kopylova.springcourse.DigitalLibrary.readers.controllers.ReadersController#createReportAllBooks(HttpServletResponse)
 2023-06-08T10:21:58.789+03:00 DEBUG 26724 --- [http-nio-7070-exec-1] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
 2023-06-08T10:35:57.337+03:00  WARN 17836 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
 2023-06-08T10:35:57.437+03:00 DEBUG 17836 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
@@ -294,7 +294,7 @@ java.lang.IllegalStateException: Cannot add merged region A3:D4 to sheet because
 2023-06-08T10:36:04.592+03:00 DEBUG 17836 --- [http-nio-7070-exec-1] o.s.web.servlet.DispatcherServlet        : enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
 2023-06-08T10:36:04.592+03:00  INFO 17836 --- [http-nio-7070-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
 2023-06-08T10:36:04.609+03:00 DEBUG 17836 --- [http-nio-7070-exec-1] o.s.web.servlet.DispatcherServlet        : GET "/reader/create-xlsx", parameters={}
-2023-06-08T10:36:04.619+03:00 DEBUG 17836 --- [http-nio-7070-exec-1] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to ru.kopylova.springcourse.DigitalLibrary.controllers.ReadersController#createReportAllBooks(HttpServletResponse)
+2023-06-08T10:36:04.619+03:00 DEBUG 17836 --- [http-nio-7070-exec-1] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to ru.kopylova.springcourse.DigitalLibrary.readers.controllers.ReadersController#createReportAllBooks(HttpServletResponse)
 2023-06-08T10:36:05.466+03:00 DEBUG 17836 --- [http-nio-7070-exec-1] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
 2023-06-08T10:39:26.521+03:00  WARN 13684 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
 2023-06-08T10:39:26.628+03:00 DEBUG 13684 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
@@ -310,15 +310,15 @@ java.lang.IllegalStateException: Cannot add merged region A3:D4 to sheet because
 2023-06-08T10:39:38.541+03:00 DEBUG 13684 --- [http-nio-7070-exec-2] o.s.web.servlet.DispatcherServlet        : enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
 2023-06-08T10:39:38.541+03:00  INFO 13684 --- [http-nio-7070-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
 2023-06-08T10:39:38.547+03:00 DEBUG 13684 --- [http-nio-7070-exec-2] o.s.web.servlet.DispatcherServlet        : GET "/reader/create-xlsx", parameters={}
-2023-06-08T10:39:38.558+03:00 DEBUG 13684 --- [http-nio-7070-exec-2] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to ru.kopylova.springcourse.DigitalLibrary.controllers.ReadersController#createReportAllBooks(HttpServletResponse)
+2023-06-08T10:39:38.558+03:00 DEBUG 13684 --- [http-nio-7070-exec-2] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to ru.kopylova.springcourse.DigitalLibrary.readers.controllers.ReadersController#createReportAllBooks(HttpServletResponse)
 2023-06-08T10:39:39.193+03:00 DEBUG 13684 --- [http-nio-7070-exec-2] o.s.web.servlet.DispatcherServlet        : Failed to complete request: java.lang.NullPointerException: Cannot invoke "java.util.List.add(Object)" because the return value of "java.util.Map.get(Object)" is null
 2023-06-08T10:39:39.194+03:00 ERROR 13684 --- [http-nio-7070-exec-2] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: java.lang.NullPointerException: Cannot invoke "java.util.List.add(Object)" because the return value of "java.util.Map.get(Object)" is null] with root cause
 
 java.lang.NullPointerException: Cannot invoke "java.util.List.add(Object)" because the return value of "java.util.Map.get(Object)" is null
-	at ru.kopylova.springcourse.DigitalLibrary.reports.ReaderDataService.readerGroupAge(ReaderDataService.java:62) ~[classes/:na]
-	at ru.kopylova.springcourse.DigitalLibrary.reports.ReaderReportService.rows(ReaderReportService.java:101) ~[classes/:na]
-	at ru.kopylova.springcourse.DigitalLibrary.reports.ReaderReportService.createReportReaderGroupAge(ReaderReportService.java:59) ~[classes/:na]
-	at ru.kopylova.springcourse.DigitalLibrary.controllers.ReadersController.createReportAllBooks(ReadersController.java:79) ~[classes/:na]
+	at ru.kopylova.springcourse.DigitalLibrary.reports.reader.service.ReaderDataService.readerGroupAge(ReaderDataService.java:62) ~[classes/:na]
+	at ru.kopylova.springcourse.DigitalLibrary.reports.reader.service.ReaderReportService.rows(ReaderReportService.java:101) ~[classes/:na]
+	at ru.kopylova.springcourse.DigitalLibrary.reports.reader.service.ReaderReportService.createReportReaderGroupAge(ReaderReportService.java:59) ~[classes/:na]
+	at ru.kopylova.springcourse.DigitalLibrary.readers.controllers.ReadersController.createReportAllBooks(ReadersController.java:79) ~[classes/:na]
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
@@ -331,7 +331,7 @@ java.lang.NullPointerException: Cannot invoke "java.util.List.add(Object)" becau
 	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.0.7.jar:6.0.7]
 	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:750) ~[spring-aop-6.0.7.jar:6.0.7]
 	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:702) ~[spring-aop-6.0.7.jar:6.0.7]
-	at ru.kopylova.springcourse.DigitalLibrary.controllers.ReadersController$$SpringCGLIB$$0.createReportAllBooks(<generated>) ~[classes/:na]
+	at ru.kopylova.springcourse.DigitalLibrary.readers.controllers.ReadersController$$SpringCGLIB$$0.createReportAllBooks(<generated>) ~[classes/:na]
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
@@ -402,7 +402,7 @@ java.lang.NullPointerException: Cannot invoke "java.util.List.add(Object)" becau
 2023-06-08T10:40:26.672+03:00 DEBUG 28252 --- [http-nio-7070-exec-2] o.s.web.servlet.DispatcherServlet        : enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
 2023-06-08T10:40:26.672+03:00  INFO 28252 --- [http-nio-7070-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 3 ms
 2023-06-08T10:40:26.680+03:00 DEBUG 28252 --- [http-nio-7070-exec-2] o.s.web.servlet.DispatcherServlet        : GET "/reader/create-xlsx", parameters={}
-2023-06-08T10:40:26.691+03:00 DEBUG 28252 --- [http-nio-7070-exec-2] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to ru.kopylova.springcourse.DigitalLibrary.controllers.ReadersController#createReportAllBooks(HttpServletResponse)
+2023-06-08T10:40:26.691+03:00 DEBUG 28252 --- [http-nio-7070-exec-2] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to ru.kopylova.springcourse.DigitalLibrary.readers.controllers.ReadersController#createReportAllBooks(HttpServletResponse)
 2023-06-08T10:40:27.511+03:00 DEBUG 28252 --- [http-nio-7070-exec-2] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
 2023-06-08T10:43:28.733+03:00  WARN 20220 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
 2023-06-08T10:43:28.847+03:00 DEBUG 20220 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
@@ -418,7 +418,7 @@ java.lang.NullPointerException: Cannot invoke "java.util.List.add(Object)" becau
 2023-06-08T10:43:31.753+03:00 DEBUG 20220 --- [http-nio-7070-exec-2] o.s.web.servlet.DispatcherServlet        : enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
 2023-06-08T10:43:31.754+03:00  INFO 20220 --- [http-nio-7070-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 3 ms
 2023-06-08T10:43:31.762+03:00 DEBUG 20220 --- [http-nio-7070-exec-2] o.s.web.servlet.DispatcherServlet        : GET "/reader/create-xlsx", parameters={}
-2023-06-08T10:43:31.773+03:00 DEBUG 20220 --- [http-nio-7070-exec-2] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to ru.kopylova.springcourse.DigitalLibrary.controllers.ReadersController#createReportAllBooks(HttpServletResponse)
+2023-06-08T10:43:31.773+03:00 DEBUG 20220 --- [http-nio-7070-exec-2] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to ru.kopylova.springcourse.DigitalLibrary.readers.controllers.ReadersController#createReportAllBooks(HttpServletResponse)
 2023-06-08T10:43:32.604+03:00 DEBUG 20220 --- [http-nio-7070-exec-2] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
 2023-06-08T10:46:24.948+03:00  WARN 14188 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
 2023-06-08T10:46:25.051+03:00 DEBUG 14188 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
@@ -434,13 +434,13 @@ java.lang.NullPointerException: Cannot invoke "java.util.List.add(Object)" becau
 2023-06-08T10:46:33.155+03:00 DEBUG 14188 --- [http-nio-7070-exec-3] o.s.web.servlet.DispatcherServlet        : enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
 2023-06-08T10:46:33.155+03:00  INFO 14188 --- [http-nio-7070-exec-3] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
 2023-06-08T10:46:33.166+03:00 DEBUG 14188 --- [http-nio-7070-exec-3] o.s.web.servlet.DispatcherServlet        : GET "/reader/create-xlsx", parameters={}
-2023-06-08T10:46:33.179+03:00 DEBUG 14188 --- [http-nio-7070-exec-3] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to ru.kopylova.springcourse.DigitalLibrary.controllers.ReadersController#createReportAllBooks(HttpServletResponse)
+2023-06-08T10:46:33.179+03:00 DEBUG 14188 --- [http-nio-7070-exec-3] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to ru.kopylova.springcourse.DigitalLibrary.readers.controllers.ReadersController#createReportAllBooks(HttpServletResponse)
 2023-06-08T10:46:34.017+03:00 DEBUG 14188 --- [http-nio-7070-exec-3] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
 2023-06-08T10:47:28.938+03:00 DEBUG 14188 --- [http-nio-7070-exec-2] o.s.web.servlet.DispatcherServlet        : GET "/reader/create-xlsx", parameters={}
-2023-06-08T10:47:28.939+03:00 DEBUG 14188 --- [http-nio-7070-exec-2] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to ru.kopylova.springcourse.DigitalLibrary.controllers.ReadersController#createReportAllBooks(HttpServletResponse)
+2023-06-08T10:47:28.939+03:00 DEBUG 14188 --- [http-nio-7070-exec-2] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to ru.kopylova.springcourse.DigitalLibrary.readers.controllers.ReadersController#createReportAllBooks(HttpServletResponse)
 2023-06-08T10:47:28.990+03:00 DEBUG 14188 --- [http-nio-7070-exec-2] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
 2023-06-08T10:48:56.338+03:00 DEBUG 14188 --- [http-nio-7070-exec-6] o.s.web.servlet.DispatcherServlet        : GET "/reader/create-xlsx", parameters={}
-2023-06-08T10:48:56.339+03:00 DEBUG 14188 --- [http-nio-7070-exec-6] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to ru.kopylova.springcourse.DigitalLibrary.controllers.ReadersController#createReportAllBooks(HttpServletResponse)
+2023-06-08T10:48:56.339+03:00 DEBUG 14188 --- [http-nio-7070-exec-6] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to ru.kopylova.springcourse.DigitalLibrary.readers.controllers.ReadersController#createReportAllBooks(HttpServletResponse)
 2023-06-08T10:48:56.380+03:00 DEBUG 14188 --- [http-nio-7070-exec-6] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
 2023-06-08T10:50:34.854+03:00  WARN 20148 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
 2023-06-08T10:50:34.960+03:00 DEBUG 20148 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
@@ -461,7 +461,7 @@ java.lang.NullPointerException: Cannot invoke "java.util.List.add(Object)" becau
 2023-06-08T11:00:11.454+03:00 DEBUG 11472 --- [http-nio-7070-exec-1] o.s.web.servlet.DispatcherServlet        : enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
 2023-06-08T11:00:11.454+03:00  INFO 11472 --- [http-nio-7070-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 3 ms
 2023-06-08T11:00:11.465+03:00 DEBUG 11472 --- [http-nio-7070-exec-1] o.s.web.servlet.DispatcherServlet        : GET "/reader/create-xlsx", parameters={}
-2023-06-08T11:00:11.476+03:00 DEBUG 11472 --- [http-nio-7070-exec-1] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to ru.kopylova.springcourse.DigitalLibrary.controllers.ReadersController#createReportAllBooks(HttpServletResponse)
+2023-06-08T11:00:11.476+03:00 DEBUG 11472 --- [http-nio-7070-exec-1] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to ru.kopylova.springcourse.DigitalLibrary.readers.controllers.ReadersController#createReportAllBooks(HttpServletResponse)
 2023-06-08T11:00:12.355+03:00 DEBUG 11472 --- [http-nio-7070-exec-1] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
 2023-06-08T11:01:16.551+03:00  WARN 17808 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
 2023-06-08T11:01:16.654+03:00 DEBUG 17808 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
@@ -477,7 +477,7 @@ java.lang.NullPointerException: Cannot invoke "java.util.List.add(Object)" becau
 2023-06-08T11:01:26.185+03:00 DEBUG 17808 --- [http-nio-7070-exec-1] o.s.web.servlet.DispatcherServlet        : enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
 2023-06-08T11:01:26.185+03:00  INFO 17808 --- [http-nio-7070-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 3 ms
 2023-06-08T11:01:26.192+03:00 DEBUG 17808 --- [http-nio-7070-exec-1] o.s.web.servlet.DispatcherServlet        : GET "/reader/create-xlsx", parameters={}
-2023-06-08T11:01:26.203+03:00 DEBUG 17808 --- [http-nio-7070-exec-1] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to ru.kopylova.springcourse.DigitalLibrary.controllers.ReadersController#createReportAllBooks(HttpServletResponse)
+2023-06-08T11:01:26.203+03:00 DEBUG 17808 --- [http-nio-7070-exec-1] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to ru.kopylova.springcourse.DigitalLibrary.readers.controllers.ReadersController#createReportAllBooks(HttpServletResponse)
 2023-06-08T11:01:27.061+03:00 DEBUG 17808 --- [http-nio-7070-exec-1] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
 2023-06-08T11:02:15.570+03:00  WARN 12324 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
 2023-06-08T11:02:15.675+03:00 DEBUG 12324 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
@@ -493,7 +493,7 @@ java.lang.NullPointerException: Cannot invoke "java.util.List.add(Object)" becau
 2023-06-08T11:02:53.584+03:00 DEBUG 12324 --- [http-nio-7070-exec-2] o.s.web.servlet.DispatcherServlet        : enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
 2023-06-08T11:02:53.584+03:00  INFO 12324 --- [http-nio-7070-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 3 ms
 2023-06-08T11:02:53.591+03:00 DEBUG 12324 --- [http-nio-7070-exec-2] o.s.web.servlet.DispatcherServlet        : GET "/reader/create-xlsx", parameters={}
-2023-06-08T11:02:53.602+03:00 DEBUG 12324 --- [http-nio-7070-exec-2] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to ru.kopylova.springcourse.DigitalLibrary.controllers.ReadersController#createReportAllBooks(HttpServletResponse)
+2023-06-08T11:02:53.602+03:00 DEBUG 12324 --- [http-nio-7070-exec-2] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to ru.kopylova.springcourse.DigitalLibrary.readers.controllers.ReadersController#createReportAllBooks(HttpServletResponse)
 2023-06-08T11:02:54.439+03:00 DEBUG 12324 --- [http-nio-7070-exec-2] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
 2023-06-08T11:03:56.845+03:00  WARN 17324 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
 2023-06-08T11:03:56.966+03:00 DEBUG 17324 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
@@ -509,7 +509,7 @@ java.lang.NullPointerException: Cannot invoke "java.util.List.add(Object)" becau
 2023-06-08T11:04:08.008+03:00 DEBUG 17324 --- [http-nio-7070-exec-3] o.s.web.servlet.DispatcherServlet        : enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
 2023-06-08T11:04:08.008+03:00  INFO 17324 --- [http-nio-7070-exec-3] o.s.web.servlet.DispatcherServlet        : Completed initialization in 3 ms
 2023-06-08T11:04:08.016+03:00 DEBUG 17324 --- [http-nio-7070-exec-3] o.s.web.servlet.DispatcherServlet        : GET "/reader/create-xlsx", parameters={}
-2023-06-08T11:04:08.027+03:00 DEBUG 17324 --- [http-nio-7070-exec-3] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to ru.kopylova.springcourse.DigitalLibrary.controllers.ReadersController#createReportAllBooks(HttpServletResponse)
+2023-06-08T11:04:08.027+03:00 DEBUG 17324 --- [http-nio-7070-exec-3] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to ru.kopylova.springcourse.DigitalLibrary.readers.controllers.ReadersController#createReportAllBooks(HttpServletResponse)
 2023-06-08T11:04:08.861+03:00 DEBUG 17324 --- [http-nio-7070-exec-3] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
 2023-06-08T11:07:01.907+03:00  WARN 24088 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
 2023-06-08T11:07:02.021+03:00 DEBUG 24088 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
@@ -525,7 +525,7 @@ java.lang.NullPointerException: Cannot invoke "java.util.List.add(Object)" becau
 2023-06-08T11:07:09.482+03:00 DEBUG 24088 --- [http-nio-7070-exec-3] o.s.web.servlet.DispatcherServlet        : enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
 2023-06-08T11:07:09.482+03:00  INFO 24088 --- [http-nio-7070-exec-3] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
 2023-06-08T11:07:09.488+03:00 DEBUG 24088 --- [http-nio-7070-exec-3] o.s.web.servlet.DispatcherServlet        : GET "/reader/create-xlsx", parameters={}
-2023-06-08T11:07:09.499+03:00 DEBUG 24088 --- [http-nio-7070-exec-3] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to ru.kopylova.springcourse.DigitalLibrary.controllers.ReadersController#createReportAllBooks(HttpServletResponse)
+2023-06-08T11:07:09.499+03:00 DEBUG 24088 --- [http-nio-7070-exec-3] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to ru.kopylova.springcourse.DigitalLibrary.readers.controllers.ReadersController#createReportAllBooks(HttpServletResponse)
 2023-06-08T11:07:10.376+03:00 DEBUG 24088 --- [http-nio-7070-exec-3] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
 2023-06-08T11:08:43.510+03:00  WARN 10108 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
 2023-06-08T11:08:43.643+03:00 DEBUG 10108 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
@@ -541,7 +541,7 @@ java.lang.NullPointerException: Cannot invoke "java.util.List.add(Object)" becau
 2023-06-08T11:08:47.444+03:00 DEBUG 10108 --- [http-nio-7070-exec-4] o.s.web.servlet.DispatcherServlet        : enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
 2023-06-08T11:08:47.444+03:00  INFO 10108 --- [http-nio-7070-exec-4] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
 2023-06-08T11:08:47.454+03:00 DEBUG 10108 --- [http-nio-7070-exec-4] o.s.web.servlet.DispatcherServlet        : GET "/reader/create-xlsx", parameters={}
-2023-06-08T11:08:47.463+03:00 DEBUG 10108 --- [http-nio-7070-exec-4] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to ru.kopylova.springcourse.DigitalLibrary.controllers.ReadersController#createReportAllBooks(HttpServletResponse)
+2023-06-08T11:08:47.463+03:00 DEBUG 10108 --- [http-nio-7070-exec-4] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to ru.kopylova.springcourse.DigitalLibrary.readers.controllers.ReadersController#createReportAllBooks(HttpServletResponse)
 2023-06-08T11:08:48.357+03:00 DEBUG 10108 --- [http-nio-7070-exec-4] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
 2023-06-08T11:10:09.082+03:00  WARN 13500 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
 2023-06-08T11:10:09.194+03:00 DEBUG 13500 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
@@ -557,7 +557,7 @@ java.lang.NullPointerException: Cannot invoke "java.util.List.add(Object)" becau
 2023-06-08T11:10:18.233+03:00 DEBUG 13500 --- [http-nio-7070-exec-2] o.s.web.servlet.DispatcherServlet        : enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
 2023-06-08T11:10:18.233+03:00  INFO 13500 --- [http-nio-7070-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 4 ms
 2023-06-08T11:10:18.240+03:00 DEBUG 13500 --- [http-nio-7070-exec-2] o.s.web.servlet.DispatcherServlet        : GET "/reader/create-xlsx", parameters={}
-2023-06-08T11:10:18.252+03:00 DEBUG 13500 --- [http-nio-7070-exec-2] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to ru.kopylova.springcourse.DigitalLibrary.controllers.ReadersController#createReportAllBooks(HttpServletResponse)
+2023-06-08T11:10:18.252+03:00 DEBUG 13500 --- [http-nio-7070-exec-2] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to ru.kopylova.springcourse.DigitalLibrary.readers.controllers.ReadersController#createReportAllBooks(HttpServletResponse)
 2023-06-08T11:10:19.107+03:00 DEBUG 13500 --- [http-nio-7070-exec-2] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
 2023-06-08T11:11:01.938+03:00  WARN 17924 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
 2023-06-08T11:11:02.041+03:00 DEBUG 17924 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
@@ -573,7 +573,7 @@ java.lang.NullPointerException: Cannot invoke "java.util.List.add(Object)" becau
 2023-06-08T11:11:04.982+03:00 DEBUG 17924 --- [http-nio-7070-exec-2] o.s.web.servlet.DispatcherServlet        : enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
 2023-06-08T11:11:04.982+03:00  INFO 17924 --- [http-nio-7070-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
 2023-06-08T11:11:04.991+03:00 DEBUG 17924 --- [http-nio-7070-exec-2] o.s.web.servlet.DispatcherServlet        : GET "/reader/create-xlsx", parameters={}
-2023-06-08T11:11:05.003+03:00 DEBUG 17924 --- [http-nio-7070-exec-2] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to ru.kopylova.springcourse.DigitalLibrary.controllers.ReadersController#createReportAllBooks(HttpServletResponse)
+2023-06-08T11:11:05.003+03:00 DEBUG 17924 --- [http-nio-7070-exec-2] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to ru.kopylova.springcourse.DigitalLibrary.readers.controllers.ReadersController#createReportAllBooks(HttpServletResponse)
 2023-06-08T11:11:05.895+03:00 DEBUG 17924 --- [http-nio-7070-exec-2] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
 2023-06-08T11:20:57.275+03:00  WARN 3136 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
 2023-06-08T11:20:57.379+03:00 DEBUG 3136 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
@@ -589,7 +589,7 @@ java.lang.NullPointerException: Cannot invoke "java.util.List.add(Object)" becau
 2023-06-08T11:21:00.106+03:00 DEBUG 3136 --- [http-nio-7070-exec-2] o.s.web.servlet.DispatcherServlet        : enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
 2023-06-08T11:21:00.106+03:00  INFO 3136 --- [http-nio-7070-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
 2023-06-08T11:21:00.115+03:00 DEBUG 3136 --- [http-nio-7070-exec-2] o.s.web.servlet.DispatcherServlet        : GET "/reader/create-xlsx", parameters={}
-2023-06-08T11:21:00.124+03:00 DEBUG 3136 --- [http-nio-7070-exec-2] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to ru.kopylova.springcourse.DigitalLibrary.controllers.ReadersController#createReportAllBooks(HttpServletResponse)
+2023-06-08T11:21:00.124+03:00 DEBUG 3136 --- [http-nio-7070-exec-2] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to ru.kopylova.springcourse.DigitalLibrary.readers.controllers.ReadersController#createReportAllBooks(HttpServletResponse)
 2023-06-08T11:21:01.015+03:00 DEBUG 3136 --- [http-nio-7070-exec-2] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
 2023-06-08T13:19:34.829+03:00  WARN 3136 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1h23m44s329ms308µs600ns).
 2023-06-08T13:26:51.841+03:00  WARN 18500 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
@@ -606,7 +606,7 @@ java.lang.NullPointerException: Cannot invoke "java.util.List.add(Object)" becau
 2023-06-08T13:27:02.578+03:00 DEBUG 18500 --- [http-nio-7070-exec-2] o.s.web.servlet.DispatcherServlet        : enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
 2023-06-08T13:27:02.578+03:00  INFO 18500 --- [http-nio-7070-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
 2023-06-08T13:27:02.587+03:00 DEBUG 18500 --- [http-nio-7070-exec-2] o.s.web.servlet.DispatcherServlet        : GET "/reader/create-xlsx", parameters={}
-2023-06-08T13:27:02.596+03:00 DEBUG 18500 --- [http-nio-7070-exec-2] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to ru.kopylova.springcourse.DigitalLibrary.controllers.ReadersController#createReportAllBooks(HttpServletResponse)
+2023-06-08T13:27:02.596+03:00 DEBUG 18500 --- [http-nio-7070-exec-2] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to ru.kopylova.springcourse.DigitalLibrary.readers.controllers.ReadersController#createReportAllBooks(HttpServletResponse)
 2023-06-08T13:27:03.500+03:00 DEBUG 18500 --- [http-nio-7070-exec-2] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
 2023-06-08T13:28:50.018+03:00  WARN 9028 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
 2023-06-08T13:28:50.122+03:00 DEBUG 9028 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
@@ -622,7 +622,7 @@ java.lang.NullPointerException: Cannot invoke "java.util.List.add(Object)" becau
 2023-06-08T13:28:53.368+03:00 DEBUG 9028 --- [http-nio-7070-exec-4] o.s.web.servlet.DispatcherServlet        : enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
 2023-06-08T13:28:53.368+03:00  INFO 9028 --- [http-nio-7070-exec-4] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
 2023-06-08T13:28:53.377+03:00 DEBUG 9028 --- [http-nio-7070-exec-4] o.s.web.servlet.DispatcherServlet        : GET "/reader/create-xlsx", parameters={}
-2023-06-08T13:28:53.386+03:00 DEBUG 9028 --- [http-nio-7070-exec-4] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to ru.kopylova.springcourse.DigitalLibrary.controllers.ReadersController#createReportAllBooks(HttpServletResponse)
+2023-06-08T13:28:53.386+03:00 DEBUG 9028 --- [http-nio-7070-exec-4] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to ru.kopylova.springcourse.DigitalLibrary.readers.controllers.ReadersController#createReportAllBooks(HttpServletResponse)
 2023-06-08T13:28:54.222+03:00 DEBUG 9028 --- [http-nio-7070-exec-4] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
 2023-06-08T13:29:40.204+03:00  WARN 15264 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
 2023-06-08T13:29:40.320+03:00 DEBUG 15264 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
@@ -648,7 +648,7 @@ java.lang.NullPointerException: Cannot invoke "java.util.List.add(Object)" becau
 2023-06-08T13:34:13.631+03:00 DEBUG 33416 --- [http-nio-7070-exec-2] o.s.web.servlet.DispatcherServlet        : enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
 2023-06-08T13:34:13.631+03:00  INFO 33416 --- [http-nio-7070-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 3 ms
 2023-06-08T13:34:13.640+03:00 DEBUG 33416 --- [http-nio-7070-exec-2] o.s.web.servlet.DispatcherServlet        : GET "/reader/create-xlsx", parameters={}
-2023-06-08T13:34:13.653+03:00 DEBUG 33416 --- [http-nio-7070-exec-2] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to ru.kopylova.springcourse.DigitalLibrary.controllers.ReadersController#createReportAllBooks(HttpServletResponse)
+2023-06-08T13:34:13.653+03:00 DEBUG 33416 --- [http-nio-7070-exec-2] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to ru.kopylova.springcourse.DigitalLibrary.readers.controllers.ReadersController#createReportAllBooks(HttpServletResponse)
 2023-06-08T13:35:18.060+03:00  WARN 33416 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1m19s63ms125µs300ns).
 2023-06-08T13:35:18.282+03:00 DEBUG 33416 --- [http-nio-7070-exec-2] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
 2023-06-08T13:35:24.882+03:00  WARN 32400 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
@@ -665,7 +665,7 @@ java.lang.NullPointerException: Cannot invoke "java.util.List.add(Object)" becau
 2023-06-08T13:35:29.960+03:00 DEBUG 32400 --- [http-nio-7070-exec-2] o.s.web.servlet.DispatcherServlet        : enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
 2023-06-08T13:35:29.960+03:00  INFO 32400 --- [http-nio-7070-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 4 ms
 2023-06-08T13:35:29.971+03:00 DEBUG 32400 --- [http-nio-7070-exec-2] o.s.web.servlet.DispatcherServlet        : GET "/reader/create-xlsx", parameters={}
-2023-06-08T13:35:29.986+03:00 DEBUG 32400 --- [http-nio-7070-exec-2] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to ru.kopylova.springcourse.DigitalLibrary.controllers.ReadersController#createReportAllBooks(HttpServletResponse)
+2023-06-08T13:35:29.986+03:00 DEBUG 32400 --- [http-nio-7070-exec-2] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to ru.kopylova.springcourse.DigitalLibrary.readers.controllers.ReadersController#createReportAllBooks(HttpServletResponse)
 2023-06-08T13:35:30.902+03:00 DEBUG 32400 --- [http-nio-7070-exec-2] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
 2023-06-08T13:37:13.262+03:00  WARN 22824 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
 2023-06-08T13:37:13.377+03:00 DEBUG 22824 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
@@ -681,5 +681,21 @@ java.lang.NullPointerException: Cannot invoke "java.util.List.add(Object)" becau
 2023-06-08T13:37:16.677+03:00 DEBUG 22824 --- [http-nio-7070-exec-1] o.s.web.servlet.DispatcherServlet        : enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
 2023-06-08T13:37:16.677+03:00  INFO 22824 --- [http-nio-7070-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
 2023-06-08T13:37:16.685+03:00 DEBUG 22824 --- [http-nio-7070-exec-1] o.s.web.servlet.DispatcherServlet        : GET "/reader/create-xlsx", parameters={}
-2023-06-08T13:37:16.696+03:00 DEBUG 22824 --- [http-nio-7070-exec-1] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to ru.kopylova.springcourse.DigitalLibrary.controllers.ReadersController#createReportAllBooks(HttpServletResponse)
+2023-06-08T13:37:16.696+03:00 DEBUG 22824 --- [http-nio-7070-exec-1] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to ru.kopylova.springcourse.DigitalLibrary.readers.controllers.ReadersController#createReportAllBooks(HttpServletResponse)
 2023-06-08T13:37:17.544+03:00 DEBUG 22824 --- [http-nio-7070-exec-1] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2023-06-08T13:42:39.625+03:00  WARN 26024 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-06-08T13:42:39.725+03:00 DEBUG 26024 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2023-06-08T13:42:39.813+03:00 DEBUG 26024 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : 32 mappings in 'requestMappingHandlerMapping'
+2023-06-08T13:42:40.245+03:00 DEBUG 26024 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/webjars/**, /**, /swagger-ui*/*swagger-initializer.js, /swagger-ui*/**] in 'resourceHandlerMapping'
+2023-06-08T13:42:40.253+03:00 DEBUG 26024 --- [main] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 2 @ExceptionHandler, 1 ResponseBodyAdvice
+2023-06-08T13:42:46.443+03:00  INFO 26024 --- [http-nio-7070-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-06-08T13:42:46.443+03:00 DEBUG 26024 --- [http-nio-7070-exec-1] o.s.web.servlet.DispatcherServlet        : Detected StandardServletMultipartResolver
+2023-06-08T13:42:46.443+03:00 DEBUG 26024 --- [http-nio-7070-exec-1] o.s.web.servlet.DispatcherServlet        : Detected AcceptHeaderLocaleResolver
+2023-06-08T13:42:46.443+03:00 DEBUG 26024 --- [http-nio-7070-exec-1] o.s.web.servlet.DispatcherServlet        : Detected FixedThemeResolver
+2023-06-08T13:42:46.444+03:00 DEBUG 26024 --- [http-nio-7070-exec-1] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@12051d38
+2023-06-08T13:42:46.444+03:00 DEBUG 26024 --- [http-nio-7070-exec-1] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.support.SessionFlashMapManager@410f1452
+2023-06-08T13:42:46.445+03:00 DEBUG 26024 --- [http-nio-7070-exec-1] o.s.web.servlet.DispatcherServlet        : enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+2023-06-08T13:42:46.445+03:00  INFO 26024 --- [http-nio-7070-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2023-06-08T13:42:46.451+03:00 DEBUG 26024 --- [http-nio-7070-exec-1] o.s.web.servlet.DispatcherServlet        : GET "/reader/create-xlsx", parameters={}
+2023-06-08T13:42:46.461+03:00 DEBUG 26024 --- [http-nio-7070-exec-1] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to ru.kopylova.springcourse.DigitalLibrary.readers.controllers.ReadersController#createReportAllBooks(HttpServletResponse)
+2023-06-08T13:42:47.348+03:00 DEBUG 26024 --- [http-nio-7070-exec-1] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
