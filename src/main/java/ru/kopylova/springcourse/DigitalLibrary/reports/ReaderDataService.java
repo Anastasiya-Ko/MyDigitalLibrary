@@ -41,24 +41,27 @@ public class ReaderDataService {
         return listView;
     }
 
-    public void readerGroupAge() {
+    public Map<String, List<ReaderDTOReport>> readerGroupAge() {
 
-        var entityPage = createListDTO();
+        List<ReaderDTOReport> listView = createListDTO();
 
         Map<String, List<ReaderDTOReport>> result = new LinkedHashMap<>();
-        result.put("Дети", new ArrayList<>());
-        result.put("Подростки", new ArrayList<>());
-        result.put("Взрослые", new ArrayList<>());
 
-        for (ReaderDTOReport reader : entityPage) {
+        result.put("Дети (до 10 лет включительно)", new ArrayList<>());
+        result.put("Подростки (от 11 лет до 18 лет включительно)", new ArrayList<>());
+        result.put("Взрослые (старше 18 лет)", new ArrayList<>());
+
+        for (ReaderDTOReport reader : listView) {
 
             if (reader.getAge() <= 10) {
-                result.get("Дети").add(reader);
+                result.get("Дети (до 10 лет включительно)").add(reader);
             } else if (reader.getAge() <= 18) {
-                result.get("Подростки").add(reader);
+                result.get("Подростки (от 11 лет до 18 лет включительно)").add(reader);
             } else {
-                result.get("Взрослые").add(reader);
+                result.get("Взрослые (старше 18 лет)").add(reader);
             }
         }
+
+        return result;
     }
 }

@@ -1,5 +1,6 @@
 package ru.kopylova.springcourse.DigitalLibrary.controllers;
 
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
@@ -10,11 +11,15 @@ import lombok.experimental.FieldDefaults;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpHeaders;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import ru.kopylova.springcourse.DigitalLibrary.models.view.ReaderDTORich;
+import ru.kopylova.springcourse.DigitalLibrary.reports.ReaderReportService;
 import ru.kopylova.springcourse.DigitalLibrary.services.ReadersService;
 import ru.kopylova.springcourse.DigitalLibrary.util.page.sort.ReaderSort;
+
+import java.io.IOException;
 
 @Validated
 @RestController
@@ -24,6 +29,7 @@ import ru.kopylova.springcourse.DigitalLibrary.util.page.sort.ReaderSort;
 public class ReadersController {
 
     ReadersService readersService;
+    ReaderReportService readerReportService;
 
     @PostMapping
     public ReaderDTORich createReader(@Valid @RequestBody ReaderDTORich view) {
@@ -64,6 +70,20 @@ public class ReadersController {
     @DeleteMapping("/{id}")
     public String deleteReaderById(@PathVariable Long id) {
         return readersService.deleteReaderById(id);
+    }
+
+    @GetMapping("/create-xlsx")
+    public void createReportAllBooks(HttpServletResponse response) throws IOException {
+
+
+        byte[] bytes = readerReportService.createReportReaderGroupAge();
+
+        response.setContentType("application/octet-stream");
+        response.setHeader(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename = readersGroupAge.xlsx");
+        response.setHeader(HttpHeaders.ACCESS_CONTROL_EXPOSE_HEADERS, "*");
+        response.setContentLength(bytes.length);
+        response.getOutputStream().write(bytes);
+        response.setCharacterEncoding("UTF-8");
     }
 
 }

@@ -42,7 +42,6 @@ public class BookReportService {
         Sheet sheet = book.createSheet("Books");
         // задаем отступ от края листа для печати
         sheet.setMargin(PageMargin.TOP, 1.4);
-        sheet.setMargin(PageMargin.TOP, 1.4);
         sheet.setMargin(PageMargin.LEFT, 0.4);
         sheet.setMargin(PageMargin.RIGHT, 0.4);
         // устанавливаем ориентацию листа для печати (альбомная)
@@ -118,31 +117,26 @@ public class BookReportService {
             }
         }
 
-        /**
-         * Итоговое количество книг в библиотеке
-         */
+
+        //Итоговое количество книг в библиотеке
         Row totalAmountBooks = sheet.createRow(sheet.getLastRowNum()+1);
         sheet.addMergedRegion(new CellRangeAddress(sheet.getLastRowNum(), sheet.getLastRowNum(), 0, 6));
         initCell(totalAmountBooks.createCell(0), "Итоговое количество книг в библиотеке:", styles.get("total-project-right"));
-        initCell(totalAmountBooks.createCell(7), listBooks.size()+"", styles.get("total-project-right"));
+        initCell(totalAmountBooks.createCell(7), "" + listBooks.size(), styles.get("total-project-right"));
 
-        /**
-         * Итоговое количество свободных книг в библиотеке
-         */
+        //Итоговое количество свободных книг в библиотеке
         Row totalAmountFreeBooks = sheet.createRow(sheet.getLastRowNum()+1);
         sheet.addMergedRegion(new CellRangeAddress(sheet.getLastRowNum(), sheet.getLastRowNum(), 0, 6));
         initCell(totalAmountFreeBooks.createCell(0), "Количество свободных книг:", styles.get("total-project-right"));
         initCell(totalAmountFreeBooks.createCell(7),
-                listBooks.stream().filter(book -> book.getReaderId()==null).toList().size()+"", styles.get("total-project-right"));
+                "" + listBooks.stream().filter(book -> book.getReaderId()==null).toList().size(), styles.get("total-project-right"));
 
-        /**
-         * Итоговое количество книг, взятых читателями
-         */
+        //Итоговое количество книг, взятых читателями
         Row totalAmountNotFreeBooks = sheet.createRow(sheet.getLastRowNum()+1);
         sheet.addMergedRegion(new CellRangeAddress(sheet.getLastRowNum(), sheet.getLastRowNum(), 0, 6));
         initCell(totalAmountNotFreeBooks.createCell(0), "Количество книг, взятых читателями:", styles.get("total-project-right"));
         initCell(totalAmountNotFreeBooks.createCell(7),
-                listBooks.stream().filter(book -> book.getReaderId()!=null).toList().size()+"", styles.get("total-project-right"));
+                "" + listBooks.stream().filter(book -> book.getReaderId()!=null).toList().size(), styles.get("total-project-right"));
 
     }
 
