@@ -8,10 +8,7 @@ import ru.kopylova.springcourse.DigitalLibrary.models.entity.Reader;
 import ru.kopylova.springcourse.DigitalLibrary.models.view.ReaderDTOReport;
 import ru.kopylova.springcourse.DigitalLibrary.repositories.ReadersRepository;
 
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 @RequiredArgsConstructor
@@ -34,6 +31,7 @@ public class ReaderDataService {
     public List<ReaderDTOReport> createListDTO() {
         List<Reader> listEntity = readersRepository.findAll();
         List<ReaderDTOReport> listView = new ArrayList<>();
+        listEntity.sort(Comparator.comparing(Reader::getAge));
 
         for (Reader reader: listEntity) {
             listView.add(createDTO(reader));

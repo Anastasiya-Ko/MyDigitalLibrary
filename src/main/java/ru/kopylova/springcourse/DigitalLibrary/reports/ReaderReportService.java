@@ -33,7 +33,6 @@ public class ReaderReportService {
     public byte[] createReportReaderGroupAge() throws IOException {
 
 
-
         //Создаём книгу
         Workbook book = new XSSFWorkbook();
         //Создаём новый лист
@@ -73,59 +72,66 @@ public class ReaderReportService {
      * Создание заголовка
      */
     private void header(Sheet sheet) {
+
         // Создаём на листе строку. Нумерация начинается с нуля
         Row row0 = sheet.createRow(0);
-//        Row row1 = sheet.createRow(1);
 
         // Установка высоты 1 ряда
         row0.setHeight((short) (3 * 300));
-//        row1.setHeight((short) (3 * 300));
-
-        // Слияние ячеек
-//        sheet.addMergedRegion(new CellRangeAddress(0, 0, 0, 3));
-//        sheet.addMergedRegion(new CellRangeAddress(0, 0, 4, 7));
-//        sheet.addMergedRegion(new CellRangeAddress(0, 0, 8, 11));
 
         // Наименование столбцов
         int widthCell = 20;
-        initCellWidth(sheet, widthCell/2, row0.createCell(0), "№ читателя", styles.get("header"));
+        initCellWidth(sheet, widthCell / 2, row0.createCell(0), "№ читателя", styles.get("header"));
         initCellWidth(sheet, widthCell, row0.createCell(1), "Имя", styles.get("header"));
         initCellWidth(sheet, widthCell, row0.createCell(2), "Фамилия", styles.get("header"));
-        initCellWidth(sheet, widthCell/2, row0.createCell(3), "Возраст, лет", styles.get("header"));
+        initCellWidth(sheet, widthCell / 2, row0.createCell(3), "Возраст, лет", styles.get("header"));
 
     }
 
     private void rows(Sheet sheet) {
 
         Map<String, List<ReaderDTOReport>> readers = readerDataService.readerGroupAge();
-       // Row group = sheet.createRow(1);
+        // Row group = sheet.createRow(1);
 
 
-        for (Map.Entry<String, List<ReaderDTOReport>> map: readers.entrySet()) {
+        for (Map.Entry<String, List<ReaderDTOReport>> map : readers.entrySet()) {
             //Заполнение шапки группы читателей
-            sheet.addMergedRegion(new CellRangeAddress(sheet.getLastRowNum()+1, sheet.getLastRowNum()+1, 0, 3));
-            Row groupReaders = sheet.createRow(sheet.getLastRowNum()+1);
+            sheet.addMergedRegion(new CellRangeAddress(sheet.getLastRowNum() + 1, sheet.getLastRowNum() + 1, 0, 3));
+            Row groupReaders = sheet.createRow(sheet.getLastRowNum() + 1);
+            groupReaders.setHeight((short) (3 * 200));
             initCell(groupReaders.createCell(0), map.getKey(), styles.get("under-header"));
 
             //Заполнение читателями
             for (ReaderDTOReport dto : map.getValue()) {
-                Row reader = sheet.createRow(sheet.getLastRowNum()+1);
+                Row reader = sheet.createRow(sheet.getLastRowNum() + 1);
 
                 initCell(reader.createCell(0), dto.getId(), styles.get("basic-center"));
                 initCell(reader.createCell(1), dto.getFirstName(), styles.get("basic-center"));
                 initCell(reader.createCell(2), dto.getLastName(), styles.get("basic-center"));
                 initCell(reader.createCell(3), "" + dto.getAge(), styles.get("basic-center"));
+
             }
 
-            
-        }
+            //Заполнение итогового ряда
+            sheet.addMergedRegion(new CellRangeAddress(sheet.getLastRowNum() + 1, sheet.getLastRowNum() + 1, 0, 2));
+            Row totalAmountReaderGroup = sheet.createRow(sheet.getLastRowNum() + 1);
+            totalAmountReaderGroup.setHeight((short) (2 * 200));
+            initCell(totalAmountReaderGroup.createCell(0), "Итоговое количество читателей в группе:", styles.get("total-project-right"));
+            initCell(totalAmountReaderGroup.createCell(3), "" + map.getValue().size(), styles.get("total-project-right"));
 
+        }
+        //Заполнение итога по всей таблице
+//        sheet.addMergedRegion(new CellRangeAddress(sheet.getLastRowNum() + 1, sheet.getLastRowNum() + 1, 0, 2));
+//        Row totalReaders = sheet.createRow(sheet.getLastRowNum() +1);
+//        totalReaders.setHeight((short) (3 * 300));
+//        initCell(totalReaders.createCell(0), "Итоговое количество читателей в группе:", styles.get("total-project-right"));
+//        initCell(totalReaders.createCell(3), readers.);
 
     }
 
-        /**
-         * Выбор шрифта текста
-         */
+    /**
+     * Выбор шрифта текста
+     */
     private Font font(Workbook book, boolean bold, int fontSize) {
         Font font = book.createFont();
         font.setFontName("Times New Roman");
@@ -184,6 +190,13 @@ public class ReaderReportService {
         // Базовый - CENTER
         CellStyle basicCenter = cellStyle(book, font(book, false, 12));
         styles.put("basic-center", basicCenter);
+
+        // Итоговый ряд по проекту RIGHT
+        CellStyle projectRight = cellStyle(book, font(book, false, 12));
+        projectRight.setAlignment(HorizontalAlignment.RIGHT);
+        projectRight.setFillForegroundColor(IndexedColors.LIGHT_YELLOW.getIndex());
+        projectRight.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+        styles.put("total-project-right", projectRight);
 
     }
 }
