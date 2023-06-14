@@ -18,6 +18,7 @@ import ru.kopylova.springcourse.DigitalLibrary.books.repository.BooksRepository;
 import ru.kopylova.springcourse.DigitalLibrary.readers.models.entity.Reader;
 import ru.kopylova.springcourse.DigitalLibrary.readers.service.ReadersService;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -162,6 +163,7 @@ public class BooksService {
 
     public List<BookDTOEasy> readBooksWriteGroupAuthors() {
         List<Book> entityList = booksRepository.findBooksWriteGroupAuthors();
+        entityList.sort(Comparator.comparing(Book::getId));
         return entityList.stream().map(entity -> bookMapper.mapperToDTOEasy(entity, true)).collect(Collectors.toList());
     }
 
@@ -192,5 +194,6 @@ public class BooksService {
                 .map(a -> authorService.readOneById(a.getId()))
                 .toList();
     }
+
 
 }

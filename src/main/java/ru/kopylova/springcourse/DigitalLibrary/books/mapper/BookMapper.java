@@ -5,7 +5,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.stereotype.Service;
 import ru.kopylova.springcourse.DigitalLibrary.authors.mapper.AuthorMapper;
-import ru.kopylova.springcourse.DigitalLibrary.authors.service.AuthorService;
 import ru.kopylova.springcourse.DigitalLibrary.books.models.entity.Book;
 import ru.kopylova.springcourse.DigitalLibrary.books.models.view.BookDTOEasy;
 import ru.kopylova.springcourse.DigitalLibrary.books.models.view.BookDTORich;
@@ -26,8 +25,6 @@ import java.util.stream.Collectors;
 public class BookMapper {
 
     private AuthorMapper authorMapper;
-
-    private AuthorService authorService;
 
     private ReadersService readersService;
 
@@ -63,7 +60,10 @@ public class BookMapper {
                 .collect(Collectors.toList()));
 
 
-        view.setReaderDTOEasy(readerMapper.mapperToDTOEasy(entity.getReaderOwner(), true));
+        if (entity.getReaderOwner() != null) {
+            readersService.readOneById(entity.getReaderOwner().getId());
+            view.setReaderDTOEasy(readerMapper.mapperToDTOEasy(entity.getReaderOwner(), true));
+        }
 
 
         view.setBookIsFree(entity.getReaderOwner() == null);
@@ -91,6 +91,3 @@ public class BookMapper {
         return view;
     }
 }
-
-//           entity.setAuthors(authorMapper.mapperToEntity(view.getAuthorOwner, true));
-//            view.setAuthorOwner(authorMapper.mapperToDTO(entity.getAuthorOwner(), true));
