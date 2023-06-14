@@ -9,6 +9,7 @@ import lombok.experimental.FieldDefaults;
 import ru.kopylova.springcourse.DigitalLibrary.authors.models.view.AuthorDTO;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Getter
 @Setter
@@ -28,6 +29,7 @@ public class BookDTOEasy {
     LocalDate yearOfPublication;
 
     @NotNull(message = "У книги должен быть автор, выберите из таблицы Автор")
-    AuthorDTO authorOwner;
+    List<AuthorDTO> authorsOwner;
 
 }
+

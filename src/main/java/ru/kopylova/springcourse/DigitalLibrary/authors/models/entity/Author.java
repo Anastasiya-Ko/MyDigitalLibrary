@@ -1,6 +1,5 @@
 package ru.kopylova.springcourse.DigitalLibrary.authors.models.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -24,8 +23,7 @@ public class Author {
     @Column(name = "name")
     String name;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "authorOwner")
+    @ManyToMany(mappedBy = "authors")
     List<Book> books;
 
 }

@@ -12,6 +12,8 @@ import ru.kopylova.springcourse.DigitalLibrary.books.models.view.BookDTORich;
 import ru.kopylova.springcourse.DigitalLibrary.readers.mapper.ReaderMapper;
 import ru.kopylova.springcourse.DigitalLibrary.readers.service.ReadersService;
 
+import java.util.stream.Collectors;
+
 /**
  * Побороться с зацикливанием программы помогла комбинация аннотаций -
  * // @Autowired
@@ -37,10 +39,10 @@ public class BookMapper {
         if (isWrite) {
             entity.setId(view.getId());
         }
-        if (view.getAuthorOwner() != null) {
-            authorService.readOneById(view.getAuthorOwner().getId());
-            entity.setAuthorOwner(authorMapper.mapperToEntity(view.getAuthorOwner(), true));
-        }
+
+        entity.setAuthors(view.getAuthorsOwner().stream()
+                .map(authorDTO -> authorMapper.mapperToEntity(authorDTO, true))
+                .collect(Collectors.toList()));
 
         entity.setTitle(view.getTitle());
         entity.setYearOfPublication(view.getYearOfPublication());
@@ -55,16 +57,14 @@ public class BookMapper {
         if (isWrite) {
             view.setId(entity.getId());
         }
-        if (entity.getAuthorOwner() != null) {
-            authorService.readOneById(entity.getAuthorOwner().getId());
-            view.setAuthorOwner(authorMapper.mapperToDTO(entity.getAuthorOwner(), true));
-        }
 
-        if (entity.getReaderOwner() != null) {
-            readersService.readOneById(entity.getReaderOwner().getId());
-            view.setReaderDTOEasy(readerMapper.mapperToDTOEasy(entity.getReaderOwner(), true));
+        view.setAuthorsOwner(entity.getAuthors()
+                .stream().map(author -> authorMapper.mapperToDTO(author, true))
+                .collect(Collectors.toList()));
 
-        }
+
+        view.setReaderDTOEasy(readerMapper.mapperToDTOEasy(entity.getReaderOwner(), true));
+
 
         view.setBookIsFree(entity.getReaderOwner() == null);
 
@@ -81,10 +81,9 @@ public class BookMapper {
             view.setId(entity.getId());
         }
 
-        if (entity.getAuthorOwner() != null) {
-            authorService.readOneById(entity.getAuthorOwner().getId());
-            view.setAuthorOwner(authorMapper.mapperToDTO(entity.getAuthorOwner(), true));
-        }
+        view.setAuthorsOwner(entity.getAuthors()
+                .stream().map(author -> authorMapper.mapperToDTO(author, true))
+                .collect(Collectors.toList()));
 
         view.setTitle(entity.getTitle());
         view.setYearOfPublication(entity.getYearOfPublication());
@@ -92,3 +91,6 @@ public class BookMapper {
         return view;
     }
 }
+
+//           entity.setAuthors(authorMapper.mapperToEntity(view.getAuthorOwner, true));
+//            view.setAuthorOwner(authorMapper.mapperToDTO(entity.getAuthorOwner(), true));

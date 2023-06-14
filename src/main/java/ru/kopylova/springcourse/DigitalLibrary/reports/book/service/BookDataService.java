@@ -27,8 +27,9 @@ public class BookDataService {
         view.setBookId(entity.getId().toString());
         view.setTitle(entity.getTitle());
         view.setYearOfPublication("" + entity.getYearOfPublication().getYear());
-        view.setAuthorId(entity.getAuthorOwner().getId().toString());
-        view.setAuthorName(entity.getAuthorOwner().getName());
+        // Todo -> потеря полей
+//        view.setAuthorId(entity.getAuthorOwner().getId().toString());
+//        view.setAuthorName(entity.getAuthorOwner().getName());
 
         if (entity.getReaderOwner() != null) {
             view.setReaderId(String.valueOf(entity.getReaderOwner().getId()));

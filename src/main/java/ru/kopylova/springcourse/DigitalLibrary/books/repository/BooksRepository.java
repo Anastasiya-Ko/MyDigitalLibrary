@@ -4,7 +4,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import ru.kopylova.springcourse.DigitalLibrary.authors.models.entity.Author;
 import ru.kopylova.springcourse.DigitalLibrary.books.models.entity.Book;
 import ru.kopylova.springcourse.DigitalLibrary.readers.models.entity.Reader;
 
@@ -14,7 +13,6 @@ public interface BooksRepository extends JpaRepository<Book, Long>{
 
 
     Page<Book> findBooksByReaderOwner(Reader readerOwnerId, Pageable pageable);
-    Page<Book> findBooksByAuthorOwner(Author authorOwner, Pageable pageable);
     Page<Book> findBooksByTitleIgnoreCaseStartingWithOrderByYearOfPublicationAsc(String title, Pageable pageable);
 
     @Query(value = """

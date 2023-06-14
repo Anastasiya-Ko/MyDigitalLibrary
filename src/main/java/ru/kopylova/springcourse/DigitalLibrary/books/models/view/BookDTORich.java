@@ -11,6 +11,7 @@ import ru.kopylova.springcourse.DigitalLibrary.authors.models.view.AuthorDTO;
 import ru.kopylova.springcourse.DigitalLibrary.readers.models.view.ReaderDTOEasy;
 
 import java.time.LocalDate;
+import java.util.List;
 
 
 @Getter
@@ -31,7 +32,7 @@ public class BookDTORich {
     LocalDate yearOfPublication;
 
     @NotNull(message = "У книги должен быть автор, выберите из таблицы Автор")
-    AuthorDTO authorOwner;
+    List<AuthorDTO> authorsOwner;
 
     ReaderDTOEasy readerDTOEasy;
 

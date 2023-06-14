@@ -11,7 +11,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import ru.kopylova.springcourse.DigitalLibrary.authors.models.entity.Author;
 import ru.kopylova.springcourse.DigitalLibrary.books.models.view.BookDTOEasy;
 import ru.kopylova.springcourse.DigitalLibrary.books.models.view.BookDTORich;
 import ru.kopylova.springcourse.DigitalLibrary.books.service.BooksService;
@@ -39,9 +38,9 @@ public class BooksController {
         return booksService.updateBook(view);
     }
 
-    @PutMapping("/release/{id}")
-    public String release(@PathVariable Long id) {
-        return booksService.release(id);
+    @PutMapping("/release/{bookId}")
+    public String release(@PathVariable Long bookId) {
+        return booksService.release(bookId);
     }
 
     @PutMapping("/assign")
@@ -72,11 +71,6 @@ public class BooksController {
     @GetMapping("/by-person-owner-id")
     public Page<BookDTORich> readBooksByReaderOwner(@Valid @RequestBody Reader reader, Pageable pageable) {
         return booksService.readBooksByReaderOwnerId(reader, pageable);
-    }
-
-    @GetMapping("/by-author-owner-id")
-    public Page<BookDTOEasy> readBooksByAuthorOwner(@Valid @RequestBody Author authorOwner, Pageable pageable) {
-        return booksService.readBooksByAuthorOwnerId(authorOwner, pageable);
     }
 
     @GetMapping("/books-are-free")

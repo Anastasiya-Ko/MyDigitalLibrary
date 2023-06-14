@@ -9,6 +9,7 @@ import ru.kopylova.springcourse.DigitalLibrary.authors.models.entity.Author;
 import ru.kopylova.springcourse.DigitalLibrary.readers.models.entity.Reader;
 
 import java.time.LocalDate;
+import java.util.List;
 
 
 @Getter
@@ -26,9 +27,13 @@ public class Book {
     @JoinColumn(name = "reader_id")
     Reader readerOwner;
 
-    @ManyToOne
-    @JoinColumn(name = "author_id")
-    Author authorOwner;
+    @ManyToMany
+    @JoinTable(
+            name = "book_author",
+            joinColumns = @JoinColumn(name = "book_id"),
+            inverseJoinColumns = @JoinColumn(name = "author_id")
+    )
+    List<Author> authors;
 
     @Column(name = "title")
     String title;

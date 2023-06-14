@@ -9,7 +9,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
-import ru.kopylova.springcourse.DigitalLibrary.authors.models.entity.Author;
 import ru.kopylova.springcourse.DigitalLibrary.authors.service.AuthorService;
 import ru.kopylova.springcourse.DigitalLibrary.books.mapper.BookMapper;
 import ru.kopylova.springcourse.DigitalLibrary.books.models.entity.Book;
@@ -30,15 +29,23 @@ import java.util.stream.Collectors;
 public class BooksService {
 
     BooksRepository booksRepository;
-    AuthorService authorService;
     BookMapper bookMapper;
-    JdbcTemplate jdbcTemplate;
+    AuthorService authorService;
     ReadersService readersService;
-
+    JdbcTemplate jdbcTemplate;
 
     public BookDTOEasy createBook(BookDTOEasy view) {
-        Book entity = bookMapper.mapperToEntity(view, false);
-        booksRepository.save(entity);
+
+        Book entity = new Book();
+        if (!view.getAuthorsOwner().isEmpty()) {
+            view.getAuthorsOwner()
+                    .stream()
+                    .map(a -> authorService.readOneById(a.getId()))
+                    .toList();
+            entity = bookMapper.mapperToEntity(view, false);
+            booksRepository.save(entity);
+
+        }
         return bookMapper.mapperToDTOEasy(entity, true);
     }
 
@@ -67,19 +74,26 @@ public class BooksService {
 
     public BookDTOEasy updateBook(BookDTOEasy view) {
 
-        var updateEntity = getById(view.getId());
-        updateEntity = bookMapper.mapperToEntity(view, true);
-        booksRepository.save(updateEntity);
+        Book updateEntity = getById(view.getId());
+        if (!view.getAuthorsOwner().isEmpty()) {
+            view.getAuthorsOwner()
+                    .stream()
+                    .map(a -> authorService.readOneById(a.getId()))
+                    .toList();
+            updateEntity = bookMapper.mapperToEntity(view, true);
+            booksRepository.save(updateEntity);
+        }
+
         return bookMapper.mapperToDTOEasy(updateEntity, true);
     }
 
     /**
      * Метод для освобождения книги, при возвращении её в библиотеку
      *
-     * @param id возвращаемой книги
+     * @param bookId возвращаемой книги
      */
-    public String release(Long id) {
-        jdbcTemplate.update("UPDATE book SET reader_id=NULL, is_free=true WHERE id=?", id);
+    public String release(Long bookId) {
+        jdbcTemplate.update("UPDATE book SET reader_id=NULL, is_free=true WHERE id=?", bookId);
         return "Теперь книга свободна";
     }
 
@@ -134,19 +148,6 @@ public class BooksService {
         }
 
         return entityPage.map(entity -> bookMapper.mapperToDTORich(entity, true));
-    }
-
-    public Page<BookDTOEasy> readBooksByAuthorOwnerId(Author authorOwner, Pageable pageable) {
-        String ex = String.format(("У читателя = %s нет книг"), authorOwner);
-
-        authorService.readOneById(authorOwner.getId());
-        Page<Book> entityPage = booksRepository.findBooksByAuthorOwner(authorOwner, pageable);
-
-        if (entityPage.isEmpty()) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, ex);
-        }
-
-        return entityPage.map(entity -> bookMapper.mapperToDTOEasy(entity, true));
     }
 
     public List<BookDTOEasy> readBooksAreFree() {
