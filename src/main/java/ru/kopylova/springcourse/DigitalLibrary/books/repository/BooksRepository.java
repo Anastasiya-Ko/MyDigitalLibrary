@@ -24,4 +24,16 @@ public interface BooksRepository extends JpaRepository<Book, Long>{
         )
     List<Book> findBooksAreFree();
 
+    @Query(value = """
+                SELECT id, reader_id, title, year_of_publication, is_free
+                FROM book_author ba
+                JOIN book b on ba.book_id = b.id
+                GROUP BY id, reader_id, title, year_of_publication, is_free
+                HAVING COUNT(author_id) >= 2
+        
+                            """,
+            nativeQuery = true
+    )
+    List<Book> findBooksWriteGroupAuthors();
+
 }

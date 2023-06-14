@@ -38,11 +38,9 @@ public class BooksService {
 
         Book entity = new Book();
         if (!view.getAuthorsOwner().isEmpty()) {
-            view.getAuthorsOwner()
-                    .stream()
-                    .map(a -> authorService.readOneById(a.getId()))
-                    .toList();
+            availableAuthors(view);
             entity = bookMapper.mapperToEntity(view, false);
+            entity.setBookIsFree(true);
             booksRepository.save(entity);
 
         }
@@ -76,10 +74,7 @@ public class BooksService {
 
         Book updateEntity = getById(view.getId());
         if (!view.getAuthorsOwner().isEmpty()) {
-            view.getAuthorsOwner()
-                    .stream()
-                    .map(a -> authorService.readOneById(a.getId()))
-                    .toList();
+            availableAuthors(view);
             updateEntity = bookMapper.mapperToEntity(view, true);
             booksRepository.save(updateEntity);
         }
@@ -111,7 +106,6 @@ public class BooksService {
                 readersService.readOneById(readerId).getLastName());
 
     }
-
 
     public Page<BookDTOEasy> readAllBooks(Pageable pageable) {
         Page<Book> entityPage = booksRepository.findAll(pageable);
@@ -150,7 +144,7 @@ public class BooksService {
         return entityPage.map(entity -> bookMapper.mapperToDTORich(entity, true));
     }
 
-    public List<BookDTOEasy> readBooksAreFree() {
+    public List<BookDTOEasy> readBooksFree() {
 
         List<Book> entityList = booksRepository.findBooksAreFree();
 
@@ -158,12 +152,17 @@ public class BooksService {
 
     }
 
-    public List<BookDTORich> readBooksAreNotFree() {
+    public List<BookDTORich> readBooksBusy() {
 
         List<Book> entityList = booksRepository.findAll().stream().filter(book -> !(book.isBookIsFree())).toList();
 
         return entityList.stream().map(entity -> bookMapper.mapperToDTORich(entity, true)).collect(Collectors.toList());
 
+    }
+
+    public List<BookDTOEasy> readBooksWriteGroupAuthors() {
+        List<Book> entityList = booksRepository.findBooksWriteGroupAuthors();
+        return entityList.stream().map(entity -> bookMapper.mapperToDTOEasy(entity, true)).collect(Collectors.toList());
     }
 
     public String deleteBookById(Long id) {
@@ -181,6 +180,17 @@ public class BooksService {
     private Book getById(Long id) {
         String ex = String.format(("Книга с ID = %d не найдена"), id);
         return booksRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, ex));
+    }
+
+
+    /**
+    * Метод внутреннего пользования для проверки наличия автора в бд
+    */
+    private void availableAuthors(BookDTOEasy view) {
+        view.getAuthorsOwner()
+                .stream()
+                .map(a -> authorService.readOneById(a.getId()))
+                .toList();
     }
 
 }

@@ -73,14 +73,19 @@ public class BooksController {
         return booksService.readBooksByReaderOwnerId(reader, pageable);
     }
 
-    @GetMapping("/books-are-free")
-    public List<BookDTOEasy> readBooksAreFree() {
-        return booksService.readBooksAreFree();
+    @GetMapping("/free")
+    public List<BookDTOEasy> readBooksFree() {
+        return booksService.readBooksFree();
     }
 
-    @GetMapping("/books-are-not-free")
-    public List<BookDTORich> readBooksAreNotFree() {
-        return booksService.readBooksAreNotFree();
+    @GetMapping("/busy")
+    public List<BookDTORich> readBooksBusy() {
+        return booksService.readBooksBusy();
+    }
+
+    @GetMapping("/write-group-authors")
+    public List<BookDTOEasy> readBooksWriteGroupAuthors() {
+        return booksService.readBooksWriteGroupAuthors();
     }
 
     @DeleteMapping("/{id}")
