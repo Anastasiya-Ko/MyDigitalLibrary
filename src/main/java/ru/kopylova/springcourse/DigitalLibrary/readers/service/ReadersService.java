@@ -48,7 +48,7 @@ public class ReadersService {
 
         readersRepository.deleteById(id);
 
-        return String.format("Читатель с id = %d успешно удалён", id);
+        return String.format("Читатель с номером = %d успешно удалён", id);
     }
 
     public Page<ReaderDTORich> readAllReader(Pageable pageable) {
@@ -80,7 +80,7 @@ public class ReadersService {
      * Метод внутреннего пользования для получения человека по его идентификатору
      */
     private Reader getById(Long id) {
-        String ex = String.format(("Читатель с id = %d не найден"), id);
+        String ex = String.format(("Читатель с номером = %d не найден"), id);
         return readersRepository.findById(id).orElseThrow(() ->
                 new ResponseStatusException(HttpStatus.NOT_FOUND, ex));
     }

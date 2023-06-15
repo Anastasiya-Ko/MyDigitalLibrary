@@ -58,7 +58,7 @@ public class AuthorService {
     public String deleteAuthorById(Long id) {
         getById(id);
         authorsRepository.deleteById(id);
-        return String.format("Автор с id=%d успешно удалён", id);
+        return String.format("Автор с номером = %d успешно удалён", id);
     }
 
 
@@ -66,7 +66,7 @@ public class AuthorService {
      * Метод внутреннего пользования, для получения автора(сущности) по идентификатору
      */
     private Author getById(Long id) {
-        String ex = String.format(("Автор с ID = %d не найден"), id);
+        String ex = String.format(("Автор с номером = %d не найден"), id);
         return authorsRepository.findById(id).orElseThrow(() ->
                 new ResponseStatusException(HttpStatus.NOT_FOUND, ex));
     }

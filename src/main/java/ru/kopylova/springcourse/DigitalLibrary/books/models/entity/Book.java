@@ -11,7 +11,7 @@ import ru.kopylova.springcourse.DigitalLibrary.readers.models.entity.Reader;
 import java.time.LocalDate;
 import java.util.List;
 
-
+//TODO вычленить из даты публикации только год
 @Getter
 @Setter
 @FieldDefaults(level = AccessLevel.PRIVATE)

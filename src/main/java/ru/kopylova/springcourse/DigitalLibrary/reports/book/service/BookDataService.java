@@ -23,16 +23,18 @@ public class BookDataService {
 
 
         BookDTOReport view = new BookDTOReport();
+        StringBuilder tempNameAuthor =new StringBuilder();
 
         view.setBookId(entity.getId().toString());
         view.setTitle(entity.getTitle());
         view.setYearOfPublication("" + entity.getYearOfPublication().getYear());
-        // Todo -> потеря полей
-//        view.setAuthorId(entity.getAuthorOwner().getId().toString());
-//        view.setAuthorName(entity.getAuthorOwner().getName());
+
+        for (int i = 0; i < entity.getAuthors().size(); i++) {
+            tempNameAuthor.append(entity.getAuthors().get(i).getName()+"\n");
+        }
+        view.setAuthorName("" + tempNameAuthor);
 
         if (entity.getReaderOwner() != null) {
-            view.setReaderId(String.valueOf(entity.getReaderOwner().getId()));
             view.setReaderFirstName(entity.getReaderOwner().getFirstName());
             view.setReaderLastName(entity.getReaderOwner().getLastName());
         }

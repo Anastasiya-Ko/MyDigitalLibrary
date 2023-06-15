@@ -61,7 +61,7 @@ public class BookReportService {
 
         // Отображение границ таблицы
         PropertyTemplate propertyTemplate = new PropertyTemplate();
-        propertyTemplate.drawBorders(new CellRangeAddress(0, sheet.getLastRowNum(), 0, 7), BorderStyle.THIN, BorderExtent.ALL);
+        propertyTemplate.drawBorders(new CellRangeAddress(0, sheet.getLastRowNum(), 0, 5), BorderStyle.THIN, BorderExtent.ALL);
         propertyTemplate.applyBorders(sheet);
 
 
@@ -83,14 +83,12 @@ public class BookReportService {
 
         // Наименование столбцов
         int widthCell = 15;
-        initCellWidth(sheet, widthCell, rowFirst.createCell(0), "№ книги", styles.get("header"));
+        initCellWidth(sheet, widthCell, rowFirst.createCell(0), "№ п/п", styles.get("header"));
         initCellWidth(sheet, widthCell*2, rowFirst.createCell(1), "Название", styles.get("header"));
         initCellWidth(sheet, widthCell, rowFirst.createCell(2), "Год\nпубликации", styles.get("header"));
-        initCellWidth(sheet, widthCell, rowFirst.createCell(3), "№ автора", styles.get("header"));
-        initCellWidth(sheet, widthCell*2, rowFirst.createCell(4), "Имя\nавтора", styles.get("header"));
-        initCellWidth(sheet, widthCell, rowFirst.createCell(5), "№ читателя", styles.get("header"));
-        initCellWidth(sheet, widthCell, rowFirst.createCell(6), "Имя\nчитателя", styles.get("header"));
-        initCellWidth(sheet, widthCell, rowFirst.createCell(7), "Фамилия\nчитателя", styles.get("header"));
+        initCellWidth(sheet, widthCell*2, rowFirst.createCell(3), "Имя\nавтора", styles.get("header"));
+        initCellWidth(sheet, widthCell, rowFirst.createCell(4), "Имя\nчитателя", styles.get("header"));
+        initCellWidth(sheet, widthCell, rowFirst.createCell(5), "Фамилия\nчитателя", styles.get("header"));
     }
 
     private void rows(Sheet sheet, List<BookDTOReport> listBooks) {
@@ -104,39 +102,37 @@ public class BookReportService {
             initCell(rowAllBooks.createCell(0),bookDto.getBookId(), styles.get("basic-center"));
             initCell(rowAllBooks.createCell(1), bookDto.getTitle(), styles.get("basic-center"));
             initCell(rowAllBooks.createCell(2), bookDto.getYearOfPublication(), styles.get("basic-center"));
-            initCell(rowAllBooks.createCell(3), bookDto.getAuthorId(), styles.get("basic-center"));
-            initCell(rowAllBooks.createCell(4), bookDto.getAuthorName(), styles.get("basic-center"));
+            initCell(rowAllBooks.createCell(3), bookDto.getAuthorName(), styles.get("basic-center"));
 
-            if(bookDto.getReaderId() == null){
-                sheet.addMergedRegion(new CellRangeAddress(i+1, i+1, 5, 7));
-                initCell(rowAllBooks.createCell(5), "Книга свободна!", styles.get("basic-center"));
+            if(bookDto.getReaderFirstName() == null){
+                sheet.addMergedRegion(new CellRangeAddress(i+1, i+1, 4, 5));
+                initCell(rowAllBooks.createCell(4), "Книга свободна!", styles.get("basic-center"));
             }else{
-                initCell(rowAllBooks.createCell(5), bookDto.getReaderId(), styles.get("basic-center"));
-                initCell(rowAllBooks.createCell(6), bookDto.getReaderFirstName(), styles.get("basic-center"));
-                initCell(rowAllBooks.createCell(7), bookDto.getReaderLastName(), styles.get("basic-center"));
+                initCell(rowAllBooks.createCell(4), bookDto.getReaderFirstName(), styles.get("basic-center"));
+                initCell(rowAllBooks.createCell(5), bookDto.getReaderLastName(), styles.get("basic-center"));
             }
         }
 
 
         //Итоговое количество книг в библиотеке
         Row totalAmountBooks = sheet.createRow(sheet.getLastRowNum()+1);
-        sheet.addMergedRegion(new CellRangeAddress(sheet.getLastRowNum(), sheet.getLastRowNum(), 0, 6));
+        sheet.addMergedRegion(new CellRangeAddress(sheet.getLastRowNum(), sheet.getLastRowNum(), 0, 4));
         initCell(totalAmountBooks.createCell(0), "Итоговое количество книг в библиотеке:", styles.get("total-project-right"));
-        initCell(totalAmountBooks.createCell(7), "" + listBooks.size(), styles.get("total-project-right"));
+        initCell(totalAmountBooks.createCell(5), "" + listBooks.size(), styles.get("total-project-right"));
 
         //Итоговое количество свободных книг в библиотеке
         Row totalAmountFreeBooks = sheet.createRow(sheet.getLastRowNum()+1);
-        sheet.addMergedRegion(new CellRangeAddress(sheet.getLastRowNum(), sheet.getLastRowNum(), 0, 6));
+        sheet.addMergedRegion(new CellRangeAddress(sheet.getLastRowNum(), sheet.getLastRowNum(), 0, 4));
         initCell(totalAmountFreeBooks.createCell(0), "Количество свободных книг:", styles.get("total-project-right"));
-        initCell(totalAmountFreeBooks.createCell(7),
-                "" + listBooks.stream().filter(book -> book.getReaderId()==null).toList().size(), styles.get("total-project-right"));
+        initCell(totalAmountFreeBooks.createCell(5),
+                "" + listBooks.stream().filter(book -> book.getReaderFirstName()==null).toList().size(), styles.get("total-project-right"));
 
         //Итоговое количество книг, взятых читателями
         Row totalAmountNotFreeBooks = sheet.createRow(sheet.getLastRowNum()+1);
-        sheet.addMergedRegion(new CellRangeAddress(sheet.getLastRowNum(), sheet.getLastRowNum(), 0, 6));
+        sheet.addMergedRegion(new CellRangeAddress(sheet.getLastRowNum(), sheet.getLastRowNum(), 0, 4));
         initCell(totalAmountNotFreeBooks.createCell(0), "Количество книг, взятых читателями:", styles.get("total-project-right"));
-        initCell(totalAmountNotFreeBooks.createCell(7),
-                "" + listBooks.stream().filter(book -> book.getReaderId()!=null).toList().size(), styles.get("total-project-right"));
+        initCell(totalAmountNotFreeBooks.createCell(5),
+                "" + listBooks.stream().filter(book -> book.getReaderFirstName()!=null).toList().size(), styles.get("total-project-right"));
 
     }
 

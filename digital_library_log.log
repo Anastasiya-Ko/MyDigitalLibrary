@@ -1,158 +1,21 @@
-2023-06-14T09:18:17.518+03:00  WARN 7064 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=13h59m48s118ms892µs100ns).
-2023-06-14T09:37:57.961+03:00  WARN 3564 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2023-06-14T09:38:08.784+03:00  INFO 3564 --- [http-nio-7070-exec-3] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2023-06-14T09:38:08.786+03:00  INFO 3564 --- [http-nio-7070-exec-3] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
-2023-06-14T09:38:20.115+03:00 ERROR 3564 --- [http-nio-7070-exec-2] o.h.engine.jdbc.spi.SqlExceptionHelper   : ОШИБКА: INSERT или UPDATE в таблице "book_author" нарушает ограничение внешнего ключа "book_author_author_id_fkey"
-  Подробности: Ключ (author_id)=(2001) отсутствует в таблице "author".
-2023-06-14T09:38:20.127+03:00 ERROR 3564 --- [http-nio-7070-exec-2] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: org.springframework.dao.DataIntegrityViolationException: could not execute statement; SQL [n/a]; constraint [null]] with root cause
+2023-06-15T08:12:09.908+03:00  WARN 4452 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=17h58m49s704ms376µs201ns).
+2023-06-15T08:18:39.428+03:00  WARN 17372 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-06-15T08:21:11.189+03:00  WARN 14796 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-06-15T08:22:25.956+03:00  WARN 1428 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-06-15T08:34:24.722+03:00  WARN 9020 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-06-15T08:41:05.457+03:00  WARN 9224 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-06-15T08:57:21.243+03:00  WARN 12308 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-06-15T09:01:03.705+03:00  WARN 13320 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-06-15T09:01:08.538+03:00 ERROR 13320 --- [http-nio-7070-exec-2] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: java.lang.StringIndexOutOfBoundsException: index 4, length 4] with root cause
 
-org.postgresql.util.PSQLException: ОШИБКА: INSERT или UPDATE в таблице "book_author" нарушает ограничение внешнего ключа "book_author_author_id_fkey"
-  Подробности: Ключ (author_id)=(2001) отсутствует в таблице "author".
-	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2676) ~[postgresql-42.5.4.jar:42.5.4]
-	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2366) ~[postgresql-42.5.4.jar:42.5.4]
-	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:356) ~[postgresql-42.5.4.jar:42.5.4]
-	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:496) ~[postgresql-42.5.4.jar:42.5.4]
-	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:413) ~[postgresql-42.5.4.jar:42.5.4]
-	at org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:190) ~[postgresql-42.5.4.jar:42.5.4]
-	at org.postgresql.jdbc.PgPreparedStatement.executeUpdate(PgPreparedStatement.java:152) ~[postgresql-42.5.4.jar:42.5.4]
-	at com.zaxxer.hikari.pool.ProxyPreparedStatement.executeUpdate(ProxyPreparedStatement.java:61) ~[HikariCP-5.0.1.jar:na]
-	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.executeUpdate(HikariProxyPreparedStatement.java) ~[HikariCP-5.0.1.jar:na]
-	at org.hibernate.engine.jdbc.internal.ResultSetReturnImpl.executeUpdate(ResultSetReturnImpl.java:197) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.engine.jdbc.batch.internal.NonBatchingBatch.addToBatch(NonBatchingBatch.java:39) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.persister.collection.AbstractCollectionPersister.recreate(AbstractCollectionPersister.java:1478) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.action.internal.CollectionRecreateAction.execute(CollectionRecreateAction.java:47) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.engine.spi.ActionQueue.executeActions(ActionQueue.java:612) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.engine.spi.ActionQueue.lambda$executeActions$1(ActionQueue.java:483) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at java.base/java.util.LinkedHashMap.forEach(LinkedHashMap.java:721) ~[na:na]
-	at org.hibernate.engine.spi.ActionQueue.executeActions(ActionQueue.java:480) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.event.internal.AbstractFlushingEventListener.performExecutions(AbstractFlushingEventListener.java:329) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.event.internal.DefaultFlushEventListener.onFlush(DefaultFlushEventListener.java:39) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.event.service.internal.EventListenerGroupImpl.fireEventOnEachListener(EventListenerGroupImpl.java:107) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.internal.SessionImpl.doFlush(SessionImpl.java:1425) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.internal.SessionImpl.managedFlush(SessionImpl.java:477) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.internal.SessionImpl.flushBeforeTransactionCompletion(SessionImpl.java:2234) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.internal.SessionImpl.beforeTransactionCompletion(SessionImpl.java:1930) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.engine.jdbc.internal.JdbcCoordinatorImpl.beforeTransactionCompletion(JdbcCoordinatorImpl.java:439) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcResourceLocalTransactionCoordinatorImpl.beforeCompletionCallback(JdbcResourceLocalTransactionCoordinatorImpl.java:183) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcResourceLocalTransactionCoordinatorImpl$TransactionDriverControlImpl.commit(JdbcResourceLocalTransactionCoordinatorImpl.java:281) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.engine.transaction.internal.TransactionImpl.commit(TransactionImpl.java:101) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.springframework.orm.jpa.JpaTransactionManager.doCommit(JpaTransactionManager.java:561) ~[spring-orm-6.0.7.jar:6.0.7]
-	at org.springframework.transaction.support.AbstractPlatformTransactionManager.processCommit(AbstractPlatformTransactionManager.java:743) ~[spring-tx-6.0.7.jar:6.0.7]
-	at org.springframework.transaction.support.AbstractPlatformTransactionManager.commit(AbstractPlatformTransactionManager.java:711) ~[spring-tx-6.0.7.jar:6.0.7]
-	at org.springframework.transaction.interceptor.TransactionAspectSupport.commitTransactionAfterReturning(TransactionAspectSupport.java:660) ~[spring-tx-6.0.7.jar:6.0.7]
-	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:410) ~[spring-tx-6.0.7.jar:6.0.7]
-	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119) ~[spring-tx-6.0.7.jar:6.0.7]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.0.7.jar:6.0.7]
-	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:137) ~[spring-tx-6.0.7.jar:6.0.7]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.0.7.jar:6.0.7]
-	at org.springframework.data.jpa.repository.support.CrudMethodMetadataPostProcessor$CrudMethodMetadataPopulatingMethodInterceptor.invoke(CrudMethodMetadataPostProcessor.java:163) ~[spring-data-jpa-3.0.4.jar:3.0.4]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.0.7.jar:6.0.7]
-	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:97) ~[spring-aop-6.0.7.jar:6.0.7]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.0.7.jar:6.0.7]
-	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:218) ~[spring-aop-6.0.7.jar:6.0.7]
-	at jdk.proxy2/jdk.proxy2.$Proxy130.save(Unknown Source) ~[na:na]
-	at ru.kopylova.springcourse.DigitalLibrary.books.service.BooksService.createBook(BooksService.java:50) ~[classes/:na]
-	at ru.kopylova.springcourse.DigitalLibrary.books.controllers.BooksController.createBook(BooksController.java:33) ~[classes/:na]
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
-	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:343) ~[spring-aop-6.0.7.jar:6.0.7]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:196) ~[spring-aop-6.0.7.jar:6.0.7]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163) ~[spring-aop-6.0.7.jar:6.0.7]
-	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:750) ~[spring-aop-6.0.7.jar:6.0.7]
-	at org.springframework.validation.beanvalidation.MethodValidationInterceptor.invoke(MethodValidationInterceptor.java:141) ~[spring-context-6.0.7.jar:6.0.7]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.0.7.jar:6.0.7]
-	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:750) ~[spring-aop-6.0.7.jar:6.0.7]
-	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:702) ~[spring-aop-6.0.7.jar:6.0.7]
-	at ru.kopylova.springcourse.DigitalLibrary.books.controllers.BooksController$$SpringCGLIB$$0.createBook(<generated>) ~[classes/:na]
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
-	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:207) ~[spring-web-6.0.7.jar:6.0.7]
-	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:152) ~[spring-web-6.0.7.jar:6.0.7]
-	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118) ~[spring-webmvc-6.0.7.jar:6.0.7]
-	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:884) ~[spring-webmvc-6.0.7.jar:6.0.7]
-	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:797) ~[spring-webmvc-6.0.7.jar:6.0.7]
-	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-6.0.7.jar:6.0.7]
-	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1081) ~[spring-webmvc-6.0.7.jar:6.0.7]
-	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:974) ~[spring-webmvc-6.0.7.jar:6.0.7]
-	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1011) ~[spring-webmvc-6.0.7.jar:6.0.7]
-	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914) ~[spring-webmvc-6.0.7.jar:6.0.7]
-	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:563) ~[tomcat-embed-core-10.1.7.jar:6.0]
-	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885) ~[spring-webmvc-6.0.7.jar:6.0.7]
-	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:631) ~[tomcat-embed-core-10.1.7.jar:6.0]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:205) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
-	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53) ~[tomcat-embed-websocket-10.1.7.jar:10.1.7]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
-	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-6.0.7.jar:6.0.7]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.0.7.jar:6.0.7]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
-	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-6.0.7.jar:6.0.7]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.0.7.jar:6.0.7]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
-	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-6.0.7.jar:6.0.7]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.0.7.jar:6.0.7]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
-	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:166) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
-	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
-	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:493) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
-	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
-	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
-	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
-	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:341) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
-	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:390) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
-	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
-	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:894) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
-	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
-	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
-	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
-	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
-	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
-	at java.base/java.lang.Thread.run(Thread.java:833) ~[na:na]
-
-2023-06-14T09:39:53.519+03:00  WARN 13940 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2023-06-14T09:39:58.320+03:00  INFO 13940 --- [http-nio-7070-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2023-06-14T09:39:58.321+03:00  INFO 13940 --- [http-nio-7070-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
-2023-06-14T09:45:31.030+03:00  WARN 14264 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2023-06-14T09:45:42.855+03:00  INFO 14264 --- [http-nio-7070-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2023-06-14T09:45:42.856+03:00  INFO 14264 --- [http-nio-7070-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
-2023-06-14T10:33:20.875+03:00  WARN 4908 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2023-06-14T10:33:39.490+03:00  INFO 4908 --- [http-nio-7070-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2023-06-14T10:33:39.492+03:00  INFO 4908 --- [http-nio-7070-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
-2023-06-14T10:33:39.562+03:00 ERROR 4908 --- [http-nio-7070-exec-1] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: java.lang.NullPointerException: Cannot invoke "java.util.List.stream()" because the return value of "ru.kopylova.springcourse.DigitalLibrary.books.models.entity.Book.getAuthors()" is null] with root cause
-
-java.lang.NullPointerException: Cannot invoke "java.util.List.stream()" because the return value of "ru.kopylova.springcourse.DigitalLibrary.books.models.entity.Book.getAuthors()" is null
-	at ru.kopylova.springcourse.DigitalLibrary.books.mapper.BookMapper.mapperToDTOEasy(BookMapper.java:85) ~[classes/:na]
-	at ru.kopylova.springcourse.DigitalLibrary.books.service.BooksService.lambda$readBooksWriteGroupAuthors$6(BooksService.java:167) ~[classes/:na]
-	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197) ~[na:na]
-	at java.base/java.util.ArrayList$ArrayListSpliterator.forEachRemaining(ArrayList.java:1625) ~[na:na]
-	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509) ~[na:na]
-	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499) ~[na:na]
-	at java.base/java.util.stream.ReduceOps$ReduceOp.evaluateSequential(ReduceOps.java:921) ~[na:na]
-	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234) ~[na:na]
-	at java.base/java.util.stream.ReferencePipeline.collect(ReferencePipeline.java:682) ~[na:na]
-	at ru.kopylova.springcourse.DigitalLibrary.books.service.BooksService.readBooksWriteGroupAuthors(BooksService.java:167) ~[classes/:na]
-	at ru.kopylova.springcourse.DigitalLibrary.books.controllers.BooksController.readBooksWriteGroupAuthors(BooksController.java:88) ~[classes/:na]
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
-	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:343) ~[spring-aop-6.0.7.jar:6.0.7]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:196) ~[spring-aop-6.0.7.jar:6.0.7]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163) ~[spring-aop-6.0.7.jar:6.0.7]
-	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:750) ~[spring-aop-6.0.7.jar:6.0.7]
-	at org.springframework.validation.beanvalidation.MethodValidationInterceptor.invoke(MethodValidationInterceptor.java:141) ~[spring-context-6.0.7.jar:6.0.7]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.0.7.jar:6.0.7]
-	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:750) ~[spring-aop-6.0.7.jar:6.0.7]
-	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:702) ~[spring-aop-6.0.7.jar:6.0.7]
-	at ru.kopylova.springcourse.DigitalLibrary.books.controllers.BooksController$$SpringCGLIB$$0.readBooksWriteGroupAuthors(<generated>) ~[classes/:na]
+java.lang.StringIndexOutOfBoundsException: index 4, length 4
+	at java.base/java.lang.String.checkIndex(String.java:4561) ~[na:na]
+	at java.base/java.lang.AbstractStringBuilder.deleteCharAt(AbstractStringBuilder.java:970) ~[na:na]
+	at java.base/java.lang.StringBuilder.deleteCharAt(StringBuilder.java:298) ~[na:na]
+	at ru.kopylova.springcourse.DigitalLibrary.reports.book.service.BookDataService.createDTO(BookDataService.java:35) ~[classes/:na]
+	at ru.kopylova.springcourse.DigitalLibrary.reports.book.service.BookDataService.createListDTO(BookDataService.java:59) ~[classes/:na]
+	at ru.kopylova.springcourse.DigitalLibrary.reports.book.service.BookReportService.createReportAllBooks(BookReportService.java:37) ~[classes/:na]
+	at ru.kopylova.springcourse.DigitalLibrary.reports.book.controller.BooksReportController.createReportAllBooks(BooksReportController.java:29) ~[classes/:na]
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
@@ -204,83 +67,18 @@ java.lang.NullPointerException: Cannot invoke "java.util.List.stream()" because 
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
 	at java.base/java.lang.Thread.run(Thread.java:833) ~[na:na]
 
-2023-06-14T10:35:57.294+03:00  WARN 2888 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2023-06-14T11:12:18.625+03:00  WARN 9304 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2023-06-14T11:15:32.812+03:00  WARN 16716 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2023-06-14T11:15:53.766+03:00  INFO 16716 --- [http-nio-7070-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2023-06-14T11:15:53.767+03:00  INFO 16716 --- [http-nio-7070-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
-2023-06-14T11:19:38.196+03:00  WARN 17296 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2023-06-14T11:19:45.659+03:00  INFO 17296 --- [http-nio-7070-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2023-06-14T11:19:45.661+03:00  INFO 17296 --- [http-nio-7070-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
-2023-06-14T11:19:45.679+03:00  WARN 17296 --- [http-nio-7070-exec-2] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'GET' is not supported]
-2023-06-14T11:19:53.107+03:00 ERROR 17296 --- [http-nio-7070-exec-1] o.h.engine.jdbc.spi.SqlExceptionHelper   : Колонки is_free не найдено в этом ResultSet’’е.
-2023-06-14T11:19:53.118+03:00 ERROR 17296 --- [http-nio-7070-exec-1] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: org.springframework.dao.InvalidDataAccessResourceUsageException: Unable to find column position by name: is_free; SQL [n/a]] with root cause
+2023-06-15T09:01:40.302+03:00  WARN 8988 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-06-15T09:03:32.979+03:00  WARN 2068 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-06-15T09:03:35.325+03:00 ERROR 2068 --- [http-nio-7070-exec-2] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: java.lang.StringIndexOutOfBoundsException: index -1, length 17] with root cause
 
-org.postgresql.util.PSQLException: Колонки is_free не найдено в этом ResultSet’’е.
-	at org.postgresql.jdbc.PgResultSet.findColumn(PgResultSet.java:2938) ~[postgresql-42.5.4.jar:42.5.4]
-	at com.zaxxer.hikari.pool.HikariProxyResultSet.findColumn(HikariProxyResultSet.java) ~[HikariCP-5.0.1.jar:na]
-	at org.hibernate.sql.results.jdbc.internal.AbstractResultSetAccess.resolveColumnPosition(AbstractResultSetAccess.java:62) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.query.results.implicit.ImplicitFetchBuilderBasic.lambda$buildFetch$0(ImplicitFetchBuilderBasic.java:103) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.query.results.DomainResultCreationStateImpl.resolveSqlExpression(DomainResultCreationStateImpl.java:266) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.query.results.implicit.ImplicitFetchBuilderBasic.buildFetch(ImplicitFetchBuilderBasic.java:97) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.query.results.implicit.ImplicitFetchBuilderBasic.buildFetch(ImplicitFetchBuilderBasic.java:37) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.query.results.DomainResultCreationStateImpl.lambda$visitFetches$2(DomainResultCreationStateImpl.java:408) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511) ~[na:na]
-	at org.hibernate.persister.entity.AbstractEntityPersister.visitFetchables(AbstractEntityPersister.java:6798) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.query.results.DomainResultCreationStateImpl.visitFetches(DomainResultCreationStateImpl.java:478) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.sql.results.graph.AbstractFetchParent.afterInitialize(AbstractFetchParent.java:33) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.sql.results.graph.entity.AbstractEntityResultGraphNode.afterInitialize(AbstractEntityResultGraphNode.java:100) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.persister.entity.AbstractEntityPersister.createDomainResult(AbstractEntityPersister.java:1300) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.query.results.dynamic.DynamicResultBuilderEntityCalculated.buildResult(DynamicResultBuilderEntityCalculated.java:136) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.query.results.dynamic.DynamicResultBuilderEntityCalculated.buildResult(DynamicResultBuilderEntityCalculated.java:31) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.query.results.ResultSetMappingImpl.resolve(ResultSetMappingImpl.java:222) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.resolveJdbcValuesSource(JdbcSelectExecutorStandardImpl.java:559) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.doExecuteQuery(JdbcSelectExecutorStandardImpl.java:350) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.executeQuery(JdbcSelectExecutorStandardImpl.java:166) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.list(JdbcSelectExecutorStandardImpl.java:91) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.sql.exec.spi.JdbcSelectExecutor.list(JdbcSelectExecutor.java:31) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.query.sql.internal.NativeSelectQueryPlanImpl.performList(NativeSelectQueryPlanImpl.java:105) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.query.sql.internal.NativeQueryImpl.doList(NativeQueryImpl.java:602) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.query.spi.AbstractSelectionQuery.list(AbstractSelectionQuery.java:363) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.query.Query.getResultList(Query.java:94) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.springframework.data.jpa.repository.query.JpaQueryExecution$CollectionExecution.doExecute(JpaQueryExecution.java:127) ~[spring-data-jpa-3.0.4.jar:3.0.4]
-	at org.springframework.data.jpa.repository.query.JpaQueryExecution.execute(JpaQueryExecution.java:90) ~[spring-data-jpa-3.0.4.jar:3.0.4]
-	at org.springframework.data.jpa.repository.query.AbstractJpaQuery.doExecute(AbstractJpaQuery.java:148) ~[spring-data-jpa-3.0.4.jar:3.0.4]
-	at org.springframework.data.jpa.repository.query.AbstractJpaQuery.execute(AbstractJpaQuery.java:136) ~[spring-data-jpa-3.0.4.jar:3.0.4]
-	at org.springframework.data.repository.core.support.RepositoryMethodInvoker.doInvoke(RepositoryMethodInvoker.java:136) ~[spring-data-commons-3.0.4.jar:3.0.4]
-	at org.springframework.data.repository.core.support.RepositoryMethodInvoker.invoke(RepositoryMethodInvoker.java:120) ~[spring-data-commons-3.0.4.jar:3.0.4]
-	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.doInvoke(QueryExecutorMethodInterceptor.java:164) ~[spring-data-commons-3.0.4.jar:3.0.4]
-	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.invoke(QueryExecutorMethodInterceptor.java:143) ~[spring-data-commons-3.0.4.jar:3.0.4]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.0.7.jar:6.0.7]
-	at org.springframework.data.projection.DefaultMethodInvokingMethodInterceptor.invoke(DefaultMethodInvokingMethodInterceptor.java:77) ~[spring-data-commons-3.0.4.jar:3.0.4]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.0.7.jar:6.0.7]
-	at org.springframework.transaction.interceptor.TransactionInterceptor$1.proceedWithInvocation(TransactionInterceptor.java:123) ~[spring-tx-6.0.7.jar:6.0.7]
-	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:391) ~[spring-tx-6.0.7.jar:6.0.7]
-	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119) ~[spring-tx-6.0.7.jar:6.0.7]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.0.7.jar:6.0.7]
-	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:137) ~[spring-tx-6.0.7.jar:6.0.7]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.0.7.jar:6.0.7]
-	at org.springframework.data.jpa.repository.support.CrudMethodMetadataPostProcessor$CrudMethodMetadataPopulatingMethodInterceptor.invoke(CrudMethodMetadataPostProcessor.java:134) ~[spring-data-jpa-3.0.4.jar:3.0.4]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.0.7.jar:6.0.7]
-	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:97) ~[spring-aop-6.0.7.jar:6.0.7]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.0.7.jar:6.0.7]
-	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:218) ~[spring-aop-6.0.7.jar:6.0.7]
-	at jdk.proxy2/jdk.proxy2.$Proxy130.findBooksWriteGroupAuthors(Unknown Source) ~[na:na]
-	at ru.kopylova.springcourse.DigitalLibrary.books.service.BooksService.readBooksWriteGroupAuthors(BooksService.java:165) ~[classes/:na]
-	at ru.kopylova.springcourse.DigitalLibrary.books.controllers.BooksController.readBooksWriteGroupAuthors(BooksController.java:88) ~[classes/:na]
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
-	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:343) ~[spring-aop-6.0.7.jar:6.0.7]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:196) ~[spring-aop-6.0.7.jar:6.0.7]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163) ~[spring-aop-6.0.7.jar:6.0.7]
-	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:750) ~[spring-aop-6.0.7.jar:6.0.7]
-	at org.springframework.validation.beanvalidation.MethodValidationInterceptor.invoke(MethodValidationInterceptor.java:141) ~[spring-context-6.0.7.jar:6.0.7]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.0.7.jar:6.0.7]
-	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:750) ~[spring-aop-6.0.7.jar:6.0.7]
-	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:702) ~[spring-aop-6.0.7.jar:6.0.7]
-	at ru.kopylova.springcourse.DigitalLibrary.books.controllers.BooksController$$SpringCGLIB$$0.readBooksWriteGroupAuthors(<generated>) ~[classes/:na]
+java.lang.StringIndexOutOfBoundsException: index -1, length 17
+	at java.base/java.lang.String.checkIndex(String.java:4561) ~[na:na]
+	at java.base/java.lang.AbstractStringBuilder.deleteCharAt(AbstractStringBuilder.java:970) ~[na:na]
+	at java.base/java.lang.StringBuilder.deleteCharAt(StringBuilder.java:298) ~[na:na]
+	at ru.kopylova.springcourse.DigitalLibrary.reports.book.service.BookDataService.createDTO(BookDataService.java:40) ~[classes/:na]
+	at ru.kopylova.springcourse.DigitalLibrary.reports.book.service.BookDataService.createListDTO(BookDataService.java:59) ~[classes/:na]
+	at ru.kopylova.springcourse.DigitalLibrary.reports.book.service.BookReportService.createReportAllBooks(BookReportService.java:37) ~[classes/:na]
+	at ru.kopylova.springcourse.DigitalLibrary.reports.book.controller.BooksReportController.createReportAllBooks(BooksReportController.java:29) ~[classes/:na]
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
@@ -332,35 +130,17 @@ org.postgresql.util.PSQLException: Колонки is_free не найдено в
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
 	at java.base/java.lang.Thread.run(Thread.java:833) ~[na:na]
 
-2023-06-14T11:25:30.571+03:00  WARN 15308 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2023-06-14T11:25:37.682+03:00  INFO 15308 --- [http-nio-7070-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2023-06-14T11:25:37.683+03:00  INFO 15308 --- [http-nio-7070-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
-2023-06-14T11:25:37.752+03:00 ERROR 15308 --- [http-nio-7070-exec-1] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: org.springframework.jdbc.IncorrectResultSetColumnCountException: Incorrect column count: expected 1, actual 5] with root cause
+2023-06-15T09:04:59.487+03:00  WARN 7428 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-06-15T09:05:04.067+03:00 ERROR 7428 --- [http-nio-7070-exec-1] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: java.lang.StringIndexOutOfBoundsException: index 17, length 17] with root cause
 
-org.springframework.jdbc.IncorrectResultSetColumnCountException: Incorrect column count: expected 1, actual 5
-	at org.springframework.jdbc.core.SingleColumnRowMapper.mapRow(SingleColumnRowMapper.java:108) ~[spring-jdbc-6.0.4.jar:6.0.4]
-	at org.springframework.jdbc.core.RowMapperResultSetExtractor.extractData(RowMapperResultSetExtractor.java:94) ~[spring-jdbc-6.0.4.jar:6.0.4]
-	at org.springframework.jdbc.core.RowMapperResultSetExtractor.extractData(RowMapperResultSetExtractor.java:61) ~[spring-jdbc-6.0.4.jar:6.0.4]
-	at org.springframework.jdbc.core.JdbcTemplate$1QueryStatementCallback.doInStatement(JdbcTemplate.java:453) ~[spring-jdbc-6.0.4.jar:6.0.4]
-	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:381) ~[spring-jdbc-6.0.4.jar:6.0.4]
-	at org.springframework.jdbc.core.JdbcTemplate.query(JdbcTemplate.java:465) ~[spring-jdbc-6.0.4.jar:6.0.4]
-	at org.springframework.jdbc.core.JdbcTemplate.query(JdbcTemplate.java:475) ~[spring-jdbc-6.0.4.jar:6.0.4]
-	at org.springframework.jdbc.core.JdbcTemplate.queryForList(JdbcTemplate.java:520) ~[spring-jdbc-6.0.4.jar:6.0.4]
-	at ru.kopylova.springcourse.DigitalLibrary.books.service.BooksService.readBooksWriteGroupAuthors(BooksService.java:170) ~[classes/:na]
-	at ru.kopylova.springcourse.DigitalLibrary.books.controllers.BooksController.readBooksWriteGroupAuthors(BooksController.java:88) ~[classes/:na]
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
-	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:343) ~[spring-aop-6.0.7.jar:6.0.7]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:196) ~[spring-aop-6.0.7.jar:6.0.7]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163) ~[spring-aop-6.0.7.jar:6.0.7]
-	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:750) ~[spring-aop-6.0.7.jar:6.0.7]
-	at org.springframework.validation.beanvalidation.MethodValidationInterceptor.invoke(MethodValidationInterceptor.java:141) ~[spring-context-6.0.7.jar:6.0.7]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.0.7.jar:6.0.7]
-	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:750) ~[spring-aop-6.0.7.jar:6.0.7]
-	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:702) ~[spring-aop-6.0.7.jar:6.0.7]
-	at ru.kopylova.springcourse.DigitalLibrary.books.controllers.BooksController$$SpringCGLIB$$0.readBooksWriteGroupAuthors(<generated>) ~[classes/:na]
+java.lang.StringIndexOutOfBoundsException: index 17, length 17
+	at java.base/java.lang.String.checkIndex(String.java:4561) ~[na:na]
+	at java.base/java.lang.AbstractStringBuilder.deleteCharAt(AbstractStringBuilder.java:970) ~[na:na]
+	at java.base/java.lang.StringBuilder.deleteCharAt(StringBuilder.java:298) ~[na:na]
+	at ru.kopylova.springcourse.DigitalLibrary.reports.book.service.BookDataService.createDTO(BookDataService.java:40) ~[classes/:na]
+	at ru.kopylova.springcourse.DigitalLibrary.reports.book.service.BookDataService.createListDTO(BookDataService.java:59) ~[classes/:na]
+	at ru.kopylova.springcourse.DigitalLibrary.reports.book.service.BookReportService.createReportAllBooks(BookReportService.java:37) ~[classes/:na]
+	at ru.kopylova.springcourse.DigitalLibrary.reports.book.controller.BooksReportController.createReportAllBooks(BooksReportController.java:29) ~[classes/:na]
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
@@ -412,60 +192,17 @@ org.springframework.jdbc.IncorrectResultSetColumnCountException: Incorrect colum
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
 	at java.base/java.lang.Thread.run(Thread.java:833) ~[na:na]
 
-2023-06-14T11:28:32.675+03:00  WARN 4492 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2023-06-14T11:28:38.557+03:00  INFO 4492 --- [http-nio-7070-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2023-06-14T11:28:38.558+03:00  INFO 4492 --- [http-nio-7070-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
-2023-06-14T11:28:38.689+03:00 ERROR 4492 --- [http-nio-7070-exec-1] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: org.springframework.orm.jpa.JpaSystemException: Encountered a duplicated sql alias [id] during auto-discovery of a native-sql query] with root cause
+2023-06-15T09:06:40.309+03:00  WARN 8300 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-06-15T09:06:45.858+03:00 ERROR 8300 --- [http-nio-7070-exec-2] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: java.lang.StringIndexOutOfBoundsException: index 4, length 4] with root cause
 
-org.hibernate.loader.NonUniqueDiscoveredSqlAliasException: Encountered a duplicated sql alias [id] during auto-discovery of a native-sql query
-	at org.hibernate.query.results.ResultSetMappingImpl.resolve(ResultSetMappingImpl.java:281) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.resolveJdbcValuesSource(JdbcSelectExecutorStandardImpl.java:559) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.doExecuteQuery(JdbcSelectExecutorStandardImpl.java:350) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.executeQuery(JdbcSelectExecutorStandardImpl.java:166) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.list(JdbcSelectExecutorStandardImpl.java:91) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.sql.exec.spi.JdbcSelectExecutor.list(JdbcSelectExecutor.java:31) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.query.sql.internal.NativeSelectQueryPlanImpl.performList(NativeSelectQueryPlanImpl.java:105) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.query.sql.internal.NativeQueryImpl.doList(NativeQueryImpl.java:602) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.query.spi.AbstractSelectionQuery.list(AbstractSelectionQuery.java:363) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.query.Query.getResultList(Query.java:94) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.springframework.data.jpa.repository.query.JpaQueryExecution$CollectionExecution.doExecute(JpaQueryExecution.java:127) ~[spring-data-jpa-3.0.4.jar:3.0.4]
-	at org.springframework.data.jpa.repository.query.JpaQueryExecution.execute(JpaQueryExecution.java:90) ~[spring-data-jpa-3.0.4.jar:3.0.4]
-	at org.springframework.data.jpa.repository.query.AbstractJpaQuery.doExecute(AbstractJpaQuery.java:148) ~[spring-data-jpa-3.0.4.jar:3.0.4]
-	at org.springframework.data.jpa.repository.query.AbstractJpaQuery.execute(AbstractJpaQuery.java:136) ~[spring-data-jpa-3.0.4.jar:3.0.4]
-	at org.springframework.data.repository.core.support.RepositoryMethodInvoker.doInvoke(RepositoryMethodInvoker.java:136) ~[spring-data-commons-3.0.4.jar:3.0.4]
-	at org.springframework.data.repository.core.support.RepositoryMethodInvoker.invoke(RepositoryMethodInvoker.java:120) ~[spring-data-commons-3.0.4.jar:3.0.4]
-	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.doInvoke(QueryExecutorMethodInterceptor.java:164) ~[spring-data-commons-3.0.4.jar:3.0.4]
-	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.invoke(QueryExecutorMethodInterceptor.java:143) ~[spring-data-commons-3.0.4.jar:3.0.4]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.0.7.jar:6.0.7]
-	at org.springframework.data.projection.DefaultMethodInvokingMethodInterceptor.invoke(DefaultMethodInvokingMethodInterceptor.java:77) ~[spring-data-commons-3.0.4.jar:3.0.4]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.0.7.jar:6.0.7]
-	at org.springframework.transaction.interceptor.TransactionInterceptor$1.proceedWithInvocation(TransactionInterceptor.java:123) ~[spring-tx-6.0.7.jar:6.0.7]
-	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:391) ~[spring-tx-6.0.7.jar:6.0.7]
-	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119) ~[spring-tx-6.0.7.jar:6.0.7]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.0.7.jar:6.0.7]
-	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:137) ~[spring-tx-6.0.7.jar:6.0.7]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.0.7.jar:6.0.7]
-	at org.springframework.data.jpa.repository.support.CrudMethodMetadataPostProcessor$CrudMethodMetadataPopulatingMethodInterceptor.invoke(CrudMethodMetadataPostProcessor.java:134) ~[spring-data-jpa-3.0.4.jar:3.0.4]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.0.7.jar:6.0.7]
-	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:97) ~[spring-aop-6.0.7.jar:6.0.7]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.0.7.jar:6.0.7]
-	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:218) ~[spring-aop-6.0.7.jar:6.0.7]
-	at jdk.proxy2/jdk.proxy2.$Proxy130.findBooksWriteGroupAuthors(Unknown Source) ~[na:na]
-	at ru.kopylova.springcourse.DigitalLibrary.books.service.BooksService.readBooksWriteGroupAuthors(BooksService.java:165) ~[classes/:na]
-	at ru.kopylova.springcourse.DigitalLibrary.books.controllers.BooksController.readBooksWriteGroupAuthors(BooksController.java:88) ~[classes/:na]
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
-	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:343) ~[spring-aop-6.0.7.jar:6.0.7]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:196) ~[spring-aop-6.0.7.jar:6.0.7]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163) ~[spring-aop-6.0.7.jar:6.0.7]
-	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:750) ~[spring-aop-6.0.7.jar:6.0.7]
-	at org.springframework.validation.beanvalidation.MethodValidationInterceptor.invoke(MethodValidationInterceptor.java:141) ~[spring-context-6.0.7.jar:6.0.7]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.0.7.jar:6.0.7]
-	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:750) ~[spring-aop-6.0.7.jar:6.0.7]
-	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:702) ~[spring-aop-6.0.7.jar:6.0.7]
-	at ru.kopylova.springcourse.DigitalLibrary.books.controllers.BooksController$$SpringCGLIB$$0.readBooksWriteGroupAuthors(<generated>) ~[classes/:na]
+java.lang.StringIndexOutOfBoundsException: index 4, length 4
+	at java.base/java.lang.String.checkIndex(String.java:4561) ~[na:na]
+	at java.base/java.lang.AbstractStringBuilder.deleteCharAt(AbstractStringBuilder.java:970) ~[na:na]
+	at java.base/java.lang.StringBuilder.deleteCharAt(StringBuilder.java:298) ~[na:na]
+	at ru.kopylova.springcourse.DigitalLibrary.reports.book.service.BookDataService.createDTO(BookDataService.java:35) ~[classes/:na]
+	at ru.kopylova.springcourse.DigitalLibrary.reports.book.service.BookDataService.createListDTO(BookDataService.java:59) ~[classes/:na]
+	at ru.kopylova.springcourse.DigitalLibrary.reports.book.service.BookReportService.createReportAllBooks(BookReportService.java:37) ~[classes/:na]
+	at ru.kopylova.springcourse.DigitalLibrary.reports.book.controller.BooksReportController.createReportAllBooks(BooksReportController.java:29) ~[classes/:na]
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
@@ -517,42 +254,16 @@ org.hibernate.loader.NonUniqueDiscoveredSqlAliasException: Encountered a duplica
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
 	at java.base/java.lang.Thread.run(Thread.java:833) ~[na:na]
 
-2023-06-14T11:30:27.908+03:00  WARN 13212 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2023-06-14T11:30:30.533+03:00  INFO 13212 --- [http-nio-7070-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2023-06-14T11:30:30.534+03:00  INFO 13212 --- [http-nio-7070-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
-2023-06-14T11:33:41.930+03:00  WARN 14052 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2023-06-14T11:33:44.970+03:00  INFO 14052 --- [http-nio-7070-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2023-06-14T11:33:44.971+03:00  INFO 14052 --- [http-nio-7070-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
-2023-06-14T11:35:21.810+03:00  WARN 5232 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2023-06-14T11:35:24.126+03:00  INFO 5232 --- [http-nio-7070-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2023-06-14T11:35:24.128+03:00  INFO 5232 --- [http-nio-7070-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
-2023-06-14T11:44:42.631+03:00  WARN 8716 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2023-06-14T11:44:52.979+03:00  WARN 14260 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2023-06-14T11:44:55.887+03:00  INFO 14260 --- [http-nio-7070-exec-3] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2023-06-14T11:44:55.888+03:00  INFO 14260 --- [http-nio-7070-exec-3] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
-2023-06-14T13:31:20.004+03:00  WARN 11944 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2023-06-14T13:32:49.063+03:00  INFO 11944 --- [http-nio-7070-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2023-06-14T13:32:49.066+03:00  INFO 11944 --- [http-nio-7070-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
-2023-06-14T13:32:49.231+03:00 ERROR 11944 --- [http-nio-7070-exec-1] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: java.lang.NullPointerException: Cannot invoke "ru.kopylova.springcourse.DigitalLibrary.readers.models.entity.Reader.getId()" because "entity" is null] with root cause
+2023-06-15T09:11:59.682+03:00  WARN 10112 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-06-15T09:12:03.385+03:00 ERROR 10112 --- [http-nio-7070-exec-2] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: java.lang.StringIndexOutOfBoundsException: String index out of range: -1] with root cause
 
-java.lang.NullPointerException: Cannot invoke "ru.kopylova.springcourse.DigitalLibrary.readers.models.entity.Reader.getId()" because "entity" is null
-	at ru.kopylova.springcourse.DigitalLibrary.readers.mapper.ReaderMapper.mapperToDTOEasy(ReaderMapper.java:62) ~[classes/:na]
-	at ru.kopylova.springcourse.DigitalLibrary.books.mapper.BookMapper.mapperToDTORich(BookMapper.java:66) ~[classes/:na]
-	at ru.kopylova.springcourse.DigitalLibrary.books.service.BooksService.readOneById(BooksService.java:116) ~[classes/:na]
-	at ru.kopylova.springcourse.DigitalLibrary.books.controllers.BooksController.readOneBookById(BooksController.java:63) ~[classes/:na]
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
-	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:343) ~[spring-aop-6.0.7.jar:6.0.7]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:196) ~[spring-aop-6.0.7.jar:6.0.7]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163) ~[spring-aop-6.0.7.jar:6.0.7]
-	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:750) ~[spring-aop-6.0.7.jar:6.0.7]
-	at org.springframework.validation.beanvalidation.MethodValidationInterceptor.invoke(MethodValidationInterceptor.java:141) ~[spring-context-6.0.7.jar:6.0.7]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.0.7.jar:6.0.7]
-	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:750) ~[spring-aop-6.0.7.jar:6.0.7]
-	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:702) ~[spring-aop-6.0.7.jar:6.0.7]
-	at ru.kopylova.springcourse.DigitalLibrary.books.controllers.BooksController$$SpringCGLIB$$0.readOneBookById(<generated>) ~[classes/:na]
+java.lang.StringIndexOutOfBoundsException: String index out of range: -1
+	at java.base/java.lang.AbstractStringBuilder.setLength(AbstractStringBuilder.java:319) ~[na:na]
+	at java.base/java.lang.StringBuilder.setLength(StringBuilder.java:91) ~[na:na]
+	at ru.kopylova.springcourse.DigitalLibrary.reports.book.service.BookDataService.createDTO(BookDataService.java:27) ~[classes/:na]
+	at ru.kopylova.springcourse.DigitalLibrary.reports.book.service.BookDataService.createListDTO(BookDataService.java:60) ~[classes/:na]
+	at ru.kopylova.springcourse.DigitalLibrary.reports.book.service.BookReportService.createReportAllBooks(BookReportService.java:37) ~[classes/:na]
+	at ru.kopylova.springcourse.DigitalLibrary.reports.book.controller.BooksReportController.createReportAllBooks(BooksReportController.java:29) ~[classes/:na]
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
@@ -604,84 +315,21 @@ java.lang.NullPointerException: Cannot invoke "ru.kopylova.springcourse.DigitalL
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
 	at java.base/java.lang.Thread.run(Thread.java:833) ~[na:na]
 
-2023-06-14T13:33:09.485+03:00  WARN 11944 --- [http-nio-7070-exec-5] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'GET' is not supported]
-2023-06-14T13:33:27.837+03:00 ERROR 11944 --- [http-nio-7070-exec-6] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: java.lang.NullPointerException: Cannot invoke "ru.kopylova.springcourse.DigitalLibrary.readers.models.entity.Reader.getId()" because "entity" is null] with root cause
-
-java.lang.NullPointerException: Cannot invoke "ru.kopylova.springcourse.DigitalLibrary.readers.models.entity.Reader.getId()" because "entity" is null
-	at ru.kopylova.springcourse.DigitalLibrary.readers.mapper.ReaderMapper.mapperToDTOEasy(ReaderMapper.java:62) ~[classes/:na]
-	at ru.kopylova.springcourse.DigitalLibrary.books.mapper.BookMapper.mapperToDTORich(BookMapper.java:66) ~[classes/:na]
-	at ru.kopylova.springcourse.DigitalLibrary.books.service.BooksService.lambda$readBooksBusy$5(BooksService.java:159) ~[classes/:na]
-	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197) ~[na:na]
-	at java.base/java.util.AbstractList$RandomAccessSpliterator.forEachRemaining(AbstractList.java:720) ~[na:na]
-	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509) ~[na:na]
-	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499) ~[na:na]
-	at java.base/java.util.stream.ReduceOps$ReduceOp.evaluateSequential(ReduceOps.java:921) ~[na:na]
-	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234) ~[na:na]
-	at java.base/java.util.stream.ReferencePipeline.collect(ReferencePipeline.java:682) ~[na:na]
-	at ru.kopylova.springcourse.DigitalLibrary.books.service.BooksService.readBooksBusy(BooksService.java:159) ~[classes/:na]
-	at ru.kopylova.springcourse.DigitalLibrary.books.controllers.BooksController.readBooksBusy(BooksController.java:83) ~[classes/:na]
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
-	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:343) ~[spring-aop-6.0.7.jar:6.0.7]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:196) ~[spring-aop-6.0.7.jar:6.0.7]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163) ~[spring-aop-6.0.7.jar:6.0.7]
-	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:750) ~[spring-aop-6.0.7.jar:6.0.7]
-	at org.springframework.validation.beanvalidation.MethodValidationInterceptor.invoke(MethodValidationInterceptor.java:141) ~[spring-context-6.0.7.jar:6.0.7]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.0.7.jar:6.0.7]
-	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:750) ~[spring-aop-6.0.7.jar:6.0.7]
-	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:702) ~[spring-aop-6.0.7.jar:6.0.7]
-	at ru.kopylova.springcourse.DigitalLibrary.books.controllers.BooksController$$SpringCGLIB$$0.readBooksBusy(<generated>) ~[classes/:na]
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
-	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:207) ~[spring-web-6.0.7.jar:6.0.7]
-	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:152) ~[spring-web-6.0.7.jar:6.0.7]
-	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118) ~[spring-webmvc-6.0.7.jar:6.0.7]
-	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:884) ~[spring-webmvc-6.0.7.jar:6.0.7]
-	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:797) ~[spring-webmvc-6.0.7.jar:6.0.7]
-	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-6.0.7.jar:6.0.7]
-	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1081) ~[spring-webmvc-6.0.7.jar:6.0.7]
-	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:974) ~[spring-webmvc-6.0.7.jar:6.0.7]
-	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1011) ~[spring-webmvc-6.0.7.jar:6.0.7]
-	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:903) ~[spring-webmvc-6.0.7.jar:6.0.7]
-	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:537) ~[tomcat-embed-core-10.1.7.jar:6.0]
-	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885) ~[spring-webmvc-6.0.7.jar:6.0.7]
-	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:631) ~[tomcat-embed-core-10.1.7.jar:6.0]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:205) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
-	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53) ~[tomcat-embed-websocket-10.1.7.jar:10.1.7]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
-	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-6.0.7.jar:6.0.7]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.0.7.jar:6.0.7]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
-	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-6.0.7.jar:6.0.7]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.0.7.jar:6.0.7]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
-	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-6.0.7.jar:6.0.7]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.0.7.jar:6.0.7]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
-	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:166) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
-	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
-	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:493) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
-	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
-	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
-	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
-	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:341) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
-	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:390) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
-	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
-	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:894) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
-	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
-	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
-	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
-	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
-	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
-	at java.base/java.lang.Thread.run(Thread.java:833) ~[na:na]
-
-2023-06-14T13:42:21.318+03:00  WARN 8620 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-06-15T09:12:33.886+03:00  WARN 7104 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-06-15T09:13:18.725+03:00  WARN 5412 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-06-15T09:15:02.622+03:00  WARN 16052 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-06-15T09:17:29.076+03:00  WARN 6948 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-06-15T09:18:33.580+03:00  WARN 4848 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-06-15T09:19:43.621+03:00  WARN 6908 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-06-15T09:20:38.879+03:00  WARN 10404 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-06-15T09:21:23.630+03:00  WARN 16124 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-06-15T09:22:44.278+03:00  WARN 5720 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-06-15T09:27:24.527+03:00  WARN 13564 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-06-15T09:28:08.399+03:00  WARN 10764 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-06-15T09:30:50.773+03:00  WARN 4880 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-06-15T09:36:22.910+03:00  WARN 15008 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-06-15T09:38:59.899+03:00  WARN 2328 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-06-15T09:40:33.269+03:00  WARN 9180 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-06-15T09:43:07.851+03:00  WARN 5216 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-06-15T09:59:36.113+03:00  WARN 15052 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-06-15T10:02:13.925+03:00  WARN 6272 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning

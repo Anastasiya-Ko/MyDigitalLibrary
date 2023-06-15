@@ -16,11 +16,7 @@ public class BookDTOReport {
 
     String yearOfPublication;
 
-    String authorId;
-
     String authorName;
-
-    String readerId;
 
     String readerFirstName;
 

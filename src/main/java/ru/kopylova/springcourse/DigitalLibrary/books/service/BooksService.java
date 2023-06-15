@@ -103,7 +103,7 @@ public class BooksService {
         getById(bookId);
         readersService.readOneById(readerId);
         jdbcTemplate.update("UPDATE book SET reader_id=?, is_free=false WHERE id=?", readerId, bookId);
-        return String.format("Книга с id=%d выдана читателю с фамилией %s", bookId,
+        return String.format("Книга с номером = %d выдана читателю с фамилией %s", bookId,
                 readersService.readOneById(readerId).getLastName());
 
     }
@@ -134,7 +134,7 @@ public class BooksService {
 
     public Page<BookDTORich> readBooksByReaderOwnerId(Reader readerOwner, Pageable pageable) {
 
-        String ex = String.format(("У читателя с id = %s нет книг"), readerOwner.getId());
+        String ex = String.format(("У читателя с номером = %s нет книг"), readerOwner.getId());
 
         Page<Book> entityPage = booksRepository.findBooksByReaderOwner(readerOwner, pageable);
 
@@ -172,7 +172,7 @@ public class BooksService {
 
         booksRepository.deleteById(id);
 
-        return String.format("Книга с id=%d успешно удалена", id);
+        return String.format("Книга с номером = %d успешно удалена", id);
     }
 
 
@@ -180,7 +180,7 @@ public class BooksService {
      * Метод внутреннего пользования для получения книги(сущности) по её идентификатору
      */
     private Book getById(Long id) {
-        String ex = String.format(("Книга с ID = %d не найдена"), id);
+        String ex = String.format(("Книга с номером = %d не найдена"), id);
         return booksRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, ex));
     }
 
