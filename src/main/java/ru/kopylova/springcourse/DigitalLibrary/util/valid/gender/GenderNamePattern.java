@@ -1,4 +1,4 @@
-package ru.kopylova.springcourse.DigitalLibrary.util.valid.genger;
+package ru.kopylova.springcourse.DigitalLibrary.util.valid.gender;
 
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
