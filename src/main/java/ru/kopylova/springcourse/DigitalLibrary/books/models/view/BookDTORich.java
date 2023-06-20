@@ -25,9 +25,8 @@ public class BookDTORich {
     @Size(min = 1, max = 100, message = "Книга должна иметь название от 1 до 50 букв")
     String title;
 
-    @NotBlank(message = "У книги должен быть год издания")
-    //TODO здесь должна быть валидация для года
-    String yearOfPublication;
+    @NotNull(message = "У книги должен быть год издания")
+    Integer yearOfPublication;
 
     @NotNull(message = "У книги должен быть автор, выберите из таблицы Автор")
     List<AuthorDTO> authorsOwner;

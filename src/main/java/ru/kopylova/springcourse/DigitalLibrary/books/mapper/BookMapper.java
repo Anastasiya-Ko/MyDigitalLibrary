@@ -12,6 +12,7 @@ import ru.kopylova.springcourse.DigitalLibrary.books.models.view.BookDTORich;
 import ru.kopylova.springcourse.DigitalLibrary.readers.mapper.ReaderMapper;
 import ru.kopylova.springcourse.DigitalLibrary.readers.service.ReadersService;
 
+import java.time.LocalDate;
 import java.util.stream.Collectors;
 
 /**
@@ -45,10 +46,12 @@ public class BookMapper {
                 .collect(Collectors.toList()));
 
         entity.setTitle(view.getTitle());
-        entity.setYearOfPublication(view.getYearOfPublication());
+
+        if (view.getYearOfPublication() <= LocalDate.now().getYear()) {
+            entity.setYearOfPublication(view.getYearOfPublication());
+        } else throw new RuntimeException("Год издания книги должен быть меньше или равен текущему году");
 
         return entity;
-
     }
 
     public BookDTORich mapperToDTORich(Book entity, boolean isWrite) {

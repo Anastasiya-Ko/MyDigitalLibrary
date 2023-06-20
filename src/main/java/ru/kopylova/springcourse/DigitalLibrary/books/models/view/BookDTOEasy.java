@@ -22,9 +22,8 @@ public class BookDTOEasy {
     @Size(min = 1, max = 100, message = "Книга должна иметь название от 1 до 50 букв")
     String title;
 
-    //TODO как валидировать стринг, как-будто это дата :) чтобы невозможно было добавть книгу, написанную в будущем?
-    @NotBlank(message = "У книги должен быть год издания")
-    String yearOfPublication;
+    @NotNull(message = "У книги должен быть год издания")
+    Integer yearOfPublication;
 
     @NotNull(message = "У книги должен быть автор, выберите из таблицы Автор")
     List<AuthorDTO> authorsOwner;

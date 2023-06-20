@@ -39,7 +39,7 @@ public class Book {
 
 
     @Column(name = "year_of_publication")
-    String yearOfPublication;
+    Integer yearOfPublication;
 
     /**
      * Хранит статус книги: свободна - true, "на руках" - false
