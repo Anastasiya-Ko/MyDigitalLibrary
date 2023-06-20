@@ -16,7 +16,7 @@ import java.util.*;
 public class ReaderDataService {
     ReadersRepository readersRepository;
 
-    public ReaderDTOReport createDTO(Reader entity) {
+    private ReaderDTOReport createDTO(Reader entity) {
 
         ReaderDTOReport view = new ReaderDTOReport();
 
@@ -28,7 +28,7 @@ public class ReaderDataService {
         return view;
     }
 
-    public List<ReaderDTOReport> createListDTO() {
+    private List<ReaderDTOReport> createListDTO() {
         List<Reader> listEntity = readersRepository.findAll();
         List<ReaderDTOReport> listView = new ArrayList<>();
         listEntity.sort(Comparator.comparing(Reader::getAge));

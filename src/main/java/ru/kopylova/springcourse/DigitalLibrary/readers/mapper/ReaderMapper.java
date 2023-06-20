@@ -1,6 +1,7 @@
 package ru.kopylova.springcourse.DigitalLibrary.readers.mapper;
 
 import org.springframework.stereotype.Service;
+import ru.kopylova.springcourse.DigitalLibrary.readers.models.entity.Gender;
 import ru.kopylova.springcourse.DigitalLibrary.readers.models.entity.Reader;
 import ru.kopylova.springcourse.DigitalLibrary.readers.models.view.ReaderDTOEasy;
 import ru.kopylova.springcourse.DigitalLibrary.readers.models.view.ReaderDTORich;
@@ -15,7 +16,7 @@ public class ReaderMapper {
         }
         entity.setFirstName(view.getFirstName());
         entity.setLastName(view.getLastName());
-        entity.setGender(view.getGender());
+        entity.setGender(Gender.valueOf(view.getGender()));
         entity.setBirthday(view.getBirthday());
         entity.setEmail(view.getEmail());
         entity.setAge(view.getAge());
@@ -33,7 +34,7 @@ public class ReaderMapper {
         }
         view.setFirstName(entity.getFirstName());
         view.setLastName(entity.getLastName());
-        view.setGender(entity.getGender());
+        view.setGender(String.valueOf(entity.getGender()));
         view.setBirthday(entity.getBirthday());
         view.setEmail(entity.getEmail());
         view.setAge(entity.getAge());

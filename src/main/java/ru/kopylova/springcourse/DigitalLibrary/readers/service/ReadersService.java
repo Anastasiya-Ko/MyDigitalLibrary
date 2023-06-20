@@ -44,24 +44,19 @@ public class ReadersService {
 
     public String deleteReaderById(Long id) {
 
-        getById(id);
-
+        Reader entity = getById(id);
         readersRepository.deleteById(id);
-
-        return String.format("Читатель с номером = %d успешно удалён", id);
+        return String.format("Читатель с фамилией = %s успешно удалён", entity.getLastName());
     }
 
     public Page<ReaderDTORich> readAllReader(Pageable pageable) {
         Page<Reader> entityPage = readersRepository.findAll(pageable);
-
         return entityPage.map(entity -> readerMapper.mapperToDTORich(entity, true));
     }
-
 
     public ReaderDTORich readOneById(Long id) {
         return readerMapper.mapperToDTORich(getById(id), true);
     }
-
 
     public Page<ReaderDTORich> readByLastName(String lastName, Pageable pageable) {
 

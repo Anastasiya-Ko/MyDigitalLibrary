@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.stereotype.Service;
 import ru.kopylova.springcourse.DigitalLibrary.authors.mapper.AuthorMapper;
+import ru.kopylova.springcourse.DigitalLibrary.authors.service.AuthorService;
 import ru.kopylova.springcourse.DigitalLibrary.books.models.entity.Book;
 import ru.kopylova.springcourse.DigitalLibrary.books.models.view.BookDTOEasy;
 import ru.kopylova.springcourse.DigitalLibrary.books.models.view.BookDTORich;
@@ -25,6 +26,8 @@ import java.util.stream.Collectors;
 public class BookMapper {
 
     private AuthorMapper authorMapper;
+
+    private AuthorService authorService;
 
     private ReadersService readersService;
 
@@ -59,15 +62,10 @@ public class BookMapper {
                 .stream().map(author -> authorMapper.mapperToDTO(author, true))
                 .collect(Collectors.toList()));
 
-
-        if (entity.getReaderOwner() != null) {
-            readersService.readOneById(entity.getReaderOwner().getId());
-            view.setReaderDTOEasy(readerMapper.mapperToDTOEasy(entity.getReaderOwner(), true));
-        }
-
+        if(entity.getReaderOwner() != null)
+        view.setReaderDTOEasy(readerMapper.mapperToDTOEasy(entity.getReaderOwner(), true));
 
         view.setBookIsFree(entity.getReaderOwner() == null);
-
         view.setTitle(entity.getTitle());
         view.setYearOfPublication(entity.getYearOfPublication());
 
@@ -80,6 +78,7 @@ public class BookMapper {
         if (isWrite) {
             view.setId(entity.getId());
         }
+
 
         view.setAuthorsOwner(entity.getAuthors()
                 .stream().map(author -> authorMapper.mapperToDTO(author, true))

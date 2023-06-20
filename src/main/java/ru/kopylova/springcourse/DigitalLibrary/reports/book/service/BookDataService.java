@@ -19,15 +19,14 @@ public class BookDataService {
 
     BooksRepository booksRepository;
 
-    public BookDTOReport createDTO(Book entity) {
-
+    private BookDTOReport createDTO(Book entity) {
 
         BookDTOReport view = new BookDTOReport();
         StringBuilder tempNameAuthor =new StringBuilder();
 
         view.setBookId(entity.getId().toString());
         view.setTitle(entity.getTitle());
-        view.setYearOfPublication("" + entity.getYearOfPublication().getYear());
+        view.setYearOfPublication("" + entity.getYearOfPublication());
 
         for (int i = 0; i < entity.getAuthors().size(); i++) {
             tempNameAuthor.append(entity.getAuthors().get(i).getName()+"\n");

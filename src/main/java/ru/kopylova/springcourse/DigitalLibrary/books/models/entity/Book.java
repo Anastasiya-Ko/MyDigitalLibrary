@@ -8,7 +8,6 @@ import lombok.experimental.FieldDefaults;
 import ru.kopylova.springcourse.DigitalLibrary.authors.models.entity.Author;
 import ru.kopylova.springcourse.DigitalLibrary.readers.models.entity.Reader;
 
-import java.time.LocalDate;
 import java.util.List;
 
 //TODO вычленить из даты публикации только год
@@ -40,7 +39,7 @@ public class Book {
 
 
     @Column(name = "year_of_publication")
-    LocalDate yearOfPublication;
+    String yearOfPublication;
 
     /**
      * Хранит статус книги: свободна - true, "на руках" - false

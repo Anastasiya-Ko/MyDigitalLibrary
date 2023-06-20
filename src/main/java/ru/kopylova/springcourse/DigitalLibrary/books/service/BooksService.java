@@ -22,8 +22,6 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-//TODO установить плагин для проверки кода
-//TODO дореализовывать метод пакетного обновления
 @Service
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
@@ -37,55 +35,27 @@ public class BooksService {
 
     public BookDTOEasy createBook(BookDTOEasy view) {
 
-        Book entity = new Book();
-        if (!view.getAuthorsOwner().isEmpty()) {
-            availableAuthors(view);
-            entity = bookMapper.mapperToEntity(view, false);
-            entity.setBookIsFree(true);
-            booksRepository.save(entity);
+        availableAuthors(view);
+        Book entity = bookMapper.mapperToEntity(view, false);
+        entity.setBookIsFree(true);
+        booksRepository.save(entity);
 
-        }
         return bookMapper.mapperToDTOEasy(entity, true);
+
     }
 
-//    public String createBooksWithBathUpdate() {
-//        List<Book> books = new ArrayList<>();
-//        jdbcTemplate.batchUpdate("INSERT INTO book VALUES (?,?,?,?,?,?)",
-//                new BatchPreparedStatementSetter() {
-//
-//            @Override
-//            public void setValues(PreparedStatement ps, int i) throws SQLException {
-//                ps.setLong(1, books.get(i).getId());
-//                ps.setObject(2, books.get(i).getReaderOwner());
-//                ps.setString(3, books.get(i).getTitle());
-//                ps.setObject(4, books.get(i).getAuthorOwner());
-//                ps.setDate(5, Date.valueOf(books.get(i).getYearOfPublication()));
-//                ps.setBoolean(6, books.get(i).isBookIsFree());
-//            }
-//
-//            @Override
-//            public int getBatchSize() {
-//                return books.size();
-//            }
-//        });
-//        return "Книги успешно добавлены";
-//    }
 
     public BookDTOEasy updateBook(BookDTOEasy view) {
 
         Book updateEntity = getById(view.getId());
-        if (!view.getAuthorsOwner().isEmpty()) {
-            availableAuthors(view);
-            updateEntity = bookMapper.mapperToEntity(view, true);
-            booksRepository.save(updateEntity);
-        }
-
+        availableAuthors(view);
+        updateEntity = bookMapper.mapperToEntity(view, true);
+        booksRepository.save(updateEntity);
         return bookMapper.mapperToDTOEasy(updateEntity, true);
     }
 
     /**
      * Метод для освобождения книги, при возвращении её в библиотеку
-     *
      * @param bookId возвращаемой книги
      */
     public String release(Long bookId) {
@@ -95,15 +65,15 @@ public class BooksService {
 
     /**
      * Метод для назначения книги читателю
-     * @param bookId назначаемая книга
+     * @param bookId   назначаемая книга
      * @param readerId читатель, берущий книгу
      * @return информационное сообщение
      */
     public String assignBookByReader(Long bookId, Long readerId) {
-        getById(bookId);
+        Book entityBook = getById(bookId);
         readersService.readOneById(readerId);
         jdbcTemplate.update("UPDATE book SET reader_id=?, is_free=false WHERE id=?", readerId, bookId);
-        return String.format("Книга с номером = %d выдана читателю с фамилией %s", bookId,
+        return String.format("Книга с названием = %s выдана читателю с фамилией %s", entityBook.getTitle(),
                 readersService.readOneById(readerId).getLastName());
 
     }
@@ -119,7 +89,7 @@ public class BooksService {
 
     public Page<BookDTOEasy> readBooksByTitleStartingWith(String title, Pageable pageable) {
 
-        String ex = String.format(("Книга, начинающаяся на = %s не найдена"), title);
+        String ex = String.format(("Книга, с названием начинающимся на - %s  не найдена"), title);
 
         Page<Book> entityPage = booksRepository.
                 findBooksByTitleIgnoreCaseStartingWithOrderByYearOfPublicationAsc(title, pageable);
@@ -134,7 +104,7 @@ public class BooksService {
 
     public Page<BookDTORich> readBooksByReaderOwnerId(Reader readerOwner, Pageable pageable) {
 
-        String ex = String.format(("У читателя с номером = %s нет книг"), readerOwner.getId());
+        String ex = String.format(("У читателя с фамилией = %s нет книг"), readerOwner.getLastName());
 
         Page<Book> entityPage = booksRepository.findBooksByReaderOwner(readerOwner, pageable);
 
@@ -168,11 +138,9 @@ public class BooksService {
     }
 
     public String deleteBookById(Long id) {
-        getById(id);
-
+        Book entity = getById(id);
         booksRepository.deleteById(id);
-
-        return String.format("Книга с номером = %d успешно удалена", id);
+        return String.format("Книга с названием = %s успешно удалена", entity.getTitle());
     }
 
 
@@ -186,13 +154,10 @@ public class BooksService {
 
 
     /**
-    * Метод внутреннего пользования для проверки наличия автора в бд
-    */
+     * Метод внутреннего пользования для проверки наличия автора в бд
+     */
     private void availableAuthors(BookDTOEasy view) {
-        view.getAuthorsOwner()
-                .stream()
-                .map(a -> authorService.readOneById(a.getId()))
-                .toList();
+        view.getAuthorsOwner().forEach(a -> authorService.readOneById(a.getId()));
     }
 
 

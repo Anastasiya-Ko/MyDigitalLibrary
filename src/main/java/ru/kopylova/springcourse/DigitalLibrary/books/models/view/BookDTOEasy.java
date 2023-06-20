@@ -1,14 +1,12 @@
 package ru.kopylova.springcourse.DigitalLibrary.books.models.view;
 
-import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.PastOrPresent;
 import jakarta.validation.constraints.Size;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import ru.kopylova.springcourse.DigitalLibrary.authors.models.view.AuthorDTO;
 
-import java.time.LocalDate;
 import java.util.List;
 
 @Getter
@@ -20,13 +18,13 @@ public class BookDTOEasy {
 
     Long id;
 
-    @NotEmpty(message = "У книги должно быть название!")
+    @NotBlank(message = "У книги должно быть название!")
     @Size(min = 1, max = 100, message = "Книга должна иметь название от 1 до 50 букв")
     String title;
 
-    @NotNull(message = "У книги должен быть год издания")
-    @PastOrPresent(message = "Дата издания книги должна содержать прошедшую дату или сегодняшнее число")
-    LocalDate yearOfPublication;
+    //TODO как валидировать стринг, как-будто это дата :) чтобы невозможно было добавть книгу, написанную в будущем?
+    @NotBlank(message = "У книги должен быть год издания")
+    String yearOfPublication;
 
     @NotNull(message = "У книги должен быть автор, выберите из таблицы Автор")
     List<AuthorDTO> authorsOwner;

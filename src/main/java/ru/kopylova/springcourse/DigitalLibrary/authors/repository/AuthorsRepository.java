@@ -8,13 +8,10 @@ import java.util.List;
 
 public interface AuthorsRepository extends JpaRepository<Author, Long> {
 
-
-
-
     @Query(value = """
                 SELECT DISTINCT a.id, a.name
-                FROM author a LEFT JOIN book b ON b.author_id = a.id
-                WHERE b.title IS NULL \s
+                FROM author a LEFT JOIN book_author ba ON ba.author_id = a.id
+                WHERE ba.book_id IS NULL \s
                 ORDER BY a.id""",
             nativeQuery = true
     )

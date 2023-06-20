@@ -1,4 +1,4 @@
-package ru.kopylova.springcourse.DigitalLibrary.util.valid;
+package ru.kopylova.springcourse.DigitalLibrary.util.valid.capitalLetter;
 
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;

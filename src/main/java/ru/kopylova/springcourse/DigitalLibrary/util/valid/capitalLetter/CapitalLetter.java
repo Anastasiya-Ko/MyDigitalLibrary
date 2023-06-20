@@ -1,4 +1,4 @@
-package ru.kopylova.springcourse.DigitalLibrary.util.valid;
+package ru.kopylova.springcourse.DigitalLibrary.util.valid.capitalLetter;
 
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
@@ -15,7 +15,7 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 @Constraint(validatedBy = CapitalLetterValidator.class)
 @Documented
 public @interface CapitalLetter {
-    String message() default "поле должно быть с заглавной буквы";
+    String message() default "Поле должно быть с заглавной буквы";
 
     Class<?>[] groups() default {};
 
