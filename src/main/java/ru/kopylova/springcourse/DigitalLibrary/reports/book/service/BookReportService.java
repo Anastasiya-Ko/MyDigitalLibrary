@@ -99,7 +99,7 @@ public class BookReportService {
 
             Row rowAllBooks = sheet.createRow(i+1);
 
-            initCell(rowAllBooks.createCell(0),bookDto.getBookId(), styles.get("basic-center"));
+            initCell(rowAllBooks.createCell(0), "" + (i+1), styles.get("basic-center"));
             initCell(rowAllBooks.createCell(1), bookDto.getTitle(), styles.get("basic-center"));
             initCell(rowAllBooks.createCell(2), bookDto.getYearOfPublication(), styles.get("basic-center"));
             initCell(rowAllBooks.createCell(3), bookDto.getAuthorName(), styles.get("basic-center"));
