@@ -47,8 +47,8 @@ REST API на Spring Boot для работы Электронной библи�
 11. Проект подключен к системе контроля версий GitHub.
 
 Примеры отчётов, формирующихся в приложении:
-Отчёт по возрастным группам читателей: [readersGroupAge.xlsx](https://github.com/Anastasiya-Ko/MyDigitalLibrary/files/11798900/readersGroupAge.xlsx)
-Отчёт по всем книгам библиотеки: [allBooks.xlsx](https://github.com/Anastasiya-Ko/MyDigitalLibrary/files/11799057/allBooks.xlsx)
+1. Отчёт по возрастным группам читателей: [readersGroupAge.xlsx](https://github.com/Anastasiya-Ko/MyDigitalLibrary/files/11798900/readersGroupAge.xlsx)
+2. Отчёт по всем книгам библиотеки: [allBooks.xlsx](https://github.com/Anastasiya-Ko/MyDigitalLibrary/files/11799057/allBooks.xlsx)
 
 
 
