@@ -10,7 +10,6 @@ import ru.kopylova.springcourse.DigitalLibrary.readers.models.entity.Reader;
 
 import java.util.List;
 
-//TODO вычленить из даты публикации только год
 @Getter
 @Setter
 @FieldDefaults(level = AccessLevel.PRIVATE)
@@ -46,6 +45,5 @@ public class Book {
      */
     @Column(name = "is_free")
     boolean bookIsFree;
-
     
 }
