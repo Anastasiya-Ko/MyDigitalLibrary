@@ -73,7 +73,7 @@ public class BooksService {
         Book entityBook = getById(bookId);
         readersService.readOneById(readerId);
         jdbcTemplate.update("UPDATE book SET reader_id=?, is_free=false WHERE id=?", readerId, bookId);
-        return String.format("Книга с названием = %s выдана читателю с фамилией %s", entityBook.getTitle(),
+        return String.format("Книга с названием %s выдана читателю с фамилией %s", entityBook.getTitle(),
                 readersService.readOneById(readerId).getLastName());
 
     }

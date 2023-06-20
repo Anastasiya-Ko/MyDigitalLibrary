@@ -44,7 +44,7 @@ public class BookDataService {
     public List<BookDTOReport> createListDTO() {
 
         var list = booksRepository.findAll();
-        list.sort(Comparator.comparing(Book::getId));
+        list.sort(Comparator.comparing(Book::getTitle));
 
         List<BookDTOReport> listResult = new ArrayList<>();
 
