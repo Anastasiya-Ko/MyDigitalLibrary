@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
+import ru.kopylova.springcourse.DigitalLibrary.authors.models.entity.Author;
 import ru.kopylova.springcourse.DigitalLibrary.authors.service.AuthorService;
 import ru.kopylova.springcourse.DigitalLibrary.books.mapper.BookMapper;
 import ru.kopylova.springcourse.DigitalLibrary.books.models.entity.Book;
@@ -59,8 +60,18 @@ public class BooksService {
      * @param bookId возвращаемой книги
      */
     public String release(Long bookId) {
-        jdbcTemplate.update("UPDATE book SET reader_id=NULL, is_free=true WHERE id=?", bookId);
-        return "Теперь книга свободна";
+        Book entity = getById(bookId);
+        if (!entity.isBookIsFree()) {
+            jdbcTemplate.update("UPDATE book SET reader_id=NULL, is_free=true WHERE id=?", bookId);
+            return String.format("Читатель %s вернул в библиотеку книгу \"%s\", автора(ов) %s",
+                    entity.getReaderOwner().getLastName()
+                            .concat(" ")
+                            .concat(String.valueOf(entity.getReaderOwner().getFirstName().charAt(0)))
+                            .concat("."),
+                    entity.getTitle(), entity.getAuthors()
+                            .stream().map(Author::getName)
+                            .collect(Collectors.joining(", ")));
+        } else return "Книга не может быть освобождена. Она хранится в библиотеке";
     }
 
     /**
@@ -71,10 +82,19 @@ public class BooksService {
      */
     public String assignBookByReader(Long bookId, Long readerId) {
         Book entityBook = getById(bookId);
-        readersService.readOneById(readerId);
-        jdbcTemplate.update("UPDATE book SET reader_id=?, is_free=false WHERE id=?", readerId, bookId);
-        return String.format("Книга с названием %s выдана читателю с фамилией %s", entityBook.getTitle(),
-                readersService.readOneById(readerId).getLastName());
+        if (entityBook.isBookIsFree()) {
+            readersService.readOneById(readerId);
+            jdbcTemplate.update("UPDATE book SET reader_id=?, is_free=false WHERE id=?", readerId, bookId);
+            return String.format("Читатель %s взял книгу \"%s\", автора(ов) %s ",
+                    readersService.readOneById(readerId).getLastName()
+                            .concat(" ")
+                            .concat(String.valueOf(readersService.readOneById(readerId).getFirstName().charAt(0)))
+                            .concat("."),
+                    entityBook.getTitle(),
+                    entityBook.getAuthors()
+                            .stream().map(Author::getName)
+                            .collect(Collectors.joining(", ")));
+        } else return "Книга не может быть выдана. Она занята другим читателем";
 
     }
 
@@ -89,13 +109,12 @@ public class BooksService {
 
     public Page<BookDTOEasy> readBooksByTitleStartingWith(String title, Pageable pageable) {
 
-        String ex = String.format(("Книга, с названием начинающимся на - %s  не найдена"), title);
-
         Page<Book> entityPage = booksRepository.
                 findBooksByTitleIgnoreCaseStartingWithOrderByYearOfPublicationAsc(title, pageable);
 
         if (entityPage.isEmpty()) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, ex);
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,
+                    String.format("Книга, с названием начинающимся на '%s', не найдена", title));
         }
 
         return entityPage.map(entity -> bookMapper.mapperToDTOEasy(entity, true));
@@ -104,7 +123,10 @@ public class BooksService {
 
     public Page<BookDTORich> readBooksByReaderOwnerId(Reader readerOwner, Pageable pageable) {
 
-        String ex = String.format(("У читателя с фамилией = %s нет книг"), readerOwner.getLastName());
+        String ex = String.format("Читатель %s не имеет книг из библиотеки", readerOwner.getLastName()
+                .concat(" ")
+                .concat(String.valueOf(readerOwner.getFirstName().charAt(0)))
+                .concat("."));
 
         Page<Book> entityPage = booksRepository.findBooksByReaderOwner(readerOwner, pageable);
 
@@ -140,7 +162,7 @@ public class BooksService {
     public String deleteBookById(Long id) {
         Book entity = getById(id);
         booksRepository.deleteById(id);
-        return String.format("Книга с названием = %s успешно удалена", entity.getTitle());
+        return String.format("Книга с названием \"%s\" успешно удалена", entity.getTitle());
     }
 
 

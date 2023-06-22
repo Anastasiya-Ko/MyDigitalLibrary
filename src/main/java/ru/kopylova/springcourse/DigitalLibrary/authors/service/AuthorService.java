@@ -58,7 +58,7 @@ public class AuthorService {
     public String deleteAuthorById(Long id) {
         Author entity = getById(id);
         authorsRepository.deleteById(id);
-        return String.format("Автор с именем %s успешно удалён", entity.getName());
+        return String.format("Автор с именем \"%s\" успешно удалён", entity.getName());
     }
 
 

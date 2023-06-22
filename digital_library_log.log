@@ -1,81 +1,11 @@
-2023-06-20T14:39:34.267+03:00  WARN 17672 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2023-06-20T14:40:53.337+03:00  WARN 17672 --- [http-nio-7070-exec-1] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Cannot deserialize value of type `java.lang.Integer` from String "3017-01-01": not a valid `java.lang.Integer` value]
-2023-06-20T14:41:03.957+03:00 ERROR 17672 --- [http-nio-7070-exec-4] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: jakarta.validation.UnexpectedTypeException: HV000030: No validator could be found for constraint 'jakarta.validation.constraints.NotBlank' validating type 'java.lang.Integer'. Check configuration for 'yearOfPublication'] with root cause
+2023-06-22T13:20:42.775+03:00  WARN 19196 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=21h33m534ms216µs700ns).
+2023-06-22T13:23:13.764+03:00  WARN 22376 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-06-22T13:27:27.283+03:00  WARN 8876 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-06-22T13:27:49.586+03:00 ERROR 8876 --- [http-nio-7070-exec-4] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: java.lang.RuntimeException: У читателя " Горнова А. " нет книг] with root cause
 
-jakarta.validation.UnexpectedTypeException: HV000030: No validator could be found for constraint 'jakarta.validation.constraints.NotBlank' validating type 'java.lang.Integer'. Check configuration for 'yearOfPublication'
-	at org.hibernate.validator.internal.engine.constraintvalidation.ConstraintTree.getExceptionForNullValidator(ConstraintTree.java:116) ~[hibernate-validator-8.0.0.Final.jar:8.0.0.Final]
-	at org.hibernate.validator.internal.engine.constraintvalidation.ConstraintTree.getInitializedConstraintValidator(ConstraintTree.java:162) ~[hibernate-validator-8.0.0.Final.jar:8.0.0.Final]
-	at org.hibernate.validator.internal.engine.constraintvalidation.SimpleConstraintTree.validateConstraints(SimpleConstraintTree.java:58) ~[hibernate-validator-8.0.0.Final.jar:8.0.0.Final]
-	at org.hibernate.validator.internal.engine.constraintvalidation.ConstraintTree.validateConstraints(ConstraintTree.java:75) ~[hibernate-validator-8.0.0.Final.jar:8.0.0.Final]
-	at org.hibernate.validator.internal.metadata.core.MetaConstraint.doValidateConstraint(MetaConstraint.java:130) ~[hibernate-validator-8.0.0.Final.jar:8.0.0.Final]
-	at org.hibernate.validator.internal.metadata.core.MetaConstraint.validateConstraint(MetaConstraint.java:123) ~[hibernate-validator-8.0.0.Final.jar:8.0.0.Final]
-	at org.hibernate.validator.internal.engine.ValidatorImpl.validateMetaConstraint(ValidatorImpl.java:555) ~[hibernate-validator-8.0.0.Final.jar:8.0.0.Final]
-	at org.hibernate.validator.internal.engine.ValidatorImpl.validateConstraintsForSingleDefaultGroupElement(ValidatorImpl.java:518) ~[hibernate-validator-8.0.0.Final.jar:8.0.0.Final]
-	at org.hibernate.validator.internal.engine.ValidatorImpl.validateConstraintsForDefaultGroup(ValidatorImpl.java:488) ~[hibernate-validator-8.0.0.Final.jar:8.0.0.Final]
-	at org.hibernate.validator.internal.engine.ValidatorImpl.validateConstraintsForCurrentGroup(ValidatorImpl.java:450) ~[hibernate-validator-8.0.0.Final.jar:8.0.0.Final]
-	at org.hibernate.validator.internal.engine.ValidatorImpl.validateInContext(ValidatorImpl.java:400) ~[hibernate-validator-8.0.0.Final.jar:8.0.0.Final]
-	at org.hibernate.validator.internal.engine.ValidatorImpl.validate(ValidatorImpl.java:172) ~[hibernate-validator-8.0.0.Final.jar:8.0.0.Final]
-	at org.springframework.validation.beanvalidation.SpringValidatorAdapter.validate(SpringValidatorAdapter.java:104) ~[spring-context-6.0.7.jar:6.0.7]
-	at org.springframework.boot.autoconfigure.validation.ValidatorAdapter.validate(ValidatorAdapter.java:66) ~[spring-boot-autoconfigure-3.0.5.jar:3.0.5]
-	at org.springframework.validation.DataBinder.validate(DataBinder.java:932) ~[spring-context-6.0.7.jar:6.0.7]
-	at org.springframework.web.servlet.mvc.method.annotation.AbstractMessageConverterMethodArgumentResolver.validateIfApplicable(AbstractMessageConverterMethodArgumentResolver.java:248) ~[spring-webmvc-6.0.7.jar:6.0.7]
-	at org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyMethodProcessor.resolveArgument(RequestResponseBodyMethodProcessor.java:142) ~[spring-webmvc-6.0.7.jar:6.0.7]
-	at org.springframework.web.method.support.HandlerMethodArgumentResolverComposite.resolveArgument(HandlerMethodArgumentResolverComposite.java:122) ~[spring-web-6.0.7.jar:6.0.7]
-	at org.springframework.web.method.support.InvocableHandlerMethod.getMethodArgumentValues(InvocableHandlerMethod.java:181) ~[spring-web-6.0.7.jar:6.0.7]
-	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:148) ~[spring-web-6.0.7.jar:6.0.7]
-	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118) ~[spring-webmvc-6.0.7.jar:6.0.7]
-	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:884) ~[spring-webmvc-6.0.7.jar:6.0.7]
-	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:797) ~[spring-webmvc-6.0.7.jar:6.0.7]
-	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-6.0.7.jar:6.0.7]
-	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1081) ~[spring-webmvc-6.0.7.jar:6.0.7]
-	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:974) ~[spring-webmvc-6.0.7.jar:6.0.7]
-	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1011) ~[spring-webmvc-6.0.7.jar:6.0.7]
-	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914) ~[spring-webmvc-6.0.7.jar:6.0.7]
-	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:563) ~[tomcat-embed-core-10.1.7.jar:6.0]
-	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885) ~[spring-webmvc-6.0.7.jar:6.0.7]
-	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:631) ~[tomcat-embed-core-10.1.7.jar:6.0]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:205) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
-	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53) ~[tomcat-embed-websocket-10.1.7.jar:10.1.7]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
-	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-6.0.7.jar:6.0.7]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.0.7.jar:6.0.7]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
-	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-6.0.7.jar:6.0.7]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.0.7.jar:6.0.7]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
-	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-6.0.7.jar:6.0.7]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.0.7.jar:6.0.7]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
-	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:166) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
-	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
-	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:493) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
-	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
-	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
-	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
-	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:341) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
-	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:390) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
-	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
-	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:894) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
-	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
-	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
-	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
-	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
-	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
-	at java.base/java.lang.Thread.run(Thread.java:833) ~[na:na]
-
-2023-06-20T14:42:00.810+03:00  WARN 15952 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2023-06-20T14:43:03.064+03:00  WARN 15952 --- [http-nio-7070-exec-6] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Cannot deserialize value of type `java.util.ArrayList<ru.kopylova.springcourse.DigitalLibrary.authors.models.view.AuthorDTO>` from Object value (token `JsonToken.START_OBJECT`)]
-2023-06-20T14:44:48.069+03:00 ERROR 15952 --- [http-nio-7070-exec-2] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: java.lang.RuntimeException: Год издания книги должен быть меньше или равен текущему году] with root cause
-
-java.lang.RuntimeException: Год издания книги должен быть меньше или равен текущему году
-	at ru.kopylova.springcourse.DigitalLibrary.books.mapper.BookMapper.mapperToEntity(BookMapper.java:53) ~[classes/:na]
-	at ru.kopylova.springcourse.DigitalLibrary.books.service.BooksService.createBook(BooksService.java:39) ~[classes/:na]
-	at ru.kopylova.springcourse.DigitalLibrary.books.controllers.BooksController.createBook(BooksController.java:33) ~[classes/:na]
+java.lang.RuntimeException: У читателя " Горнова А. " нет книг
+	at ru.kopylova.springcourse.DigitalLibrary.books.service.BooksService.readBooksByReaderOwnerId(BooksService.java:132) ~[classes/:na]
+	at ru.kopylova.springcourse.DigitalLibrary.books.controllers.BooksController.readBooksByReaderOwner(BooksController.java:73) ~[classes/:na]
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
@@ -88,7 +18,7 @@ java.lang.RuntimeException: Год издания книги должен быт
 	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.0.7.jar:6.0.7]
 	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:750) ~[spring-aop-6.0.7.jar:6.0.7]
 	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:702) ~[spring-aop-6.0.7.jar:6.0.7]
-	at ru.kopylova.springcourse.DigitalLibrary.books.controllers.BooksController$$SpringCGLIB$$0.createBook(<generated>) ~[classes/:na]
+	at ru.kopylova.springcourse.DigitalLibrary.books.controllers.BooksController$$SpringCGLIB$$0.readBooksByReaderOwner(<generated>) ~[classes/:na]
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
@@ -102,8 +32,8 @@ java.lang.RuntimeException: Год издания книги должен быт
 	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1081) ~[spring-webmvc-6.0.7.jar:6.0.7]
 	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:974) ~[spring-webmvc-6.0.7.jar:6.0.7]
 	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1011) ~[spring-webmvc-6.0.7.jar:6.0.7]
-	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914) ~[spring-webmvc-6.0.7.jar:6.0.7]
-	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:563) ~[tomcat-embed-core-10.1.7.jar:6.0]
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:903) ~[spring-webmvc-6.0.7.jar:6.0.7]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:537) ~[tomcat-embed-core-10.1.7.jar:6.0]
 	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885) ~[spring-webmvc-6.0.7.jar:6.0.7]
 	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:631) ~[tomcat-embed-core-10.1.7.jar:6.0]
 	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:205) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
@@ -140,10 +70,15 @@ java.lang.RuntimeException: Год издания книги должен быт
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) ~[tomcat-embed-core-10.1.7.jar:10.1.7]
 	at java.base/java.lang.Thread.run(Thread.java:833) ~[na:na]
 
-2023-06-20T14:45:58.914+03:00  WARN 15952 --- [http-nio-7070-exec-5] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Unexpected character ('}' (code 125)): was expecting double-quote to start field name]
-2023-06-20T15:32:48.016+03:00  WARN 3720 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2023-06-20T15:38:20.681+03:00  WARN 17432 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2023-06-20T15:39:07.386+03:00  WARN 9932 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2023-06-20T15:41:06.482+03:00  WARN 2920 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2023-06-20T15:41:52.167+03:00  WARN 3764 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2023-06-20T15:56:23.962+03:00  WARN 20136 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-06-22T13:28:33.752+03:00  WARN 18932 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-06-22T13:30:16.299+03:00  WARN 17240 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-06-22T13:33:42.310+03:00  WARN 22136 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-06-22T13:37:56.482+03:00  WARN 20844 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-06-22T13:44:05.853+03:00  WARN 11624 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-06-22T13:58:42.557+03:00  WARN 22056 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-06-22T13:59:55.324+03:00  WARN 1520 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-06-22T14:00:09.481+03:00  WARN 17652 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-06-22T14:01:25.021+03:00  WARN 7788 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-06-22T14:01:58.036+03:00  WARN 7664 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-06-22T14:04:09.099+03:00  WARN 17464 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-06-22T14:05:17.364+03:00  WARN 21204 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
