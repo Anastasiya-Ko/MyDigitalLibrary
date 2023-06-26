@@ -34,8 +34,9 @@ public class BookDTORich {
     @NotNull(message = "У книги должен быть автор. Выберите его из справочника Автор")
     List<AuthorDTO> authorsOwner;
 
-    ReaderDTOEasy readerDTOEasy;
+    List<ReaderDTOEasy> readersOwner;
 
-    boolean bookIsFree;
-
+    @NotNull
+    @Min(value = 1, message = "Книга должна быть минимум в одном экземпляре")
+    Integer availableNumbers;
 }

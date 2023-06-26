@@ -21,9 +21,12 @@ public class Book {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "reader_id")
-    Reader readerOwner;
+    @ManyToMany
+    @JoinTable(name = "book_reader",
+               joinColumns = @JoinColumn(name = "book_id"),
+               inverseJoinColumns = @JoinColumn(name = "reader_id")
+    )
+    List<Reader> readers;
 
     @ManyToMany
     @JoinTable(
@@ -40,10 +43,7 @@ public class Book {
     @Column(name = "year_of_publication")
     Integer yearOfPublication;
 
-    /**
-     * Хранит статус книги: свободна - true, "на руках" - false
-     */
-    @Column(name = "is_free")
-    boolean bookIsFree;
-    
+    @Column(name = "available_numbers")
+    Integer availableNumbers;
+
 }

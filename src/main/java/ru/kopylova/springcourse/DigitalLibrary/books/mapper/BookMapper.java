@@ -51,6 +51,8 @@ public class BookMapper {
             entity.setYearOfPublication(view.getYearOfPublication());
         } else throw new RuntimeException("Год издания книги должен быть меньше или равен текущему году");
 
+        entity.setAvailableNumbers(view.getAvailableNumbers());
+
         return entity;
     }
 
@@ -65,12 +67,14 @@ public class BookMapper {
                 .stream().map(author -> authorMapper.mapperToDTO(author, true))
                 .collect(Collectors.toList()));
 
-        if(entity.getReaderOwner() != null)
-        view.setReaderDTOEasy(readerMapper.mapperToDTOEasy(entity.getReaderOwner(), true));
-
-        view.setBookIsFree(entity.getReaderOwner() == null);
+        if(!entity.getReaders().isEmpty()) {
+            view.setReadersOwner(entity.getReaders()
+                    .stream().map(reader -> readerMapper.mapperToDTOEasy(reader, true))
+                    .collect(Collectors.toList()));
+        }
         view.setTitle(entity.getTitle());
         view.setYearOfPublication(entity.getYearOfPublication());
+        view.setAvailableNumbers(entity.getAvailableNumbers());
 
         return view;
     }
@@ -82,13 +86,12 @@ public class BookMapper {
             view.setId(entity.getId());
         }
 
-
+        view.setTitle(entity.getTitle());
         view.setAuthorsOwner(entity.getAuthors()
                 .stream().map(author -> authorMapper.mapperToDTO(author, true))
                 .collect(Collectors.toList()));
-
-        view.setTitle(entity.getTitle());
         view.setYearOfPublication(entity.getYearOfPublication());
+        view.setAvailableNumbers(entity.getAvailableNumbers());
 
         return view;
     }

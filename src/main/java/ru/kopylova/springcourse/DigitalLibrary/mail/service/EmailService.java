@@ -18,23 +18,6 @@ public class EmailService {
     JavaMailSender emailSender;
     ReadersService readersService;
 
-    //    public void sendSimpleMessage(String to, String subject, String text) {
-//
-//        try {
-//            SimpleMailMessage message = new SimpleMailMessage();
-//            message.setText(
-//                    "This is the test email template for your email:\n%s\n");
-//
-//            message.setFrom("kopylova534512@yandex.ru");
-//            message.setTo(to);
-//            message.setSubject(subject);
-//            message.setText(text);
-//            emailSender.send(message);
-//
-//        } catch (MailException e) {
-//            e.printStackTrace();
-//        }
-//    }
     public void sendSimpleMessage(Long readerId) {
         ReaderDTORich reader = readersService.readOneById(readerId);
 
@@ -44,7 +27,7 @@ public class EmailService {
             message.setFrom("kopylova534512@yandex.ru");
             message.setTo(reader.getEmail());
             message.setSubject("Возврат книги в библиотеку");
-            message.setText(String.format("Уважаемый(ая) %s, напоминаем, что книгу нужно вернуть во время", reader.getFirstName()));
+            message.setText(String.format("Уважаемый(ая) %s, напоминаем, что книгу нужно вернуть во время!", reader.getFirstName()));
 
             emailSender.send(message);
 

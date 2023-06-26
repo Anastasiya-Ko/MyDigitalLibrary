@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.*;
 import ru.kopylova.springcourse.DigitalLibrary.books.models.view.BookDTOEasy;
 import ru.kopylova.springcourse.DigitalLibrary.books.models.view.BookDTORich;
 import ru.kopylova.springcourse.DigitalLibrary.books.service.BooksService;
-import ru.kopylova.springcourse.DigitalLibrary.readers.models.entity.Reader;
 import ru.kopylova.springcourse.DigitalLibrary.util.page.sort.BookSort;
 
 import java.util.List;
@@ -38,15 +37,6 @@ public class BooksController {
         return booksService.updateBook(view);
     }
 
-    @PutMapping("/release/{bookId}")
-    public String release(@PathVariable Long bookId) {
-        return booksService.release(bookId);
-    }
-
-    @PutMapping("/assign")
-    public String assign(@RequestParam("book-id") Long bookId, @RequestParam("reader-id") Long readerId) {
-        return booksService.assignBookByReader(bookId, readerId);
-    }
 
     @GetMapping("/all")
     public Page<BookDTOEasy> readAllBooks(
@@ -66,21 +56,6 @@ public class BooksController {
     @GetMapping("/starts-title")
     public Page<BookDTOEasy> readBooksByNameStartingWith(@RequestParam("title") String title, Pageable pageable) {
         return booksService.readBooksByTitleStartingWith(title, pageable);
-    }
-
-    @GetMapping("/by-person-owner-id")
-    public Page<BookDTORich> readBooksByReaderOwner(@Valid @RequestBody Reader reader, Pageable pageable) {
-        return booksService.readBooksByReaderOwnerId(reader, pageable);
-    }
-
-    @GetMapping("/free")
-    public List<BookDTOEasy> readBooksFree() {
-        return booksService.readBooksFree();
-    }
-
-    @GetMapping("/busy")
-    public List<BookDTORich> readBooksBusy() {
-        return booksService.readBooksBusy();
     }
 
     @GetMapping("/write-group-authors")

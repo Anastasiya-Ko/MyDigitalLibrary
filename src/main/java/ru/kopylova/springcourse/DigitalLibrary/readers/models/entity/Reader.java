@@ -1,7 +1,6 @@
 package ru.kopylova.springcourse.DigitalLibrary.readers.models.entity;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -39,8 +38,7 @@ public class Reader {
     @Enumerated(EnumType.STRING)
     Gender gender;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "readerOwner")
+    @ManyToMany(mappedBy = "readers")
     List<Book> books;
 
     @Formula("""

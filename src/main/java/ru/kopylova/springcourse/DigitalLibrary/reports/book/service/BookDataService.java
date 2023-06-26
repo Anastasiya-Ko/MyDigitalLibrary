@@ -23,19 +23,25 @@ public class BookDataService {
 
         BookDTOReport view = new BookDTOReport();
         StringBuilder tempNameAuthor =new StringBuilder();
+        StringBuilder tempNameReader = new StringBuilder();
 
         view.setBookId(entity.getId().toString());
         view.setTitle(entity.getTitle());
         view.setYearOfPublication("" + entity.getYearOfPublication());
 
         for (int i = 0; i < entity.getAuthors().size(); i++) {
-            tempNameAuthor.append(entity.getAuthors().get(i).getName()+"\n");
+            tempNameAuthor.append(entity.getAuthors().get(i).getName().concat("\n"));
         }
         view.setAuthorName("" + tempNameAuthor);
 
-        if (entity.getReaderOwner() != null) {
-            view.setReaderFirstName(entity.getReaderOwner().getFirstName());
-            view.setReaderLastName(entity.getReaderOwner().getLastName());
+        if (!entity.getReaders().isEmpty()) {
+            for (int i = 0; i < entity.getReaders().size(); i++) {
+                tempNameReader.append(entity.getReaders().get(i).getFirstName()
+                        .concat(" ")
+                        .concat(entity.getReaders().get(i).getLastName())
+                        .concat("\n"));
+            }
+            view.setReaderName("" + tempNameReader);
         }
 
         return view;

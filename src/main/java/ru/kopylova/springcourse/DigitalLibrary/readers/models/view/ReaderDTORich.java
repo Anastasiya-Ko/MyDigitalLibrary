@@ -38,6 +38,7 @@ public class ReaderDTORich {
     Integer age;
 
     @PastOrPresent(message = "Дата рождения должна содержать прошедшую дату или сегодняшнее число")
+    @Min(value = 1900, message = "Год рождения должен быть больше, чем 1900")
     LocalDate birthday;
 
     @Email

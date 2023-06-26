@@ -18,9 +18,6 @@ public class BookDTOReport {
 
     String authorName;
 
-    String readerFirstName;
-
-    String readerLastName;
-
+    String readerName;
 
 }
