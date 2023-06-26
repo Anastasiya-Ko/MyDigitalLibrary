@@ -43,7 +43,4 @@ public class Book {
     @Column(name = "year_of_publication")
     Integer yearOfPublication;
 
-    @Column(name = "available_numbers")
-    Integer availableNumbers;
-
 }

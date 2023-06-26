@@ -31,9 +31,6 @@ public class BookDTOEasy {
             message = "Самая древняя книга, сохранившаяся до наших времён, напечатана в 1377 году. Введите год после этой даты")
     Integer yearOfPublication;
 
-    @NotNull
-    @Min(value = 1, message = "Книга должна быть минимум в одном экземпляре")
-    Integer availableNumbers;
 
 }
 

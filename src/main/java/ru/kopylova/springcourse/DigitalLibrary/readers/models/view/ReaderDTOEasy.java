@@ -26,6 +26,5 @@ public class ReaderDTOEasy {
     @CapitalLetter
     String lastName;
 
-
 }
 

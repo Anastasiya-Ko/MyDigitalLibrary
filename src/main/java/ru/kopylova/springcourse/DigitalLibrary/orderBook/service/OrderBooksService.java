@@ -5,17 +5,28 @@ import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
+import ru.kopylova.springcourse.DigitalLibrary.books.mapper.BookMapper;
+import ru.kopylova.springcourse.DigitalLibrary.books.models.entity.Book;
+import ru.kopylova.springcourse.DigitalLibrary.books.models.view.BookDTOEasy;
+import ru.kopylova.springcourse.DigitalLibrary.books.models.view.BookDTORich;
+import ru.kopylova.springcourse.DigitalLibrary.books.repository.BooksRepository;
 import ru.kopylova.springcourse.DigitalLibrary.readers.service.ReadersService;
+
+import java.util.Comparator;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class OrderBooksService {
 
+    BooksRepository booksRepository;
+    BookMapper bookMapper;
     ReadersService readersService;
     JdbcTemplate jdbcTemplate;
 
-//    /**
+    //    /**
 //     * Метод для освобождения книги, при возвращении её в библиотеку
 //     * @param bookId возвращаемой книги
 //     */
@@ -58,35 +69,27 @@ public class OrderBooksService {
 //
 //    }
 //
-//    public List<BookDTOEasy> readBooksFree() {
-//
-//        List<Book> entityList = booksRepository.findBooksAreFree();
-//
-//        return entityList.stream().map(entity -> bookMapper.mapperToDTOEasy(entity, true)).collect(Collectors.toList());
-//
-//    }
-//
-//    public List<BookDTORich> readBooksBusy() {
-//
-//        List<Book> entityList = booksRepository.findAll().stream().filter(book -> !(book.isBookIsFree())).toList();
-//
-//        return entityList.stream().map(entity -> bookMapper.mapperToDTORich(entity, true)).collect(Collectors.toList());
-//
-//    }
-//public Page<BookDTORich> readBooksByReaderOwnerId(Reader readerOwner, Pageable pageable) {
-//
-//    String ex = String.format("Читатель %s не имеет книг из библиотеки", readerOwner.getLastName()
-//            .concat(" ")
-//            .concat(String.valueOf(readerOwner.getFirstName().charAt(0)))
-//            .concat("."));
-//
-//    Page<Book> entityPage = booksRepository.findBooksByReaderOwner(readerOwner, pageable);
-//
-//    if (entityPage.isEmpty()) {
-//        throw new ResponseStatusException(HttpStatus.NOT_FOUND, ex);
-//    }
-//
-//    return entityPage.map(entity -> bookMapper.mapperToDTORich(entity, true));
-//}
+    public List<BookDTOEasy> readBooksFree() {
+
+        List<Book> entityList = booksRepository.findBooksFree();
+        entityList.sort(Comparator.comparing(Book::getTitle));
+        return entityList.stream().map(entity -> bookMapper.mapperToDTOEasy(entity, true)).collect(Collectors.toList());
+
+    }
+
+    public List<BookDTORich> readBooksBusy() {
+
+        List<Book> entityList = booksRepository.findBooksBusy();
+        entityList.sort(Comparator.comparing(Book::getTitle));
+        return entityList.stream().map(entity -> bookMapper.mapperToDTORich(entity, true)).collect(Collectors.toList());
+
+    }
+
+    public List<BookDTOEasy> readBooksByReaderOwnerId(Long readerId) {
+
+        List<Book> entityPage = booksRepository.findBooksByReaderOwner(readerId);
+
+        return entityPage.stream().map(entity -> bookMapper.mapperToDTOEasy(entity, true)).collect(Collectors.toList());
+    }
 
 }

@@ -5,12 +5,10 @@ import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.stereotype.Service;
 import ru.kopylova.springcourse.DigitalLibrary.authors.mapper.AuthorMapper;
-import ru.kopylova.springcourse.DigitalLibrary.authors.service.AuthorService;
 import ru.kopylova.springcourse.DigitalLibrary.books.models.entity.Book;
 import ru.kopylova.springcourse.DigitalLibrary.books.models.view.BookDTOEasy;
 import ru.kopylova.springcourse.DigitalLibrary.books.models.view.BookDTORich;
 import ru.kopylova.springcourse.DigitalLibrary.readers.mapper.ReaderMapper;
-import ru.kopylova.springcourse.DigitalLibrary.readers.service.ReadersService;
 
 import java.time.LocalDate;
 import java.util.stream.Collectors;
@@ -27,11 +25,6 @@ import java.util.stream.Collectors;
 public class BookMapper {
 
     private AuthorMapper authorMapper;
-
-    private AuthorService authorService;
-
-    private ReadersService readersService;
-
     private ReaderMapper readerMapper;
 
     public Book mapperToEntity(BookDTOEasy view, boolean isWrite) {
@@ -51,7 +44,6 @@ public class BookMapper {
             entity.setYearOfPublication(view.getYearOfPublication());
         } else throw new RuntimeException("Год издания книги должен быть меньше или равен текущему году");
 
-        entity.setAvailableNumbers(view.getAvailableNumbers());
 
         return entity;
     }
@@ -74,7 +66,6 @@ public class BookMapper {
         }
         view.setTitle(entity.getTitle());
         view.setYearOfPublication(entity.getYearOfPublication());
-        view.setAvailableNumbers(entity.getAvailableNumbers());
 
         return view;
     }
@@ -91,7 +82,6 @@ public class BookMapper {
                 .stream().map(author -> authorMapper.mapperToDTO(author, true))
                 .collect(Collectors.toList()));
         view.setYearOfPublication(entity.getYearOfPublication());
-        view.setAvailableNumbers(entity.getAvailableNumbers());
 
         return view;
     }

@@ -36,7 +36,4 @@ public class BookDTORich {
 
     List<ReaderDTOEasy> readersOwner;
 
-    @NotNull
-    @Min(value = 1, message = "Книга должна быть минимум в одном экземпляре")
-    Integer availableNumbers;
 }

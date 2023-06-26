@@ -63,6 +63,11 @@ public class BooksController {
         return booksService.readBooksWriteGroupAuthors();
     }
 
+    @GetMapping("/write-authors/{authorId}")
+    public List<BookDTOEasy> readBooksWriteRequestAuthor(@PathVariable Long authorId) {
+        return booksService.readBooksWriteRequestAuthor(authorId);
+    }
+
     @DeleteMapping("/{id}")
     public String deleteBookById(@PathVariable Long id) {
         return booksService.deleteBookById(id);

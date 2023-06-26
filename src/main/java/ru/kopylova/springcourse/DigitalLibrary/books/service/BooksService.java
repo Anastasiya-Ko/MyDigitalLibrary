@@ -28,6 +28,7 @@ public class BooksService {
     BookMapper bookMapper;
     AuthorService authorService;
 
+
     public BookDTOEasy createBook(BookDTOEasy view) {
 
         availableAuthors(view);
@@ -35,7 +36,6 @@ public class BooksService {
         booksRepository.save(entity);
 
         return bookMapper.mapperToDTOEasy(entity, true);
-
     }
 
     public BookDTOEasy updateBook(BookDTOEasy view) {
@@ -46,7 +46,6 @@ public class BooksService {
         booksRepository.save(updateEntity);
         return bookMapper.mapperToDTOEasy(updateEntity, true);
     }
-
 
     public Page<BookDTOEasy> readAllBooks(Pageable pageable) {
         Page<Book> entityPage = booksRepository.findAll(pageable);
@@ -68,13 +67,18 @@ public class BooksService {
         }
 
         return entityPage.map(entity -> bookMapper.mapperToDTOEasy(entity, true));
-
     }
-
 
     public List<BookDTOEasy> readBooksWriteGroupAuthors() {
         List<Book> entityList = booksRepository.findBooksWriteGroupAuthors();
-        entityList.sort(Comparator.comparing(Book::getId));
+        entityList.sort(Comparator.comparing(Book::getTitle));
+        return entityList.stream().map(entity -> bookMapper.mapperToDTOEasy(entity, true)).collect(Collectors.toList());
+    }
+
+    public List<BookDTOEasy> readBooksWriteRequestAuthor(Long authorId) {
+        authorService.readOneById(authorId);
+        List<Book> entityList = booksRepository.findBooksWriteRequestAuthor(authorId);
+        entityList.sort(Comparator.comparing(Book::getTitle));
         return entityList.stream().map(entity -> bookMapper.mapperToDTOEasy(entity, true)).collect(Collectors.toList());
     }
 
@@ -100,6 +104,5 @@ public class BooksService {
     private void availableAuthors(BookDTOEasy view) {
         view.getAuthorsOwner().forEach(a -> authorService.readOneById(a.getId()));
     }
-
 
 }
