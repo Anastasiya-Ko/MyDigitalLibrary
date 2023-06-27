@@ -1,5 +1,7 @@
 package ru.kopylova.springcourse.DigitalLibrary.reports.reader.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
@@ -16,11 +18,13 @@ import java.io.IOException;
 @RequestMapping("/reader-report")
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
+@Tag(name = "Контроллер для создания отчёта excel")
 public class ReadersReportController {
 
     ReaderReportService readerReportService;
     @GetMapping("/create-xlsx")
-    public void createReportAllBooks(HttpServletResponse response) throws IOException {
+    @Operation(description = "Метод создания отчёта по возрастным группам читателей")
+    public void createReportReadersGroup(HttpServletResponse response) throws IOException {
 
         byte[] bytes = readerReportService.createReportReaderGroupAge();
 

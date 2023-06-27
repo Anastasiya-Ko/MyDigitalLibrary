@@ -27,17 +27,8 @@ import java.util.stream.Collectors;
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class BooksService {
 
-    /**
-     * Подвязываем репозиторий книг
-     */
     BooksRepository booksRepository;
-    /**
-     * Подвязываем маппер книг
-     */
     BookMapper bookMapper;
-    /**
-     * Подвязываем сервис авторов
-     */
     AuthorService authorService;
 
 
@@ -158,16 +149,16 @@ public class BooksService {
 
 
     /**
-     * Метод внутреннего пользования для получения книги(сущности) по её идентификатору
+     * Метод для получения книги(сущности) по её идентификатору
      */
-    private Book getById(Long id) {
+    public Book getById(Long id) {
         String ex = String.format(("Книга с номером = %d не найдена"), id);
         return booksRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, ex));
     }
 
 
     /**
-     * Метод внутреннего пользования для проверки наличия автора в бд
+     * Метод для проверки наличия автора в бд
      */
     private void availableAuthors(BookDTOEasy view) {
         view.getAuthorsOwner().forEach(a -> authorService.readOneById(a.getId()));

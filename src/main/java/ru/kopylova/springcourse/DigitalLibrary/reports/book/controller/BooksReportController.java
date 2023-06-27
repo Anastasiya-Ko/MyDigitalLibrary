@@ -1,6 +1,8 @@
 package ru.kopylova.springcourse.DigitalLibrary.reports.book.controller;
 
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
@@ -13,18 +15,18 @@ import ru.kopylova.springcourse.DigitalLibrary.reports.book.service.BookReportSe
 
 import java.io.IOException;
 
-
 @RestController
 @RequestMapping("/book-report")
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
+@Tag(name = "Контроллер для создания отчёта excel")
 public class BooksReportController {
 
     BookReportService bookReportService;
 
     @GetMapping("/create-xlsx")
+    @Operation(summary = "Создание отчёта excel")
     public void createReportAllBooks(HttpServletResponse response) throws IOException {
-
 
         byte[] bytes = bookReportService.createReportAllBooks();
 

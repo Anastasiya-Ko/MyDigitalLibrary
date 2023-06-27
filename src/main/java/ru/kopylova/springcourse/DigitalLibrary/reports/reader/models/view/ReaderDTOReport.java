@@ -12,9 +12,18 @@ public class ReaderDTOReport {
 
     String id;
 
+    /**
+     * Имя читателя
+     */
     String firstName;
 
+    /**
+     * Фамилия читателя
+     */
     String lastName;
 
+    /**
+     * Возраст читателя
+     */
     Integer age;
 }

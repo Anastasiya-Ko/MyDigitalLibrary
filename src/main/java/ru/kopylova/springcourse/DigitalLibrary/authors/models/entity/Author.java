@@ -24,11 +24,14 @@ public class Author {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 
+    /**
+     * Имя и Фамилия автора
+     */
     @Column(name = "name")
     String name;
 
     /**
-     * Связь с таблицей Книги
+     * Книги автора
      */
     @ManyToMany(mappedBy = "authors")
     List<Book> books;

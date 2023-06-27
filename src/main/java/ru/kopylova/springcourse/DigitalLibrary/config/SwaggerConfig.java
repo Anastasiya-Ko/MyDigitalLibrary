@@ -6,6 +6,9 @@ import io.swagger.v3.oas.models.info.Info;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+/**
+ * Настройка конфигурации сваггера, который позволяет автоматически описывать API на основе его кода
+ */
 @Configuration
 public class SwaggerConfig {
 
@@ -18,8 +21,8 @@ public class SwaggerConfig {
                                 .version("1.0.0")
                                 .contact(
                                         new Contact()
-                                                .email("agropina_90@mail.ru")
-                                                .name("Kopylova Anastasiya")
+                                                .email("anastasia2010kopylova@gmail.com")
+                                                .name("Kopylova Anastasia")
                                 )
                 );
     }

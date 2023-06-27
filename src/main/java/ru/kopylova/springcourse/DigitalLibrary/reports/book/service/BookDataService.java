@@ -12,6 +12,9 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
+/**
+ * Сервис данных для отчёта excel
+ */
 @Service
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
@@ -19,10 +22,31 @@ public class BookDataService {
 
     BooksRepository booksRepository;
 
+    /**
+     * Метод создания перечня дто для отчёта
+     */
+    public List<BookDTOReport> createListDTO() {
+
+        var list = booksRepository.findAll();
+        list.sort(Comparator.comparing(Book::getTitle));
+
+        List<BookDTOReport> listResult = new ArrayList<>();
+
+        for (Book book : list) {
+            var temp = createDTO(book);
+            listResult.add(temp);
+        }
+
+        return listResult;
+    }
+
+    /**
+     * Метод создания дто для отчёта
+     */
     private BookDTOReport createDTO(Book entity) {
 
         BookDTOReport view = new BookDTOReport();
-        StringBuilder tempNameAuthor =new StringBuilder();
+        StringBuilder tempNameAuthor = new StringBuilder();
         StringBuilder tempNameReader = new StringBuilder();
 
         view.setBookId(entity.getId().toString());
@@ -34,31 +58,17 @@ public class BookDataService {
         }
         view.setAuthorName("" + tempNameAuthor);
 
-        if (!entity.getReaders().isEmpty()) {
-            for (int i = 0; i < entity.getReaders().size(); i++) {
-                tempNameReader.append(entity.getReaders().get(i).getFirstName()
-                        .concat(" ")
-                        .concat(entity.getReaders().get(i).getLastName())
-                        .concat("\n"));
-            }
+        if (entity.getReaderOwner() != null) {
+
+            tempNameReader.append(entity.getReaderOwner().getFirstName()
+                    .concat(" ")
+                    .concat(entity.getReaderOwner().getLastName())
+                    .concat("\n"));
+
             view.setReaderName("" + tempNameReader);
         }
 
         return view;
     }
 
-    public List<BookDTOReport> createListDTO() {
-
-        var list = booksRepository.findAll();
-        list.sort(Comparator.comparing(Book::getTitle));
-
-        List<BookDTOReport> listResult = new ArrayList<>();
-
-        for (Book book : list){
-            var temp = createDTO(book);
-            listResult.add(temp);
-        }
-
-        return listResult;
-    }
 }

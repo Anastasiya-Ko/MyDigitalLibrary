@@ -4,6 +4,9 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Sort;
 
+/**
+ * Набор констант для сортировки страницы с книгами
+ */
 @Getter
 @RequiredArgsConstructor
 public enum BookSort {

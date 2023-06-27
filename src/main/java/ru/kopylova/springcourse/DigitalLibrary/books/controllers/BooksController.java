@@ -29,9 +29,6 @@ import java.util.List;
 @Tag(name = "Контроллер Книги", description = "Взаимодействие со справочником книг")
 public class BooksController {
 
-    /**
-     * Подгрузка сервиса для работы с книгами
-     */
     BooksService booksService;
 
     @PostMapping
@@ -48,10 +45,11 @@ public class BooksController {
 
 
     @GetMapping("/all")
-    @Operation(summary = "Постраничный вывод справочника Книги", description = "с настройками отображения страницы")
+    @Operation(summary = "Постраничный вывод информации о всех книгах",
+               description = "с настройками отображения страницы")
     public Page<BookDTOEasy> readAllBooks(
             @RequestParam(value = "offset") @Parameter(description = "Страница") @Min(0) Integer offset,
-            @RequestParam(value = "limit") @Parameter(description = "Количество книг на 1 странице")
+            @RequestParam(value = "limit") @Parameter(description = "Количество книг на странице")
             @Min(1) @Max(100) Integer limit,
             @RequestParam(value = "sort") @Parameter(description = "Возможная сортировка") BookSort sort
     ) {

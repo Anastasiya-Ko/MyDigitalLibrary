@@ -1,6 +1,8 @@
 package ru.kopylova.springcourse.DigitalLibrary.readers.controllers;
 
-import jakarta.servlet.http.HttpServletResponse;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
@@ -11,79 +13,65 @@ import lombok.experimental.FieldDefaults;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.http.HttpHeaders;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import ru.kopylova.springcourse.DigitalLibrary.dictionary.ReaderSort;
 import ru.kopylova.springcourse.DigitalLibrary.readers.models.view.ReaderDTORich;
 import ru.kopylova.springcourse.DigitalLibrary.readers.service.ReadersService;
-import ru.kopylova.springcourse.DigitalLibrary.reports.reader.service.ReaderReportService;
-
-import java.io.IOException;
 
 @Validated
 @RestController
 @RequestMapping("/reader")
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
+@Tag(name = "Контроллер Читатели", description = "Взаимодействие со справочником читателей")
 public class ReadersController {
 
     ReadersService readersService;
-    ReaderReportService readerReportService;
 
     @PostMapping
+    @Operation(summary = "Внесение нового читателя в бд")
     public ReaderDTORich createReader(@Valid @RequestBody ReaderDTORich view) {
         return readersService.createReader(view);
     }
 
     @PutMapping
+    @Operation(summary = "Обновление существующего читателя в бд")
     public ReaderDTORich updateReader(@Valid @RequestBody ReaderDTORich view) {
         return readersService.updateReader(view);
     }
 
-    @GetMapping("/one/{id}")
-    public ReaderDTORich readOneReaderById(@PathVariable @Min(0) Long id) {
-        return readersService.readOneById(id);
+    @GetMapping("/one/{readerId}")
+    @Operation(summary = "Чтение информации о читателе по его id")
+    public ReaderDTORich readOneReaderById(@PathVariable @Parameter(description = "id читателя должен быть положительным числом") @Min(0) Long readerId) {
+        return readersService.readOneById(readerId);
     }
 
 
     @GetMapping("/all")
-    public Page<ReaderDTORich> readAllReader(
-            @RequestParam(value = "offset") @Min(0) Integer offset,
-            @RequestParam(value = "limit") @Min(1) @Max(100) Integer limit,
-            @RequestParam(value = "sort") ReaderSort sort
-            ) {
-
-        return readersService.readAllReader(
-                PageRequest.of(offset, limit, sort.getSortValue()));
+    @Operation(summary = "Постраничный вывод информации о всех читателях")
+    public Page<ReaderDTORich> readAllReader(@RequestParam(value = "offset") @Parameter(description = "Страница") @Min(0) Integer offset, @RequestParam(value = "limit") @Parameter(description = "Количество читателей на странице") @Min(1) @Max(100) Integer limit, @RequestParam(value = "sort") @Parameter(description = "Возможная сортировка") ReaderSort sort) {
+        return readersService.readAllReader(PageRequest.of(offset, limit, sort.getSortValue()));
     }
 
+    /**
+     * Отображение читателя по его фамилии
+     */
     @GetMapping("/by-last-name")
-    public Page<ReaderDTORich> readOneReaderByLastName
-            (@RequestParam("last-name") @Pattern(regexp = "[а-яёА-ЯЁ]+",
-                    message = "Фамилия должна содержать только буквы русского алфавита") String lastName,
-             Pageable pageable) {
+    public Page<ReaderDTORich> readOneReaderByLastName(
+            @RequestParam("last-name")
+            @Pattern(regexp = "[а-яёА-ЯЁ]+", message = "Фамилия должна содержать только буквы русского алфавита")
+            String lastName, Pageable pageable) {
 
         return readersService.readByLastName(lastName, pageable);
     }
 
-    @DeleteMapping("/{id}")
-    public String deleteReaderById(@PathVariable Long id) {
-        return readersService.deleteReaderById(id);
-    }
-
-    @GetMapping("/create-xlsx")
-    public void createReportAllBooks(HttpServletResponse response) throws IOException {
-
-
-        byte[] bytes = readerReportService.createReportReaderGroupAge();
-
-        response.setContentType("application/octet-stream");
-        response.setHeader(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename = readersGroupAge.xlsx");
-        response.setHeader(HttpHeaders.ACCESS_CONTROL_EXPOSE_HEADERS, "*");
-        response.setContentLength(bytes.length);
-        response.getOutputStream().write(bytes);
-        response.setCharacterEncoding("UTF-8");
+    /**
+     * Удаление читателя по его id
+     */
+    @DeleteMapping("/{readerId}")
+    public String deleteReaderById(@PathVariable Long readerId) {
+        return readersService.deleteReaderById(readerId);
     }
 
 }

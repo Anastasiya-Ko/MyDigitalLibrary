@@ -21,21 +21,15 @@ import java.util.stream.Collectors;
  */
 
 /**
- * Сервис для работы с книгами
+ * Сопоставление данных для книг
  */
 @Service
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class BookMapper {
 
-    /**
-     * Подгрузка класса для маппинга автора
-     */
-    private AuthorMapper authorMapper;
-    /**
-     * Подгрузка класса для маппинга читателя
-     */
-    private ReaderMapper readerMapper;
+    AuthorMapper authorMapper;
+    ReaderMapper readerMapper;
 
     /**
      * Сопоставление данных из дто, данным энтити
@@ -82,10 +76,8 @@ public class BookMapper {
                 .stream().map(author -> authorMapper.mapperToDTO(author, true))
                 .collect(Collectors.toList()));
 
-        if(!entity.getReaders().isEmpty()) {
-            view.setReadersOwner(entity.getReaders()
-                    .stream().map(reader -> readerMapper.mapperToDTOEasy(reader, true))
-                    .collect(Collectors.toList()));
+        if(entity.getReaderOwner() != null) {
+            view.setReaderOwner(readerMapper.mapperToDTOEasy(entity.getReaderOwner(), true));
         }
         view.setTitle(entity.getTitle());
         view.setYearOfPublication(entity.getYearOfPublication());

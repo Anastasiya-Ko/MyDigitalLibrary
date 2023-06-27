@@ -10,14 +10,25 @@ import org.springframework.stereotype.Service;
 import ru.kopylova.springcourse.DigitalLibrary.readers.models.view.ReaderDTORich;
 import ru.kopylova.springcourse.DigitalLibrary.readers.service.ReadersService;
 
+/**
+ * Сервис для отправки электронных писем читателям
+ */
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 @Service
 public class EmailService {
 
+    /**
+     * Подгружаем класс, позволяющий отправлять сообщения из приложения спринг бут
+     */
     JavaMailSender emailSender;
+
     ReadersService readersService;
 
+    /**
+     * Метод для отправки просто сообщения читателю, о необходимости вернуть книгу в библиотеку(без вложений)
+     * @param readerId идентификатор читателя, которому необходимо отправить сообщение
+     */
     public void sendSimpleMessage(Long readerId) {
 
         ReaderDTORich reader = readersService.readOneById(readerId);

@@ -16,7 +16,7 @@ import java.util.List;
 @Getter
 @Setter
 @FieldDefaults(level = AccessLevel.PRIVATE)
-@Entity (name = "book")
+@Entity(name = "book")
 public class Book {
 
     @Id
@@ -25,17 +25,14 @@ public class Book {
     Long id;
 
     /**
-     * Связь с таблицей Читатели
+     * Читатель книги
      */
-    @ManyToMany
-    @JoinTable(name = "book_reader",
-               joinColumns = @JoinColumn(name = "book_id"),
-               inverseJoinColumns = @JoinColumn(name = "reader_id")
-    )
-    List<Reader> readers;
+    @ManyToOne
+    @JoinColumn(name = "reader_id")
+    Reader readerOwner;
 
     /**
-     * Связь с таблицей Авторы
+     * Автор(ы) книги
      */
     @ManyToMany
     @JoinTable(
@@ -45,9 +42,15 @@ public class Book {
     )
     List<Author> authors;
 
+    /**
+     * Название книги
+     */
     @Column(name = "title")
     String title;
 
+    /**
+     * Год публикации книги
+     */
     @Column(name = "year_of_publication")
     Integer yearOfPublication;
 

@@ -24,14 +24,7 @@ import java.util.stream.Collectors;
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class AuthorService {
 
-    /**
-     * Подгрузка репозитория автора
-     */
     AuthorsRepository authorsRepository;
-
-    /**
-     * Маппинг автора
-     */
     AuthorMapper authorMapper;
 
     /**

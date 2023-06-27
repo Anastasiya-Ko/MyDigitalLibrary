@@ -23,9 +23,6 @@ import java.util.List;
 @Tag(name = "Контроллер Авторы", description = "Взаимодействие со справочником Авторы")
 public class AuthorsController {
 
-    /**
-     * Подгрузка зависимости сервиса авторов
-     */
     AuthorService authorService;
 
     @PostMapping
@@ -41,7 +38,7 @@ public class AuthorsController {
     }
 
     @GetMapping("/all")
-    @Operation(summary = "Постраничный вывод справочника Авторы")
+    @Operation(summary = "Постраничный вывод информации об авторах")
     public Page<AuthorDTO> readAllAuthors(Pageable pageable) {
         return authorService.readAll(pageable);
     }

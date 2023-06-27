@@ -10,35 +10,19 @@ import ru.kopylova.springcourse.DigitalLibrary.reports.reader.models.view.Reader
 
 import java.util.*;
 
+/**
+ * Сервис данных для отчёта
+ */
 @Service
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class ReaderDataService {
+
     ReadersRepository readersRepository;
 
-    private ReaderDTOReport createDTO(Reader entity) {
-
-        ReaderDTOReport view = new ReaderDTOReport();
-
-        view.setId(""+ entity.getId());
-        view.setFirstName(entity.getFirstName());
-        view.setLastName(entity.getLastName());
-        view.setAge(entity.getAge());
-
-        return view;
-    }
-
-    private List<ReaderDTOReport> createListDTO() {
-        List<Reader> listEntity = readersRepository.findAll();
-        List<ReaderDTOReport> listView = new ArrayList<>();
-        listEntity.sort(Comparator.comparing(Reader::getAge));
-
-        for (Reader reader: listEntity) {
-            listView.add(createDTO(reader));
-        }
-        return listView;
-    }
-
+    /**
+     * Метод создания перечня читателей по возрастным группам
+     */
     public Map<String, List<ReaderDTOReport>> readerGroupAge() {
 
         List<ReaderDTOReport> listView = createListDTO();
@@ -62,4 +46,34 @@ public class ReaderDataService {
 
         return result;
     }
+
+    /**
+     * Метод заполнения перечня дто для отчёта
+     */
+    private List<ReaderDTOReport> createListDTO() {
+        List<Reader> listEntity = readersRepository.findAll();
+        List<ReaderDTOReport> listView = new ArrayList<>();
+        listEntity.sort(Comparator.comparing(Reader::getAge));
+
+        for (Reader reader: listEntity) {
+            listView.add(createDTO(reader));
+        }
+        return listView;
+    }
+
+    /**
+     * Метод создания дто для отчёта
+     */
+    private ReaderDTOReport createDTO(Reader entity) {
+
+        ReaderDTOReport view = new ReaderDTOReport();
+
+        view.setId(""+ entity.getId());
+        view.setFirstName(entity.getFirstName());
+        view.setLastName(entity.getLastName());
+        view.setAge(entity.getAge());
+
+        return view;
+    }
+
 }

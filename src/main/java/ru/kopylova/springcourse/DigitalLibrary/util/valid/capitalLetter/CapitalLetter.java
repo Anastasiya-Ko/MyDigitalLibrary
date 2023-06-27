@@ -10,6 +10,9 @@ import java.lang.annotation.Target;
 import static java.lang.annotation.ElementType.FIELD;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
+/**
+ * Класс создания аннотации для проверки написания слова с заглавной буквы
+ */
 @Target({FIELD})
 @Retention(RUNTIME)
 @Constraint(validatedBy = CapitalLetterValidator.class)

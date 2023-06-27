@@ -6,8 +6,19 @@ import ru.kopylova.springcourse.DigitalLibrary.readers.models.entity.Reader;
 import ru.kopylova.springcourse.DigitalLibrary.readers.models.view.ReaderDTOEasy;
 import ru.kopylova.springcourse.DigitalLibrary.readers.models.view.ReaderDTORich;
 
+/**
+ * Сопоставление данных читателя
+ */
 @Service
 public class ReaderMapper {
+
+    /**
+     * Маппинг представления в энтити.
+     * Используется прр создании новой книги и обновлении существующей
+     * @param view входящее представление, с полной информацией о читателе
+     * @param isWrite отвечает за запись id
+     * @return сущность читателя
+     */
     public Reader mapperToEntityRich(ReaderDTORich view, boolean isWrite) {
         Reader entity = new Reader();
 
@@ -25,6 +36,12 @@ public class ReaderMapper {
 
     }
 
+    /**
+     * Маппинг сущности в дто, с полной информацией о читателе
+     * @param entity сущность читателя
+     * @param isWrite отвечает за запись id читателя
+     * @return дто, с полной информацией о читателе
+     */
     public ReaderDTORich mapperToDTORich(Reader entity, boolean isWrite) {
 
         ReaderDTORich view = new ReaderDTORich();
@@ -42,19 +59,13 @@ public class ReaderMapper {
         return view;
     }
 
-    public Reader mapperToEntityEasy(ReaderDTOEasy view, boolean isWrite) {
-        Reader entity = new Reader();
-
-        if (isWrite) {
-            entity.setId(view.getId());
-        }
-        entity.setFirstName(view.getFirstName());
-        entity.setLastName(view.getLastName());
-
-        return entity;
-
-    }
-
+    /**
+     * Маппинг сущности в представление, с сокращённой информацией о читателе.
+     * Используется при создании "расширенной" дто книги
+     * @param entity сущность читателя
+     * @param isWrite возможность записи id
+     * @return "сокращённое" представление читателя
+     */
     public ReaderDTOEasy mapperToDTOEasy(Reader entity, boolean isWrite) {
 
         ReaderDTOEasy view = new ReaderDTOEasy();

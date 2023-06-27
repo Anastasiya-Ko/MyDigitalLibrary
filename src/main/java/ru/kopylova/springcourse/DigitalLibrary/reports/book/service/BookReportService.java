@@ -15,7 +15,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-
+/**
+ * Сервис формирования отчёта excel
+ */
 @Service
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class BookReportService {
@@ -64,8 +66,10 @@ public class BookReportService {
         propertyTemplate.drawBorders(new CellRangeAddress(0, sheet.getLastRowNum(), 0, 4), BorderStyle.THIN, BorderExtent.ALL);
         propertyTemplate.applyBorders(sheet);
 
+        //создаём исходящий поток байтов
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         book.write(baos);
+
 
         return baos.toByteArray();
     }

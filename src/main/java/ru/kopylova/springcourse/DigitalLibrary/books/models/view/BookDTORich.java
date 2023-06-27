@@ -41,6 +41,6 @@ public class BookDTORich {
     List<AuthorDTO> authorsOwner;
 
     @Schema(name = "Читатель, у которого сейчас находится книга")
-    List<ReaderDTOEasy> readersOwner;
+    ReaderDTOEasy readerOwner;
 
 }

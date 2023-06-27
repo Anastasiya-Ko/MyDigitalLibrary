@@ -17,7 +17,7 @@ public class AuthorDTO {
     @Schema(description = "Идентификатор", accessMode = Schema.AccessMode.READ_ONLY)
     Long id;
 
-    @Schema(description = "Имя и Фамилия автора")
+    @Schema(name = "Имя и Фамилия автора", description = "должно быть с заглавной буквы")
     @NotBlank(message = "У книги должен быть автор!")
     @CapitalLetter
     String name;

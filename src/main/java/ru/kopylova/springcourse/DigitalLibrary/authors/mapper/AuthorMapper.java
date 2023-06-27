@@ -5,7 +5,7 @@ import ru.kopylova.springcourse.DigitalLibrary.authors.models.entity.Author;
 import ru.kopylova.springcourse.DigitalLibrary.authors.models.view.AuthorDTO;
 
 /**
- * Маппинг сущности Автор
+ * Сопоставление данных Автора
  */
 @Service
 public class AuthorMapper {

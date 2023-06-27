@@ -5,6 +5,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import ru.kopylova.springcourse.DigitalLibrary.books.models.entity.Book;
+import ru.kopylova.springcourse.DigitalLibrary.readers.models.entity.Reader;
 
 import java.util.List;
 
@@ -22,10 +23,10 @@ public interface BooksRepository extends JpaRepository<Book, Long>{
      * Поиск книг в бд, написанных группой авторов
      */
     @Query(value = """
-                SELECT id, title, year_of_publication
+                SELECT id, title, year_of_publication, reader_id
                 FROM book_author ba
                 JOIN book b on ba.book_id = b.id
-                GROUP BY id, title, year_of_publication
+                GROUP BY id, title, year_of_publication, reader_id
                 HAVING COUNT(author_id) >= 2
                    """,
             nativeQuery = true
@@ -37,10 +38,10 @@ public interface BooksRepository extends JpaRepository<Book, Long>{
      * @param authorId идентификатор автора
      */
     @Query(value = """
-                SELECT id, title, year_of_publication
+                SELECT *
                 FROM book_author ba
                 JOIN book b on ba.book_id = b.id
-                where ba.author_id = :authorId
+                WHERE ba.author_id = :authorId
         
                             """,
             nativeQuery = true
@@ -51,9 +52,9 @@ public interface BooksRepository extends JpaRepository<Book, Long>{
      * Поиск свободных книг(находящихся в библиотеке на данный момент)
      */
     @Query(value = """
-                SELECT id, title, year_of_publication
-                FROM book_reader br
-                RIGHT JOIN book b on br.book_id = b.id
+                SELECT *
+                FROM book b
+                WHERE reader_id IS NULL
                    """,
             nativeQuery = true
     )
@@ -63,9 +64,9 @@ public interface BooksRepository extends JpaRepository<Book, Long>{
      * Поиск книг, находящихся "на руках" у читателей
      */
     @Query(value = """
-                SELECT DISTINCT id, title, year_of_publication
-                FROM book_reader br\s
-                LEFT JOIN book b on br.book_id = b.id
+                SELECT *
+                FROM book
+                WHERE reader_id IS NOT NULL
                    """,
             nativeQuery = true
     )
@@ -73,16 +74,7 @@ public interface BooksRepository extends JpaRepository<Book, Long>{
 
     /**
      * Поиск книг, находящихся "на руках" у запрашиваемого читателя
-     * @param readerId id читателя
      */
-    @Query(value = """
-                SELECT b.id, title, year_of_publication
-                FROM book b
-                JOIN book_reader br on b.id = br.book_id\s
-                RIGHT JOIN reader r on br.reader_id = r.id
-                WHERE r.id = :readerId
-                   """,
-            nativeQuery = true
-    )
-    List<Book> findBooksByReaderOwner(Long readerId);
+    List<Book> findBooksByReaderOwner(Reader reader);
+
 }

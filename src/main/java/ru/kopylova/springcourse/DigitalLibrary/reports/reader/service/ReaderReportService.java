@@ -15,6 +15,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Сервис формирования отчёта excel
+ */
 @Service
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class ReaderReportService {
@@ -31,7 +34,6 @@ public class ReaderReportService {
     }
 
     public byte[] createReportReaderGroupAge() throws IOException {
-
 
         //Создаём книгу
         Workbook book = new XSSFWorkbook();
@@ -120,7 +122,7 @@ public class ReaderReportService {
         }
         //Заполнение итога по всей таблице
         sheet.addMergedRegion(new CellRangeAddress(sheet.getLastRowNum() + 1, sheet.getLastRowNum() + 1, 0, 2));
-        Row totalReaders = sheet.createRow(sheet.getLastRowNum() +1);
+        Row totalReaders = sheet.createRow(sheet.getLastRowNum() + 1);
         totalReaders.setHeight((short) (3 * 300));
         initCell(totalReaders.createCell(0), "Итоговое количество читателей в группе:", styles.get("total-project-right"));
         initCell(totalReaders.createCell(3), "" + readers.values().stream().mapToInt(List::size).sum(), styles.get("total-project-right"));
