@@ -27,6 +27,9 @@ public class Author {
     @Column(name = "name")
     String name;
 
+    /**
+     * Связь с таблицей Книги
+     */
     @ManyToMany(mappedBy = "authors")
     List<Book> books;
 

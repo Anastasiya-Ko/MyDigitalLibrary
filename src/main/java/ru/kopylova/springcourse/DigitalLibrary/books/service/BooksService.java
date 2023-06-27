@@ -19,43 +19,85 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Сервис для работы с Книгами
+ */
 @Service
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class BooksService {
 
+    /**
+     * Подвязываем репозиторий книг
+     */
     BooksRepository booksRepository;
+    /**
+     * Подвязываем маппер книг
+     */
     BookMapper bookMapper;
+    /**
+     * Подвязываем сервис авторов
+     */
     AuthorService authorService;
 
 
+    /**
+     * Сохранение новой книги в бд
+     *
+     * @param view "облегчённое" представление книги, которую нужно сохранить
+     * @return "облегчённое" представление книги, сохранённое в бд
+     */
     public BookDTOEasy createBook(BookDTOEasy view) {
 
+        //проверка на существование такого автора в бд
         availableAuthors(view);
+
         Book entity = bookMapper.mapperToEntity(view, false);
         booksRepository.save(entity);
 
         return bookMapper.mapperToDTOEasy(entity, true);
     }
 
+    /**
+     * Обновление существующей книги в бд
+     *
+     * @param view "облегчённое" представление книги, которую нужно обновить
+     * @return "облегчённое" представление книги, обновлённое в бд
+     */
     public BookDTOEasy updateBook(BookDTOEasy view) {
 
+        //ищем в бд книгу с id, пришедшим в дто
         Book updateEntity = getById(view.getId());
+
+        //проверка на существование такого автора в бд
         availableAuthors(view);
+
         updateEntity = bookMapper.mapperToEntity(view, true);
         booksRepository.save(updateEntity);
+
         return bookMapper.mapperToDTOEasy(updateEntity, true);
     }
 
+    /**
+     * Постраничный вывод справочника книг
+     */
     public Page<BookDTOEasy> readAllBooks(Pageable pageable) {
         Page<Book> entityPage = booksRepository.findAll(pageable);
         return entityPage.map(entity -> bookMapper.mapperToDTOEasy(entity, true));
     }
 
-    public BookDTORich readOneById(Long id) {
-        return bookMapper.mapperToDTORich(getById(id), true);
+    /**
+     * Чтение полной информации о книге, по её id
+     *
+     * @param bookId идентификатор искомой книги
+     */
+    public BookDTORich readOneById(Long bookId) {
+        return bookMapper.mapperToDTORich(getById(bookId), true);
     }
 
+    /**
+     * Чтение основной информации о книге, по началу её названия
+     */
     public Page<BookDTOEasy> readBooksByTitleStartingWith(String title, Pageable pageable) {
 
         Page<Book> entityPage = booksRepository.
@@ -69,22 +111,48 @@ public class BooksService {
         return entityPage.map(entity -> bookMapper.mapperToDTOEasy(entity, true));
     }
 
+    /**
+     * Чтение книг, написанных двумя и более авторами
+     */
     public List<BookDTOEasy> readBooksWriteGroupAuthors() {
         List<Book> entityList = booksRepository.findBooksWriteGroupAuthors();
         entityList.sort(Comparator.comparing(Book::getTitle));
         return entityList.stream().map(entity -> bookMapper.mapperToDTOEasy(entity, true)).collect(Collectors.toList());
     }
 
+
+    /**
+     * Чтение книг, написанных запрашиваемым автором
+     * @param authorId id искомого автора
+     */
     public List<BookDTOEasy> readBooksWriteRequestAuthor(Long authorId) {
-        authorService.readOneById(authorId);
+
+        //проверка на наличие искомого автора в бд
+        var viewAuthor = authorService.readOneById(authorId);
+
         List<Book> entityList = booksRepository.findBooksWriteRequestAuthor(authorId);
         entityList.sort(Comparator.comparing(Book::getTitle));
+
+        //Если в библиотеке нет книг, написанных данным автором
+        if (entityList.isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,
+                    String.format("В библиотеке нет книг, которые написал %s", viewAuthor.getName()));
+        }
+
         return entityList.stream().map(entity -> bookMapper.mapperToDTOEasy(entity, true)).collect(Collectors.toList());
     }
 
-    public String deleteBookById(Long id) {
-        Book entity = getById(id);
-        booksRepository.deleteById(id);
+    /**
+     * Удаление книги по её идентификатору
+     * @param bookId идентификатор книги
+     * @return Информационное сообщение
+     */
+    public String deleteBookById(Long bookId) {
+
+        //поиск удаляемой книги в бд
+        Book entity = getById(bookId);
+
+        booksRepository.deleteById(bookId);
         return String.format("Книга с названием \"%s\" успешно удалена", entity.getTitle());
     }
 

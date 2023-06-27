@@ -86,6 +86,7 @@ public class OrderBooksService {
     }
 
     public List<BookDTOEasy> readBooksByReaderOwnerId(Long readerId) {
+        //TODO обработать условие, при котором у читателя нет сейчас книги
 
         List<Book> entityPage = booksRepository.findBooksByReaderOwner(readerId);
 

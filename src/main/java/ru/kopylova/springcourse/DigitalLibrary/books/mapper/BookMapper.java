@@ -19,14 +19,30 @@ import java.util.stream.Collectors;
  * // @NonFinal
  * // @Lazy
  */
+
+/**
+ * Сервис для работы с книгами
+ */
 @Service
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class BookMapper {
 
+    /**
+     * Подгрузка класса для маппинга автора
+     */
     private AuthorMapper authorMapper;
+    /**
+     * Подгрузка класса для маппинга читателя
+     */
     private ReaderMapper readerMapper;
 
+    /**
+     * Сопоставление данных из дто, данным энтити
+     * @param view представление книги
+     * @param isWrite отвечает за возможность записи id
+     * @return сущность Книга
+     */
     public Book mapperToEntity(BookDTOEasy view, boolean isWrite) {
         Book entity = new Book();
 
@@ -48,6 +64,13 @@ public class BookMapper {
         return entity;
     }
 
+    /**
+     * Сопоставление данных из сущности книги, данным в дто(с максимальным набором полей)
+     * Используется при поиске книги по id
+     * @param entity сущности книги
+     * @param isWrite возможности записи id
+     * @return дто книги, с максимальным набором полей
+     */
     public BookDTORich mapperToDTORich(Book entity, boolean isWrite) {
 
         BookDTORich view = new BookDTORich();
@@ -70,6 +93,12 @@ public class BookMapper {
         return view;
     }
 
+    /**
+     * Сопоставление данных из сущности книги, данным в дто(с набором основных полей)
+     * @param entity сущности книги
+     * @param isWrite возможности записи id
+     * @return дто книги, с набором основных полей
+     */
     public BookDTOEasy mapperToDTOEasy(Book entity, boolean isWrite) {
 
         BookDTOEasy view = new BookDTOEasy();

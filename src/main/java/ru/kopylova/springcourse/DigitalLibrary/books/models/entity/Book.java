@@ -10,6 +10,9 @@ import ru.kopylova.springcourse.DigitalLibrary.readers.models.entity.Reader;
 
 import java.util.List;
 
+/**
+ * Сущность Книга
+ */
 @Getter
 @Setter
 @FieldDefaults(level = AccessLevel.PRIVATE)
@@ -21,6 +24,9 @@ public class Book {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 
+    /**
+     * Связь с таблицей Читатели
+     */
     @ManyToMany
     @JoinTable(name = "book_reader",
                joinColumns = @JoinColumn(name = "book_id"),
@@ -28,6 +34,9 @@ public class Book {
     )
     List<Reader> readers;
 
+    /**
+     * Связь с таблицей Авторы
+     */
     @ManyToMany
     @JoinTable(
             name = "book_author",
@@ -38,7 +47,6 @@ public class Book {
 
     @Column(name = "title")
     String title;
-
 
     @Column(name = "year_of_publication")
     Integer yearOfPublication;

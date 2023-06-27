@@ -51,34 +51,41 @@ public class BooksController {
     @Operation(summary = "Постраничный вывод справочника Книги", description = "с настройками отображения страницы")
     public Page<BookDTOEasy> readAllBooks(
             @RequestParam(value = "offset") @Parameter(description = "Страница") @Min(0) Integer offset,
-            @RequestParam(value = "limit") @Parameter(description = "Количество книг на 1 странице") @Min(1) @Max(100) Integer limit,
-            @RequestParam(value = "sort") BookSort sort
+            @RequestParam(value = "limit") @Parameter(description = "Количество книг на 1 странице")
+            @Min(1) @Max(100) Integer limit,
+            @RequestParam(value = "sort") @Parameter(description = "Возможная сортировка") BookSort sort
     ) {
         return booksService.readAllBooks(
                 PageRequest.of(offset, limit, sort.getSortValue()));
     }
 
-    @GetMapping("/one/{id}")
-    public BookDTORich readOneBookById(@PathVariable @Min(0) Long id) {
-        return booksService.readOneById(id);
+    @GetMapping("/one/{bookId}")
+    @Operation(summary = "Чтение книги по её идентификатору")
+    public BookDTORich readOneBookById(
+            @PathVariable @Parameter(description = "id книги должно быть положительным числом") @Min(0) Long bookId) {
+        return booksService.readOneById(bookId);
     }
 
     @GetMapping("/starts-title")
+    @Operation(summary = "Чтение книг по началу названия")
     public Page<BookDTOEasy> readBooksByNameStartingWith(@RequestParam("title") String title, Pageable pageable) {
         return booksService.readBooksByTitleStartingWith(title, pageable);
     }
 
     @GetMapping("/write-group-authors")
+    @Operation(summary = "Чтение книг, написанных группой авторов")
     public List<BookDTOEasy> readBooksWriteGroupAuthors() {
         return booksService.readBooksWriteGroupAuthors();
     }
 
     @GetMapping("/write-authors/{authorId}")
+    @Operation(summary = "Чтение книг, принадлежащих запрашиваемому автору", description = "по id автора")
     public List<BookDTOEasy> readBooksWriteRequestAuthor(@PathVariable Long authorId) {
         return booksService.readBooksWriteRequestAuthor(authorId);
     }
 
     @DeleteMapping("/{id}")
+    @Operation(summary = "Удаление автора", description = "по id")
     public String deleteBookById(@PathVariable Long id) {
         return booksService.deleteBookById(id);
     }
