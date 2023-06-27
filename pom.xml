@@ -115,7 +115,6 @@
 		</dependency>
 
 
-
 	</dependencies>
 
 
@@ -147,33 +146,5 @@
 		</plugins>
 	</build>
 
-
-
-<!--	<build>-->
-<!--		<plugins>-->
-<!--			<plugin>-->
-<!--				<groupId>org.apache.maven.plugins</groupId>-->
-<!--				<artifactId>maven-compiler-plugin</artifactId>-->
-<!--				<version>3.10.1</version>-->
-<!--				<executions>-->
-<!--					<execution>-->
-<!--						<configuration>-->
-<!--							<outputDirectory>${project.build.directory}/generated-sources/java</outputDirectory>-->
-<!--							<processor>com.mysema.query.apt.jpa.JPAAnnotationProcessor</processor>-->
-<!--						</configuration>-->
-<!--					</execution>-->
-<!--				</executions>-->
-<!--				<configuration>-->
-<!--					<annotationProcessorPaths>-->
-<!--						<path>-->
-<!--							<groupId>org.projectlombok</groupId>-->
-<!--							<artifactId>lombok</artifactId>-->
-<!--							<version>${lombok.version}</version>-->
-<!--						</path>-->
-<!--					</annotationProcessorPaths>-->
-<!--				</configuration>-->
-<!--			</plugin>-->
-<!--		</plugins>-->
-<!--	</build>-->
 
 </project>
