@@ -19,6 +19,7 @@ public class EmailService {
     ReadersService readersService;
 
     public void sendSimpleMessage(Long readerId) {
+
         ReaderDTORich reader = readersService.readOneById(readerId);
 
         try {
