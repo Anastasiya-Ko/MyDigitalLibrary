@@ -49,6 +49,6 @@ REST API на Spring Boot для работы Электронной библи�
 
 # Примеры отчётов, формирующихся в приложении:
 1. Отчёт по возрастным группам читателей: [readersGroupAge.xlsx](https://github.com/Anastasiya-Ko/MyDigitalLibrary/files/11798900/readersGroupAge.xlsx)
-2. Отчёт по всем книгам библиотеки: [allBooks.xlsx](https://github.com/Anastasiya-Ko/MyDigitalLibrary/files/11799146/allBooks.xlsx)
+2. Отчёт по всем книгам библиотеки: [allBookss.xlsx](https://github.com/Anastasiya-Ko/MyDigitalLibrary/files/11884564/allBookss.xlsx)
 
 
