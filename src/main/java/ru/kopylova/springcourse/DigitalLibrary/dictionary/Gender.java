@@ -1,4 +1,4 @@
-package ru.kopylova.springcourse.DigitalLibrary.readers.models.entity;
+package ru.kopylova.springcourse.DigitalLibrary.dictionary;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

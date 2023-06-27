@@ -1,7 +1,7 @@
 package ru.kopylova.springcourse.DigitalLibrary.readers.mapper;
 
 import org.springframework.stereotype.Service;
-import ru.kopylova.springcourse.DigitalLibrary.readers.models.entity.Gender;
+import ru.kopylova.springcourse.DigitalLibrary.dictionary.Gender;
 import ru.kopylova.springcourse.DigitalLibrary.readers.models.entity.Reader;
 import ru.kopylova.springcourse.DigitalLibrary.readers.models.view.ReaderDTOEasy;
 import ru.kopylova.springcourse.DigitalLibrary.readers.models.view.ReaderDTORich;

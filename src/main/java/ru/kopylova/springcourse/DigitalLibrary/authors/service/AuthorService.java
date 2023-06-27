@@ -16,22 +16,40 @@ import ru.kopylova.springcourse.DigitalLibrary.authors.repository.AuthorsReposit
 import java.util.List;
 import java.util.stream.Collectors;
 
-
+/**
+ * Сервис для работы с Автором
+ */
 @Service
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class AuthorService {
 
+    /**
+     * Подгрузка репозитория автора
+     */
     AuthorsRepository authorsRepository;
 
+    /**
+     * Маппинг автора
+     */
     AuthorMapper authorMapper;
 
+    /**
+     * Занесение нового автора в бд
+     * @param view представление автора для внесения в бд
+     * @return представление, сохранённой в бд, сущности
+     */
     public AuthorDTO createAuthor(AuthorDTO view) {
         Author entity = authorMapper.mapperToEntity(view, false);
         authorsRepository.save(entity);
         return authorMapper.mapperToDTO(entity, true);
     }
 
+    /**
+     * Обновление автора в бд
+     * @param view представление автора для изменения в бд
+     * @return представление, изменённой в бд, сущности
+     */
     public AuthorDTO updateAuthor(AuthorDTO view) {
         var updateEntity = getById(view.getId());
         updateEntity = authorMapper.mapperToEntity(view, true);
@@ -39,15 +57,28 @@ public class AuthorService {
         return authorMapper.mapperToDTO(updateEntity, true);
     }
 
-    public AuthorDTO readOneById(Long id) {
-        return authorMapper.mapperToDTO(getById(id), true);
+    /**
+     * Поиск в бд автора по authorId
+     * @param authorId идентификатор искомого автора
+     * @return представление, найденной в бд сущности, автора
+     */
+    public AuthorDTO readOneById(Long authorId) {
+        return authorMapper.mapperToDTO(getById(authorId), true);
     }
 
+    /**
+     * Постраничный вывод справочника авторов
+     * @return страница с дто авторов
+     */
     public Page<AuthorDTO> readAll(Pageable pageable) {
         Page<Author> entityPage = authorsRepository.findAll(pageable);
         return entityPage.map(entity -> authorMapper.mapperToDTO(entity, true));
     }
 
+    /**
+     * Чтение авторов, книги которых не представлены в библиотеке
+     * @return лист представлений авторов
+     */
     public List<AuthorDTO> readAuthorHasNoBooks() {
         List<Author> entityList = authorsRepository.findAuthorHasNoBooks();
         return entityList.stream()
@@ -55,9 +86,14 @@ public class AuthorService {
                 .collect(Collectors.toList());
     }
 
-    public String deleteAuthorById(Long id) {
-        Author entity = getById(id);
-        authorsRepository.deleteById(id);
+    /**
+     * Удаление автора
+     * @param authorId идентификатор удаляемого автора
+     * @return Информационное сообщение
+     */
+    public String deleteAuthorById(Long authorId) {
+        Author entity = getById(authorId);
+        authorsRepository.deleteById(authorId);
         return String.format("Автор с именем \"%s\" успешно удалён", entity.getName());
     }
 
@@ -65,9 +101,9 @@ public class AuthorService {
     /**
      * Метод внутреннего пользования, для получения автора(сущности) по идентификатору
      */
-    private Author getById(Long id) {
-        String ex = String.format(("Автор с номером = %d не найден"), id);
-        return authorsRepository.findById(id).orElseThrow(() ->
+    private Author getById(Long authorId) {
+        String ex = String.format(("Автор с номером = %d не найден"), authorId);
+        return authorsRepository.findById(authorId).orElseThrow(() ->
                 new ResponseStatusException(HttpStatus.NOT_FOUND, ex));
     }
 }

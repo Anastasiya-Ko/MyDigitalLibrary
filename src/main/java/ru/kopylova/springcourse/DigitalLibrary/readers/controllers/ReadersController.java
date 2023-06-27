@@ -14,10 +14,10 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import ru.kopylova.springcourse.DigitalLibrary.dictionary.ReaderSort;
 import ru.kopylova.springcourse.DigitalLibrary.readers.models.view.ReaderDTORich;
 import ru.kopylova.springcourse.DigitalLibrary.readers.service.ReadersService;
 import ru.kopylova.springcourse.DigitalLibrary.reports.reader.service.ReaderReportService;
-import ru.kopylova.springcourse.DigitalLibrary.util.page.sort.ReaderSort;
 
 import java.io.IOException;
 

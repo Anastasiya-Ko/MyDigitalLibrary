@@ -8,6 +8,7 @@ import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 import org.hibernate.annotations.Formula;
 import ru.kopylova.springcourse.DigitalLibrary.books.models.entity.Book;
+import ru.kopylova.springcourse.DigitalLibrary.dictionary.Gender;
 
 import java.time.LocalDate;
 import java.util.List;

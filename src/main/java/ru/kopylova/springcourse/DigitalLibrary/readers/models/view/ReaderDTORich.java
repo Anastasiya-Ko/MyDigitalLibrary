@@ -4,7 +4,7 @@ package ru.kopylova.springcourse.DigitalLibrary.readers.models.view;
 import jakarta.validation.constraints.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
-import ru.kopylova.springcourse.DigitalLibrary.readers.models.entity.Gender;
+import ru.kopylova.springcourse.DigitalLibrary.dictionary.Gender;
 import ru.kopylova.springcourse.DigitalLibrary.util.valid.capitalLetter.CapitalLetter;
 import ru.kopylova.springcourse.DigitalLibrary.util.valid.gender.GenderNamePattern;
 

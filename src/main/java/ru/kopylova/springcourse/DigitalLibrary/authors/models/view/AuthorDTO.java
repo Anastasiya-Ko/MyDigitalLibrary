@@ -1,5 +1,6 @@
 package ru.kopylova.springcourse.DigitalLibrary.authors.models.view;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -10,10 +11,13 @@ import ru.kopylova.springcourse.DigitalLibrary.util.valid.capitalLetter.CapitalL
 @AllArgsConstructor
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
+@Schema(description = "Представление автора")
 public class AuthorDTO {
 
+    @Schema(description = "Идентификатор", accessMode = Schema.AccessMode.READ_ONLY)
     Long id;
-    
+
+    @Schema(description = "Имя и Фамилия автора")
     @NotBlank(message = "У книги должен быть автор!")
     @CapitalLetter
     String name;
