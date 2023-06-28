@@ -44,15 +44,16 @@ public class OrderBooksService {
         if (entity.getReaderOwner() != null) {
             entity.setReaderOwner(null);
             booksRepository.save(entity);
-            return "Читатель вернул книгу в библиотеку";
-        } else return "Книга не может быть освобождена. Она хранится в библиотеке";
+            return String.format("Читатель вернул книгу %s в библиотеку", entity.getTitle());
+
+        } else return String.format("Книга %s не может быть освобождена. Она хранится в библиотеке", entity.getTitle());
     }
 
 
     /**
      * Метод для назначения книги читателю
      *
-     * @param bookId   назначаемая книга
+     * @param bookId назначаемая книга
      * @param readerId читатель, берущий книгу
      * @return информационное сообщение
      */
@@ -61,11 +62,12 @@ public class OrderBooksService {
         Book entityBook = booksService.getById(bookId);
         Reader entityReader = readersService.getById(readerId);
 
-        entityBook.setReaderOwner(entityReader);
-        booksRepository.save(entityBook);
+        if (entityBook.getReaderOwner()==null) {
+            entityBook.setReaderOwner(entityReader);
+            booksRepository.save(entityBook);
+            return "Книга выдана читателю";
 
-        return "Читатель взял книгу";
-
+        } else return "Книга не может быть выдана, она у другого читателя";
     }
 
 
