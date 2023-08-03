@@ -6,6 +6,7 @@ import lombok.experimental.FieldDefaults;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 import ru.kopylova.springcourse.DigitalLibrary.authors.service.AuthorService;
@@ -30,6 +31,7 @@ public class BooksService {
     BooksRepository booksRepository;
     BookMapper bookMapper;
     AuthorService authorService;
+    JdbcTemplate jdbcTemplate;
 
 
     /**
@@ -111,7 +113,6 @@ public class BooksService {
         return entityList.stream().map(entity -> bookMapper.mapperToDTOEasy(entity, true)).collect(Collectors.toList());
     }
 
-
     /**
      * Чтение книг, написанных запрашиваемым автором
      * @param authorId id искомого автора
@@ -133,11 +134,11 @@ public class BooksService {
         return entityList.stream().map(entity -> bookMapper.mapperToDTOEasy(entity, true)).collect(Collectors.toList());
     }
 
-    /**
-     * Удаление книги по её идентификатору
-     * @param bookId идентификатор книги
-     * @return Информационное сообщение
-     */
+        /**
+         * Удаление книги по её идентификатору
+         * @param bookId идентификатор книги
+         * @return Информационное сообщение
+         */
     public String deleteBookById(Long bookId) {
 
         //поиск удаляемой книги в бд

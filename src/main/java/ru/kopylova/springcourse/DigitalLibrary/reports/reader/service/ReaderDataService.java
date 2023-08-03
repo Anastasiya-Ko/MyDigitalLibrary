@@ -1,6 +1,7 @@
 package ru.kopylova.springcourse.DigitalLibrary.reports.reader.service;
 
 import lombok.AccessLevel;
+import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.stereotype.Service;
@@ -13,6 +14,7 @@ import java.util.*;
 /**
  * Сервис данных для отчёта
  */
+@Data
 @Service
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
