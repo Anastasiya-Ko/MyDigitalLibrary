@@ -25,7 +25,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class AuthorsControllerTest {
 
     @Autowired
-    AuthorsController authorsController;
+    AuthorsController controller;
 
     @Test
     void createAuthorTest() {
@@ -33,7 +33,7 @@ class AuthorsControllerTest {
         AuthorDTO authorDTO = new AuthorDTO();
         authorDTO.setName("test");
 
-        AuthorDTO test = authorsController.createAuthor(authorDTO);
+        AuthorDTO test = controller.createAuthor(authorDTO);
         assertEquals("test", test.getName());
     }
 
@@ -44,7 +44,7 @@ class AuthorsControllerTest {
         authorDTO.setId(2L);
         authorDTO.setName("test");
 
-        AuthorDTO test = authorsController.updateAuthor(authorDTO);
+        AuthorDTO test = controller.updateAuthor(authorDTO);
         assertEquals("test", test.getName());
     }
 
@@ -54,9 +54,9 @@ class AuthorsControllerTest {
         AuthorDTO authorDTO = new AuthorDTO();
         authorDTO.setName("test");
 
-        authorsController.createAuthor(authorDTO);
+        controller.createAuthor(authorDTO);
 
-        Page<AuthorDTO> dtoPage = authorsController.readAllAuthors(Pageable.unpaged());
+        Page<AuthorDTO> dtoPage = controller.readAllAuthors(Pageable.unpaged());
         assertFalse(dtoPage.isEmpty());
     }
 
@@ -65,7 +65,7 @@ class AuthorsControllerTest {
 
         Long authorId = 2L;
 
-        AuthorDTO authorDTO = authorsController.readAuthorById(authorId);
+        AuthorDTO authorDTO = controller.readAuthorById(authorId);
 
         assertEquals("Лев Толстой", authorDTO.getName());
     }
@@ -74,7 +74,7 @@ class AuthorsControllerTest {
     @Test
     void readAuthorHasNoBooksTestWhenAuthorIsNotEmpty() {
 
-        List<AuthorDTO> dtoList = authorsController.readAuthorHasNoBooks();
+        List<AuthorDTO> dtoList = controller.readAuthorHasNoBooks();
 
         assertNotNull(dtoList);
 
@@ -84,7 +84,7 @@ class AuthorsControllerTest {
     void deleteAuthorById() {
 
         Long authorId = 2L;
-        String result = authorsController.deleteAuthorById(authorId);
+        String result = controller.deleteAuthorById(authorId);
 
         assertNotNull(result);
     }
