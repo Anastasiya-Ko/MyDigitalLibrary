@@ -27,37 +27,34 @@ class AuthorsControllerTest {
     @Autowired
     AuthorsController controller;
 
+    AuthorDTO authorDTO = new AuthorDTO(2L, "Лев Толстой");
+
     @Test
     void createAuthorTest() {
 
-        AuthorDTO authorDTO = new AuthorDTO();
-        authorDTO.setName("test");
-
         AuthorDTO test = controller.createAuthor(authorDTO);
-        assertEquals("test", test.getName());
+
+        assertEquals("Лев Толстой", test.getName());
     }
 
     @Test
     void updateAuthorTest() {
 
-        AuthorDTO authorDTO = new AuthorDTO();
-        authorDTO.setId(2L);
-        authorDTO.setName("test");
-
         AuthorDTO test = controller.updateAuthor(authorDTO);
-        assertEquals("test", test.getName());
+
+        assertEquals("Лев Толстой", test.getName());
     }
 
     @Test
     void readAllAuthorsTest() {
 
-        AuthorDTO authorDTO = new AuthorDTO();
-        authorDTO.setName("test");
-
-        controller.createAuthor(authorDTO);
-
         Page<AuthorDTO> dtoPage = controller.readAllAuthors(Pageable.unpaged());
+        List<AuthorDTO> dtoList = dtoPage.stream().toList();
+
         assertFalse(dtoPage.isEmpty());
+
+        assertTrue(dtoList.contains(authorDTO));
+
     }
 
     @Test
@@ -71,14 +68,14 @@ class AuthorsControllerTest {
     }
 
     //так себе тест.. работает, в случае если доподлинно известно, что авторы без книг в библиотеке есть
-    @Test
-    void readAuthorHasNoBooksTestWhenAuthorIsNotEmpty() {
-
-        List<AuthorDTO> dtoList = controller.readAuthorHasNoBooks();
-
-        assertNotNull(dtoList);
-
-    }
+//    @Test
+//    void readAuthorHasNoBooksTestWhenAuthorIsNotEmpty() {
+//
+//        List<AuthorDTO> dtoList = controller.readAuthorHasNoBooks();
+//
+//        assertNotNull(dtoList);
+//
+//    }
 
     @Test
     void deleteAuthorById() {

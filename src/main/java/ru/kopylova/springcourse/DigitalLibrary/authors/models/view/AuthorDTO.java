@@ -11,6 +11,7 @@ import ru.kopylova.springcourse.DigitalLibrary.util.valid.capitalLetter.CapitalL
 @AllArgsConstructor
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
+@Data
 @Schema(description = "Представление автора")
 public class AuthorDTO {
 

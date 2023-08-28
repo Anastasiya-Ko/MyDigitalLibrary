@@ -2,6 +2,7 @@ package ru.kopylova.springcourse.DigitalLibrary.authors.models.entity;
 
 import jakarta.persistence.*;
 import lombok.AccessLevel;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.FieldDefaults;
@@ -16,6 +17,7 @@ import java.util.List;
 @Setter
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity(name = "author")
+@Data
 public class Author {
 
     @Id
