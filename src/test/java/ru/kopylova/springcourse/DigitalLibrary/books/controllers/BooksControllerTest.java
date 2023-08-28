@@ -109,6 +109,7 @@ class BooksControllerTest {
 
         String result = controller.deleteBookById(90L);
 
+        assertTrue(result.contains("успешно удалена"));
         assertNotNull(result);
     }
 }
