@@ -10,6 +10,7 @@ import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.transaction.annotation.Transactional;
 import ru.kopylova.springcourse.DigitalLibrary.books.models.view.BookDTOEasy;
+import ru.kopylova.springcourse.DigitalLibrary.books.models.view.BookDTORich;
 import ru.kopylova.springcourse.DigitalLibrary.dictionary.BookSort;
 
 import java.util.ArrayList;
@@ -27,7 +28,7 @@ class BooksControllerTest {
     @Autowired
     BooksController controller;
 
-    BookDTOEasy bookDTOEasy = new BookDTOEasy(2L, "test", new ArrayList<>(), 2000);
+    BookDTOEasy bookDTOEasy = new BookDTOEasy(85L, "test", new ArrayList<>(), 2000);
 
     @Test
     void createBookTest() {
@@ -40,14 +41,9 @@ class BooksControllerTest {
     @Test
     void updateBookTest() {
 
-        BookDTOEasy bookDTOEasy = new BookDTOEasy();
+        BookDTOEasy dtoEasy = controller.updateBook(bookDTOEasy);
 
-        bookDTOEasy.setId(85L);
-        bookDTOEasy.setTitle("test");
-        bookDTOEasy.setYearOfPublication(2000);
-        bookDTOEasy.setAuthorsOwner(new ArrayList<>());
-
-        assertEquals(bookDTOEasy.getYearOfPublication(), 2000);
+        assertEquals(dtoEasy.getYearOfPublication(), 2000);
 
     }
 
@@ -58,11 +54,15 @@ class BooksControllerTest {
 
         assertFalse(easyPage.isEmpty());
 
-
     }
 
     @Test
     void readOneBookByIdTest() {
+
+        BookDTORich bookDTORich = controller.readOneBookById(90L);
+
+        assertEquals(bookDTORich.getTitle(), "Трудно быть богом");
+
     }
 
     @Test
