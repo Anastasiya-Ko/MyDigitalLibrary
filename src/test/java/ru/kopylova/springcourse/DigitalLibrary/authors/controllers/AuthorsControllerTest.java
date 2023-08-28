@@ -67,15 +67,19 @@ class AuthorsControllerTest {
         assertEquals("Лев Толстой", authorDTO.getName());
     }
 
-    //так себе тест.. работает, в случае если доподлинно известно, что авторы без книг в библиотеке есть
-//    @Test
-//    void readAuthorHasNoBooksTestWhenAuthorIsNotEmpty() {
-//
-//        List<AuthorDTO> dtoList = controller.readAuthorHasNoBooks();
-//
-//        assertNotNull(dtoList);
-//
-//    }
+
+    @Test
+    void readAuthorHasNoBooksTest() {
+
+        List<AuthorDTO> dtoList = controller.readAuthorHasNoBooks();
+
+        assertFalse(dtoList.isEmpty());
+
+        assertNotNull(dtoList.stream()
+                .filter(author -> "Иван Ефремов".equals(author.getName()))
+                .findAny());
+
+    }
 
     @Test
     void deleteAuthorById() {
