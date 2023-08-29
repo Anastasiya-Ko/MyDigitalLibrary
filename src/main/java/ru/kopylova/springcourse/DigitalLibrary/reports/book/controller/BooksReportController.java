@@ -25,7 +25,7 @@ public class BooksReportController {
     BookReportService bookReportService;
 
     @GetMapping("/create-xlsx")
-    @Operation(summary = "Создание отчёта excel")
+    @Operation(summary = "Создание отчёта по общей информации о всех книгах в библиотеке, формат - excel")
     public void createReportAllBooks(HttpServletResponse response) throws IOException {
 
         byte[] bytes = bookReportService.createReportAllBooks();

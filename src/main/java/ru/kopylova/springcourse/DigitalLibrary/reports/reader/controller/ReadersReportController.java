@@ -23,7 +23,7 @@ public class ReadersReportController {
 
     ReaderReportService readerReportService;
     @GetMapping("/create-xlsx")
-    @Operation(description = "Метод создания отчёта по возрастным группам читателей")
+    @Operation(description = "Метод создания отчёта по возрастным группам читателей в библиотеке, формат - excel")
     public void createReportReadersGroup(HttpServletResponse response) throws IOException {
 
         byte[] bytes = readerReportService.createReportReaderGroupAge();
