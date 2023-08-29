@@ -26,7 +26,7 @@ class OrderBookControllerTest {
     OrderBookController controller;
 
     @Test
-    void release() {
+    void releaseTest() {
 
         String result = controller.release(1L);
 
@@ -34,7 +34,7 @@ class OrderBookControllerTest {
     }
 
     @Test
-    void assign() {
+    void assignTest() {
 
         String result = controller.assign(1L, 42L);
 
@@ -42,7 +42,7 @@ class OrderBookControllerTest {
     }
 
     @Test
-    void readBooksFree() {
+    void readBooksFreeTest() {
 
         List<BookDTOEasy> easyList = controller.readBooksFree();
 
@@ -50,7 +50,7 @@ class OrderBookControllerTest {
     }
 
     @Test
-    void readBooksBusy() {
+    void readBooksBusyTest() {
 
         List<BookDTORich> easyList = controller.readBooksBusy();
 
@@ -58,7 +58,7 @@ class OrderBookControllerTest {
     }
 
     @Test
-    void readBooksByReaderOwnerWhenReaderGotBook() {
+    void readBooksByReaderOwnerWhenReaderGotBookTest() {
 
         List<BookDTOEasy> easyList = controller.readBooksByReaderOwner(6L);
 

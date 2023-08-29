@@ -54,10 +54,8 @@ public class ReadersController {
         return readersService.readAllReader(PageRequest.of(offset, limit, sort.getSortValue()));
     }
 
-    /**
-     * Отображение читателя по его фамилии
-     */
     @GetMapping("/by-last-name")
+    @Operation(summary = "Отображение читателя по его фамилии")
     public Page<ReaderDTORich> readOneReaderByLastName(
             @RequestParam("last-name")
             @Pattern(regexp = "[а-яёА-ЯЁ]+", message = "Фамилия должна содержать только буквы русского алфавита")
@@ -66,10 +64,8 @@ public class ReadersController {
         return readersService.readByLastName(lastName, pageable);
     }
 
-    /**
-     * Удаление читателя по его id
-     */
     @DeleteMapping("/{readerId}")
+    @Operation(summary = "Удаление читателя по его id")
     public String deleteReaderById(@PathVariable Long readerId) {
         return readersService.deleteReaderById(readerId);
     }
