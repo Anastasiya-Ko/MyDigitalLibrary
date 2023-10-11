@@ -1,4 +1,4 @@
-package ru.kopylova.springcourse.DigitalLibrary.testReader.model.entity;
+package ru.kopylova.springcourse.DigitalLibrary.testReader.models.entity;
 
 import jakarta.persistence.*;
 import lombok.AccessLevel;

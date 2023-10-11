@@ -1,4 +1,4 @@
-package ru.kopylova.springcourse.DigitalLibrary.testReader.model.view;
+package ru.kopylova.springcourse.DigitalLibrary.testReader.models.view;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;

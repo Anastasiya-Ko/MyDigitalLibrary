@@ -1,8 +1,8 @@
 package ru.kopylova.springcourse.DigitalLibrary.testReader.mapper;
 
 import org.springframework.stereotype.Service;
-import ru.kopylova.springcourse.DigitalLibrary.testReader.model.entity.TestReader;
-import ru.kopylova.springcourse.DigitalLibrary.testReader.model.view.TestReaderDTO;
+import ru.kopylova.springcourse.DigitalLibrary.testReader.models.entity.TestReader;
+import ru.kopylova.springcourse.DigitalLibrary.testReader.models.view.TestReaderDTO;
 
 
 /**
@@ -21,6 +21,7 @@ public class TestReaderMapper {
 
         TestReader entity = new TestReader();
 
+        entity.setId(view.getId());
         entity.setName(view.getName());
         entity.setLastName(view.getLastName());
 
@@ -37,6 +38,7 @@ public class TestReaderMapper {
 
         TestReaderDTO view = new TestReaderDTO();
 
+        view.setId(entity.getId());
         view.setName(entity.getName());
         view.setLastName(entity.getLastName());
 

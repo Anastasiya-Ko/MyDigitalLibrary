@@ -5,7 +5,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.stereotype.Service;
 import ru.kopylova.springcourse.DigitalLibrary.testReader.mapper.TestReaderMapper;
-import ru.kopylova.springcourse.DigitalLibrary.testReader.model.view.TestReaderDTO;
+import ru.kopylova.springcourse.DigitalLibrary.testReader.models.view.TestReaderDTO;
 import ru.kopylova.springcourse.DigitalLibrary.testReader.repository.TestReaderRepository;
 
 import java.util.List;

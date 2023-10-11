@@ -1,18 +1,20 @@
-package ru.kopylova.springcourse.DigitalLibrary.testReader.controller;
+package ru.kopylova.springcourse.DigitalLibrary.testReader.controllers;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import ru.kopylova.springcourse.DigitalLibrary.testReader.model.view.TestReaderDTO;
+import ru.kopylova.springcourse.DigitalLibrary.testReader.models.view.TestReaderDTO;
 import ru.kopylova.springcourse.DigitalLibrary.testReader.service.TestReaderService;
 
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/test-reader")
 @RequiredArgsConstructor
