@@ -1,12 +1,10 @@
-package ru.kopylova.springcourse.DigitalLibrary.testReader.entity;
+package ru.kopylova.springcourse.DigitalLibrary.testReader.model.entity;
 
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.FieldDefaults;
-
-import java.time.LocalDate;
 
 /***
  * Сущность Читатель
@@ -33,17 +31,5 @@ public class TestReader {
      */
     @Column(name = "last_name")
     String lastName;
-
-    /**
-     * Дата рождения читателя
-     */
-    @Column(name = "birthday")
-    LocalDate birthday;
-
-    /**
-     * Электронная почта читателя
-     */
-    @Column(name = "email")
-    String email;
 
 }
