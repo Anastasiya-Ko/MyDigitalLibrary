@@ -19,6 +19,7 @@ import ru.kopylova.springcourse.DigitalLibrary.dictionary.ReaderSort;
 import ru.kopylova.springcourse.DigitalLibrary.readers.models.view.ReaderDTORich;
 import ru.kopylova.springcourse.DigitalLibrary.readers.service.ReadersService;
 
+
 @Validated
 @RestController
 @RequestMapping("/reader")
@@ -50,7 +51,18 @@ public class ReadersController {
 
     @GetMapping("/all")
     @Operation(summary = "Постраничный вывод информации о всех читателях")
-    public Page<ReaderDTORich> readAllReader(@RequestParam(value = "offset") @Parameter(description = "Страница") @Min(0) Integer offset, @RequestParam(value = "limit") @Parameter(description = "Количество читателей на странице") @Min(1) @Max(100) Integer limit, @RequestParam(value = "sort") @Parameter(description = "Возможная сортировка") ReaderSort sort) {
+    public Page<ReaderDTORich> readAllReader(
+            @RequestParam(value = "offset")
+            @Parameter(description = "Страница")
+            @Min(0) Integer offset,
+            @RequestParam(value = "limit")
+            @Parameter(description = "Количество читателей на странице")
+            @Min(1)
+            @Max(100) Integer limit,
+            @RequestParam(value = "sort")
+            @Parameter(description = "Возможная сортировка") ReaderSort sort
+
+    ) {
         return readersService.readAllReader(PageRequest.of(offset, limit, sort.getSortValue()));
     }
 

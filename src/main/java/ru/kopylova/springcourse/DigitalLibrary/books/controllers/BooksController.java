@@ -21,6 +21,7 @@ import ru.kopylova.springcourse.DigitalLibrary.dictionary.BookSort;
 
 import java.util.List;
 
+//@CrossOrigin(origins = "http://localhost:3000")
 @Validated
 @RestController
 @RequestMapping("/book")

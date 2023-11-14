@@ -76,6 +76,7 @@ public class ReadersService {
         return entityPage.map(entity -> readerMapper.mapperToDTORich(entity, true));
     }
 
+
     /**
      * Чтение информации о читателе по его id
      */
