@@ -6,15 +6,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class DigitalLibraryApplication {
 
-	public static void main(String[] args) {
-		try{
+    public static void main(String[] args) {
 
-			SpringApplication.run(DigitalLibraryApplication.class, args);
-		}
-		catch(Exception e){
-			e.printStackTrace();
-		}
+        SpringApplication.run(DigitalLibraryApplication.class, args);
 
-	}
+    }
 
 }

@@ -22,7 +22,7 @@ public class EmailController {
 
     @GetMapping("/{readerId}")
     @Operation(summary = "Отправка сообщения читателю", description = "по идентификатору читателя")
-    public void sendEmail(@PathVariable Long readerId){
-        emailService.sendSimpleMessage(readerId);
+    public String sendEmail(@PathVariable Long readerId){
+        return emailService.sendSimpleMessage(readerId);
     }
 }

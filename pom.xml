@@ -11,24 +11,28 @@
 	<groupId>ru.kopylova</groupId>
 	<artifactId>springcourse</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<packaging>${packaging.type}</packaging>
 	<name>DigitalLibrary</name>
 	<description>Project for Spring Boot with Spring Data JPA</description>
 	<properties>
 		<java.version>17</java.version>
-		<lombok.version>1.18.20</lombok.version>
-		<querydsl.version>5.0.0</querydsl.version>
+		<lombok.version>1.18.30</lombok.version>
+		<packaging.type>jar</packaging.type>
 	</properties>
+
 
 	<dependencies>
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
+			<version>3.1.5</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
+			<version>3.1.5</version>
 		</dependency>
 
 		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-validation -->
@@ -42,7 +46,7 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-mail</artifactId>
-			<version>3.1.0</version>
+			<version>3.1.5</version>
 		</dependency>
 
 
@@ -53,11 +57,6 @@
 			<version>42.5.4</version>
 		</dependency>
 
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-jdbc</artifactId>
-			<version>6.0.4</version>
-		</dependency>
 
 		<dependency>
 			<groupId>org.projectlombok</groupId>
@@ -69,12 +68,14 @@
 		<dependency>
 			<groupId>org.springdoc</groupId>
 			<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
-			<version>2.0.2</version>
+			<version>2.0.4</version>
 		</dependency>
 
+		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-test -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
+			<version>3.1.5</version>
 			<scope>test</scope>
 		</dependency>
 
@@ -93,55 +94,22 @@
 		</dependency>
 
 
-		<!-- https://mvnrepository.com/artifact/com.querydsl/querydsl-apt -->
-		<dependency>
-			<groupId>com.querydsl</groupId>
-			<artifactId>querydsl-apt</artifactId>
-			<version>5.0.0</version>
-		</dependency>
-
-		<!-- https://mvnrepository.com/artifact/com.querydsl/querydsl-jpa -->
-		<dependency>
-			<groupId>com.querydsl</groupId>
-			<artifactId>querydsl-jpa</artifactId>
-			<version>5.0.0</version>
-		</dependency>
-
-		<!-- https://mvnrepository.com/artifact/com.querydsl/querydsl-core -->
-		<dependency>
-			<groupId>com.querydsl</groupId>
-			<artifactId>querydsl-core</artifactId>
-			<version>5.0.0</version>
-		</dependency>
-
-
 	</dependencies>
 
 
 	<build>
 		<plugins>
 			<plugin>
-				<groupId>com.mysema.maven</groupId>
-				<artifactId>apt-maven-plugin</artifactId>
-				<version>1.1.3</version>
-				<executions>
-					<execution>
-						<goals>
-							<goal>process</goal>
-						</goals>
-						<configuration>
-							<outputDirectory>target/generated-sources/java</outputDirectory>
-							<processor>com.querydsl.apt.jpa.JPAAnnotationProcessor</processor>
-						</configuration>
-					</execution>
-				</executions>
-				<dependencies>
-					<dependency>
-						<groupId>com.querydsl</groupId>
-						<artifactId>querydsl-apt</artifactId>
-						<version>5.0.0</version>
-					</dependency>
-				</dependencies>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<excludes>
+						<exclude>
+							<groupId>org.project-lombok</groupId>
+							<artifactId>lombok</artifactId>
+						</exclude>
+					</excludes>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
