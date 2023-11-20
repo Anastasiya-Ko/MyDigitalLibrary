@@ -6,7 +6,6 @@ import lombok.experimental.FieldDefaults;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
-import ru.kopylova.springcourse.DigitalLibrary.mail.MailInterface;
 import ru.kopylova.springcourse.DigitalLibrary.readers.models.view.ReaderDTORich;
 import ru.kopylova.springcourse.DigitalLibrary.readers.service.ReadersService;
 
@@ -16,7 +15,7 @@ import ru.kopylova.springcourse.DigitalLibrary.readers.service.ReadersService;
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 @Service
-public class EmailService implements MailInterface {
+public class EmailService {
 
     /**
      * Подгружаем класс, позволяющий отправлять сообщения из приложения спринг бут
